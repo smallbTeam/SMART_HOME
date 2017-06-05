@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+           version="3.0">
+    <!--JavaMelody 监控配置 要加在所有filter之前-->
+    <!--监控查看地址 http://<host>/<context>/monitoring-->
+    <!--javamelody缓存文件的清除:默认路径一般在tomcat_home/temp/javamelody中.-->
+    <filter>
+        <filter-name>javamelody</filter-name>
+        <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+        <!--支持异步请求-->
+        <async-supported>true</async-supported>
+        <!-- 开启info级别的日志记录-->
+        <init-param>
+            <param-name>log</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <!--排除监听url-->
+        <init-param>
+            <param-name>url-exclude-pattern</param-name>
+            <param-value>/static/.*</param-value>
+        </init-param>
+        <!--重新定义访问路径-->
+       <!-- <init-param>
+            <param-name>monitoring-path</param-name>
+            <param-value>/moni</param-value>
+        </init-param>-->
+        <!--设置访问密码-->
+        <init-param>
+            <param-name>authorized-users</param-name>
+            <param-value>root:root,admin:admin,12345:12345</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>javamelody</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>ASYNC</dispatcher>
+    </filter-mapping>
+    <listener>
+        <listener-class>net.bull.javamelody.SessionListener</listener-class>
+    </listener>
+
+    <!-- 监听spring上下文容器 -->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
+    <!-- 加载spring的xml配置文件到 spring的上下文容器中
+        上下文常量/关联配置文件/全局配置文件 （不配置时） 默认为WEB-INF下的applicationContext.xml -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            <!--JavaMelody 监控配置文件-->
+            classpath*:net/bull/javamelody/monitoring-spring.xml
+            classpath:spring/applicationContext.xml
+        </param-value>
+    </context-param>
+
+    <!-- 配置Spring MVC DispatcherServlet -->
+    <servlet>
+        <servlet-name>mvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- 初始化参数  加载SpringMVC的xml到 spring的上下文容器中  不配置该项时默认为  该配置项名称(此处为mvc)再拼上'-servlet.xml' -->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>
+                classpath:spring/mvc-servlet.xml
+            </param-value>
+        </init-param>
+        <!-- 启动优先级 -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!-- 配置DispatcherServlet所需要拦截的 url -->
+    <!--为了方便处理静态资源，此处拦截所有URL 补充配置看mvc-servlet.xml-->
+    <servlet-mapping>
+        <servlet-name>mvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!-- 配置编码过滤器 -->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <description>character set encoding</description>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- log配置 -->
+    <context-param>
+        <param-name>logbackConfigLocation</param-name>
+        <param-value>classpath:comfig/logback.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
+    </listener>
+
+    <!--数据源监控配置
+    druid数据源配置下包含配置:<property name="filters" value="stat" />-->
+    <filter>
+        <filter-name>DruidWebStatFilter</filter-name>
+        <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+        <init-param>
+            <param-name>exclusions</param-name>
+            <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>DruidWebStatFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--监控webUrl配置-->
+    <!--配置好后访问 http://ip：port/projectName/druid/index.html 可查看连接池数信息-->
+    <servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+
+    <!--解决框架使用JavaBeans Introspector导致内存溢出的问题-->
+    <!--详解:http://blog.csdn.net/luman1991/article/details/52164953-->
+    <listener>
+        <listener-class>
+            org.springframework.web.util.IntrospectorCleanupListener
+        </listener-class>
+    </listener>
+
+    <!-- 缓存配置 -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <!--错误页面-->
+    <!--<error-page>
+        <error-code>403</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.html</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>502</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>503</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>504</error-code>
+        <location>/error.jsp</location>
+    </error-page>-->
+
+</web-app>
