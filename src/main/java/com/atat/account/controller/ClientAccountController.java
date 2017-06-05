@@ -59,12 +59,36 @@ public class ClientAccountController extends BaseController{
         Map<String,Object> resultMap = new HashMap<String,Object>();
         String strMobelPhone = request.getParameter("mobelPhone");
         String password = request.getParameter("password");
+        String nickName = request.getParameter("nickName");
+        String birthday = request.getParameter("birthday");
+        String sex = request.getParameter("sex");
         if((StringUtil.isNotEmpty(strMobelPhone)) && (StringUtil.isNotEmpty(password))){
+            //依据手机号查询用户是否已存在
+
+
             resultMap.put("result", "success");
             resultMap.put("operationResult", strMobelPhone);
         } else {
             resultMap.put("result", "error");
             resultMap.put("error", "手机号或密码为空");
+        }
+        this.renderJson(response,resultMap);
+    }
+
+    @RequestMapping(params = "action=accountIsExit")
+    public void accountIsExit(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Map<String,Object> resultMap = new HashMap<String,Object>();
+        String strMobelPhone = request.getParameter("mobelPhone");
+
+        if(StringUtil.isNotEmpty(strMobelPhone)){
+            //依据手机号查询用户是否已存在
+
+
+            resultMap.put("result", "success");
+            resultMap.put("operationResult", strMobelPhone);
+        } else {
+            resultMap.put("result", "error");
+            resultMap.put("error", "手机号为空");
         }
         this.renderJson(response,resultMap);
     }

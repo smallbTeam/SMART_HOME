@@ -26,18 +26,24 @@ import java.util.Map;
 @RequestMapping(value = "verificationMsg")
 public class VerificationMsgController extends BaseController {
 
+    /**
+     * 发送短信验证码 并记录时间戳
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping(params = "action=sendMsg")
     public void sendVerificationMsg(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String strMobelPhone = request.getParameter("mobelPhone");
-        String password = request.getParameter("password");
-        if ((StringUtil.isNotEmpty(strMobelPhone)) && (StringUtil.isNotEmpty(password))) {
+        String timeStamp = request.getParameter("timeStamp");
+        if ((StringUtil.isNotEmpty(strMobelPhone)) && (StringUtil.isNotEmpty(timeStamp))) {
             resultMap.put("result", "success");
             resultMap.put("operationResult", strMobelPhone);
         }
         else {
             resultMap.put("result", "error");
-            resultMap.put("error", "手机号或密码为空");
+            resultMap.put("error", "手机号为空");
         }
         this.renderJson(response, resultMap);
         // 生成随机短信验证码
@@ -47,8 +53,26 @@ public class VerificationMsgController extends BaseController {
         // 失败-将发送结果返回前台
     }
 
+    /**
+     * 较验验证码是否有效
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping(params = "action=veridateMsg")
-    public void veridateMsg() {
+    public void veridateMsg(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        String veridateMsg = request.getParameter("veridateMsg");
+        String strMobelPhone = request.getParameter("mobelPhone");
+        if ((StringUtil.isNotEmpty(strMobelPhone)) && (StringUtil.isNotEmpty(veridateMsg))) {
+            resultMap.put("result", "success");
+            resultMap.put("operationResult", strMobelPhone);
+        }
+        else {
+            resultMap.put("result", "error");
+            resultMap.put("error", "手机号或验证码为空");
+        }
+        this.renderJson(response, resultMap);
         // 验证session
         // 结果返回前台
     }
