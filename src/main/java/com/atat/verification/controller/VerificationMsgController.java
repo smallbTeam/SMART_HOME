@@ -18,6 +18,7 @@ public class VerificationMsgController {
 
     @RequestMapping(params = "action=sendMsg")
     public void sendVerificationMsg(){
+
         //生成随机短信验证码
         //发送短信
         //成功-验证码存入session
