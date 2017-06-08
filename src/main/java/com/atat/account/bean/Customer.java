@@ -11,19 +11,35 @@ import java.util.Date;
  * @version $Id Customer.java, v 0.1 2017-06-06 4:34 ligw Exp $$
  */
 public class Customer {
-    private Integer MobelPhone;
+
+    private String mobelPhone;
+
     private String password;
+
     private String wxId;
+
     private String nickName;
+
     private Integer sex;
+
     private Date birthday;
 
-    public Integer getMobelPhone() {
-        return MobelPhone;
+    private String token;
+
+    public String getToken() {
+        return token;
     }
 
-    public void setMobelPhone(Integer mobelPhone) {
-        MobelPhone = mobelPhone;
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getMobelPhone() {
+        return mobelPhone;
+    }
+
+    public void setMobelPhone(String mobelPhone) {
+        this.mobelPhone = mobelPhone;
     }
 
     public String getPassword() {

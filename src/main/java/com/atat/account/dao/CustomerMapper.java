@@ -18,12 +18,12 @@ public interface CustomerMapper {
      * @param Customer
      * @return
      */
-    public Integer addCustomer(Customer Customer);
+    public void addCustomer(Customer Customer);
 
     /**
      * 通过手机号获取用户信息
-     * @param MobelPhone
+     * @param mobelPhone
      * @return
      */
-    public List<Customer> getCustomerByMobel(Integer MobelPhone);
+    public List<Customer> getCustomerByMobel(String mobelPhone);
 }

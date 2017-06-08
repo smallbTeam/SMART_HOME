@@ -2,13 +2,72 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.atat.account.dao.CustomerMapper">
 
+    <resultMap id="CustomerResultMap" type="com.atat.account.bean.Customer" >
+        <id column="MobelPhone" property="mobelPhone" jdbcType="VARCHAR" />
+        <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+        <result column="WxId" property="wxId" jdbcType="VARCHAR" />
+        <result column="NickName" property="nickName" jdbcType="VARCHAR" />
+        <result column="Sex" property="sex" jdbcType="INTEGER" />
+        <result column="Birthday" property="birthday" jdbcType="BIGINT" />
+        <result column="Token" property="token" jdbcType="VARCHAR" />
+    </resultMap>
+
     <insert id="addCustomer" parameterType="com.atat.account.bean.Customer">
-
-
+        INSERT INTO Customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mobelPhone != null">
+                MobelPhone,
+            </if>
+            <if test="password != null">
+                PASSWORD,
+            </if>
+            <if test="wxId != null">
+                WxId,
+            </if>
+            <if test="nickName != null">
+                NickName,
+            </if>
+            <if test="sex != null">
+                Sex,
+            </if>
+            <if test="birthday != null">
+                Birthday,
+            </if>
+            <if test="token != null">
+                Token,
+            </if>
+            IsDeleted
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="mobelPhone != null">
+                #{mobelPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="wxId != null">
+                #{wxId,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=BIGINT},
+            </if>
+            <if test="token != null">
+                #{token,jdbcType=VARCHAR},
+            </if>
+            0
+        </trim>
     </insert>
 
-    <select id="testSelectInteger" resultType="java.lang.Integer">
-        select distinct MobelPhone from Customer
+    <select id="getCustomerByMobel" resultMap="CustomerResultMap" parameterType="java.lang.String">
+        select distinct MobelPhone,	PASSWORD,WxId,	NickName,	Birthday,	Sex,	Token
+        from Customer
+        WHERE MobelPhone = #{mobelPhone} AND  IsDeleted = 0
     </select>
 
 

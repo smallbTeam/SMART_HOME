@@ -17,15 +17,15 @@ public interface ClientAccountService {
 
     /**
      * 添加用户(必须先校验用户是否已存在）
-     * @param Customer
+     * @param customer
      * @return
      */
-    public Integer addCustomer(Customer Customer);
+    public void addCustomer(Customer customer);
 
     /**
      * 通过手机号获取用户信息
-     * @param MobelPhone
+     * @param mobelPhone
      * @return
      */
-    public List<Customer> getCustomerByMobel(Integer MobelPhone);
+    public List<Customer> getCustomerByMobel(String mobelPhone);
 }
