@@ -1,0 +1,40 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.2.xsd ">
+	登录页面不拦截
+	<sec:http pattern="/home/doLogin.htm" security="none" />
+	 单用户登陆 
+     仅配置max-sessions="1",则第二次登录会让第一次登录失效。
+     同时配置max-sessions="1" error-if-maximum-exceeded="true"，则可以防止第二次登录
+     max-sessions="1" 其中1表示一个帐号可同时登录的次数 
+	<sec:http auto-config="true">
+		<sec:access-denied-handler error-page="/404.html"/>
+		<sec:session-management >
+			<sec:concurrency-control max-sessions="1" error-if-maximum-exceeded="true" expired-url="/home/doLogin.htm"/>
+		</sec:session-management>
+	</sec:http>
+	用户缓存池
+	<sec:authentication-manager>	
+		 <sec:authentication-provider  
+            user-service-ref="byodUserTblService">  
+            密码采用md5加密方式加密  
+            <sec:password-encoder base64="false" ref="passwordEncoder">  
+                用username做盐值加密，防止md5字典攻击  
+                <sec:salt-source user-property="username" />  
+            </sec:password-encoder>  
+        </sec:authentication-provider> 
+	</sec:authentication-manager>
+	
+	用户信息服务
+	<bean id="byodUserTblService" 
+		class="com.kw.xtkfb.core.service.impl.ByodUserTblServiceImpl"/>
+
+	密码加密  
+    <bean id="passwordEncoder"  
+        class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />  
+</beans>	   -->
