@@ -1,0 +1,1957 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8fe145ed-c75a-40e1-9d34-ef361ac4c26a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/activation-1.1.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/smart_home_war.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/smart_home_war_exploded.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/WebRoot/page/assets/css/bootstrap-datetimepicker.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/WebRoot/page/assets/js/bootstrap-datetimepicker.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/WebRoot/page/assets/js/moment-locale.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/WebRoot/page/common/js/jquery-3.2.1.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/client/account/css/account.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/atat/verification/controller/VerificationMsgController.class" afterPath="$PROJECT_DIR$/target/classes/com/atat/verification/controller/VerificationMsgController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/verification/controller/VerificationMsgController.class" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/verification/controller/VerificationMsgController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/aopalliance-1.0.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/aopalliance-1.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/aspectjweaver-1.8.4.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/aspectjweaver-1.8.4.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/classmate-1.1.0.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/classmate-1.1.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-beanutils-1.8.3.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-beanutils-1.8.3.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-codec-1.8.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-codec-1.8.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-collections-3.2.2.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-collections-3.2.2.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-dbcp-1.4.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-dbcp-1.4.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-fileupload-1.3.2.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-fileupload-1.3.2.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-httpclient-3.1.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-httpclient-3.1.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-io-2.4.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-io-2.4.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-lang-2.6.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-lang-2.6.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-lang3-3.4.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-lang3-3.4.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-logging-1.2.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-logging-1.2.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-pool-1.5.4.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-pool-1.5.4.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-pool2-2.2.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-pool2-2.2.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/druid-1.0.18.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/druid-1.0.18.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/ehcache-core-2.5.3.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/ehcache-core-2.5.3.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/fastjson-1.2.22.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/fastjson-1.2.22.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/guice-3.0.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/guice-3.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/guice-multibindings-3.0.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/guice-multibindings-3.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/hibernate-validator-5.2.4.Final.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/hibernate-validator-5.2.4.Final.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/javaee-api-7.0.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/javaee-api-7.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/javamelody-core-1.50.0.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/javamelody-core-1.50.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/javax.inject-1.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/javax.inject-1.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/javax.mail-1.5.0.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/javax.mail-1.5.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/jboss-logging-3.2.1.Final.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/jboss-logging-3.2.1.Final.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/jcl-over-slf4j-1.7.21.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/jcl-over-slf4j-1.7.21.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/jrobin-1.5.9.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/jrobin-1.5.9.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/json-20160810.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/json-20160810.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/jstl-1.2.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/jstl-1.2.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/logback-classic-1.1.1.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/logback-classic-1.1.1.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/logback-core-1.1.1.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/logback-core-1.1.1.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/logback-ext-spring-0.1.4.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/logback-ext-spring-0.1.4.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/lombok-1.16.8.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/lombok-1.16.8.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/mybatis-3.4.0.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/mybatis-3.4.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/mybatis-spring-1.3.0.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/mybatis-spring-1.3.0.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-java-5.1.40.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-java-5.1.40.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/shiro-all-1.3.2.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/shiro-all-1.3.2.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/shiro-core-1.3.2.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/shiro-core-1.3.2.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/shiro-ehcache-1.3.2.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/shiro-ehcache-1.3.2.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/shiro-guice-1.3.2.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/shiro-guice-1.3.2.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/slf4j-api-1.7.21.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/slf4j-api-1.7.21.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-aop-4.1.3.RELEASE.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-aop-4.1.3.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-aspects-4.1.3.RELEASE.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-aspects-4.1.3.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-beans-4.1.3.RELEASE.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-beans-4.1.3.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-context-4.1.3.RELEASE.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-context-4.1.3.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-context-support-4.1.3.RELEASE.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-context-support-4.1.3.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-core-4.1.3.RELEASE.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-core-4.1.3.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-expression-4.1.3.RELEASE.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-expression-4.1.3.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-jdbc-4.1.3.RELEASE.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-jdbc-4.1.3.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-messaging-4.1.3.RELEASE.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-messaging-4.1.3.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-oxm-4.1.3.RELEASE.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-oxm-4.1.3.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-tx-4.1.3.RELEASE.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-tx-4.1.3.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-web-4.1.3.RELEASE.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-web-4.1.3.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-webmvc-4.1.3.RELEASE.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-webmvc-4.1.3.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-websocket-4.1.3.RELEASE.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-websocket-4.1.3.RELEASE.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/validation-api-1.1.0.Final.jar" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/validation-api-1.1.0.Final.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/account/register.jsp" afterPath="$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/account/register.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/home/index.jsp" afterPath="$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/home/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/WebRoot/page/assets/css/bootstrap-datetimepicker.min.css" afterPath="$PROJECT_DIR$/src/main/WebRoot/page/assets/css/bootstrap-datetimepicker.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/WebRoot/page/assets/js/bootstrap-datetimepicker.min.js" afterPath="$PROJECT_DIR$/src/main/WebRoot/page/assets/js/bootstrap-datetimepicker.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/WebRoot/page/client/account/css/account.css" afterPath="$PROJECT_DIR$/src/main/WebRoot/page/client/account/css/account.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/WebRoot/page/common/js/common.js" afterPath="$PROJECT_DIR$/src/main/WebRoot/page/common/js/common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/WebRoot/page/common/jsp/baseInclude.jsp" afterPath="$PROJECT_DIR$/src/main/WebRoot/page/common/jsp/baseInclude.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/page/client/account/register.jsp" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/page/client/account/register.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/page/client/home/deviceList.jsp" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/page/client/home/deviceList.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/page/client/home/index.jsp" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/page/client/home/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/bootstrap-datetimepicker.min.css" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/bootstrap-datetimepicker.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/bootstrap-datetimepicker.min.js" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/bootstrap-datetimepicker.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/client/home/css/home.css" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/client/home/css/home.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/jsp/baseInclude.jsp" afterPath="$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/jsp/baseInclude.jsp" />
+    </list>
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/smart_home$myserver.coverage" NAME="myserver Coverage Results" MODIFIED="1496712374551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="register.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/account/register.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="164">
+              <caret line="238" column="24" lean-forward="false" selection-start-line="238" selection-start-column="24" selection-end-line="238" selection-end-column="24" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#3;n#div#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#1;n#input#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VerificationMsgController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/atat/verification/controller/VerificationMsgController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/atat/common/base/controller/BaseController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClientAccountController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/atat/account/controller/ClientAccountController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="64">
+              <caret line="79" column="33" lean-forward="false" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="account.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/client/account/css/account.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="baseInclude.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/common/jsp/baseInclude.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="241">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap.min.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/assets/css/bootstrap.min.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>deviceList.html</find>
+      <find>devicelist</find>
+      <find>images</find>
+      <find>registAccount</find>
+      <find>sendValidateCode</find>
+      <find>device</find>
+      <find>form_datetime</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/atat/account/controller/ClientAccountController.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/home/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/WebRoot/page/common/js/common.js" />
+        <option value="$PROJECT_DIR$/src/main/WebRoot/page/assets/js/Moment.js" />
+        <option value="$PROJECT_DIR$/src/main/WebRoot/page/assets/js/moment.locale.js" />
+        <option value="$PROJECT_DIR$/src/main/WebRoot/page/assets/css/bootstrap-datetimepicker.min.css" />
+        <option value="$PROJECT_DIR$/src/main/WebRoot/page/common/jsp/baseInclude.jsp" />
+        <option value="$PROJECT_DIR$/src/main/WebRoot/page/client/account/css/account.css" />
+        <option value="$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/account/register.jsp" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="$PROJECT_DIR$/../../mavenRepository" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../apache-maven-3.5.0" />
+        <option name="userSettingsFile" value="$PROJECT_DIR$/../../apache-maven-3.5.0/conf/settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="meaven-springMvc-myBatis" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="meaven-springMvc-myBatis" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+    </treeState>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="1.8" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="53" />
+    <option name="y" value="23" />
+    <option name="width" value="1303" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smart_home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smart_home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smart_home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smart_home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smart_home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smart_home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebRoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smart_home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smart_home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.runner" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/WebRoot/page/assets/css" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/WebRoot/page/assets/js" />
+      <recent name="$PROJECT_DIR$/src/main/WebRoot/page/common/js" />
+    </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/atat/account/controller/ClientAccountController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/atat/verification/controller/VerificationMsgController.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/atat/account/bean/Customer.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/atat/account/dao/CustomerMapper.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/atat/account/dao/customer_mapper.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/atat/account/service/ClientAccountService.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/atat/account/service/impl/ClientAccountServiceImpl.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/account/register.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/account/controller/ClientAccountController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/common/base/controller/BaseController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/common/prop/PlatformPropertyConfigurer.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/common/util/CollectionUtil.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/common/util/DateUtil$DatePattern.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/common/util/DateUtil.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/common/util/HtmlEncodeUtil.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/common/util/JsonUtil.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/common/util/StringUtil.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/common/util/httpClient/HttpRequest.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/common/util/httpClient/HttpResponse.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/common/util/httpClient/HttpResultType.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/device/controller/HomeController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/test/bean/TestDTO.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/test/controller/TestController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/test/dao/TestSpecMapper.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/test/dao/test_spec_mappe.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/test/service/TestService.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/test/service/impl/TestServiceImpl.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/com/atat/verification/controller/VerificationMsgController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/config/config.properties</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/config/db.properties</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/config/ehcache.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/config/logback.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/config/mybatis-config.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/spring/applicationContext.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/spring/mvc-servlet.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/spring/spring-config-datasource.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/spring/spring-config-ehcache.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/classes/spring/spring-config-security.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/META-INF/MANIFEST.MF</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/ReadMe.md</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/account/controller/ClientAccountController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/common/base/controller/BaseController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/common/prop/PlatformPropertyConfigurer.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/common/util/CollectionUtil.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/common/util/DateUtil$DatePattern.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/common/util/DateUtil.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/common/util/HtmlEncodeUtil.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/common/util/JsonUtil.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/common/util/StringUtil.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/common/util/httpClient/HttpRequest.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/common/util/httpClient/HttpResponse.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/common/util/httpClient/HttpResultType.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/device/controller/HomeController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/test/bean/TestDTO.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/test/controller/TestController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/test/dao/TestSpecMapper.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/test/dao/test_spec_mappe.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/test/service/TestService.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/test/service/impl/TestServiceImpl.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/com/atat/verification/controller/VerificationMsgController.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/config/config.properties</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/config/db.properties</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/config/ehcache.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/config/logback.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/config/mybatis-config.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/spring/applicationContext.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/spring/mvc-servlet.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/spring/spring-config-datasource.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/spring/spring-config-ehcache.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/classes/spring/spring-config-security.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/ehcache.xsd</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/activation-1.1.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/aopalliance-1.0.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/aspectjweaver-1.8.4.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/classmate-1.1.0.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-beanutils-1.8.3.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-codec-1.8.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-collections-3.2.2.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-dbcp-1.4.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-fileupload-1.3.2.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-httpclient-3.1.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-io-2.4.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-lang-2.6.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-lang3-3.4.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-logging-1.2.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-pool-1.5.4.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/commons-pool2-2.2.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/druid-1.0.18.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/ehcache-core-2.5.3.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/fastjson-1.2.22.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/guice-3.0.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/guice-multibindings-3.0.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/hibernate-validator-5.2.4.Final.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/javaee-api-7.0.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/javamelody-core-1.50.0.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/javax.inject-1.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/javax.mail-1.5.0.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/jboss-logging-3.2.1.Final.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/jcl-over-slf4j-1.7.21.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/jrobin-1.5.9.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/json-20160810.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/jstl-1.2.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/logback-classic-1.1.1.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/logback-core-1.1.1.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/logback-ext-spring-0.1.4.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/lombok-1.16.8.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/mybatis-3.4.0.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/mybatis-spring-1.3.0.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-java-5.1.40.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/shiro-all-1.3.2.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/shiro-core-1.3.2.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/shiro-ehcache-1.3.2.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/shiro-guice-1.3.2.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/slf4j-api-1.7.21.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-aop-4.1.3.RELEASE.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-aspects-4.1.3.RELEASE.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-beans-4.1.3.RELEASE.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-context-4.1.3.RELEASE.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-context-support-4.1.3.RELEASE.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-core-4.1.3.RELEASE.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-expression-4.1.3.RELEASE.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-jdbc-4.1.3.RELEASE.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-messaging-4.1.3.RELEASE.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-oxm-4.1.3.RELEASE.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-tx-4.1.3.RELEASE.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-web-4.1.3.RELEASE.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-webmvc-4.1.3.RELEASE.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/spring-websocket-4.1.3.RELEASE.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/lib/validation-api-1.1.0.Final.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/page/client/account/login.jsp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/page/client/account/register.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/page/client/account/register.jsp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/page/client/home/deviceList.jsp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/page/client/home/index.jsp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/page/client/home/personal.jsp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/page/text.jsp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/WEB-INF/web.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/ace-ie.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/ace-part2.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/ace-rtl.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/ace-skins.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/ace.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/bootstrap-colorpicker.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/bootstrap-datepicker3.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/bootstrap-datetimepicker.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/bootstrap-duallistbox.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/bootstrap-editable.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/bootstrap-multiselect.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/bootstrap-timepicker.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/bootstrap.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/chosen.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/colorbox.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/daterangepicker.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/dropzone.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/font-awesome.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/fonts.googleapis.com.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/fullcalendar.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/jquery-ui.custom.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/jquery-ui.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/jquery.gritter.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/prettify.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/select2.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/css/ui.jqgrid.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/font-awesome/4.5.0/css/font-awesome.min.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/font-awesome/4.5.0/fonts/fontawesome-webfont.eot</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/font-awesome/4.5.0/fonts/fontawesome-webfont.svg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/font-awesome/4.5.0/fonts/fontawesome-webfont.ttf</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/font-awesome/4.5.0/fonts/fontawesome-webfont.woff</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/font-awesome/4.5.0/fonts/fontawesome-webfont.woff2</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/fonts/glyphicons-halflings-regular.eot</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/fonts/glyphicons-halflings-regular.svg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/fonts/glyphicons-halflings-regular.ttf</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/fonts/glyphicons-halflings-regular.woff</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/fonts/glyphicons-halflings-regular.woff2</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/avatars/avatar.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/avatars/avatar1.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/avatars/avatar2.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/avatars/avatar3.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/avatars/avatar4.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/avatars/avatar5.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/avatars/profile-pic.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/avatars/user.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/bootstrap-colorpicker/alpha-horizontal.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/bootstrap-colorpicker/alpha.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/bootstrap-colorpicker/hue-horizontal.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/bootstrap-colorpicker/hue.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/bootstrap-colorpicker/saturation.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/email/email1.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/email/email2.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/email/email3.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/email/email4.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/gallery/image-1.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/gallery/image-2.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/gallery/image-3.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/gallery/image-4.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/gallery/image-5.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/gallery/image-6.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/gallery/thumb-1.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/gallery/thumb-2.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/gallery/thumb-3.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/gallery/thumb-4.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/gallery/thumb-5.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/gallery/thumb-6.jpg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/placeholder/165x90.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/placeholder/255x150.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/placeholder/530x270.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/images/placeholder/550x280.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/ace-editable.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/ace-elements.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/ace-extra.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/ace.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/autosize.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/bootbox.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/bootstrap-colorpicker.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/bootstrap-datepicker.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/bootstrap-datetimepicker.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/bootstrap-datetimepicker.zh-CN.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/bootstrap-editable.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/bootstrap-markdown.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/bootstrap-multiselect.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/bootstrap-tag.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/bootstrap-timepicker.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/bootstrap-wysiwyg.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/bootstrap.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/buttons.colVis.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/buttons.flash.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/buttons.html5.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/buttons.print.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/chosen.jquery.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/dataTables.buttons.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/dataTables.select.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/daterangepicker.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/dropzone.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/excanvas.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/fullcalendar.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/grid.locale-en.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/holder.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/html5shiv.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery-1.11.3.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery-2.1.4.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery-additional-methods.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery-typeahead.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery-ui.custom.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery-ui.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.bootstrap-duallistbox.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.colorbox.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.dataTables.bootstrap.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.dataTables.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.easypiechart.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.flot.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.flot.pie.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.flot.resize.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.gritter.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.hotkeys.index.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.inputlimiter.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.jqGrid.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.knob.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.maskedinput.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.mobile.custom.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.nestable.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.raty.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.sparkline.index.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.ui.touch-punch.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/jquery.validate.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/markdown.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/moment.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/prettify.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/respond.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/select2.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/spin.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/spinbox.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/tree.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/js/wizard.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/assets/swf/flashExport.swf</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/client/account/css/account.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/client/account/js/login.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/client/account/js/register.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/client/home/css/home.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/client/home/js/deviceList.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/client/home/js/index.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/client/home/js/personal.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/css/common.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/fonts/FontAwesome.otf</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/fonts/fontawesome-webfont.eot</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/fonts/fontawesome-webfont.ttf</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/fonts/fontawesome-webfont.woff</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/fonts/fontawesome-webfont.woff2</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/fonts/glyphicons-halflings-regular.eot</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/fonts/glyphicons-halflings-regular.svg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/fonts/glyphicons-halflings-regular.ttf</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/fonts/glyphicons-halflings-regular.woff</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/fonts/glyphicons-halflings-regular.woff2</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/iconfont/demo_symbol.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/iconfont/iconfont.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/iconfont/iconfont.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/iconfont/iconfont.svg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/IP.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/IP_white.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/account.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/add.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/bg_ch.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/bg_cy.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/bg_login.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/close.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/comments.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/date.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/date_blcak.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/delete.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/delete_black.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/editor.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/enter.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/feedback.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/icon_phone.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/icon_pwd.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/iconfont-shouji.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/iconfont-youhuiquan.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/link.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/personal.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/return.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/img/text.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/cityselect/cityselect.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/cityselect/data.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/jqvalidate/jquery.metadata.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/jqvalidate/jquery.validate.add.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/jqvalidate/jquery.validate.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/jqvalidate/jquery.validate.msg_zh_CN.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/layer/layer.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/layer/mobile/layer.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/layer/mobile/need/layer.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/layer/skin/default/icon-ext.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/layer/skin/default/icon.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/layer/skin/default/layer.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/layer/skin/default/loading-0.gif</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/layer/skin/default/loading-1.gif</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/layer/skin/default/loading-2.gif</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/layer/skin/szskin/close.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/js/layer/skin/szskin/style.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/jsp/base.jsp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/jsp/baseInclude.jsp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/jsp/footer.jsp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/meaven-springMvc-myBatis-1.0-SNAPSHOT/page/common/jsp/header.jsp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/target/test-classes/com/atat/test/service/TestServiceTest.class</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.myserver">
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings />
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <method />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
+      <module name="" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
+        <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
+        <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Cold Fusion runner description" factoryName="Cold Fusion" custom_browser="" web_path="">
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
+      <option name="BCName" value="" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="" />
+      <option name="overriddenMainClass" value="" />
+      <option name="overriddenOutputFileName" value="" />
+      <option name="overrideMainClass" value="false" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
+      <setting name="vmparams" value="" />
+      <setting name="cmdLine" value="run-app" />
+      <setting name="passParentEnv" value="true" />
+      <setting name="launchBrowser" value="true" />
+      <setting name="launchBrowserUrl" value="" />
+      <setting name="depsClasspath" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="0" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="meaven-springMvc-myBatis" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
+      <method />
+    </configuration>
+    <configuration default="false" name="myserver" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.15" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+      <deployment>
+        <artifact name="smart_home:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/smarthome" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_smart_home" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="59045" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="smart_home:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Tomcat Server.myserver" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8fe145ed-c75a-40e1-9d34-ef361ac4c26a" name="Default" comment="" />
+      <created>1496681842359</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1496681842359</updated>
+      <workItem from="1496681843847" duration="3463000" />
+      <workItem from="1496692087165" duration="9869000" />
+      <workItem from="1496754319745" duration="4234000" />
+      <workItem from="1496900098337" duration="8428000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="25994000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="53" y="23" width="1303" height="744" extended-state="0" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.452454" sideWeight="0.50277555" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.49046323" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.49046323" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="JSF" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980174" sideWeight="0.49046323" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.49405235" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4969325" sideWeight="0.49722442" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26011103" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24980174" sideWeight="0.5095368" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/common/jsp/base.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/common/jsp/baseInclude.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="63" lean-forward="true" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/atat/common/util/httpClient/HttpResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#607#608#0" expanded="false" />
+            <element signature="e#645#646#0" expanded="false" />
+            <element signature="e#709#710#0" expanded="false" />
+            <element signature="e#763#764#0" expanded="false" />
+            <element signature="e#1044#1045#0" expanded="false" />
+            <element signature="e#1088#1089#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/home/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/home/deviceList.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="29" column="82" lean-forward="false" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="82" />
+          <folding>
+            <marker date="1496692678000" expanded="true" signature="8402:8416" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/account/register.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="902">
+          <caret line="41" column="33" lean-forward="false" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#3;n#div#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#1;n#input#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/common/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2178">
+          <caret line="99" column="40" lean-forward="false" selection-start-line="99" selection-start-column="40" selection-end-line="99" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/common/jsp/base.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="8" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/common/jsp/baseInclude.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="47" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/atat/common/util/httpClient/HttpResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#607#608#0" expanded="false" />
+            <element signature="e#645#646#0" expanded="false" />
+            <element signature="e#709#710#0" expanded="false" />
+            <element signature="e#763#764#0" expanded="false" />
+            <element signature="e#1044#1045#0" expanded="false" />
+            <element signature="e#1088#1089#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/home/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/home/deviceList.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="29" column="82" lean-forward="false" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="82" />
+          <folding>
+            <marker date="1496692678000" expanded="true" signature="8402:8416" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/account/register.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="31" column="26" lean-forward="false" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#3;n#div#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#1;n#input#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/text.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/atat/test/controller/TestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="29" column="20" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/atat/account/controller/ClientAccountController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2112">
+          <caret line="96" column="8" lean-forward="false" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/ehcache.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/db.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="15" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smart_home.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/text.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/atat/test/controller/TestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="29" column="20" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/ehcache.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config/db.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="15" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smart_home.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="21" lean-forward="false" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="102" column="21" lean-forward="false" selection-start-line="102" selection-start-column="21" selection-end-line="102" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/atat/common/util/httpClient/HttpResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#607#608#0" expanded="false" />
+            <element signature="e#645#646#0" expanded="false" />
+            <element signature="e#709#710#0" expanded="false" />
+            <element signature="e#763#764#0" expanded="false" />
+            <element signature="e#1044#1045#0" expanded="false" />
+            <element signature="e#1088#1089#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/home/deviceList.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="29" column="82" lean-forward="false" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="82" />
+          <folding>
+            <marker date="1496692678000" expanded="true" signature="8402:8416" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/account/register.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/client/home/css/home.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/account/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/common/css/common.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/common/img/bg_login.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/common/js/jquery-3.2.1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/common/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2178">
+          <caret line="99" column="40" lean-forward="false" selection-start-line="99" selection-start-column="40" selection-end-line="99" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/home/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/assets/js/bootstrap-datetimepicker.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/assets/js/Moment.js" />
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/assets/js/moment-locale.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99528">
+          <caret line="4526" column="39" lean-forward="false" selection-start-line="4526" selection-start-column="39" selection-end-line="4526" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/assets/css/bootstrap-datetimepicker.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/common/jsp/base.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/assets/css/bootstrap-datepicker3.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-70">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/assets/css/bootstrap-datetimepicker.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/assets/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/html5-schema/html5/phrase.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="328" column="16" lean-forward="false" selection-start-line="328" selection-start-column="16" selection-end-line="328" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/common/jsp/baseInclude.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/page/client/account/css/account.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/WebRoot/WEB-INF/page/client/account/register.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="238" column="24" lean-forward="false" selection-start-line="238" selection-start-column="24" selection-end-line="238" selection-end-column="24" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#3;n#div#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#1;n#input#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/atat/verification/controller/VerificationMsgController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/atat/common/base/controller/BaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/atat/account/controller/ClientAccountController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="79" column="33" lean-forward="false" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor>
+            <show-content>
+              <type id="artifact" />
+              <type id="library" />
+              <type id="javaee-facet-resources" />
+              <type id="jpa-descriptors" />
+            </show-content>
+          </artifact-editor>
+          <last-edited>smart_home:war exploded</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Web (smart_home)|Web</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Web|smart_home</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: aopalliance:aopalliance:1.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
