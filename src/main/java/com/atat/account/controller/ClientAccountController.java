@@ -9,6 +9,7 @@ import com.atat.account.service.ClientAccountService;
 import com.atat.common.base.controller.BaseController;
 import com.atat.common.util.CollectionUtil;
 import com.atat.common.util.StringUtil;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -61,7 +62,7 @@ public class ClientAccountController extends BaseController {
     }
 
     /**
-     * 记录用户注册信息
+     * 用户注册
      * 
      * @param request
      * @param response
@@ -71,14 +72,22 @@ public class ClientAccountController extends BaseController {
     public void registAccount(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String mobelPhone = request.getParameter("mobelPhone");
+        String wxId = request.getParameter("wxId");
         String password = request.getParameter("password");
         String nickName = request.getParameter("nickName");
         String birthday = request.getParameter("birthday");
         String sex = request.getParameter("sex");
+        String token = request.getParameter("token");
         if ((StringUtil.isNotEmpty(mobelPhone)) && (StringUtil.isNotEmpty(password))) {
             Customer customer = new Customer();
             customer.setMobelPhone(mobelPhone);
             customer.setPassword(password);
+            if (StringUtil.isNotEmpty(wxId)) {
+                customer.setWxId(wxId);
+            }
+            if (StringUtil.isNotEmpty(token)) {
+                customer.setToken(token);
+            }
             if (StringUtil.isNotEmpty(nickName)) {
                 customer.setNickName(nickName);
             }
@@ -128,6 +137,99 @@ public class ClientAccountController extends BaseController {
         else {
             resultMap.put("result", "error");
             resultMap.put("error", "手机号为空");
+        }
+        this.renderJson(response, resultMap);
+    }
+
+    /**
+     * 用户分页
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping(params = "action=accountPageTurn")
+    public void accountPageTurn(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        String strMobelPhone = request.getParameter("mobelPhone");
+        if (StringUtil.isNotEmpty(strMobelPhone)) {
+            Map<String,Object> param = new HashMap<String,Object>();
+            param.put("MobelPhone",strMobelPhone);
+            try {
+                // 依据手机号查询用户是否已存在
+                PageInfo<Map<String,Object>> customerPageInfo = clientAccountService.getCustomerPageTurn(param,null,null);
+                if (null != customerPageInfo) {
+                    resultMap.put("result", "success");
+                    resultMap.put("operationResult", customerPageInfo);
+                } else {
+                    resultMap.put("result", "success");
+                    resultMap.put("operationResult", false);
+                }
+            } catch (NumberFormatException e) {
+                logger.error("依据手机号查询用户是否已存在出错" + e, e);
+                resultMap.put("result", "failed");
+                resultMap.put("error", "系统出错");
+            }
+        }
+        else {
+            resultMap.put("result", "error");
+            resultMap.put("error", "手机号为空");
+        }
+        this.renderJson(response, resultMap);
+    }
+
+    /**
+     * 依据ID更改用户信息 密码
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping(params = "action=updateAccount")
+    public void updateAccount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        String customerId = request.getParameter("customerId");
+        String mobelPhone = request.getParameter("mobelPhone");
+        String password = request.getParameter("password");
+        String wxId = request.getParameter("wxId");
+        String nickName = request.getParameter("nickName");
+        String birthday = request.getParameter("birthday");
+        String sex = request.getParameter("sex");
+        String token = request.getParameter("token");
+        if (StringUtil.isNotEmpty(customerId)) {
+            Map<String, Object> param = new HashMap<String, Object>();
+            param.put("CustomerId", Integer.parseInt(customerId));
+
+            if (StringUtil.isNotEmpty(mobelPhone)) {
+                param.put("MobelPhone", mobelPhone);
+            }
+            if (StringUtil.isNotEmpty(password)) {
+                param.put("Password", password);
+            }
+            if (StringUtil.isNotEmpty(wxId)) {
+                param.put("WxId", wxId);
+            }
+            if (StringUtil.isNotEmpty(nickName)) {
+                param.put("NickName", nickName);
+            }
+            if (StringUtil.isNotEmpty(sex)) {
+                param.put("Sex", Integer.parseInt(sex));
+            }
+            if (StringUtil.isNotEmpty(token)) {
+                param.put("Token", token);
+            }
+            if (StringUtil.isNotEmpty(birthday)) {
+                param.put("Birthday", new Date(Long.parseLong(birthday)));
+            }
+            try {
+                clientAccountService.updateCustomerById(param);
+                resultMap.put("result", "success");
+            } catch (Exception e) {
+                logger.error("依据ID更改用户信息出错" + e, e);
+                resultMap.put("result", "failed");
+                resultMap.put("error", "系统出错");
+            }
+        } else {
+            resultMap.put("result", "error");
+            resultMap.put("error", "用户ID不能为空");
         }
         this.renderJson(response, resultMap);
     }

@@ -5,9 +5,16 @@
  */
 package com.atat.test.service;
 
-import com.atat.test.service.impl.TestServiceImpl;
+import com.atat.account.bean.Customer;
+import com.atat.account.service.ClientAccountService;
+import com.atat.common.util.JsonUtil;
+import com.github.pagehelper.PageInfo;
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.annotation.Resource;
 
 /**
  * @author ligw
@@ -15,10 +22,6 @@ import org.junit.Test;
  */
 public class TestServiceTest {
 
-    @Test
-    public void testStringTest(){
-        TestServiceImpl testService = new TestServiceImpl();
-        String ret = testService.stringTest("Lili");
-        Assert.assertEquals("Lili12",ret);
-    }
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
+
 }

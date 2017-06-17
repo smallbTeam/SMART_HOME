@@ -7,6 +7,7 @@ package com.atat.account.dao;
 import com.atat.account.bean.Customer;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ligw
@@ -26,4 +27,17 @@ public interface CustomerMapper {
      * @return
      */
     public List<Customer> getCustomerByMobel(String mobelPhone);
+
+    /**
+     * 查找客户列表
+     * @param param
+     * @return
+     */
+    public List<Map<String,Object>> selectCustomerList(Map<String,Object> param);
+
+    /**
+     * 依据ID更新客户
+     * @param param
+     */
+    public void updateCustomerById(Map<String,Object> param);
 }
