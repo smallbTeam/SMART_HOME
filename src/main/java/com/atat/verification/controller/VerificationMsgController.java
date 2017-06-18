@@ -50,8 +50,8 @@ public class VerificationMsgController extends BaseController {
     public void sendVerificationMsg(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String mobelPhone = request.getParameter("mobelPhone");
-        String timeStamp = request.getParameter("timeStamp");
-        if ((StringUtil.isNotEmpty(mobelPhone)) && (StringUtil.isNotEmpty(timeStamp))) {
+        //String timeStamp = request.getParameter("timeStamp");
+        if (StringUtil.isNotEmpty(mobelPhone)) {
             // 生成随机六位短信验证码
             String randomCode = ((int) ((Math.random() * 9 + 1) * 100000)) + "";
             // 发送短信
@@ -114,6 +114,7 @@ public class VerificationMsgController extends BaseController {
             String state = resMap.get("State");
             if ((null != state) && ("1".equals(state))) {
                 // 成功-验证码存入session
+                String timeStamp = String.valueOf(new Date().getTime());
                 request.getSession().setAttribute("msgCodeSsion" + mobelPhone, randomCode + "&&" + timeStamp);
                 // 成功-将发送结果返回前台
                 resultMap.put("result", "success");
