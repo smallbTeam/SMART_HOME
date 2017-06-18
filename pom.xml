@@ -7,7 +7,7 @@
     <!--群组ID：单位域名反写-->
     <groupId>com.atat</groupId>
     <!--项目ID-->
-    <artifactId>meaven-springMvc-myBatis</artifactId>
+    <artifactId>smart_home</artifactId>
     <!--项目版本号-->
     <version>1.0-SNAPSHOT</version>
     <!--打包类型 默认jar-->
@@ -17,7 +17,7 @@
     <properties>
         <!--项目配置-->
         <project.groupId>com.atat</project.groupId>
-        <project.artifactId>meaven-springMvc-myBatis</project.artifactId>
+        <project.artifactId>smart_home</project.artifactId>
         <project.version>1.0-SNAPSHOT</project.version>
         <!--构建信息-->
         <maven.compiler.source>1.8</maven.compiler.source>
