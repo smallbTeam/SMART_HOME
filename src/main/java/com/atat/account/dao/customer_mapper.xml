@@ -2,14 +2,154 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.atat.account.dao.CustomerMapper">
 
+    <resultMap id="CustomerResultMap" type="com.atat.account.bean.Customer" >
+        <id column="MobelPhone" property="mobelPhone" jdbcType="VARCHAR" />
+        <result column="Password" property="password" jdbcType="VARCHAR" />
+        <result column="WxId" property="wxId" jdbcType="VARCHAR" />
+        <result column="NickName" property="nickName" jdbcType="VARCHAR" />
+        <result column="Sex" property="sex" jdbcType="INTEGER" />
+        <result column="Birthday" property="birthday" jdbcType="BIGINT" />
+        <result column="Token" property="token" jdbcType="VARCHAR" />
+    </resultMap>
+
     <insert id="addCustomer" parameterType="com.atat.account.bean.Customer">
-
-
+        INSERT INTO Customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mobelPhone != null">
+                MobelPhone,
+            </if>
+            <if test="password != null">
+                Password,
+            </if>
+            <if test="wxId != null">
+                WxId,
+            </if>
+            <if test="nickName != null">
+                NickName,
+            </if>
+            <if test="sex != null">
+                Sex,
+            </if>
+            <if test="birthday != null">
+                Birthday,
+            </if>
+            <if test="token != null">
+                Token,
+            </if>
+            IsDeleted
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="mobelPhone != null">
+                #{mobelPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="wxId != null">
+                #{wxId,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=BIGINT},
+            </if>
+            <if test="token != null">
+                #{token,jdbcType=VARCHAR},
+            </if>
+            0
+        </trim>
     </insert>
 
-    <select id="testSelectInteger" resultType="java.lang.Integer">
-        select distinct MobelPhone from Customer
+    <select id="getCustomerByMobel" resultMap="CustomerResultMap" parameterType="java.lang.String">
+        select distinct MobelPhone,	PASSWORD,WxId,	NickName,	Birthday,	Sex,	Token
+        from Customer
+        WHERE MobelPhone = #{mobelPhone} AND  IsDeleted = 0
     </select>
 
+    <!--CREATE TABLE `Customer` (-->
+    <!--`id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',-->
+    <!--`MobelPhone` varchar(16) DEFAULT NULL COMMENT '电话',-->
+    <!--`Password` varchar(50) DEFAULT NULL COMMENT '密码',-->
+    <!--`WxId` varchar(255) DEFAULT NULL COMMENT '微信Id',-->
+    <!--`NickName` varbinary(255) DEFAULT NULL COMMENT '昵称',-->
+    <!--`Birthday` date DEFAULT NULL COMMENT '出生日期',-->
+    <!--`Sex` tinyint(4) DEFAULT NULL COMMENT '性别 1男 2 女 0其他',-->
+    <!--`Token` varchar(255) DEFAULT NULL COMMENT 'token',-->
+    <!--`CreatedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',-->
+    <!--`ModifiedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',-->
+    <!--`IsDeleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除 1:是 2:否',-->
+    <!--`Reserve` varchar(255) DEFAULT NULL COMMENT '预留字段',-->
+    <!--PRIMARY KEY (`id`)-->
+    <!--) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='用户表';-->
+
+    <select id="selectCustomerList" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        select id, MobelPhone, Password,WxId,NickName,Birthday,Sex,Token,Reserve
+        from Customer
+        where IsDeleted = 0
+        <if test="MobelPhone  != null and MobelPhone != ''">
+            and MobelPhone = #{MobelPhone}
+        </if>
+        <if test="WxId  != null and WxId != ''">
+            and WxId = #{WxId}
+        </if>
+        <if test="Password  != null and Password != ''">
+            and Password = #{Password}
+        </if>
+        <if test="NickName  != null and NickName != ''">
+            and NickName = #{NickName}
+        </if>
+        <if test="Birthday  != null">
+            and unix_timestamp(Birthday) = unix_timestamp(#{Birthday})
+        </if>
+        <if test="Sex  != null">
+            and Sex = #{Sex,jdbcType=INTEGER}
+        </if>
+        <if test="Token  != null and Token != ''">
+            and Token = #{Token}
+        </if>
+        <if test="Reserve  != null and Reserve != ''">
+            and Reserve = #{Reserve}
+        </if>
+        ORDER BY id ASC
+    </select>
+
+    <update id="updateCustomerById" parameterType="java.util.Map">
+        update Customer
+        <trim prefix="set" suffixOverrides=",">
+            <if test="MobelPhone != null">
+                MobelPhone=#{MobelPhone},
+            </if>
+            <if test="Password != null">
+                Password=#{Password},
+            </if>
+            <if test="WxId != null">
+                WxId=#{WxId},
+            </if>
+            <if test="NickName != NickName">
+                NickName=#{NickName},
+            </if>
+            <if test="Birthday != null">
+                Birthday=#{Birthday},
+            </if>
+            <if test="Sex != null">
+                Sex=#{Sex},
+            </if>
+            <if test="Token != null">
+                Token=#{Token},
+            </if>
+            <if test="Reserve != null">
+                Reserve=#{Reserve},
+            </if>
+            <if test="IsDeleted != null">
+                IsDeleted= #{IsDeleted},
+            </if>
+        </trim>
+        where id = #{CustomerId}
+    </update>
 
 </mapper>
