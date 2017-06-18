@@ -15,11 +15,79 @@
     <title>设备列表</title>
     <script type="text/javascript">
         $(function () {
+            $.getUrlParam=function(name) {
+                var reg=new RegExp("(^[&]"+name+"=([^&]*)(&|$)");
+                var r=window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]);return null;
+            };
+
+            var gateWayId=$.getUrlParam("GatewayId");
+            var url="http://localhost:8080/smarthome/client/home?action=getDeviceListByGatewayId&deviceGateId="+gateWayId;
+            ajaxRequest(url,"GET",function () {
+                if (flag == true && msg["result"].equals("success")) {
+                    var operationResult=msg["operationResult"];
+                    [].forEach(function (value,index,operationResult) {
+                        var divcontent='<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  " onclick="">'+
+                        '<div id="gateway_list-item_'+value["id"]+'" class="list-item">'+
+                        '<div class="close_'+value["id"]+'"><img src="${path}/page/common/img/close.png"></div>'+
+                        ' <div class="list-item-content">'+
+                        '  <div class="list-item-top ">'+
+                        '   <h3> <span class="glyphicon glyphicon-object-align-vertical szblue"></span> '+value["DeviceNo"]+'</span></h3>'+
+                        '</div>'+
+                        ' <div class="list-item-bottom">'+
+                        ' <ul class=" ">'+
+                        '  <li><span class="glyphicon glyphicon-send"></span><a  href="#">空调</a> </li>'+
+                        '   <li><span class="glyphicon glyphicon-adjust"></span><a  href="#">开启中</a> </li>'+
+                        '  <li><span class="glyphicon glyphicon-alert"></span><a  href="#">无预警</a> </li>'+
+                        '  </ul>'+
+
+                        '   </div>'+
+                        '   </div>'+
+                        '  </div>'+
+                        '  </div>';
+                        $("#device-list .row").appendChild(divcontent);
+
+                        $("#device-list #device_list-item_"+value["id"]+" .list-item-content").bind("click",function () {
+                            var ids=$(this).parentNode.attr("id");
+                            var id=ids.split("_").last();
+
+                        });
+
+                        $("#device-list #close_"+value["id"]).bind("click",function () {
+                            var ids=$(this).attr("id");
+                            var id=ids.split("_").last();
+                            var url="http://localhost:8080/smarthome/client/home?action=delDeviceById&DeviceId="+id;
+                            ajaxRequest(url,"GET",function(){
+                                if (flag == true && msg["result"].equals("success")) {
+                                    var pid = $(this).parent("div").attr('id');
+                                    $("#"+pid).remove();
+                                }else{
+                                    //请求失败
+                                    layer.alert("删除失败，请稍候重试");
+                                }
+
+                            });
+                        });
+
+                        var lastItem='<div class="col-xs-12 col-sm-6  col-md-4 col-lg-3  ">'+
+                        '<div class="list-item-last">'+
+                        '<button id="add_gateway" ><img src="${path}/page/common/img/add.png"></button>'+
+                        ' </div>'+
+                        '  </div>';
+                        $("#device-list .row").appendChild(lastItem);
+
+                    });
+                    }else{
+
+                }
+                });
 
         });
 
         //初始化页面
         $(document).ready(function () {
+
+
 
         });
     </script>
@@ -73,11 +141,11 @@
                     <span class="glyphicon glyphicon-arrow-right"> 网关地址: 192.168.3.31:2390</span>
                 </div>
 
-                <div id="line_msg">
+                <div id="line_msg1">
                     <span class="glyphicon glyphicon-bullhorn"> 状态：良好</span>
                     <span class="glyphicon glyphicon-magnet"> 辖内设备：9</span>
                 </div>
-                <div id="line_msg">
+                <div id="line_msg2">
                     <span class="glyphicon glyphicon-bookmark"> 此网关涵盖A室一切用电以及用水设备,此网关涵盖A室一切用电以及用水设备 </span>
                 </div>
             </div>
@@ -97,6 +165,7 @@
 <!--</section>-->
 <section id="device-list" class="container">
     <div class="row">
+        <!--
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  " onclick="">
             <div id="gateway_list-item1" class="list-item">
                 <div class="close"><img src="${path}/page/common/img/close.png"></div>
@@ -157,7 +226,7 @@
                 <button id="add_gateway" ><img src="${path}/page/common/img/add.png"></button>
             </div>
         </div>
-
+-->
     </div>
 </section>
 
@@ -182,18 +251,29 @@
 
 <script>
     $(document).ready(function () {
+        $.getUrlParam=function(name) {
+            var reg=new RegExp("(^[&]"+name+"=([^&]*)(&|$)");
+            var r=window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);return null;
+        };
 
+        var gateWayId=$.getUrlParam("GatewayId");
         var dialog = '<div class="box">'+
-            '<form role="form">'+
+            '<form role="form" action="addDevice">'+
             '<div class="form-group">'+
             '<label for="name">设备名称</label>'+
-            '<input type="text" class="form-control" id="name" placeholder="请输入设备名称">'+
+            '<input type="text" class="form-control" name="Name" id="name" placeholder="请输入设备名称">'+
 
             '<label for="name">设备型号</label>'+
-            '<input type="text" class="form-control" id="name" placeholder="请输入设备型号">'+
+            '<input type="text" class="form-control" name="DeviceNo" id="name" placeholder="请输入设备型号">'+
+
+            '<label for="name">设备类型</label>'+
+            '<input type="text" class="form-control" name="DeviceTypeName" id="name" placeholder="请输入设备类型">'+
+            '<input type="hidden" name="DeviceTypeId" value="">'+
+            '<input type="hidden" name="GatewayId" value="'+gateWayId+'">'+
 
             '<label for="name">备注</label>'+
-            '<input type="text" class="form-control" id="name" placeholder="请输入备注信息">'+
+            '<input type="text" class="form-control" name="" id="name" placeholder="请输入备注信息">'+
             '</div>'+
             '<div class="form-group">'+
             '</div>'+

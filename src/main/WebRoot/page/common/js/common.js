@@ -5,10 +5,14 @@
  *
  */
 //ajax获取表单信息并提交
-function ajax_get_form(form_id,method,callback){
-    var form =  $("#"+form_id);
-    var url = form.attr('action');
+function ajax_get_form(url,form_id,method,callback){
+    // alert("ajax_get_form");
+    var form =  $(form_id);
+    var action = form.attr('action');
     var data = {};
+    if (action != null) {
+        data["action"]=action;
+    }
     var textarea = form.find("textarea");
     var select = form.find("select");
     var radio = form.find(":input[type='radio']");
@@ -53,6 +57,7 @@ function ajax_get_form(form_id,method,callback){
     });
     // console.log(data);
     // type: "POST",
+    // alert("data:");
 
     $.ajax({
         type: method,
