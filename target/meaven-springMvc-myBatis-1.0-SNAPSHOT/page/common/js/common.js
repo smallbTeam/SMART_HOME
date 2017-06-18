@@ -97,10 +97,10 @@ function ajaxRequest(url,method,callback) {
     request.onreadystatechange =function(){
         if (request.readyState == 4 && request.status == 200) {
             // alert(request.responseText);
-            callback(true,request.status);
+            callback(true,request.responseText);
         }else{
             // alert("发生错误："+request.status);
-            callback(false,request.status);
+            callback(false,request.responseText);
         }
     }
 }

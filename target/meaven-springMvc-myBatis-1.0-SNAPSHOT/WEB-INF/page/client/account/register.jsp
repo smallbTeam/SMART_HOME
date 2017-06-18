@@ -108,6 +108,7 @@
                 var url = "${path}/verificationMsg?action=sendMsg&mobelPhone="+mobelPhone+"&timeStamp="+timestamp;
 //                alert("url:---"+url);
                 ajaxRequest(url,"GET",function (flag,msg) {
+                    alert("msg---"+msg);
                     if (flag == true && msg == 200){
                         //请求成功
 
@@ -183,6 +184,11 @@
             color: white;
         }
 
+        .form-control {
+            width: auto;
+            min-width: 200px;
+            right: 10px;
+        }
 
 
         body{

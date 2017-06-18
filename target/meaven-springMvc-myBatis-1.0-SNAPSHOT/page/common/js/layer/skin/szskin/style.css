@@ -4,7 +4,8 @@
 .dialog{
     display: block;
     position: fixed;
-    width: 350px;
+    max-width: 350px;
+    min-width:200px;
     height: auto;
     padding: 20px 15px;
     border-radius: 5.0px;
