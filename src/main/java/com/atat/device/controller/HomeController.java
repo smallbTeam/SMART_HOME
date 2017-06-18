@@ -105,6 +105,50 @@ public class HomeController extends BaseController {
     }
 
     /**
+     * 依据条件获取网关列表
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping(params = "action=getGatewayList")
+    public void getGatewayList(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        String gatewayPort = request.getParameter("GatewayPort");
+        String ip = request.getParameter("IP");
+        String address = request.getParameter("Address");
+        String reserve = request.getParameter("Reserve");
+        String gatewayId = request.getParameter("gatewayId");
+        Map<String, Object> param = new HashMap<String, Object>();
+        if (StringUtil.isNotEmpty(gatewayPort)) {
+            param.put("GatewayPort", gatewayPort);
+        }
+        if (StringUtil.isNotEmpty(ip)) {
+            param.put("IP", ip);
+        }
+        if (StringUtil.isNotEmpty(address)) {
+            param.put("Address", address);
+        }
+        if (StringUtil.isNotEmpty(reserve)) {
+            param.put("Reserve", reserve);
+        }
+        if (StringUtil.isNotEmpty(gatewayId)) {
+            param.put("gatewayId", gatewayId);
+        }
+            try {
+                List<Map<String, Object>> gatewayList = gatewayService.selectGatewayList(param);
+                resultMap.put("result", "success");
+                resultMap.put("operationResult", gatewayList);
+            }
+            catch (Exception e) {
+                logger.error("获取网关列表" + e, e);
+                resultMap.put("result", "failed");
+                resultMap.put("error", "系统出错");
+            }
+        this.renderJson(response, resultMap);
+    }
+
+    /**
      * 为用户添加网关
      * 
      * @param request
@@ -308,6 +352,43 @@ public class HomeController extends BaseController {
         else {
             resultMap.put("result", "error");
             resultMap.put("error", "网关Id为空");
+        }
+        this.renderJson(response, resultMap);
+    }
+
+    /**
+     * 依据设备Id获取设备
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping(params = "action=getDeviceByDeviceId")
+    public void getDeviceByDeviceId(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        String deviceId = request.getParameter("deviceId");
+        if (StringUtil.isNotEmpty(deviceId)) {
+            Map<String, Object> param = new HashMap<String, Object>();
+            param.put("deviceId", deviceId);
+            try {
+                Map<String, Object> device = new HashMap<String, Object>();
+                List<Map<String, Object>> deviceList = deviceService.selectDeviceList(param);
+                if (CollectionUtil.isNotEmpty(deviceList)){
+                    device = deviceList.get(0);
+                } else {
+                    device =null;
+                }
+                resultMap.put("result", "success");
+                resultMap.put("operationResult", device);
+            }
+            catch (Exception e) {
+                logger.error("依据设备Id获取设备" + e, e);
+                resultMap.put("result", "failed");
+                resultMap.put("error", "系统出错");
+            }
+        }
+        else {
+            resultMap.put("result", "error");
+            resultMap.put("error", "设备Id为空");
         }
         this.renderJson(response, resultMap);
     }
