@@ -23,10 +23,12 @@
 
             var gateWayId=$.getUrlParam("GatewayId");
             var url="http://localhost:8080/smarthome/client/home?action=getDeviceListByGatewayId&deviceGateId="+gateWayId;
-            ajaxRequest(url,"GET",function () {
-                if (flag == true && msg["result"].equals("success")) {
-                    var operationResult=msg["operationResult"];
-                    [].forEach(function (value,index,operationResult) {
+            $.get(url,function (msg) {
+//            alert("msg---"+msg.operationResult);
+                    if (msg.result == "success") {
+                        //请求成功
+                        // var operationResult=msg.operationResult;                    var operationResult=msg["operationResult"];
+                        [].forEach(function (value,index,operationResult) {
                         var divcontent='<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  " onclick="">'+
                         '<div id="gateway_list-item_'+value["id"]+'" class="list-item">'+
                         '<div class="close_'+value["id"]+'"><img src="${path}/page/common/img/close.png"></div>'+

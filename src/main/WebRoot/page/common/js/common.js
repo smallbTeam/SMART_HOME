@@ -85,27 +85,3 @@ function ajax_get_form(url,form_id,method,callback){
     });
 
 }
-
-function ajaxRequest(url,method,callback) {
-
-    //发送请求
-    var request;
-    if (window.XMLHttpRequest) {
-        request = new XMLHttpRequest();
-    }else{
-        request = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    request.open(method,url,true);
-    request.send(null);
-
-    //监听服务器处理请求的过程
-    request.onreadystatechange =function(){
-        if (request.readyState == 4 && request.status == 200) {
-            // alert(request.responseText);
-            callback(true,request.responseText);
-        }else{
-            // alert("发生错误："+request.status);
-            callback(false,request.responseText);
-        }
-    }
-}

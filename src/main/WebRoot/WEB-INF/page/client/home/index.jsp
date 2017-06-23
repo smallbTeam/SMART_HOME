@@ -140,13 +140,37 @@
 <script>
     $(document).ready(function () {
 
+        //添加网关的弹框
+        var dialog = '<div class="box">'+
+            '<form role="form" action="addGateway" method="get">'+
+            '<div class="form-group">'+
+            '<label for="name">网关名称</label>'+
+            '<input type="text" class="form-control" id="name" name="Address" placeholder="请输入网关名称">'+
+
+            '<label for="name">网关IP</label>'+
+            '<input type="text" class="form-control" id="name" name="IP" placeholder="请输入网关IP">'+
+
+            '<label for="name">端口</label>'+
+            '<input type="text" class="form-control" id="name" name="GatewayPort" placeholder="请输入端口信息">'+
+            '</div>'+
+            '<div class="form-group">'+
+            '</div>'+
+            '<button type="submit" class="btn btn-default">提交</button>'+
+            '</form>'+
+            '</div>';
+
+        layer.config({
+            extend:'./szskin/style.css',
+            skin: 'dialog'
+        });
+
         var userId="<%=session.getAttribute("userId")%>";
         var url = "http://localhost:8080/smarthome/client/home?action=getGatewayListByCustomerId&CustomerId="+userId;
-        ajaxRequest(url,"GET",function (flag,msg) {
-            alert("msg---"+msg);
-            if (flag == true && msg["result"].equals("success")) {
+        $.get(url,function (msg) {
+//            alert("msg---"+msg.operationResult);
+            if (msg.result == "success") {
                 //请求成功
-                var operationResult=msg["operationResult"];
+                var operationResult=msg.operationResult;
                 [].forEach(function (value,index,operationResult) {
                   var divcontent='<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  " >'+
                     '<div id="gateway_list-item_'+value["id"]+'" class="list-item">'+
@@ -197,8 +221,18 @@
                     '<button id="add_gateway" ><img src="${path}/page/common/img/add.png"></button>'+
                     '</div>'+
                     '</div>';
-                $("#gateway-list .row").appendChild(lastItem);
+                $("#gateway-list .row").append(lastItem);
+                $("#gateway-list .list-item-last #add_gateway").click(function () {
 
+                    layer.open({
+                        type: 1,
+                        title: false,
+                        closeBtn: 1,
+                        shadeClose: true,
+                        skin: 'dialog',
+                        content: dialog
+                    });
+                });
 
             }else{
                 //请求失败
@@ -209,41 +243,10 @@
 
 
 
-                var dialog = '<div class="box">'+
-            '<form role="form" action="addGateway" method="get">'+
-            '<div class="form-group">'+
-            '<label for="name">网关名称</label>'+
-            '<input type="text" class="form-control" id="name" name="Address" placeholder="请输入网关名称">'+
-
-            '<label for="name">网关IP</label>'+
-            '<input type="text" class="form-control" id="name" name="IP" placeholder="请输入网关IP">'+
-
-            '<label for="name">端口</label>'+
-            '<input type="text" class="form-control" id="name" name="GatewayPort" placeholder="请输入端口信息">'+
-            '</div>'+
-            '<div class="form-group">'+
-            '</div>'+
-            '<button type="submit" class="btn btn-default">提交</button>'+
-            '</form>'+
-            '</div>';
-
-        layer.config({
-            extend:'szskin/style.css',
-            skin: 'dialog'
-        });
 
 
-        $("#gateway-list .list-item-last #add_gateway").click(function () {
 
-            layer.open({
-                type: 1,
-                title: false,
-                closeBtn: 1,
-                shadeClose: true,
-                skin: 'dialog',
-                content: dialog
-            });
-        });
+
 
         <%--$("#gateway-list .list-item-content").click(function () {--%>
             <%--window.open('${path}/client/home?action=deviceList','_self');--%>
@@ -251,8 +254,6 @@
         $("#gateway-list .close").click(function () {
             var id = $(this).parent("div").attr('id');
             $("#"+id).remove();
-
-
         });
 
         $("#gateway-list .list-item").hover(function () {

@@ -95,21 +95,17 @@
             });
 
             $("#sendValidateCode").click(function () {
-//                alert("sendValidateCode:---");
-
                 if (!listenPhoneNum()) {
                     return ;
                 }
-
 
                 var mobelPhone = $("#phoneNum").val();
                 //发送验证码请求
                 var timestamp = Date.parse(new Date());
                 var url = "${path}/verificationMsg?action=sendMsg&mobelPhone="+mobelPhone+"&timeStamp="+timestamp;
-//                alert("url:---"+url);
-                ajaxRequest(url,"GET",function (flag,msg) {
-                    alert("msg---"+msg);
-                    if (flag == true && msg == 200){
+                $.get(url,function (msg) {
+                    alert("code---"+msg.operationResult);
+                    if ( msg.result == 'success'){
                         //请求成功
 
                         var countdown = 60;
@@ -134,38 +130,28 @@
                         },1000);
 
                     }else{
-//                        layer.msg("发送验证码失败!");
-
+                        layer.msg("发送验证码失败!");
                     }
                 });
             });
 
             $('#regBtn').click(function () {
-
                 if (!listenPhoneNum()) {
-                    return ;
+                    return false;
                 }
 
 //                layer.load(2);
 
-                var validateUrl = "http://localhost:8080/smarthome/verificationMsg?action=sendMsg&mobelPhone="+$("#phoneNum").val()+"&timeStamp="+$("#validateCodeID").val();
-
-//                ajaxRequest(validateUrl,"GET",function (flag,msg) {
-
-//                    if (flag && msg["result"].equals("success")) {
-//                        alert("请求成功");
+                var validateUrl = "http://localhost:8080/smarthome/verificationMsg?action=veridateMsg&mobelPhone="+$("#phoneNum").val()+"&veridateMsg="+$("#validateCodeID").val();
+                $.get(validateUrl,function (msg1) {
+                    if (msg1.result == "success") {
 
                         var sex=$("#gender").val();
                         var birthday = new Date().getTime();
-//                            $("#birth").val();
 
                         var url="${path}/client/account?action=registAccount&mobelPhone="+$("#phoneNum").val()+"&wxId=wertyuioikjhgfdftgyhutu&password="+$("#password").val()+"&nickName="+$("#username").val()+"&birthday="+birthday+"&sex="+sex;
-                        ajaxRequest(url,"GET",function (flag,msg) {
-//                            alert("msg:"+msg+"::"+JSON.parse(msg));
-
-                            var obj = JSON.parse(msg);
-
-                            if (flag && obj.result == ("success")){
+                $.get(url,function (msg) {
+                            if (msg.result == 'success'){
                                 //请求成功
                                 window.location.href = "${path}/client/account?action=login";
                                 layer.closeAll();
@@ -181,13 +167,13 @@
 //                        });
                                 layer.msg("请求失败！");
                             }
+                            return false;
                         });
-//                    }else{
-//                        layer.msg("验证码错误");
-//                    }
+                    }else{
+                        layer.msg("验证码错误");
+                    }
 
-//                });
-
+                });
 
 
             });
