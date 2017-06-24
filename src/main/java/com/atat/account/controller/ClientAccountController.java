@@ -77,7 +77,7 @@ public class ClientAccountController extends BaseController {
      * @return
      */
     @RequestMapping("/wxUidIsExit")
-    public ModelAndView wxUidIsExit(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView wxUidIsExit(HttpServletRequest request, HttpServletResponse response) throws Exception{
         ModelAndView mav = new ModelAndView("client/account/register");
         // 判断微信Id是否已存在
         String code = request.getParameter("code");
@@ -91,7 +91,7 @@ public class ClientAccountController extends BaseController {
             paramMap.put("appid", appid);
             paramMap.put("secret", secret);
             paramMap.put("code", code);
-            paramMap.put("grant_type", "sms.platform.authorization_code");
+            paramMap.put("grant_type", "authorization_code");
             String url = "https:api.weixin.qq.com/sns/oauth2/access_token";
             String resJson = null;
             try {
