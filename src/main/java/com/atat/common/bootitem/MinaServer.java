@@ -8,10 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
-import java.nio.charset.Charset;
 
-public class Demo1Server {
-	private static Logger logger = LoggerFactory.getLogger(Demo1Server.class);
+public class MinaServer {
+	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	private static int PORT = 3005;
 
@@ -28,7 +27,7 @@ public class Demo1Server {
 			// 读写通道10秒内无操作进入空闲状态
 			acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 10);
 			// 绑定逻辑处理器
-			acceptor.setHandler(new Demo1ServerHandler());
+			acceptor.setHandler(new MinaServerHandler());
 			// 绑定端口
 			acceptor.bind(new InetSocketAddress(PORT));
 			logger.info("服务端启动成功...     端口号为：" + PORT);

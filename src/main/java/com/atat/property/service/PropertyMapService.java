@@ -37,7 +37,8 @@ public interface PropertyMapService {
      * @param pageSize
      * @return
      */
-    public PageInfo<Map<String, Object>> getPropertyMapPageTurn(Map<String, Object> param, Integer pageNo, Integer pageSize);
+    public PageInfo<Map<String, Object>> getPropertyMapPageTurn(Map<String, Object> param, Integer pageNo,
+            Integer pageSize);
 
     /**
      * 依据Key查找详情

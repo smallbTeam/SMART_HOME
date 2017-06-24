@@ -26,22 +26,51 @@
 	2 再引入静态资源
 	<img src="<c:url value='/static/images/bg1.gif'/>"/>-->
 	<mvc:default-servlet-handler/>
-	<mvc:resources mapping="/static/**" location="/static/"/>
-	<mvc:resources mapping="/page/**" location="/page/"/>
+	<!--<mvc:resources mapping="/static/**" location="/static/"/>-->
+	<!--<mvc:resources mapping="/page/**" location="/page/"/>-->
 	<!--JavaMelodySpring Controller层
 	开启Spring MVC的aspect自动代理，在Spring MVC的配置文件中，增加如下代码：-->
 	<!--在需要监控的controller类或者方法上注解@MonitoredWithSpring-->
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	<!--指明要扫描注解的的包路径-->
 	<!-- 通过component-scan 让Spring扫描符合通配路径下的所有的类，让Spring的代码注解生效 -->
+	<context:component-scan base-package="com.atat.**.action"/>
 	<context:component-scan base-package="com.atat.**.controller"/>
 	<context:component-scan base-package="com.atat.**.service"/>
-	<context:component-scan base-package="com.atat.**.action"/>
+	<context:component-scan base-package="com.atat.**.listener"/>
 
     <!-- 配置SpringMVC的视图渲染器， 配置视图页面 前缀为:/page 后缀为.jsp  将视图渲染到/page <method返回值>.jsp中 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/page/" p:suffix=".jsp"/>
 
 
+	 <!--...............................这个配置文件专门配置定时任务...........................-->
+	<bean id="job2"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 这个就是定时器的那个类 -->
+		<property name="targetObject">
+			<bean class="com.atat.property.action.WeixinAction" />
+		</property>
+		<!-- 这个就是要执行的方法，也就是这前定义的run -->
+		<property name="targetMethod" value="refreshWxaccessToken" />
+		<!--<property name="concurrent" value="false" /> -->
+		<!-- 作业不并发调度，也就意味着单线程，不写就是true -->
+	</bean>
+
+	<!-- 这个用来配置定时任务的执行时间 -->
+	<bean id="cronTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="job2" />
+		<property name="cronExpression" value="0 */1 * * * ?" />
+	</bean>
+
+	<!-- 配置执行定时器的工厂，在list中配置的bean，都会加载到这个工厂中，然后定时运行 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+	</bean>
 
 </beans>
 

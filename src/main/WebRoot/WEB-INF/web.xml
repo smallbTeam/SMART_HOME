@@ -143,6 +143,10 @@
         </listener-class>
     </listener>
 
+    <listener>
+        <listener-class> com.atat.common.listener.BootitemListener</listener-class>
+    </listener>
+
     <!-- 缓存配置 -->
     <session-config>
         <session-timeout>30</session-timeout>

@@ -16,6 +16,8 @@ import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,8 +34,8 @@ public class WeixinAction {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Resource
-    PropertyMapService propertyMapService;
+//    @Autowired
+//    PropertyMapService propertyMapService;
 
     public static final String GETACCESSTOKENURL = "https://api.weixin.qq.com/cgi-bin/token";
 
@@ -44,6 +46,12 @@ public class WeixinAction {
      * 保存至数据库
      */
     public void refreshWxaccessToken() {
+
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");//此文件放在SRC目录下
+
+        PropertyMapService propertyMapService=(PropertyMapService)context.getBean("propertyMapService");
+
+
         String appid = BasePropertyDate.WX_APPID;
         String secret = BasePropertyDate.WX_SECRET;
         Map<String, Object> map = new HashMap<String, Object>();
@@ -73,7 +81,7 @@ public class WeixinAction {
             param.put("propertyMapKey", "accessToken");
             List<Map<String, Object>> propList = propertyMapService.selectPropertyMapList(param);
             if (CollectionUtil.isNotEmpty(propList)) {
-                param.put("value", access_token);
+                param.put("propval", access_token);
                 propertyMapService.updatePropertyMapByKey(param);
             }
             else {
@@ -86,7 +94,7 @@ public class WeixinAction {
             url = GETAJSAPITICKET;
             resJson = null;
             try {
-                resJson = URLUtil.originalGetData(url, paramMap);
+                resJson = URLUtil.originalGetData(url, jsapiParamMap);
                 logger.info("微信平台get请求jsapiTicket：" + URLUtil.getDataUrl(url, paramMap));
             }
             catch (Exception e) {
@@ -95,10 +103,10 @@ public class WeixinAction {
             logger.info("微信平台get请求jsapiTicket：\n\n\n\n\n\n\n\n\n\n\n[" + resJson + "]");
             // 解析Json 获取jsapi_ticket
             Map<String, Object> jsapiResMap = JsonUtil.fromJson(resJson, Map.class);
-            String errcode = (String) resMap.get("errcode");
-            Integer errmsg = (Integer) resMap.get("errmsg");
-            String ticket = (String) resMap.get("ticket");
-            Integer expires_in_jsapi = (Integer) resMap.get("expires_in");
+            Integer errcode = (Integer) jsapiResMap.get("errcode");
+             String errmsg = (String) jsapiResMap.get("errmsg");
+            String ticket = (String) jsapiResMap.get("ticket");
+            Integer expires_in_jsapi = (Integer) jsapiResMap.get("expires_in");
             if (StringUtil.isNotEmpty(ticket)) {
                 // 校验签名用的参数 参与签名的字段包括noncestr（随机字符串）, 有效的jsapi_ticket,
                 // timestamp（时间戳）, url（当前网页的URL，不包含#及其后面部分）
@@ -107,7 +115,7 @@ public class WeixinAction {
                 // 时间戳
                 String timestamp = String.valueOf(new Date().getTime());
                 String mainurl = "http://s-357114.gotocdn.com/smart_home/client/home";
-                // 验证签名是否一致
+                // 获取签名
                 List<String> tmpArr = new ArrayList<String>();
                 tmpArr.add(noncestr);
                 tmpArr.add(ticket);
@@ -124,7 +132,7 @@ public class WeixinAction {
                     jsapiticket_timestamp.put("propertyMapKey","jsapiticketTimestamp");
                     propList = propertyMapService.selectPropertyMapList(jsapiticket_timestamp);
                     if (CollectionUtil.isNotEmpty(propList)) {
-                        jsapiticket_timestamp.put("value", timestamp);
+                        jsapiticket_timestamp.put("propval", timestamp);
                         propertyMapService.updatePropertyMapByKey(jsapiticket_timestamp);
                     }
                     else {
@@ -135,7 +143,7 @@ public class WeixinAction {
                     jsapiticket_noncestr.put("propertyMapKey","jsapiticketNnoncestr");
                     propList = propertyMapService.selectPropertyMapList(jsapiticket_noncestr);
                     if (CollectionUtil.isNotEmpty(propList)) {
-                        jsapiticket_noncestr.put("value", noncestr);
+                        jsapiticket_noncestr.put("propval", noncestr);
                         propertyMapService.updatePropertyMapByKey(jsapiticket_noncestr);
                     }
                     else {
@@ -146,7 +154,7 @@ public class WeixinAction {
                     jsapiticket_mainurl.put("propertyMapKey","jsapiticketMainurl");
                     propList = propertyMapService.selectPropertyMapList(jsapiticket_mainurl);
                     if (CollectionUtil.isNotEmpty(propList)) {
-                        jsapiticket_mainurl.put("value", mainurl);
+                        jsapiticket_mainurl.put("propval", mainurl);
                         propertyMapService.updatePropertyMapByKey(jsapiticket_mainurl);
                     }
                     else {
@@ -157,7 +165,7 @@ public class WeixinAction {
                     jsapiticket_ticket.put("propertyMapKey","jsapiticketTicket");
                     propList = propertyMapService.selectPropertyMapList(jsapiticket_ticket);
                     if (CollectionUtil.isNotEmpty(propList)) {
-                        jsapiticket_ticket.put("value", ticket);
+                        jsapiticket_ticket.put("propval", ticket);
                         propertyMapService.updatePropertyMapByKey(jsapiticket_ticket);
                     }
                     else {
@@ -168,7 +176,7 @@ public class WeixinAction {
                     jsapiticket_signature.put("propertyMapKey","jsapiticketSignaturet");
                     propList = propertyMapService.selectPropertyMapList(jsapiticket_signature);
                     if (CollectionUtil.isNotEmpty(propList)) {
-                        jsapiticket_signature.put("value", signature);
+                        jsapiticket_signature.put("propval", signature);
                         propertyMapService.updatePropertyMapByKey(jsapiticket_signature);
                     }
                     else {

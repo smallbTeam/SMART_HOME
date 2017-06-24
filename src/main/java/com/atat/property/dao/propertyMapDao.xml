@@ -5,15 +5,15 @@
     <insert id="addPropertyMap" parameterType="java.util.Map">
         INSERT INTO propertyMap
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            key,
-                <if test="value != null">
-                    value,
+            propkey,
+                <if test="propval != null">
+                    propval,
                 </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             #{propertyMapKey}
-                <if test="value != null">
-                    #{value},
+                <if test="propval != null">
+                    #{propval},
                 </if>
         </trim>
     </insert>
@@ -21,34 +21,34 @@
     <update id="updatePropertyMapByKey" parameterType="java.util.Map">
         update propertyMap
         <trim prefix="set" suffixOverrides=",">
-                <if test="value != null">
-                    value =#{value},
+                <if test="propval != null">
+                    propval =#{propval},
                 </if>
         </trim>
-        where key = #{propertyMapKey}
+        where propkey = #{propertyMapKey}
     </update>
 
     <select id="selectPropertyMapList" parameterType="java.util.Map"
             resultType="java.util.Map">
         select
-            value value,
-        key propertyMapKey
+            propval propval,
+        propkey propertyMapKey
         from propertyMap
         WHERE
         1=1
         <if test="propertyMapKey != null">
-            and key =#{propertyMapKey}
+            and propkey =#{propertyMapKey}
         </if>
-            <if test="value != null">
-                and value =#{value}
+            <if test="propval != null">
+                and propval =#{propval}
             </if>
-        ORDER BY key ASC
+        ORDER BY propkey ASC
     </select>
 
     <delete id="delPropertyMapByKey" parameterType="java.lang.String">
         DELETE FROM  propertyMap
         where
-        key = #{propertyMapKey}
+        propkey = #{propertyMapKey}
     </delete>
 
 </mapper>

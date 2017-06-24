@@ -1,7 +1,6 @@
 package com.atat.common.bootitem;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.service.IoHandlerAdapter;
@@ -10,8 +9,8 @@ import org.apache.mina.core.session.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Demo1ServerHandler extends IoHandlerAdapter {
-	public static Logger logger = LoggerFactory.getLogger(Demo1ServerHandler.class);
+public class MinaServerHandler extends IoHandlerAdapter {
+	public static Logger logger = LoggerFactory.getLogger(MinaServerHandler.class);
 	public static List<HardWare>  list = new ArrayList<HardWare>();
 	private int state = 0;
 

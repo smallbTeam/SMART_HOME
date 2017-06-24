@@ -12,11 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 
-/**
- *
- * @author whaosoft
- *
- */
 @Service
 public class PropertyMapServiceImpl implements PropertyMapService {
 
@@ -40,8 +35,9 @@ public class PropertyMapServiceImpl implements PropertyMapService {
 
     @Override
     public PageInfo<Map<String, Object>> getPropertyMapPageTurn(Map<String, Object> param, Integer pageNo, Integer pageSize) {
-        pageNo = pageNo == null ? 1 : pageNo;
-        pageSize = pageSize == null ? 10 : pageSize;
+        pageNo = pageNo == null?1:pageNo;
+
+        pageSize = pageSize == null?10:pageSize;
         PageHelper.startPage(pageNo, pageSize);
         List<Map<String,Object>> list = propertyMapDao.selectPropertyMapList(param);
         //用PageInfo对结果进行包装
