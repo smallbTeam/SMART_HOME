@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atat.property.dao.PropertyMapDao">
+
+    <insert id="addPropertyMap" parameterType="java.util.Map">
+        INSERT INTO propertyMap
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            key,
+                <if test="value != null">
+                    value,
+                </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{propertyMapKey}
+                <if test="value != null">
+                    #{value},
+                </if>
+        </trim>
+    </insert>
+
+    <update id="updatePropertyMapByKey" parameterType="java.util.Map">
+        update propertyMap
+        <trim prefix="set" suffixOverrides=",">
+                <if test="value != null">
+                    value =#{value},
+                </if>
+        </trim>
+        where key = #{propertyMapKey}
+    </update>
+
+    <select id="selectPropertyMapList" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        select
+            value value,
+        key propertyMapKey
+        from propertyMap
+        WHERE
+        1=1
+        <if test="propertyMapKey != null">
+            and key =#{propertyMapKey}
+        </if>
+            <if test="value != null">
+                and value =#{value}
+            </if>
+        ORDER BY key ASC
+    </select>
+
+    <delete id="delPropertyMapByKey" parameterType="java.lang.String">
+        DELETE FROM  propertyMap
+        where
+        key = #{propertyMapKey}
+    </delete>
+
+</mapper>

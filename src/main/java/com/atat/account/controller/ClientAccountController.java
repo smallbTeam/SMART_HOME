@@ -7,9 +7,11 @@ package com.atat.account.controller;
 import com.atat.account.bean.Customer;
 import com.atat.account.service.ClientAccountService;
 import com.atat.common.base.controller.BaseController;
+import com.atat.common.prop.BasePropertyDate;
 import com.atat.common.util.JsonUtil;
 import com.atat.common.util.StringUtil;
 import com.atat.common.util.httpClient.URLUtil;
+import com.atat.property.action.WeixinAction;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,9 +35,6 @@ public class ClientAccountController extends BaseController {
 
     @Resource
     private ClientAccountService clientAccountService;
-
-    @Resource
-    private Properties wxPaltformProperties;
 
     /**
      * 用户注册页面
@@ -83,9 +82,9 @@ public class ClientAccountController extends BaseController {
         // 判断微信Id是否已存在
         String code = request.getParameter("code");
         String state = request.getParameter("state");
-        String appid = wxPaltformProperties.getProperty("wx.paltform.appid");
-        String secret = wxPaltformProperties.getProperty("wx.platform.secret");
-        if (StringUtil.isNotEmpty(code) && StringUtil.isNotEmpty(state) && StringUtil.isNotEmpty(appid)
+        String appid = BasePropertyDate.WX_APPID;
+        String secret = BasePropertyDate.WX_SECRET;
+        if (StringUtil.isNotEmpty(code) && StringUtil.isNotEmpty(appid)
                 && StringUtil.isNotEmpty(secret)) {
             Map<String, Object> map = new HashMap<String, Object>();
             Map<String, String> paramMap = new HashMap<String, String>();
@@ -220,6 +219,10 @@ public class ClientAccountController extends BaseController {
      */
     @RequestMapping(params = "action=accountIsExit")
     public void accountIsExit(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        WeixinAction weixinAction  = new WeixinAction();
+        weixinAction.refreshWxaccessToken();
+
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String strMobelPhone = request.getParameter("mobelPhone");
         if (StringUtil.isNotEmpty(strMobelPhone)) {

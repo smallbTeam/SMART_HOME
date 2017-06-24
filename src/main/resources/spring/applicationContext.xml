@@ -32,28 +32,16 @@
     </bean>
 
     <!-- 短信平台信息配置 -->
-    <bean id="smsPaltformProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+    <bean id="smsPlatformProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="singleton" value="true"/>
         <property name="properties">
             <props>
-                <prop key="sms.paltform.name">${sms.paltform.name}</prop>
+                <prop key="sms.platform.name">${sms.paltform.name}</prop>
                 <prop key="sms.platform.pwd">${sms.platform.pwd}</prop>
                 <prop key="sms.platform.Id">${sms.platform.Id}</prop>
             </props>
         </property>
     </bean>
-
-    <!-- 短信平台信息配置 -->
-    <bean id="wxPaltformProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="singleton" value="true"/>
-        <property name="properties">
-            <props>
-                <prop key="wx.paltform.appid">${wx.paltform.appid}</prop>
-                <prop key="wx.platform.secret">${wx.paltform.secret}</prop>
-            </props>
-        </property>
-    </bean>
-
 
     <!--JavaMelody 监控service层配置-->
     <!--监控查看地址 http://<host>/<context>/monitoring-->

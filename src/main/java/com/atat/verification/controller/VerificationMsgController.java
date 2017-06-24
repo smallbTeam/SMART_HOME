@@ -37,7 +37,7 @@ import java.util.*;
 public class VerificationMsgController extends BaseController {
 
     @Resource
-    private Properties smsPaltformProperties;
+    private Properties smsPlatformProperties;
 
     /**
      * 发送短信验证码 并记录时间戳
@@ -63,9 +63,9 @@ public class VerificationMsgController extends BaseController {
             paramMap.put("Message", msmContent);
             paramMap.put("Phone", mobelPhone);
             paramMap.put("Timestamp", "0");
-            paramMap.put("Psw", smsPaltformProperties.getProperty("sms.platform.pwd"));
-            paramMap.put("Name", smsPaltformProperties.getProperty("sms.paltform.name"));
-            paramMap.put("Id", smsPaltformProperties.getProperty("sms.platform.Id"));
+            paramMap.put("Psw", smsPlatformProperties.getProperty("sms.platform.pwd"));
+            paramMap.put("Name", smsPlatformProperties.getProperty("sms.platform.name"));
+            paramMap.put("Id", smsPlatformProperties.getProperty("sms.platform.Id"));
             String url = "http://sms.bdt360.com:8180/Service.asmx/SendMessage";
             String resXml = null;
             try {
