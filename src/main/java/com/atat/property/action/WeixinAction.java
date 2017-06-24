@@ -28,7 +28,7 @@ import java.util.*;
  * @author ligw
  * @version $Id weixinAction.java, v 0.1 2017-06-24 20:18 ligw Exp $$
  */
-public class WeixinAction extends BaseController {
+public class WeixinAction {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -39,16 +39,10 @@ public class WeixinAction extends BaseController {
 
     public static final String GETAJSAPITICKET = "https://api.weixin.qq.com/cgi-bin/ticket/getticket";
 
-    public static void main(String[] args) {
-        WeixinAction weixinAction = new WeixinAction();
-        weixinAction.refreshWxaccessToken();
-    }
-
     /**
-     * 更新微信accesstoken
+     * 更新微信accesstoken  jsapiTacket
      * 保存至数据库
      */
-    @RequestMapping(params = "action=refreshWxaccessToken")
     public void refreshWxaccessToken() {
         String appid = BasePropertyDate.WX_APPID;
         String secret = BasePropertyDate.WX_SECRET;
@@ -112,7 +106,6 @@ public class WeixinAction extends BaseController {
                 String noncestr = UUID.randomUUID().toString().replaceAll("-", "");
                 // 时间戳
                 String timestamp = String.valueOf(new Date().getTime());
-                // url
                 String mainurl = "http://s-357114.gotocdn.com/smart_home/client/home";
                 // 验证签名是否一致
                 List<String> tmpArr = new ArrayList<String>();
