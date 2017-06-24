@@ -30,6 +30,8 @@
         <script type="text/javascript" src="${path}/page/assets/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 
         <script type="text/javascript">
+
+            var
         $(function () {
 
         });

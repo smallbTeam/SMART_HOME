@@ -51,7 +51,6 @@ public class WeixinAction {
 
         PropertyMapService propertyMapService=(PropertyMapService)context.getBean("propertyMapService");
 
-
         String appid = BasePropertyDate.WX_APPID;
         String secret = BasePropertyDate.WX_SECRET;
         Map<String, Object> map = new HashMap<String, Object>();

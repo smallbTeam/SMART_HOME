@@ -78,7 +78,7 @@ public class ClientAccountController extends BaseController {
      */
     @RequestMapping("/wxUidIsExit")
     public ModelAndView wxUidIsExit(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mav = new ModelAndView("client/account/login");
+        ModelAndView mav = new ModelAndView("client/account/register");
         // 判断微信Id是否已存在
         String code = request.getParameter("code");
         String state = request.getParameter("state");
@@ -112,7 +112,7 @@ public class ClientAccountController extends BaseController {
                 mav.addObject("account", customerMap);
             }
             else {
-                mav.addObject("openid", wxId);
+                mav.addObject("wxId", wxId);
             }
         }
         return mav;
