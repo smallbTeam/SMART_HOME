@@ -5,6 +5,7 @@
 package com.atat.device.controller;
 
 import com.alibaba.druid.sql.visitor.functions.If;
+import com.atat.account.service.ClientAccountService;
 import com.atat.common.base.controller.BaseController;
 import com.atat.common.util.CollectionUtil;
 import com.atat.common.util.DateUtil;
@@ -39,14 +40,26 @@ public class HomeController extends BaseController {
     @Resource
     private DeviceService deviceService;
 
+    @Resource
+    private ClientAccountService clientAccountService;
+
     /**
      * 首页
      * 
      * @return
      */
     @RequestMapping(params = "action=index")
-    public ModelAndView clientIndex() {
+    public ModelAndView clientIndex(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView("client/home/index");
+        String mobelPhone = request.getParameter("mobelPhone");
+        if (StringUtil.isNotEmpty(mobelPhone)) {
+            Map<String, Object> param = new HashMap<String,Object>();
+            param.put("MobelPhone",mobelPhone);
+            List<Map<String, Object>> customerList = clientAccountService.selectCustomerList(param);
+            if (CollectionUtil.isNotEmpty(customerList)){
+                mav.addObject("account",customerList.get(0));
+            }
+        }
         return mav;
     }
 

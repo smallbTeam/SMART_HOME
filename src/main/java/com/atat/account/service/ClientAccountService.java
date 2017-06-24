@@ -5,6 +5,7 @@
 package com.atat.account.service;
 
 import com.atat.account.bean.Customer;
+import com.atat.common.util.StringUtil;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public interface ClientAccountService {
      * @param mobelPhone
      * @return
      */
-    public List<Customer> getCustomerByMobel(String mobelPhone);
+    public Customer getCustomerByMobel(String mobelPhone);
 
     /**
      * 获取庄户列表
@@ -46,4 +47,27 @@ public interface ClientAccountService {
      * @param param
      */
     public void updateCustomerById(Map<String,Object> param);
+
+    /**
+     * 依据条件查找用户
+     * @param param
+     * @return
+     */
+    public List<Map<String,Object>> selectCustomerList (Map<String,Object> param);
+
+    /**
+     * 依据微信ID查找用户
+     * @param wxId
+     * @return
+     */
+    public Map<String,Object> selectCustomerByWxid(String wxId);
+
+    /**
+     * 用户登录较验
+     * @param mobelPhone
+     * @param password
+     * @param wxId
+     * @return
+     */
+    public Integer accountLogin(String mobelPhone,String password,String wxId);
 }
