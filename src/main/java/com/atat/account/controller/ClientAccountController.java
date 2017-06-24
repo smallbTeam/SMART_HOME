@@ -101,18 +101,24 @@ public class ClientAccountController extends BaseController {
             catch (Exception e) {
                 logger.error("[微信平台请求用户OpenID][Http请求异常" + e.getMessage() + "]", e);
             }
-            logger.info("短信发送结果：[" + resJson + "]");
+            logger.info("微信平台请求用户OpenID：[" + resJson + "]");
             // 解析Json 获取AppId
-            Map<String, String> resMap = JsonUtil.fromJson(resJson, Map.class);
-            String wxId = resMap.get("openid");
-            // 判定openId是否已经在表中存在
-            Map<String, Object> customerMap = clientAccountService.selectCustomerByWxid(wxId);
-            if (null != customerMap) {
-                mav = new ModelAndView("client/home/index");
-                mav.addObject("account", customerMap);
-            }
-            else {
-                mav.addObject("wxId", wxId);
+            Map<String, Object> resMap = JsonUtil.fromJson(resJson, Map.class);
+            String wxId = (String) resMap.get("openid");
+            if (StringUtil.isNotEmpty(wxId)){
+                // 判定openId是否已经在表中存在
+                Map<String, Object> customerMap = clientAccountService.selectCustomerByWxid(wxId);
+                if (null != customerMap) {
+                    mav = new ModelAndView("client/home/index");
+                    mav.addObject("account", customerMap);
+                }
+                else {
+                    mav.addObject("wxId", wxId);
+                }
+            } else {
+                Integer errcode = (Integer) resMap.get("errcode");
+                String errmsg = (String) resMap.get("errmsg");
+                logger.error("微信平台请求用户OpenID出错[errcode:"+errcode+"][errmsg:"+errmsg+"]");
             }
         }
         return mav;
