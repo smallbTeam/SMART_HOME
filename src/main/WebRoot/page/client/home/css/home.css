@@ -301,8 +301,7 @@ body {
     background: #ffffff;
     /*border-radius: 5px;*/
     display: block;
-    background: url("../../../common/img/bg_login.png") no-repeat;
-    background-size: cover;
+
     color: #ffffff;
     padding: 0px;
     /*border-bottom-left-radius: 45px;*/
@@ -326,8 +325,10 @@ body {
 }
 #gateway_msg .bg_gateway_msg{
     width: 100%;
-    height: 100%;
-    background: rgba(255,255,255,0.1);
+    background: url("../../../common/img/bg_login.png") no-repeat;
+    background-size: 100% 100%;
+    height: auto;
+    /*background: rgba(255,255,255,0.1);*/
     padding: 15px;
 
 }

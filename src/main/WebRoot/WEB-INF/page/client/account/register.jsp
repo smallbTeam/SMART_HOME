@@ -98,7 +98,7 @@
 //                alert("sendValidateCode:---");
 
                 if (!listenPhoneNum()) {
-                    return false;
+                    return ;
                 }
 
 
@@ -108,6 +108,7 @@
                 var url = "${path}/verificationMsg?action=sendMsg&mobelPhone="+mobelPhone+"&timeStamp="+timestamp;
 //                alert("url:---"+url);
                 ajaxRequest(url,"GET",function (flag,msg) {
+                    alert("msg---"+msg);
                     if (flag == true && msg == 200){
                         //请求成功
 
@@ -145,25 +146,49 @@
                     return ;
                 }
 
-                layer.load(2);
-                ajax_get_form("#regform","GET",function (msg) {
+//                layer.load(2);
 
-                    if (msg != null){
-                        //请求成功
-                        window.location.href = "${path}/client/account?action=login";
-                        layer.closeAll();
-                    }else{
-                        //请求失败
-                        layer.open({
-                            type: 1,
-                            title: false,
-                            closeBtn: 1,
-                            shadeClose: true,
-                            skin: 'dialog',
-                            content: '获取验证码失败'
+                var validateUrl = "http://localhost:8080/smarthome/verificationMsg?action=sendMsg&mobelPhone="+$("#phoneNum").val()+"&timeStamp="+$("#validateCodeID").val();
+
+//                ajaxRequest(validateUrl,"GET",function (flag,msg) {
+
+//                    if (flag && msg["result"].equals("success")) {
+//                        alert("请求成功");
+
+                        var sex=$("#gender").val();
+                        var birthday = new Date().getTime();
+//                            $("#birth").val();
+
+                        var url="${path}/client/account?action=registAccount&mobelPhone="+$("#phoneNum").val()+"&wxId=wertyuioikjhgfdftgyhutu&password="+$("#password").val()+"&nickName="+$("#username").val()+"&birthday="+birthday+"&sex="+sex;
+                        ajaxRequest(url,"GET",function (flag,msg) {
+//                            alert("msg:"+msg+"::"+JSON.parse(msg));
+
+                            var obj = JSON.parse(msg);
+
+                            if (flag && obj.result == ("success")){
+                                //请求成功
+                                window.location.href = "${path}/client/account?action=login";
+                                layer.closeAll();
+                            }else{
+                                //请求失败
+//                        layer.open({
+//                            type: 1,
+//                            title: false,
+//                            closeBtn: 1,
+//                            shadeClose: true,
+//                            skin: 'dialog',
+//                            content: '请求失败'
+//                        });
+                                layer.msg("请求失败！");
+                            }
                         });
-                    }
-                });
+//                    }else{
+//                        layer.msg("验证码错误");
+//                    }
+
+//                });
+
+
 
             });
         });
@@ -183,6 +208,11 @@
             color: white;
         }
 
+        .form-control {
+            width: auto;
+            min-width: 200px;
+            right: 10px;
+        }
 
 
         body{
@@ -205,7 +235,8 @@
 
 <!--content 内容区-->
 <div class="container content">
-    <form id="regform" action="client/account?action=registAccount" method="get">
+    <form id="regform">
+        <%--<input type="hidden" name="action" value="registerAccount">--%>
         <div class="row">
 
             <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 ">
@@ -220,7 +251,7 @@
                     <div class="inputmsg">
                         <span class="glyphicon glyphicon-object-align-vertical pull-left szwhite"></span>
                         <div class="clearfix validate  ">
-                            <input type="text " class="pull-left " id="aa" name="validateCode" placeholder="验证码">
+                            <input type="text " class="pull-left " id="validateCodeID" name="validateCode" placeholder="验证码">
                             <button type="button" id="sendValidateCode" class="pull-right" value="发送验证码">发送验证码</button>
                         </div>
 
@@ -228,7 +259,7 @@
                     </div>
                     <div class="inputmsg ">
                         <span class="glyphicon glyphicon-lamp pull-left szwhite"></span>
-                        <input type="text" id="username" class="pull-left " name="username" placeholder="用户名">
+                        <input type="text" id="username" class="pull-left " name="nickName" placeholder="用户名">
 
                     </div>
                     <div class="inputmsg ">
@@ -249,22 +280,23 @@
                 <div class="registerpanel section-2">
                     <div class="inputmsg ">
                         <span class="glyphicon glyphicon-paperclip szwhite pull-left"></span>
-                        <select class="pull-left">
-                            <option value="男性">男性</option>
-                            <option value="女性">女性</option>
-                            <option value="未知">未知</option>
+                        <select id="gender" name="sex" class="pull-left">
+                            <option value="1">男性</option>
+                            <option value="0">女性</option>
+                            <option value="-1">未知</option>
 
                         </select>
+                        <input type="hidden" name="sex">
                         <br>
                     </div>
                     <div style="padding: 0 0;" class="form-group sec2">
                         <div class="input-group date form_datetime szblack" data-date="1979-09-16T05:25:07Z"
                              data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-th szwhite" ></span></span>
-                            <input style="padding: 10px 0 0;background: rgba(255,255,255,0.0);" class="form-control" style="	background: rgba(255, 255, 255, 0.0);box-shadow: none;
+                            <input style="padding: 10px 0 0;background: rgba(255,255,255,0.0);" id="birth"  name="birthday" class="form-control" style="	background: rgba(255, 255, 255, 0.0);box-shadow: none;
 " size="16" type="text" value="出生日期" readonly>
                         </div>
-                        <input type="hidden" id="dtp_input1" value=""/>
+                        <input type="hidden"  id="dtp_input1" value=""/>
                     </div>
                 </div>
             </div>
@@ -275,12 +307,11 @@
         <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 ">
 
             <div class="row submitBtn">
-                <input type="submit" id="regBtn" name="password" placeholder="Password" value="注册">
+                <input type="button" id="regBtn" placeholder="Password" value="注册">
             </div>
         </div>
     </form>
 </div>
-
 
 <div class="bottom footer szwhite">
     <div class="row">

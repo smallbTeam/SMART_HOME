@@ -13,6 +13,12 @@
     <%--引入基础设置--%>
     <%@include file="/page/common/jsp/baseInclude.jsp" %>
     <title>登录</title>
+        <style>
+            body{
+                background: url("${path}/page/common/img/bg_login.png") no-repeat;
+                background-size: 100% 100% ;
+            }
+        </style>
     <script type="text/javascript">
         $(function () {
 
