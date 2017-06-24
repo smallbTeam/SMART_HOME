@@ -7,41 +7,35 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-    <title>Title</title>
-    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-    <%--引入基础设置--%>
-    <%@include file="/page/common/jsp/baseInclude.jsp" %>
-    <title>登录</title>
-    <style>
-        body {
-           background: url("${path}/page/common/img/bg_login.png") no-repeat;
-           background-size: 100% 100%;
-     }
-    </style>
-    <script type="text/javascript">
-        $(function () {
+<title>Title</title>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<%--引入基础设置--%>
+<%@include file="/page/common/jsp/baseInclude.jsp" %>
+<title>登录</title>
+<style>
+    body {
+        background: url("${path}/page/common/img/bg_login.png") no-repeat;
+        background-size: 100% 100%;
+    }
+</style>
+<script type="text/javascript">
+    var appId = ${appId};
+    var timestamp = ${timestamp};
+    var nonceStr = ${nonceStr};
+    var signature = ${signature};
+    $(function () {
+        console.log("[appId:" + appId + "][timestamp:" + timestamp + "][nonceStr:" + nonceStr + "][signature:" + signature + "]");
+    });
 
-        });
+    //初始化页面
+    $(document).ready(function () {
 
-        //初始化页面
-        $(document).ready(function () {
-
-        });
-    </script>
-    <!-- 用户中心部分通用css -->
-    <link rel="stylesheet" type="text/css" href="${path}/page/client/account/css/account.css">
-    <!-- 登录页面js -->
-    <script type="text/javascript" src="${path}/page/client/account/js/login.js" charset="utf8"></script>
-    <script type="text/javascript" src="${path}/page/client/home/js/addGetWay.js" charset="utf8"></script>
-
-    <script>
-      var appId = ${appId};
-     var timestamp = ${timestamp};
-     var nonceStr = ${nonceStr};
-     var signature = ${signature};
-    </script>
-
-
+    });
+</script>
+<!-- 用户中心部分通用css -->
+<link rel="stylesheet" type="text/css" href="${path}/page/client/account/css/account.css">
+<!-- 登录页面js -->
+<script type="text/javascript" src="${path}/page/client/home/js/addGetWay.js" charset="utf8"></script>
 </head>
 <body>
 <div class="container content">
@@ -78,19 +72,19 @@
     </form>
 </div>
 
-<script	>
+<script>
 
     $(document).ready(function () {
         $('#addGetway').click(function () {
             <%--window.location.href = "${path}/client/home?action=index";--%>
-            wx.invoke('configWXDeviceWiFi', {}, function(res){
+            wx.invoke('configWXDeviceWiFi', {}, function (res) {
                 var err_msg = res.err_msg;
-                if(err_msg == 'configWXDeviceWiFi:ok') {
+                if (err_msg == 'configWXDeviceWiFi:ok') {
                     $('#message').html("配置 WIFI成功，<span id='second'>5</span>秒后跳转到首页。");
-                    setInterval(count,1000);
+                    setInterval(count, 1000);
                     return;
                 } else {
-                    $('#message').html("配置 WIFI失败，是否<a href=\"/wechat/scan/airkiss" + window.location.search +  "\">再次扫描</a>。<br>不配置WIFI,<a href=\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf1867e87a4eeeb16&redirect_uri=http://letux.xyz/wechat/page/main&response_type=code&scope=snsapi_base&state=1#wechat_redirect\">直接进入首页</a>。");
+                    $('#message').html("配置 WIFI失败，是否<a href=\"/wechat/scan/airkiss" + window.location.search + "\">再次扫描</a>。<br>不配置WIFI,<a href=\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf1867e87a4eeeb16&redirect_uri=http://letux.xyz/wechat/page/main&response_type=code&scope=snsapi_base&state=1#wechat_redirect\">直接进入首页</a>。");
                 }
             });
         });

@@ -20,6 +20,8 @@
             }
         </style>
     <script type="text/javascript">
+        var wxId = ${wxId};
+
         $(function () {
 
         });
@@ -53,7 +55,7 @@
                 <div class="bottommsg">
                     <div class=" inputmsg">
                         <span class="glyphicon glyphicon-phone szwhite pull-left"></span>
-                        <input type="text" class="pull-left " id="email"  name="username" placeholder="手机号码" required autofocus>
+                        <input type="text" class="pull-left " id="mobelPhone"  name="username" placeholder="手机号码" required autofocus>
 
                     </div>
                     <div class="inputmsg ">
@@ -87,14 +89,5 @@
     </div>
 </div>
 
-<script	>
-
-    $(document).ready(function () {
-        $('#loginBtn').click(function () {
-            window.location.href = "${path}/client/home?action=index";
-        });
-    });
-
-</script>
 </body>
 </html>

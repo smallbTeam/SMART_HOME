@@ -83,6 +83,17 @@ public class HomeController extends BaseController {
      */
     @RequestMapping(params = "action=deviceList")
     public ModelAndView clientDeviceList() {
+        ModelAndView mav = new ModelAndView("client/home/deviceList");
+        return mav;
+    }
+
+    /**
+     * 添加网管页面
+     *
+     * @return
+     */
+    @RequestMapping(params = "action=addGetway")
+    public ModelAndView addGetway() {
         ModelAndView mav = new ModelAndView("client/home/addGetway");
         String accessToken = (String) propertyMapService.getPropertyMapByKey("accessToken").get("value");
         String jsapiticketTimestamp = (String) propertyMapService.getPropertyMapByKey("jsapiticketTimestamp").get("value");
@@ -99,17 +110,8 @@ public class HomeController extends BaseController {
         logger.info("添加网关微信扫一扫返回：[appid:" + appid + "][noncestr:" + jsapiticketNnoncestr + "][timestamp:"
                 + jsapiticketTimestamp + "signaturet:" + jsapiticketSignaturet + "]");
         return mav;
-    }
 
-    /**
-     * 添加网管页面
-     *
-     * @return
-     */
-    @RequestMapping(params = "action=addGetway")
-    public ModelAndView addGetway() {
-        ModelAndView mav = new ModelAndView("client/home/deviceList");
-        return mav;
+
     }
 
     /**
