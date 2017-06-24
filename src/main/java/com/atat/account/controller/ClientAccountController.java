@@ -93,32 +93,34 @@ public class ClientAccountController extends BaseController {
             paramMap.put("code", code);
             paramMap.put("grant_type", "authorization_code");
             String url = "https:api.weixin.qq.com/sns/oauth2/access_token";
-            String resJson = null;
+            String resJson = "";
             try {
                 resJson = URLUtil.originalGetData(url, paramMap);
                 logger.info("微信平台get请求：" + URLUtil.getDataUrl(url, paramMap));
-            }
-            catch (Exception e) {
+                System.out.println("微信平台get请求：" + URLUtil.getDataUrl(url, paramMap));
+                logger.info("微信平台请求用户OpenID：[" + resJson + "]");
+                System.out.println("微信平台请求用户OpenID：[" + resJson + "]");
+                // 解析Json 获取AppId
+                Map<String, Object> resMap = JsonUtil.fromJson(resJson, Map.class);
+                String wxId = (String) resMap.get("openid");
+                if (StringUtil.isNotEmpty(wxId)){
+                    // 判定openId是否已经在表中存在
+                    Map<String, Object> customerMap = clientAccountService.selectCustomerByWxid(wxId);
+                    if (null != customerMap) {
+                        mav = new ModelAndView("client/home/index");
+                        mav.addObject("account", customerMap);
+                    }
+                    else {
+                        mav.addObject("wxId", wxId);
+                    }
+                } else {
+                    Integer errcode = (Integer) resMap.get("errcode");
+                    String errmsg = (String) resMap.get("errmsg");
+                    logger.error("微信平台请求用户OpenID出错[errcode:"+errcode+"][errmsg:"+errmsg+"]");
+                }
+            } catch (Exception e) {
                 logger.error("[微信平台请求用户OpenID][Http请求异常" + e.getMessage() + "]", e);
-            }
-            logger.info("微信平台请求用户OpenID：[" + resJson + "]");
-            // 解析Json 获取AppId
-            Map<String, Object> resMap = JsonUtil.fromJson(resJson, Map.class);
-            String wxId = (String) resMap.get("openid");
-            if (StringUtil.isNotEmpty(wxId)){
-                // 判定openId是否已经在表中存在
-                Map<String, Object> customerMap = clientAccountService.selectCustomerByWxid(wxId);
-                if (null != customerMap) {
-                    mav = new ModelAndView("client/home/index");
-                    mav.addObject("account", customerMap);
-                }
-                else {
-                    mav.addObject("wxId", wxId);
-                }
-            } else {
-                Integer errcode = (Integer) resMap.get("errcode");
-                String errmsg = (String) resMap.get("errmsg");
-                logger.error("微信平台请求用户OpenID出错[errcode:"+errcode+"][errmsg:"+errmsg+"]");
+                System.out.println("[微信平台请求用户OpenID][Http请求异常" + e.getMessage() + "]");
             }
         }
         return mav;
