@@ -3,7 +3,7 @@ var wxuId = wxId;
 $(document).ready(function () {
     $('#loginBtn').click(function () {
         $.ajax({
-            url: ${path} + "/client/home?action=accountLogin",
+            url: path + "/client/home?action=accountLogin",
             type: "post",
             dataType: "json",
             data: {
@@ -14,7 +14,7 @@ $(document).ready(function () {
             success: function (data) {
                 if (data.result == "success" && data.operationResult == 1){
                     $.ajax({
-                        url: ${path} + "/client/home?action=index",
+                        url: path + "/client/home?action=index",
                         type: "post",
                         dataType: "json",
                         data: {

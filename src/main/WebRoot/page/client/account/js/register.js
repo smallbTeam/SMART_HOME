@@ -68,7 +68,7 @@ $(document).ready(function () {
         var mobelPhone = $("#phoneNum").val();
         //发送验证码请求
         var timestamp = Date.parse(new Date());
-        var url = ${path} + "/verificationMsg?action=sendMsg&mobelPhone="+mobelPhone+"&timeStamp="+timestamp;
+        var url = path + "/verificationMsg?action=sendMsg&mobelPhone="+mobelPhone+"&timeStamp="+timestamp;
 //                alert("url:---"+url);
         ajaxRequest(url,"GET",function (flag,msg) {
             alert("msg---"+msg);
@@ -111,7 +111,7 @@ $(document).ready(function () {
 
 //                layer.load(2);
 
-        var validateUrl =${path} + "/verificationMsg?action=sendMsg&mobelPhone="+$("#phoneNum").val()+"&timeStamp="+$("#validateCodeID").val();
+        var validateUrl =path + "/verificationMsg?action=sendMsg&mobelPhone="+$("#phoneNum").val()+"&timeStamp="+$("#validateCodeID").val();
 
 //                ajaxRequest(validateUrl,"GET",function (flag,msg) {
 
@@ -122,7 +122,7 @@ $(document).ready(function () {
         var birthday = new Date().getTime();
 //                            $("#birth").val();
 
-        var url=${path} + "/client/account?action=registAccount&mobelPhone="+$("#phoneNum").val()+"&wxId=wertyuioikjhgfdftgyhutu&password="+$("#password").val()+"&nickName="+$("#username").val()+"&birthday="+birthday+"&sex="+sex;
+        var url=path + "/client/account?action=registAccount&mobelPhone="+$("#phoneNum").val()+"&wxId=wertyuioikjhgfdftgyhutu&password="+$("#password").val()+"&nickName="+$("#username").val()+"&birthday="+birthday+"&sex="+sex;
         ajaxRequest(url,"GET",function (flag,msg) {
 //                            alert("msg:"+msg+"::"+JSON.parse(msg));
 
@@ -131,7 +131,7 @@ $(document).ready(function () {
             if (flag && obj.result == ("success")){
                 //请求成功
                 $.ajax({
-                    url: ${path} + "/client/account?action=login",
+                    url: path + "/client/account?action=login",
                     type: "post",
                     dataType: "json",
                     data: {

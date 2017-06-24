@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     var userId="";
-    var url = ${path} + "/client/home?action=getGatewayListByCustomerId&CustomerId="+userId;
+    var url = path + "/client/home?action=getGatewayListByCustomerId&CustomerId="+userId;
     ajaxRequest(url,"GET",function (flag,msg) {
         alert("msg---"+msg);
         if (flag == true && msg["result"].equals("success")) {
@@ -10,7 +10,7 @@ $(document).ready(function () {
             [].forEach(function (value,index,operationResult) {
                 var divcontent='<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  " >'+
                     '<div id="gateway_list-item_'+value["id"]+'" class="list-item">'+
-                    ' <div id="close_'+value["id"]+'" class="close"><img src="${path}/page/common/img/close.png"></div>'+
+                    ' <div id="close_'+value["id"]+'" class="close"><img src="path/page/common/img/close.png"></div>'+
                     ' <div class="list-item-content">'+
                     '  <div class="list-item-top ">'+
                     '   <h3> <span class="glyphicon glyphicon-object-align-vertical szblue"></span> <span>'+value["Address"]+'</span></h3>'+
@@ -30,14 +30,14 @@ $(document).ready(function () {
                 $("#gateway-list #gateway_list-item_"+value["id"]+" .list-item-content").bind("click",function () {
                     var ids=$(this).parentNode.attr("id");
                     var id=ids.split("_").last();
-                    var url = ${path} + "/client/home?action=getDeviceListByGatewayId&diviceGatewayId="+id;
+                    var url = path + "/client/home?action=getDeviceListByGatewayId&diviceGatewayId="+id;
                     window.open(url);
                 });
 
                 $("#gateway-list #close_"+value["id"]).bind("click",function () {
                     var ids=$(this).parentNode.attr("id");
                     var id=ids.split("_").last();
-                    var url=${path} + "/client/home?action=delGateway&GatewayId="+id;
+                    var url=path + "/client/home?action=delGateway&GatewayId="+id;
                     ajaxRequest(url,"GET",function(){
                         if (flag == true && msg["result"].equals("success")) {
                             var pid = $(this).parent("div").attr('id');
@@ -54,7 +54,7 @@ $(document).ready(function () {
 
             var lastItem='<div class="col-xs-12 col-sm-6  col-md-4 col-lg-3  ">'+
                 '<div class="list-item-last">'+
-                '<button id="add_gateway" ><img src="${path}/page/common/img/add.png"></button>'+
+                '<button id="add_gateway" ><img src="path/page/common/img/add.png"></button>'+
                 '</div>'+
                 '</div>';
             $("#gateway-list .row").appendChild(lastItem);
@@ -123,6 +123,6 @@ $(document).ready(function () {
     });
 
     $("#addGetway").on("click",function(){
-        window.location.href = ${path} + "/client/home?action=addGetway";
+        window.location.href = path + "/client/home?action=addGetway";
     })
 });
