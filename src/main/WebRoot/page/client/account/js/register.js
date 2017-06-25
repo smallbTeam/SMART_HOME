@@ -1,7 +1,9 @@
 var wxuId = wxId;
+
 //初始化页面
 $(document).ready(function () {
 
+    alert(2345678);
     $('.form_datetime').datetimepicker({
         language: 'zh-CN',
         weekStart: 1,
@@ -57,36 +59,35 @@ $(document).ready(function () {
         }
     });
 
-    $("#sendValidateCode").click(function () {
-//                alert("sendValidateCode:---");
+    $("#sendValidateCode").on("click",function () {
+        alert("sendValidateCode:---");
 
         if (!listenPhoneNum()) {
-            return ;
+            return;
         }
-
 
         var mobelPhone = $("#phoneNum").val();
         //发送验证码请求
         var timestamp = Date.parse(new Date());
-        var url = path + "/verificationMsg?action=sendMsg&mobelPhone="+mobelPhone+"&timeStamp="+timestamp;
+        var url = path + "/verificationMsg?action=sendMsg&mobelPhone=" + mobelPhone + "&timeStamp=" + timestamp;
 //                alert("url:---"+url);
-        ajaxRequest(url,"GET",function (flag,msg) {
-            alert("msg---"+msg);
-            if (flag == true && msg == 200){
+        ajaxRequest(url, "GET", function (flag, msg) {
+            alert("msg---" + msg);
+            if (flag == true && msg == 200) {
                 //请求成功
 
                 var countdown = 60;
                 var _this = $(this);
-                $("#sendValidateCode").attr("disabled","true");
-                $("#sendValidateCode").text(countdown+"秒后重发");
-                $("#phoneNum").attr("disabled","true");
+                $("#sendValidateCode").attr("disabled", "true");
+                $("#sendValidateCode").text(countdown + "秒后重发");
+                $("#phoneNum").attr("disabled", "true");
 
                 var timer = setInterval(function () {
 
-                    if (countdown-0 > 1) {
+                    if (countdown - 0 > 1) {
                         --countdown;
                         $("#sendValidateCode").text(countdown + "秒后重新获取");
-                    }else{
+                    } else {
 
                         clearInterval(timer);
                         $("#sendValidateCode").removeAttr("disabled");
@@ -94,9 +95,9 @@ $(document).ready(function () {
 
                         $("#sendValidateCode").text("重新发送验证码");
                     }
-                },1000);
+                }, 1000);
 
-            }else{
+            } else {
 //                        layer.msg("发送验证码失败!");
 
             }
@@ -106,29 +107,29 @@ $(document).ready(function () {
     $('#regBtn').click(function () {
 
         if (!listenPhoneNum()) {
-            return ;
+            return;
         }
 
 //                layer.load(2);
 
-        var validateUrl =path + "/verificationMsg?action=sendMsg&mobelPhone="+$("#phoneNum").val()+"&timeStamp="+$("#validateCodeID").val();
+        var validateUrl = path + "/verificationMsg?action=sendMsg&mobelPhone=" + $("#phoneNum").val() + "&timeStamp=" + $("#validateCodeID").val();
 
 //                ajaxRequest(validateUrl,"GET",function (flag,msg) {
 
 //                    if (flag && msg["result"].equals("success")) {
 //                        alert("请求成功");
 
-        var sex=$("#gender").val();
+        var sex = $("#gender").val();
         var birthday = new Date().getTime();
 //                            $("#birth").val();
 
-        var url=path + "/client/account?action=registAccount&mobelPhone="+$("#phoneNum").val()+"&wxId=wertyuioikjhgfdftgyhutu&password="+$("#password").val()+"&nickName="+$("#username").val()+"&birthday="+birthday+"&sex="+sex;
-        ajaxRequest(url,"GET",function (flag,msg) {
+        var url = path + "/client/account?action=registAccount&mobelPhone=" + $("#phoneNum").val() + "&wxId=wertyuioikjhgfdftgyhutu&password=" + $("#password").val() + "&nickName=" + $("#username").val() + "&birthday=" + birthday + "&sex=" + sex;
+        ajaxRequest(url, "GET", function (flag, msg) {
 //                            alert("msg:"+msg+"::"+JSON.parse(msg));
 
             var obj = JSON.parse(msg);
 
-            if (flag && obj.result == ("success")){
+            if (flag && obj.result == ("success")) {
                 //请求成功
                 $.ajax({
                     url: path + "/client/account?action=login",
@@ -142,7 +143,7 @@ $(document).ready(function () {
                     }
                 });
                 layer.closeAll();
-            }else{
+            } else {
                 //请求失败
 //                        layer.open({
 //                            type: 1,

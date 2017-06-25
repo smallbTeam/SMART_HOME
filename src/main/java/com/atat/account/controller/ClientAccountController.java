@@ -10,6 +10,7 @@ import com.atat.common.base.controller.BaseController;
 import com.atat.common.prop.BasePropertyDate;
 import com.atat.common.util.JsonUtil;
 import com.atat.common.util.StringUtil;
+import com.atat.common.util.httpClient.HttpClientUtil;
 import com.atat.common.util.httpClient.URLUtil;
 import com.atat.property.action.WeixinAction;
 import com.github.pagehelper.PageInfo;
@@ -84,6 +85,7 @@ public class ClientAccountController extends BaseController {
         String state = request.getParameter("state");
         String appid = BasePropertyDate.WX_APPID;
         String secret = BasePropertyDate.WX_SECRET;
+        code = "0517LBfj1rWXUy0WBxdj1Q7wfj17LBf3";
         if (StringUtil.isNotEmpty(code) && StringUtil.isNotEmpty(appid)
                 && StringUtil.isNotEmpty(secret)) {
             Map<String, Object> map = new HashMap<String, Object>();
@@ -92,10 +94,10 @@ public class ClientAccountController extends BaseController {
             paramMap.put("secret", secret);
             paramMap.put("code", code);
             paramMap.put("grant_type", "authorization_code");
-            String url = "https:api.weixin.qq.com/sns/oauth2/access_token";
+            String url = "https://api.weixin.qq.com/sns/oauth2/access_token";
             String resJson = "";
             try {
-                resJson = URLUtil.originalGetData(url, paramMap);
+                resJson = HttpClientUtil.doPost(url,paramMap,"utf-8");
                 logger.info("微信平台get请求：" + URLUtil.getDataUrl(url, paramMap));
                 System.out.println("微信平台get请求：" + URLUtil.getDataUrl(url, paramMap));
                 logger.info("微信平台请求用户OpenID：[" + resJson + "]");
