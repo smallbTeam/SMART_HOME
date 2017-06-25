@@ -5,12 +5,15 @@
 package com.atat.device.controller;
 
 import com.alibaba.druid.sql.visitor.functions.If;
+import com.atat.account.service.ClientAccountService;
 import com.atat.common.base.controller.BaseController;
+import com.atat.common.prop.BasePropertyDate;
 import com.atat.common.util.CollectionUtil;
 import com.atat.common.util.DateUtil;
 import com.atat.common.util.StringUtil;
 import com.atat.device.service.DeviceService;
 import com.atat.device.service.GatewayService;
+import com.atat.property.service.PropertyMapService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +23,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author ligw
@@ -39,14 +39,29 @@ public class HomeController extends BaseController {
     @Resource
     private DeviceService deviceService;
 
+    @Resource
+    private ClientAccountService clientAccountService;
+
+    @Resource
+    private PropertyMapService propertyMapService;
+
     /**
      * 首页
      * 
      * @return
      */
     @RequestMapping(params = "action=index")
-    public ModelAndView clientIndex() {
+    public ModelAndView clientIndex(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView("client/home/index");
+        String mobelPhone = request.getParameter("mobelPhone");
+        if (StringUtil.isNotEmpty(mobelPhone)) {
+            Map<String, Object> param = new HashMap<String, Object>();
+            param.put("MobelPhone", mobelPhone);
+            List<Map<String, Object>> customerList = clientAccountService.selectCustomerList(param);
+            if (CollectionUtil.isNotEmpty(customerList)) {
+                mav.addObject("account", customerList.get(0));
+            }
+        }
         return mav;
     }
 
@@ -70,6 +85,33 @@ public class HomeController extends BaseController {
     public ModelAndView clientDeviceList() {
         ModelAndView mav = new ModelAndView("client/home/deviceList");
         return mav;
+    }
+
+    /**
+     * 添加网管页面
+     *
+     * @return
+     */
+    @RequestMapping(params = "action=addGetway")
+    public ModelAndView addGetway() {
+        ModelAndView mav = new ModelAndView("client/home/addGetway");
+        String accessToken = (String) propertyMapService.getPropertyMapByKey("accessToken").get("value");
+        String jsapiticketTimestamp = (String) propertyMapService.getPropertyMapByKey("jsapiticketTimestamp").get("value");
+        String jsapiticketNnoncestr = (String) propertyMapService.getPropertyMapByKey("jsapiticketNnoncestr").get("value");
+        String jsapiticketMainurl = (String) propertyMapService.getPropertyMapByKey("jsapiticketMainurl").get("value");
+        String jsapiticketTicket = (String) propertyMapService.getPropertyMapByKey("jsapiticketTicket").get("value");
+        String jsapiticketSignaturet = (String) propertyMapService.getPropertyMapByKey("jsapiticketSignaturet").get("value");
+        String appid = BasePropertyDate.WX_APPID;
+        String secret = BasePropertyDate.WX_SECRET;
+        mav.addObject("appid", appid);
+        mav.addObject("noncestr", jsapiticketNnoncestr);
+        mav.addObject("timestamp", jsapiticketTimestamp);
+        mav.addObject("signaturet", jsapiticketSignaturet);
+        logger.info("添加网关微信扫一扫返回：[appid:" + appid + "][noncestr:" + jsapiticketNnoncestr + "][timestamp:"
+                + jsapiticketTimestamp + "signaturet:" + jsapiticketSignaturet + "]");
+        return mav;
+
+
     }
 
     /**
@@ -106,13 +148,13 @@ public class HomeController extends BaseController {
 
     /**
      * 依据条件获取网关列表
+     * 
      * @param request
      * @param response
      * @throws IOException
      */
     @RequestMapping(params = "action=getGatewayList")
-    public void getGatewayList(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+    public void getGatewayList(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String gatewayPort = request.getParameter("GatewayPort");
         String ip = request.getParameter("IP");
@@ -135,16 +177,16 @@ public class HomeController extends BaseController {
         if (StringUtil.isNotEmpty(gatewayId)) {
             param.put("gatewayId", gatewayId);
         }
-            try {
-                List<Map<String, Object>> gatewayList = gatewayService.selectGatewayList(param);
-                resultMap.put("result", "success");
-                resultMap.put("operationResult", gatewayList);
-            }
-            catch (Exception e) {
-                logger.error("获取网关列表" + e, e);
-                resultMap.put("result", "failed");
-                resultMap.put("error", "系统出错");
-            }
+        try {
+            List<Map<String, Object>> gatewayList = gatewayService.selectGatewayList(param);
+            resultMap.put("result", "success");
+            resultMap.put("operationResult", gatewayList);
+        }
+        catch (Exception e) {
+            logger.error("获取网关列表" + e, e);
+            resultMap.put("result", "failed");
+            resultMap.put("error", "系统出错");
+        }
         this.renderJson(response, resultMap);
     }
 
@@ -358,6 +400,7 @@ public class HomeController extends BaseController {
 
     /**
      * 依据设备Id获取设备
+     * 
      * @param request
      * @param response
      * @throws IOException
@@ -372,10 +415,11 @@ public class HomeController extends BaseController {
             try {
                 Map<String, Object> device = new HashMap<String, Object>();
                 List<Map<String, Object>> deviceList = deviceService.selectDeviceList(param);
-                if (CollectionUtil.isNotEmpty(deviceList)){
+                if (CollectionUtil.isNotEmpty(deviceList)) {
                     device = deviceList.get(0);
-                } else {
-                    device =null;
+                }
+                else {
+                    device = null;
                 }
                 resultMap.put("result", "success");
                 resultMap.put("operationResult", device);
@@ -707,12 +751,14 @@ public class HomeController extends BaseController {
             try {
                 deviceService.updateDeviceTypeByID(param);
                 resultMap.put("result", "success");
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 logger.error("依据Id更新设备类型出错" + e, e);
                 resultMap.put("result", "failed");
                 resultMap.put("error", "系统出错");
             }
-        } else {
+        }
+        else {
             resultMap.put("result", "error");
             resultMap.put("error", "设备类型Id为空");
         }
@@ -737,12 +783,14 @@ public class HomeController extends BaseController {
             try {
                 deviceService.updateDeviceTypeByID(param);
                 resultMap.put("result", "success");
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 logger.error("依据Id删除设备类型出错" + e, e);
                 resultMap.put("result", "failed");
                 resultMap.put("error", "系统出错");
             }
-        } else {
+        }
+        else {
             resultMap.put("result", "error");
             resultMap.put("error", "设备类型Id为空");
         }
@@ -785,7 +833,8 @@ public class HomeController extends BaseController {
             List<Map<String, Object>> deviceTypeList = deviceService.selectDeviceType(param);
             resultMap.put("result", "success");
             resultMap.put("operationResult", deviceTypeList);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             logger.error("依据条件获取设备类型列表出错" + e, e);
             resultMap.put("result", "failed");
             resultMap.put("error", "系统出错");

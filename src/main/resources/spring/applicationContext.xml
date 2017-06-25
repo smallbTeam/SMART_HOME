@@ -19,6 +19,9 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+    <bean id="weixinAction" class="com.atat.property.action.WeixinAction"></bean>
+    <bean id="propertyMapService" class="com.atat.property.service.impl.PropertyMapServiceImpl"></bean>
+
     <!-- 读取properties属性配置文件 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="order" value="6"/>
@@ -32,11 +35,11 @@
     </bean>
 
     <!-- 短信平台信息配置 -->
-    <bean id="smsPaltformProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+    <bean id="smsPlatformProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="singleton" value="true"/>
         <property name="properties">
             <props>
-                <prop key="sms.paltform.name">${sms.paltform.name}</prop>
+                <prop key="sms.platform.name">${sms.paltform.name}</prop>
                 <prop key="sms.platform.pwd">${sms.platform.pwd}</prop>
                 <prop key="sms.platform.Id">${sms.platform.Id}</prop>
             </props>

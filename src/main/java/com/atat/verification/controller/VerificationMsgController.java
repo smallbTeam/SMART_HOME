@@ -37,7 +37,7 @@ import java.util.*;
 public class VerificationMsgController extends BaseController {
 
     @Resource
-    private Properties smsPaltformProperties;
+    private Properties smsPlatformProperties;
 
     /**
      * 发送短信验证码 并记录时间戳
@@ -55,7 +55,7 @@ public class VerificationMsgController extends BaseController {
             // 生成随机六位短信验证码
             String randomCode = ((int) ((Math.random() * 9 + 1) * 100000)) + "";
             // 发送短信
-             String msmContent = "感谢注册新风系统您的验证码为 " + randomCode + "有效时间十分钟";
+             String msmContent = "感谢注ATAT智能家居，您的验证码为 " + randomCode + "有效时间十分钟";
              msmContent = URLEncoder.encode(msmContent, "utf-8");
             //String msmContent = randomCode;
             Map<String, Object> map = new HashMap<String, Object>();
@@ -63,9 +63,9 @@ public class VerificationMsgController extends BaseController {
             paramMap.put("Message", msmContent);
             paramMap.put("Phone", mobelPhone);
             paramMap.put("Timestamp", "0");
-            paramMap.put("Psw", smsPaltformProperties.getProperty("sms.platform.pwd"));
-            paramMap.put("Name", smsPaltformProperties.getProperty("sms.paltform.name"));
-            paramMap.put("Id", smsPaltformProperties.getProperty("sms.platform.Id"));
+            paramMap.put("Psw", smsPlatformProperties.getProperty("sms.platform.pwd"));
+            paramMap.put("Name", smsPlatformProperties.getProperty("sms.platform.name"));
+            paramMap.put("Id", smsPlatformProperties.getProperty("sms.platform.Id"));
             String url = "http://sms.bdt360.com:8180/Service.asmx/SendMessage";
             String resXml = null;
             try {
@@ -116,7 +116,7 @@ public class VerificationMsgController extends BaseController {
                 // 成功-验证码存入session
                 String timeStamp = String.valueOf(new Date().getTime());
                 request.getSession().setAttribute("msgCodeSsion" + mobelPhone, randomCode + "&&" + timeStamp);
-                // 成功-将发送结果返回前台
+                // 成功-将发送结果返回前台 
                 resultMap.put("result", "success");
                 resultMap.put("operationResult", randomCode);
             }

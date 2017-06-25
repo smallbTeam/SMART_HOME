@@ -5,7 +5,7 @@
     <insert id="addGateway" parameterType="java.util.Map">
         INSERT INTO Gateway
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="GatewayPort != null and GatewayPort != ''">
+            <if test="GatewayPort != null">
                 GatewayPort,
             </if>
             <if test="IP != null and IP != ''">
@@ -20,7 +20,7 @@
             IsDeleted
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="GatewayPort != null and GatewayPort != ''">
+            <if test="GatewayPort != null">
                 #{GatewayPort,jdbcType=INTEGER},
             </if>
             <if test="IP != null and IP != ''">
