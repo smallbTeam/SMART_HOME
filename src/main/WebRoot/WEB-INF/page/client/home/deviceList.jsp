@@ -89,8 +89,6 @@
         //初始化页面
         $(document).ready(function () {
 
-
-
         });
     </script>
         <!-- home部分通用css -->
@@ -109,15 +107,15 @@
         <div class="navbar-header ">
             <button type="button" class="navbar-toggle " data-toggle="collapse"
                     data-target="#example-navbar-collapse">
-                <span class="sr-only">切换导航</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                <%--<span class="sr-only">切换导航</span>--%>
+                <%--<span class="icon-bar"></span>--%>
+                <%--<span class="icon-bar"></span>--%>
+                <%--<span class="icon-bar"></span>--%>
             </button>
-
-
-            <a class="navbar-brand" href="#">设备列表</a>
-
+            <div class="clearfix">
+                <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-send"></span></a>
+                <a style="position: absolute; margin-left:25%;width: 50%;text-align: center;" class="navbar-brand clearfix" href="#">设备列表</a>
+            </div>
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav">

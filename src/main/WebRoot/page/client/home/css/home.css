@@ -280,6 +280,11 @@ body {
 
 }
 
+a .nav-center {
+    margin-left: 35%;
+    width: 30%;
+    text-align: center;
+}
 
 
 .box form input {
