@@ -52,7 +52,7 @@ public class HomeController extends BaseController {
      */
     @RequestMapping(params = "action=index")
     public ModelAndView clientIndex(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mav = new ModelAndView("client/home/index");
+        ModelAndView mav = new ModelAndView("client/home/main");
         String mobelPhone = request.getParameter("mobelPhone");
         if (StringUtil.isNotEmpty(mobelPhone)) {
             Map<String, Object> param = new HashMap<String, Object>();

@@ -14,6 +14,10 @@
     <%@include file="/page/common/jsp/baseInclude.jsp" %>
     <title>首页</title>
     <script type="text/javascript">
+        var account = {
+            "Id":"${account.id}"
+        };
+
         $(function () {
 
         });

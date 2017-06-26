@@ -58,7 +58,7 @@
                 }
                 return false;
             }
-            var wxId = "<%=request.getParameter("code")%>";
+            var wxId = ${wxId};
 
 
              function listenPhoneNum() {
