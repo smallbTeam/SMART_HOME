@@ -60,7 +60,7 @@
 	<bean id="cronTrigger"
 		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="job2" />
-		<property name="cronExpression" value="0 */1 * * * ?" />
+		<property name="cronExpression" value="0 0 0/1 * * ?" />
 	</bean>
 
 	<!-- 配置执行定时器的工厂，在list中配置的bean，都会加载到这个工厂中，然后定时运行 -->
