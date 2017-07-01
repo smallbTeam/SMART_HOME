@@ -91,16 +91,25 @@ public class HomeController extends BaseController {
      * @return
      */
     @RequestMapping(params = "action=addGetway")
-    public ModelAndView addGetway() {
+    public ModelAndView addGetway(HttpServletRequest request, HttpServletResponse response) {
+        String mobelPhone = request.getParameter("mobelPhone");
         ModelAndView mav = new ModelAndView("addGetway");
         String accessToken = (String) propertyMapService.getPropertyMapByKey("accessToken").get("propval");
-        String jsapiticketTimestamp = (String)propertyMapService.getPropertyMapByKey("jsapiticketTimestamp").get("propval");;
+        String jsapiticketTimestamp = (String) propertyMapService.getPropertyMapByKey("jsapiticketTimestamp").get("propval");
         String jsapiticketNnoncestr = (String) propertyMapService.getPropertyMapByKey("jsapiticketNnoncestr").get("propval");
         String jsapiticketMainurl = (String) propertyMapService.getPropertyMapByKey("jsapiticketMainurl").get("propval");
         String jsapiticketTicket = (String) propertyMapService.getPropertyMapByKey("jsapiticketTicket").get("propval");
         String jsapiticketSignaturet = (String) propertyMapService.getPropertyMapByKey("jsapiticketSignaturet").get("propval");
         String appid = BasePropertyDate.WX_APPID;
         String secret = BasePropertyDate.WX_SECRET;
+        if (StringUtil.isNotEmpty(mobelPhone)) {
+            Map<String, Object> param = new HashMap<String, Object>();
+            param.put("MobelPhone", mobelPhone);
+            List<Map<String, Object>> customerList = clientAccountService.selectCustomerList(param);
+            if (CollectionUtil.isNotEmpty(customerList)) {
+                mav.addObject("account", customerList.get(0));
+            }
+        }
         mav.addObject("appid", appid);
         mav.addObject("noncestr", jsapiticketNnoncestr);
         mav.addObject("timestamp", jsapiticketTimestamp);
@@ -262,13 +271,11 @@ public class HomeController extends BaseController {
     @RequestMapping(params = "action=addGateway")
     public void addGateway(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        String gatewayPort = request.getParameter("GatewayPort");
-        String ip = request.getParameter("IP");
         String address = request.getParameter("Address");
-        if ((StringUtil.isNotEmpty(gatewayPort)) && (StringUtil.isNotEmpty(ip)) && (StringUtil.isNotEmpty(address))) {
+        String gatewayDeviceNo = request.getParameter("GatewayDeviceNo");
+        if ((StringUtil.isNotEmpty(gatewayDeviceNo)) && (StringUtil.isNotEmpty(address))) {
             Map<String, Object> param = new HashMap<String, Object>();
-            param.put("GatewayPort", Integer.parseInt(gatewayPort));
-            param.put("IP", ip);
+            param.put("Reserve", gatewayDeviceNo);
             param.put("Address", address);
             try {
                 gatewayService.addGateway(param);

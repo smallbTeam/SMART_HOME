@@ -351,7 +351,7 @@
                             var str = $("#birth").val(); // 日期字符串
                             str = str.replace(/-/g, '/'); // 将-替换成/，因为下面这个构造函数只支持/分隔的日期字符串
                             var birthday = new Date(str).getTime();
-                            var url = "${path}/client/account?action=registAccount&mobelPhone=" + $("#phoneNumber").val() + $("#pwd").val() + "&nickName=" + $("#nickName").val() + "&birthday=" + birthday + "&sex=" + sex;
+                            var url = "${path}/client/account?action=registAccount&mobelPhone=" + $("#phoneNumber").val() +"&password="+ $("#pwd").val() + "&nickName=" + $("#nickName").val() + "&birthday=" + birthday + "&sex=" + sex;
                             //console.log(url);
 
                             if (wxId !== null && wxId !== undefined && wxId !== '') {

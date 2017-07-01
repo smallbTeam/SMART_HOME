@@ -39,7 +39,18 @@
     var timestamp = '${timestamp}';
     var nonceStr = '${noncestr}';
     var signature = '${signaturet}';
+    var account = {"id":'${account.id}',
+        "mobelPhone":'${account.MobelPhone}',
+        "wxId":'${account.WxId}',
+        "nickName":'${account.NickName}',
+        "birthday":'${account.Birthday}',
+        "sex":'${account.Sex}',
+        "reserve":'${account.Reserve}',
+        "token":'${account.Token}'
+    }
+
     $(function () {
+        alert("登录手机号：["+account.mobelPhone+"]");
         console.log("[appId:" + appId + "][timestamp:" + timestamp + "][nonceStr:" + nonceStr + "][signature:" + signature + "]");
     });
 </script>

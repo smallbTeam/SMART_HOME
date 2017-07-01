@@ -8,6 +8,7 @@ import com.atat.account.bean.Customer;
 import com.atat.account.service.ClientAccountService;
 import com.atat.common.base.controller.BaseController;
 import com.atat.common.prop.BasePropertyDate;
+import com.atat.common.util.CollectionUtil;
 import com.atat.common.util.JsonUtil;
 import com.atat.common.util.StringUtil;
 import com.atat.common.util.httpClient.HttpClientUtil;
@@ -24,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -110,7 +112,7 @@ public class ClientAccountController extends BaseController {
                     // 判定openId是否已经在表中存在
                     Map<String, Object> customerMap = clientAccountService.selectCustomerByWxid(wxId);
                     if (null != customerMap) {
-                        mav = new ModelAndView("client/home/index");
+                        mav = new ModelAndView("main");
                         mav.addObject("account", customerMap);
                     }
                     else {

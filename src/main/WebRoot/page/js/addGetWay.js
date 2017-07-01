@@ -31,7 +31,7 @@ $(function () {
 });
 
 $(document).ready(function () {
-    $('#addgetway_btn').click(function () {
+    $("#addgetway_btn").click(function () {
         wx.checkJsApi({
             jsApiList: ['configWXDeviceWiFi'],
             success: function (res) {
@@ -44,20 +44,18 @@ $(document).ready(function () {
                         // setInterval(count, 1000);
                         alert("配置 WIFI成功");
                         $.ajax({
-                            url: ${path} + "/client/home?action=accountIsExit",
+                            url: ${path} + "/client/home?action=addGateway",
                             type: "GET",
                             data: {
-                                mobelPhone: $("#phoneNumber").val()
+                                GatewayDeviceNo:$("#deviceNo").val(),
+                                Address:$("#wangguan").val(),
                             },
                             dataType: "json",
                             success: function (result) {
-                                //console.log(result);
+                                console.log(result);
                                 if (result.result == "success") {
-                                    if (!result.operationResult) {
-
-                                    } else {
-                                        alert("用户已存在")
-                                    }
+                                    window.location.href = "${path}/client/home?action=index&mobelPhone=" + account.mobelPhone;
+                                    layer.closeAll();
                                 } else {
                                     alert(result.error)
                                 }
