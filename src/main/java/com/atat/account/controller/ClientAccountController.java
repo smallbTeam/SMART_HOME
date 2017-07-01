@@ -98,7 +98,7 @@ public class ClientAccountController extends BaseController {
             paramMap.put("grant_type", "authorization_code");
             String url = "https://api.weixin.qq.com/sns/oauth2/access_token";
             String resJson = "";
-            try {
+                try {
                 resJson = HttpClientUtil.doPost(url,paramMap,"utf-8");
                 logger.info("微信平台get请求：" + URLUtil.getDataUrl(url, paramMap));
                 System.out.println("微信平台get请求：" + URLUtil.getDataUrl(url, paramMap));
