@@ -13,6 +13,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,12 @@ public class ClientAccountServiceImpl implements ClientAccountService {
 
     @Override
     public Customer getCustomerByMobel(String mobelPhone) {
-        return customerMapper.getCustomerByMobel(mobelPhone).get(0);
+        List<Customer> customerList = customerMapper.getCustomerByMobel(mobelPhone);
+        if (CollectionUtil.isNotEmpty(customerList)){
+            return customerList.get(0);
+        } else {
+            return null;
+        }
     }
 
     @Override public PageInfo<Map<String,Object>> getCustomerPageTurn(Map<String,Object> param,Integer pageNo,Integer pageSize) {

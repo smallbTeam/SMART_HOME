@@ -73,6 +73,7 @@ public abstract class BaseController extends AbstractController {
                 jsonResponse = JsonUtil.toJson(data);
             }
             logger.info("Json Result:" + jsonResponse);
+            response.setHeader("Access-Control-Allow-Origin", "http://localhost:8020");
             response.setContentType("application/json;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().print(jsonResponse);

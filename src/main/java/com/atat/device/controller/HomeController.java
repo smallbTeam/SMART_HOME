@@ -4,7 +4,6 @@
  */
 package com.atat.device.controller;
 
-import com.alibaba.druid.sql.visitor.functions.If;
 import com.atat.account.service.ClientAccountService;
 import com.atat.common.base.controller.BaseController;
 import com.atat.common.prop.BasePropertyDate;
@@ -14,7 +13,6 @@ import com.atat.common.util.StringUtil;
 import com.atat.device.service.DeviceService;
 import com.atat.device.service.GatewayService;
 import com.atat.property.service.PropertyMapService;
-import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,7 +50,7 @@ public class HomeController extends BaseController {
      */
     @RequestMapping(params = "action=index")
     public ModelAndView clientIndex(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mav = new ModelAndView("client/home/main");
+        ModelAndView mav = new ModelAndView("main");
         String mobelPhone = request.getParameter("mobelPhone");
         if (StringUtil.isNotEmpty(mobelPhone)) {
             Map<String, Object> param = new HashMap<String, Object>();

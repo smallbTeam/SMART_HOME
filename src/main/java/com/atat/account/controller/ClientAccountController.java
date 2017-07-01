@@ -47,7 +47,7 @@ public class ClientAccountController extends BaseController {
      */
     @RequestMapping(params = "action=register")
     public ModelAndView register(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mav = new ModelAndView("client/account/register");
+        ModelAndView mav = new ModelAndView("register");
         String wxId = request.getParameter("wxId");
         if (StringUtil.isNotEmpty(wxId)) {
             mav.addObject("wxId", wxId);
@@ -64,7 +64,7 @@ public class ClientAccountController extends BaseController {
      */
     @RequestMapping(params = "action=login")
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mav = new ModelAndView("client/account/login");
+        ModelAndView mav = new ModelAndView("login");
         String wxId = request.getParameter("wxId");
         if (StringUtil.isNotEmpty(wxId)) {
             mav.addObject("wxId", wxId);
@@ -81,7 +81,7 @@ public class ClientAccountController extends BaseController {
      */
     @RequestMapping("/wxUidIsExit")
     public ModelAndView wxUidIsExit(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        ModelAndView mav = new ModelAndView("client/account/register");
+        ModelAndView mav = new ModelAndView("register");
         // 判断微信Id是否已存在
         String code = request.getParameter("code");
         String state = request.getParameter("state");
@@ -137,7 +137,7 @@ public class ClientAccountController extends BaseController {
      * @param response
      * @throws IOException
      */
-    @RequestMapping(params = "action=registWeixinAccount")
+    @RequestMapping(params = "action=registAccount")
     public void registWeixinAccount(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String mobelPhone = request.getParameter("mobelPhone");
@@ -231,10 +231,6 @@ public class ClientAccountController extends BaseController {
      */
     @RequestMapping(params = "action=accountIsExit")
     public void accountIsExit(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        WeixinAction weixinAction  = new WeixinAction();
-        weixinAction.refreshWxaccessToken();
-
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String strMobelPhone = request.getParameter("mobelPhone");
         if (StringUtil.isNotEmpty(strMobelPhone)) {
