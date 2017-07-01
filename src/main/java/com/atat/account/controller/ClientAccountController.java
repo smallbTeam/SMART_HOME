@@ -148,7 +148,7 @@ public class ClientAccountController extends BaseController {
         String token = request.getParameter("token");
         if ((StringUtil.isNotEmpty(mobelPhone)) && (StringUtil.isNotEmpty(password))
                 && (StringUtil.isNotEmpty(nickName)) && (StringUtil.isNotEmpty(birthday))
-                && (StringUtil.isNotEmpty(sex)) && (StringUtil.isNotEmpty(wxId))) {
+                && (StringUtil.isNotEmpty(sex))) {
             Customer customer = new Customer();
             customer.setMobelPhone(mobelPhone);
             customer.setPassword(password);
