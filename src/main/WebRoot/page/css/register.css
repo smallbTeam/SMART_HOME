@@ -130,7 +130,7 @@ input:-moz-placeholder { color: rgba(33, 33, 33, 0.58); }
     border: none;
     outline: none;
     font-size: 18px;
-    margin: -44px 0;
+    /*margin: -44px 0;*/
     color: rgba(33, 33, 33, 0.58);
 
 }

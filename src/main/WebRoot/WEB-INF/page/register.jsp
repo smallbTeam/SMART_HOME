@@ -123,8 +123,9 @@
 
 <script type="text/javascript">
     var wxId = '${wxId}';
+    //alert(wxId);
     $(document).ready(function () {
-        console.log(JSON.stringify(wxId));
+        //console.log(JSON.stringify(wxId));
         Flatpickr.l10n.weekdays.shorthand = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
         Flatpickr.l10n.months.longhand = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
 
@@ -214,10 +215,10 @@
         });
 
         $("#pwd").change(function () {
-            console.log("pwd:" + $("#pwdAgain").val() + ":pwd:" + $("#pwd").val());
+            //console.log("pwd:" + $("#pwdAgain").val() + ":pwd:" + $("#pwd").val());
             //            if (listenField("#pwd",reg)){
             if (isNotNull("#pwdAgain")) {
-                //                    console.log("hihi");
+                //                    //console.log("hihi");
                 validatePWD();
             } else {
                 if (listenField("#pwd", reg)) {
@@ -235,7 +236,7 @@
         $("#pwdAgain").change(function () {
             //            if (listenField("#pwdAgain",reg)){
             if (isNotNull("#pwd")) {
-                //                    console.log("hello");
+                //                    //console.log("hello");
                 validatePWD();
             } else {
                 if (listenField("#pwdAgain", reg)) {
@@ -252,20 +253,20 @@
 
         $("#sendCode").click(function () {
             if (!listenField("#phoneNumber", phoneReg)) {
-                //                console.log("false");
+                //                //console.log("false");
 
                 return;
             } else {
-                //                console.log("sendCode");
+                //                //console.log("sendCode");
             }
 
             var mobelPhone = $("#phoneNumber").val();
             //发送验证码请求
             var timestamp = Date.parse(new Date());
             var url = "${path}/verificationMsg?action=sendMsg&mobelPhone=" + mobelPhone + "&timeStamp=" + timestamp;
-            console.log("[" + url + "]");
+            //console.log("[" + url + "]");
             $.get(url, function (msg) {
-                console.log("msg:" + msg.operationResult);
+                //console.log("msg:" + msg.operationResult);
                 if (msg.result == 'success') {
                     //请求成功
                     var countdown = 60;
@@ -296,20 +297,20 @@
         });
 
         function validateWithCode() {
-            console.log("validateCode");
+            //console.log("validateCode");
             if (!listenField("#phoneNumber", phoneReg)) {
                 return;
             }
 
             if (!isNotNull("#validateCode")) {
-                //                console.log("false");
+                //                //console.log("false");
                 return;
             }
 
             var validateUrl = "${path}/verificationMsg?action=veridateMsg&mobelPhone=" + $("#phoneNumber").val() + "&veridateMsg=" + $("#validateCode").val();
-            console.log("[" + validateUrl + "]");
+            //console.log("[" + validateUrl + "]");
             $.get(validateUrl, function (msg) {
-                console.log("验证结果[" + JSON.stringify(msg) + "]");
+                //console.log("验证结果[" + JSON.stringify(msg) + "]");
                 if (msg.operationResult) {
                     $('#validate').slideUp("slow");
                 } else {
@@ -343,18 +344,20 @@
                 },
                 dataType: "json",
                 success: function (result) {
-                    console.log(result);
+                    //console.log(result);
                     if (result.result == "success") {
-                        if (result.operationResult) {
+                        if (!result.operationResult) {
                             var sex = $("#gender").val();
                             var str = $("#birth").val(); // 日期字符串
                             str = str.replace(/-/g, '/'); // 将-替换成/，因为下面这个构造函数只支持/分隔的日期字符串
                             var birthday = new Date(str).getTime();
                             var url = "${path}/client/account?action=registAccount&mobelPhone=" + $("#phoneNumber").val() + $("#pwd").val() + "&nickName=" + $("#nickName").val() + "&birthday=" + birthday + "&sex=" + sex;
-                            console.log(url);
+                            //console.log(url);
+
                             if (wxId !== null && wxId !== undefined && wxId !== '') {
-                                url = "${path}/client/account?action=registAccount&mobelPhone=" + $("#phoneNumber").val() + "&wxId=" + wxId + "&password=" + $("#pwd").val() + "&nickName=" + $("#nickName").val() + "&birthday=" + birthday + "&sex=" + sex + "&wxId=" + wxId;
+                                url = "${path}/client/account?action=registAccount&mobelPhone=" + $("#phoneNumber").val() +"&password=" + $("#pwd").val() + "&nickName=" + $("#nickName").val() + "&birthday=" + birthday + "&sex=" + sex + "&wxId=" + wxId;
                             }
+                            //alert("registUrl:["+url+"]");
                             $.get(url, function (msg) {
                                 if (msg.result == 'success') {
                                     //请求成功

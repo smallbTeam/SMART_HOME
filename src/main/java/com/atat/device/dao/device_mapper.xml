@@ -26,6 +26,7 @@
             <if test="GetwayId != null">
                 GetwayId,
             </if>
+            CreatedDate,ModifiedDate,
             IsDeleted
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -50,7 +51,7 @@
             <if test="GetwayId != null">
                 #{GetwayId,jdbcType=INTEGER},
             </if>
-            0
+            now() , now() ,0
         </trim>
     </insert>
 
@@ -191,7 +192,7 @@
             <if test="Reserve != null and Reserve != ''">
                 Reserve,
             </if>
-            IsDeleted
+            CreatedDate,ModifiedDate,IsDeleted
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="Name != null and Name != ''">
@@ -209,7 +210,7 @@
             <if test="Reserve != null  and Reserve != ''">
                 #{Reserve,jdbcType=VARCHAR},
             </if>
-            0
+            now() , now() ,0
         </trim>
     </insert>
 
@@ -286,14 +287,14 @@
             <if test="Reserve != null and Reserve != ''">
                 Reserve,
             </if>
-            IsDeleted
+            CreatedDate,ModifiedDate,IsDeleted
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
                 #{DeviceId},#{DeviceData},#{RecordTime},
             <if test="Reserve != null and Reserve != ''">
                 #{Reserve},
             </if>
-            0
+            now() , now() ,0
         </trim>
     </insert>
 
@@ -335,14 +336,14 @@
             <if test="Reserve != null and Reserve != ''">
                 Reserve,
             </if>
-            IsDeleted
+            CreatedDate,ModifiedDate,IsDeleted
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             #{DeviceID},#{DailyData},#{RecordTime},
             <if test="Reserve != null and Reserve != ''">
                 #{Reserve},
             </if>
-            0
+            now() , now() ,0
         </trim>
     </insert>
     <select id="selectDeviceDailyDataList" parameterType="java.util.Map"
@@ -382,14 +383,14 @@
             <if test="Reserve != null and Reserve != ''">
                 Reserve,
             </if>
-            IsDeleted
+            CreatedDate,ModifiedDate,IsDeleted
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             #{DeviceID},#{MounthData},#{RecordTime},
             <if test="Reserve != null and Reserve != ''">
                 #{Reserve},
             </if>
-            0
+            now() , now() ,0
         </trim>
     </insert>
     <select id="selectDeviceMonthDataList" parameterType="java.util.Map"

@@ -87,7 +87,6 @@ public class ClientAccountController extends BaseController {
         String state = request.getParameter("state");
         String appid = BasePropertyDate.WX_APPID;
         String secret = BasePropertyDate.WX_SECRET;
-        code = "0517LBfj1rWXUy0WBxdj1Q7wfj17LBf3";
         if (StringUtil.isNotEmpty(code) && StringUtil.isNotEmpty(appid)
                 && StringUtil.isNotEmpty(secret)) {
             Map<String, Object> map = new HashMap<String, Object>();

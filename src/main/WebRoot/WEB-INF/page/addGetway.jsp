@@ -9,10 +9,10 @@
 <%--引入页面变量配置--%>
 <%@include file="/page/common/jsp/base.jsp" %>
 <html>
-<script type="text/javascript" src="${path}/page/common/js/jweixin-1.2.0.js" charset="utf8"></script>
 <%--引入基础设置--%>
 <%@include file="/page/common/jsp/baseInclude.jsp" %>
 <title>登录</title>
+<script type="text/javascript" src="${path}/page/js/third/jweixin-1.2.0.js" charset="utf8"></script>
 <style>
     body {
         background: url("${path}/page/common/img/bg_login.png") no-repeat;
@@ -32,23 +32,18 @@
 
     });
 </script>
-<!-- 用户中心部分通用css -->
-<link rel="stylesheet" type="text/css" href="${path}/page/client/account/css/account.css">
 <!-- 登录页面js -->
-<script type="text/javascript" src="${path}/page/client/home/js/addGetWay.js" charset="utf8"></script>
+<script type="text/javascript" src="${path}/page/js/addGetWay.js" charset="utf8"></script>
 </head>
 <body>
 <div class="container content">
     <form>
         <div class="row">
-
             <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 ">
-
                 <div class="bottommsg">
                     <div class=" inputmsg">
                         <span class="glyphicon glyphicon-phone szwhite pull-left"></span>
                         <input type="text" class="pull-left " id="deviceNo" name="deviceNo" placeholder="设备号">
-
                     </div>
                     <div class="inputmsg ">
                         <span class="glyphicon glyphicon-lock pull-left szwhite"></span>

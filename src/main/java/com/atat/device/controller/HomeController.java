@@ -92,13 +92,13 @@ public class HomeController extends BaseController {
      */
     @RequestMapping(params = "action=addGetway")
     public ModelAndView addGetway() {
-        ModelAndView mav = new ModelAndView("client/home/addGetway");
-        String accessToken = (String) propertyMapService.getPropertyMapByKey("accessToken").get("value");
-        String jsapiticketTimestamp = (String) propertyMapService.getPropertyMapByKey("jsapiticketTimestamp").get("value");
-        String jsapiticketNnoncestr = (String) propertyMapService.getPropertyMapByKey("jsapiticketNnoncestr").get("value");
-        String jsapiticketMainurl = (String) propertyMapService.getPropertyMapByKey("jsapiticketMainurl").get("value");
-        String jsapiticketTicket = (String) propertyMapService.getPropertyMapByKey("jsapiticketTicket").get("value");
-        String jsapiticketSignaturet = (String) propertyMapService.getPropertyMapByKey("jsapiticketSignaturet").get("value");
+        ModelAndView mav = new ModelAndView("addGetway");
+        String accessToken = (String) propertyMapService.getPropertyMapByKey("accessToken").get("propval");
+        String jsapiticketTimestamp = (String)propertyMapService.getPropertyMapByKey("jsapiticketTimestamp").get("propval");;
+        String jsapiticketNnoncestr = (String) propertyMapService.getPropertyMapByKey("jsapiticketNnoncestr").get("propval");
+        String jsapiticketMainurl = (String) propertyMapService.getPropertyMapByKey("jsapiticketMainurl").get("propval");
+        String jsapiticketTicket = (String) propertyMapService.getPropertyMapByKey("jsapiticketTicket").get("propval");
+        String jsapiticketSignaturet = (String) propertyMapService.getPropertyMapByKey("jsapiticketSignaturet").get("propval");
         String appid = BasePropertyDate.WX_APPID;
         String secret = BasePropertyDate.WX_SECRET;
         mav.addObject("appid", appid);
@@ -108,8 +108,6 @@ public class HomeController extends BaseController {
         logger.info("添加网关微信扫一扫返回：[appid:" + appid + "][noncestr:" + jsapiticketNnoncestr + "][timestamp:"
                 + jsapiticketTimestamp + "signaturet:" + jsapiticketSignaturet + "]");
         return mav;
-
-
     }
 
     /**

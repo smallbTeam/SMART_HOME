@@ -17,7 +17,7 @@
             <if test="Reserve != null and Reserve != ''">
                 Reserve,
             </if>
-            IsDeleted
+            CreatedDate,ModifiedDate,IsDeleted
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="GatewayPort != null">
@@ -32,7 +32,7 @@
             <if test="Reserve != null  and Reserve != ''">
                 #{Reserve},
             </if>
-            0
+            now() , now() ,0
         </trim>
     </insert>
 
@@ -121,7 +121,7 @@
             </if>
                 GatewayId,
                 CustomerId,
-            IsDeleted
+            CreatedDate,ModifiedDate,IsDeleted
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="Reserve != null and Reserve != ''">
@@ -129,7 +129,7 @@
             </if>
                 #{GatewayId,jdbcType=INTEGER},
                 #{CustomerId,jdbcType=INTEGER},
-            0
+            now() , now() ,0
         </trim>
     </insert>
 

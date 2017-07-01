@@ -36,6 +36,7 @@
             <if test="token != null">
                 Token,
             </if>
+            CreatedDate,ModifiedDate,
             IsDeleted
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -60,7 +61,7 @@
             <if test="token != null">
                 #{token,jdbcType=VARCHAR},
             </if>
-            0
+            now() , now() ,0
         </trim>
     </insert>
 
@@ -148,6 +149,7 @@
             <if test="IsDeleted != null">
                 IsDeleted= #{IsDeleted},
             </if>
+            ModifiedDate = now()
         </trim>
         where id = #{CustomerId}
     </update>
