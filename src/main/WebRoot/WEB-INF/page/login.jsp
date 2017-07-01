@@ -109,7 +109,6 @@
         });
         $("#accountLogin").on("click",function(){
             window.location.href = "${path}/client/home?action=index&mobelPhone=" + $("#phoneNumber").val();
-            layer.closeAll();
         });
 
     });

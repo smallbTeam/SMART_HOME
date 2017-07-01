@@ -1,45 +1,55 @@
-/**
- * Company
- * Copyright (C) 2004-2017 All Rights Reserved.
- */
 package com.atat.device.service;
 
+import com.github.pagehelper.PageInfo;
 import java.util.List;
 import java.util.Map;
 
 /**
- * @author ligw
- * @version $Id GatewayService.java, v 0.1 2017-06-17 19:21 ligw Exp $$
+ *
+ * @author whaosoft
+ *
  */
 public interface GatewayService {
-    /**
-     * 新增网关
-     * @param param
-     */
-    public void addGateway(Map<String, Object> param);
 
     /**
-     * 更新网关
+     * 添加
      * @param param
      */
-    public void updateGatewayByID(Map<String, Object> param);
+    public void  addGateway(Map<String, Object> param);
 
     /**
-     * 查找网管列表
+     * 依据网关设备ID更新
+     * @param param
+     */
+    public void  updateGatewayByGatewayDeviceID(Map<String, Object> param);
+
+    /**
+     * 依据条件查找列表
      * @param param
      * @return
      */
-    public List<Map<String,Object>> selectGatewayList(Map<String, Object> param);
+    public List<Map<String, Object>> selectGatewayList(Map<String, Object> param);
+
+    public List<Map<String, Object>> selectCustomerGatewayList(Map<String, Object> param);
+    /**
+     * 依据条件查找分页列表
+     * @param param
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    public PageInfo<Map<String, Object>> getGatewayPageTurn(Map<String, Object> param, Integer pageNo, Integer pageSize);
 
     /**
-     * 用户添加网关
-     * @param param
+     * 依据Key查找详情
+     * @param gatewayKey
+     * @return
      */
-    public void addCustomerGatewayRel(Map<String, Object> param);
+    public Map<String, Object> getGatewayByKey(Integer gatewayKey);
 
     /**
-     * 用户删除网关
-     * @param param
+     * 依据Key删除记录
+     * @param gatewayDeviceID
      */
-    public void delCustomerGatewayRel(Map<String, Object> param);
+    public void delGatewayByGatewayDeviceID(String gatewayDeviceID);
 }

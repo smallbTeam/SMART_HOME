@@ -27,12 +27,10 @@
         $(function () {
             alert("登录手机号：["+account.mobelPhone+"]");
         });
-
         $(document).ready(function () {
             $("#toAddgatewaypage_btn").on("click",function () {
                 alert("用户："+account.mobelPhone+"添加网关");
-                window.location.href = "${path}/client/home?action=addGetway&mobelPhone=" + account.mobelPhone;
-                layer.closeAll();
+                window.location.href = "${path}/client/home?action=addGetway&mobelPhone="+account.mobelPhone;
             });
         });
     </script>
@@ -57,6 +55,5 @@
 <body>
 
 <input type="button" value="扫描添加网关" id="toAddgatewaypage_btn">
-
 </body>
 </html>

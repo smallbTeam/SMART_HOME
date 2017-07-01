@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atat.device.dao.CustomerGatewayDao">
+
+    <insert id="addCustomerGateway" parameterType="java.util.Map">
+        INSERT INTO CustomerGateway
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="customerId != null">
+                    customerId,
+                </if>
+                <if test="gatewayDeviceID != null">
+                    gatewayDeviceID,
+                </if>
+                <if test="address != null">
+                    address,
+                </if>
+                    createdDate,
+                    modifiedDate,
+                    isDeleted
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="customerId != null">
+                    #{customerId},
+                </if>
+                <if test="gatewayDeviceID != null">
+                    #{gatewayDeviceID},
+                </if>
+                <if test="address != null">
+                    #{address},
+                </if>
+              now(),now(),0
+        </trim>
+    </insert>
+
+    <update id="updateCustomerGatewayByKey" parameterType="java.util.Map">
+        update CustomerGateway
+        <trim prefix="set" suffixOverrides=",">
+                <if test="customerId != null">
+                    customerId =#{customerId},
+                </if>
+                <if test="gatewayDeviceID != null">
+                    gatewayDeviceID =#{gatewayDeviceID},
+                </if>
+                <if test="address != null">
+                    address =#{address},
+                </if>
+                    modifiedDate =now(),
+                <if test="isDeleted != null">
+                    isDeleted =#{isDeleted},
+                </if>
+        </trim>
+        where id = #{customerGatewayKey}
+    </update>
+
+    <select id="selectCustomerGatewayList" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        select
+            customerId customerId,
+            gatewayDeviceID gatewayDeviceID,
+            address address,
+            createdDate createdDate,
+            modifiedDate modifiedDate,
+            isDeleted isDeleted,
+        id customerGatewayKey
+        from CustomerGateway
+        WHERE
+        isDeleted = 0
+        <if test="customerGatewayKey != null">
+            and id =#{customerGatewayKey}
+        </if>
+            <if test="customerId != null">
+                and customerId =#{customerId}
+            </if>
+            <if test="gatewayDeviceID != null">
+                and gatewayDeviceID =#{gatewayDeviceID}
+            </if>
+            <if test="address != null">
+                and address LIKE #{address}
+            </if>
+            <if test="createdDate != null">
+                and createdDate =#{createdDate}
+            </if>
+            <if test="modifiedDate != null">
+                and modifiedDate =#{modifiedDate}
+            </if>
+        ORDER BY id ASC
+    </select>
+
+    <delete id="delCustomerGatewayByKey" parameterType="java.lang.Integer">
+        DELETE FROM  CustomerGateway
+        where
+        id = #{customerGatewayKey}
+    </delete>
+
+</mapper>

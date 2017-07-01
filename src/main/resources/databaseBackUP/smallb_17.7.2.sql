@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100113
 File Encoding         : 65001
 
-Date: 2017-06-27 22:57:25
+Date: 2017-07-02 05:48:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,7 +33,7 @@ CREATE TABLE `Customer` (
   `IsDeleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除 1:是 2:否',
   `Reserve` varchar(255) DEFAULT NULL COMMENT '预留字段',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Table structure for CustomerGateway
@@ -41,14 +41,14 @@ CREATE TABLE `Customer` (
 DROP TABLE IF EXISTS `CustomerGateway`;
 CREATE TABLE `CustomerGateway` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '设备ID',
-  `CustomerId` int(11) NOT NULL COMMENT '用户Id',
-  `GatewayId` int(11) NOT NULL COMMENT '网关ID',
-  `CreatedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `ModifiedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
-  `IsDeleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除 1:是 2:否',
-  `Reserve` varchar(255) DEFAULT NULL COMMENT '预留字段',
+  `customerId` int(11) NOT NULL COMMENT '用户Id',
+  `gatewayDeviceID` varchar(255) NOT NULL COMMENT '网关ID',
+  `address` varchar(255) DEFAULT NULL COMMENT '预留字段',
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `modifiedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+  `isDeleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除 1:是 2:否',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户网关关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户网关关系表';
 
 -- ----------------------------
 -- Table structure for Device
@@ -57,7 +57,7 @@ DROP TABLE IF EXISTS `Device`;
 CREATE TABLE `Device` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '设备ID',
   `DeviceTypeId` int(11) NOT NULL COMMENT '设备类型Id',
-  `GetwayId` int(11) DEFAULT NULL COMMENT '网关Id',
+  `GetwayId` varchar(255) DEFAULT NULL COMMENT '网关Id',
   `State` tinyint(4) DEFAULT NULL COMMENT '设备状态',
   `Name` varchar(255) DEFAULT NULL COMMENT '预留字段2',
   `DeviceNo` varchar(255) DEFAULT NULL COMMENT '设备号',
@@ -67,7 +67,7 @@ CREATE TABLE `Device` (
   `IsDeleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除 1:是 2:否',
   `Reserve1` varchar(255) DEFAULT NULL COMMENT '预留字段3',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='设备表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='设备表';
 
 -- ----------------------------
 -- Table structure for DeviceDailyData
@@ -132,7 +132,7 @@ CREATE TABLE `DeviceType` (
   `IsDeleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除 1:是 2:否',
   `Reserve` varchar(255) DEFAULT NULL COMMENT '预留字段',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='设备类型表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='设备类型表';
 
 -- ----------------------------
 -- Table structure for Gateway
@@ -140,15 +140,14 @@ CREATE TABLE `DeviceType` (
 DROP TABLE IF EXISTS `Gateway`;
 CREATE TABLE `Gateway` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '网关ID',
-  `GatewayPort` int(8) NOT NULL COMMENT '端口',
-  `IP` varchar(255) NOT NULL COMMENT '网关IP',
-  `Address` varchar(255) NOT NULL COMMENT '网关地址',
-  `CreatedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `ModifiedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
-  `IsDeleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除 1:是 2:否',
-  `Reserve` varchar(255) DEFAULT NULL COMMENT '预留字段',
+  `gatewayPort` int(8) DEFAULT NULL COMMENT '端口',
+  `iP` varchar(255) DEFAULT NULL COMMENT '网关IP',
+  `gatewayDeviceID` varchar(255) NOT NULL COMMENT '预留字段',
+  `createdDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `modifiedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+  `isDeleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除 1:是 2:否',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='网关表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='网关表';
 
 -- ----------------------------
 -- Table structure for propertyMap

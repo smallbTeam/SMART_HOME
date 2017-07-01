@@ -10,8 +10,10 @@ import com.atat.common.prop.BasePropertyDate;
 import com.atat.common.util.CollectionUtil;
 import com.atat.common.util.DateUtil;
 import com.atat.common.util.StringUtil;
+import com.atat.device.service.CustomerGatewayService;
 import com.atat.device.service.DeviceService;
 import com.atat.device.service.GatewayService;
+import com.atat.property.action.GetSignatureUrl;
 import com.atat.property.service.PropertyMapService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +44,9 @@ public class HomeController extends BaseController {
 
     @Resource
     private PropertyMapService propertyMapService;
+
+    @Resource
+    private CustomerGatewayService customerGatewayService;
 
     /**
      * 首页
@@ -94,14 +99,15 @@ public class HomeController extends BaseController {
     public ModelAndView addGetway(HttpServletRequest request, HttpServletResponse response) {
         String mobelPhone = request.getParameter("mobelPhone");
         ModelAndView mav = new ModelAndView("addGetway");
-        String accessToken = (String) propertyMapService.getPropertyMapByKey("accessToken").get("propval");
-        String jsapiticketTimestamp = (String) propertyMapService.getPropertyMapByKey("jsapiticketTimestamp").get("propval");
-        String jsapiticketNnoncestr = (String) propertyMapService.getPropertyMapByKey("jsapiticketNnoncestr").get("propval");
-        String jsapiticketMainurl = (String) propertyMapService.getPropertyMapByKey("jsapiticketMainurl").get("propval");
-        String jsapiticketTicket = (String) propertyMapService.getPropertyMapByKey("jsapiticketTicket").get("propval");
-        String jsapiticketSignaturet = (String) propertyMapService.getPropertyMapByKey("jsapiticketSignaturet").get("propval");
-        String appid = BasePropertyDate.WX_APPID;
-        String secret = BasePropertyDate.WX_SECRET;
+//        String accessToken = (String) propertyMapService.getPropertyMapByKey("accessToken").get("propval");
+//        String jsapiticketTimestamp = (String) propertyMapService.getPropertyMapByKey("jsapiticketTimestamp").get("propval");
+//        String jsapiticketNnoncestr = (String) propertyMapService.getPropertyMapByKey("jsapiticketNnoncestr").get("propval");
+//        String jsapiticketMainurl = (String) propertyMapService.getPropertyMapByKey("jsapiticketMainurl").get("propval");
+//        String jsapiticketTicket = (String) propertyMapService.getPropertyMapByKey("jsapiticketTicket").get("propval");
+//        String jsapiticketSignaturet = (String) propertyMapService.getPropertyMapByKey("jsapiticketSignaturet").get("propval");
+
+//        String appid = BasePropertyDate.WX_APPID;
+//        String secret = BasePropertyDate.WX_SECRET;
         if (StringUtil.isNotEmpty(mobelPhone)) {
             Map<String, Object> param = new HashMap<String, Object>();
             param.put("MobelPhone", mobelPhone);
@@ -110,12 +116,19 @@ public class HomeController extends BaseController {
                 mav.addObject("account", customerList.get(0));
             }
         }
+
+        GetSignatureUrl signatureUrl = new GetSignatureUrl();
+        Map<String, Object> map = signatureUrl.getSignature(mobelPhone);
+        String appid = BasePropertyDate.WX_APPID;
         mav.addObject("appid", appid);
-        mav.addObject("noncestr", jsapiticketNnoncestr);
-        mav.addObject("timestamp", jsapiticketTimestamp);
-        mav.addObject("signaturet", jsapiticketSignaturet);
-        logger.info("添加网关微信扫一扫返回：[appid:" + appid + "][noncestr:" + jsapiticketNnoncestr + "][timestamp:"
-                + jsapiticketTimestamp + "signaturet:" + jsapiticketSignaturet + "]");
+        mav.addObject("noncestr", map.get("noncestr"));
+        mav.addObject("timestamp", map.get("timestamp"));
+        mav.addObject("signaturet", map.get("signaturet"));
+
+//        mav.addObject("appid", appid);
+//        mav.addObject("noncestr", jsapiticketNnoncestr);
+//        mav.addObject("timestamp", jsapiticketTimestamp);
+//        mav.addObject("signaturet", jsapiticketSignaturet);
         return mav;
     }
 
@@ -129,12 +142,12 @@ public class HomeController extends BaseController {
     public void getGatewayListByCustomerId(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        String customerId = request.getParameter("CustomerId");
+        String customerId = request.getParameter("customerId");
         if (StringUtil.isNotEmpty(customerId)) {
             Map<String, Object> param = new HashMap<String, Object>();
-            param.put("CustomerId", customerId);
+            param.put("customerId", customerId);
             try {
-                List<Map<String, Object>> gatewayList = gatewayService.selectGatewayList(param);
+                List<Map<String, Object>> gatewayList = gatewayService.selectCustomerGatewayList(param);
                 resultMap.put("result", "success");
                 resultMap.put("operationResult", gatewayList);
             }
@@ -161,29 +174,29 @@ public class HomeController extends BaseController {
     @RequestMapping(params = "action=getGatewayList")
     public void getGatewayList(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        String gatewayPort = request.getParameter("GatewayPort");
-        String ip = request.getParameter("IP");
+        String gatewayPort = request.getParameter("gatewayPort");
+        String ip = request.getParameter("iP");
         String address = request.getParameter("Address");
-        String reserve = request.getParameter("Reserve");
-        String gatewayId = request.getParameter("gatewayId");
+        String customerId = request.getParameter("customerId");
+        String gatewayDeviceID = request.getParameter("gatewayDeviceID");
         Map<String, Object> param = new HashMap<String, Object>();
         if (StringUtil.isNotEmpty(gatewayPort)) {
-            param.put("GatewayPort", gatewayPort);
+            param.put("gatewayPort", gatewayPort);
         }
         if (StringUtil.isNotEmpty(ip)) {
-            param.put("IP", ip);
+            param.put("iP", ip);
         }
         if (StringUtil.isNotEmpty(address)) {
-            param.put("Address", address);
+            param.put("address", "%"+address+"%");
         }
-        if (StringUtil.isNotEmpty(reserve)) {
-            param.put("Reserve", reserve);
+        if (StringUtil.isNotEmpty(customerId)) {
+            param.put("customerId", customerId);
         }
-        if (StringUtil.isNotEmpty(gatewayId)) {
-            param.put("gatewayId", gatewayId);
+        if (StringUtil.isNotEmpty(gatewayDeviceID)) {
+            param.put("gatewayDeviceID", gatewayDeviceID);
         }
         try {
-            List<Map<String, Object>> gatewayList = gatewayService.selectGatewayList(param);
+            List<Map<String, Object>> gatewayList = gatewayService.selectCustomerGatewayList(param);
             resultMap.put("result", "success");
             resultMap.put("operationResult", gatewayList);
         }
@@ -202,17 +215,21 @@ public class HomeController extends BaseController {
      * @param response
      * @throws IOException
      */
-    @RequestMapping(params = "action=addGatewayForCustomer")
+    @RequestMapping(params = "action=addGatewayForCustomer")////'
     public void addGatewayForCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        String customerId = request.getParameter("CustomerId");
-        String gatewayId = request.getParameter("GatewayId");
-        if ((StringUtil.isNotEmpty(customerId)) && (StringUtil.isNotEmpty(gatewayId))) {
+        String customerId = request.getParameter("customerId");
+        String gatewayDeviceID = request.getParameter("gatewayDeviceID");
+        String address = request.getParameter("address");
+        if ((StringUtil.isNotEmpty(customerId)) && (StringUtil.isNotEmpty(gatewayDeviceID))) {
             Map<String, Object> param = new HashMap<String, Object>();
-            param.put("CustomerId", customerId);
-            param.put("GatewayId", gatewayId);
+            param.put("customerId", Integer.parseInt(customerId));
+            param.put("gatewayDeviceID", gatewayDeviceID);
+            if (StringUtil.isNotEmpty(address)){
+                param.put("address", address);
+            }
             try {
-                gatewayService.addCustomerGatewayRel(param);
+                customerGatewayService.addGatewayForCustomer(param);
                 resultMap.put("result", "success");
             }
             catch (Exception e) {
@@ -238,14 +255,14 @@ public class HomeController extends BaseController {
     @RequestMapping(params = "action=delGatewayForCustomer")
     public void delGatewayForCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        String customerId = request.getParameter("CustomerId");
-        String gatewayId = request.getParameter("GatewayId");
+        String customerId = request.getParameter("customerId");
+        String gatewayDeviceID = request.getParameter("gatewayDeviceID");
         if (StringUtil.isNotEmpty(customerId)) {
             Map<String, Object> param = new HashMap<String, Object>();
             param.put("customerId", customerId);
-            param.put("GatewayId", gatewayId);
+            param.put("gatewayDeviceID", gatewayDeviceID);
             try {
-                gatewayService.addCustomerGatewayRel(param);
+                customerGatewayService.delGatewayForCustomer(param);
                 resultMap.put("result", "success");
             }
             catch (Exception e) {
@@ -271,12 +288,18 @@ public class HomeController extends BaseController {
     @RequestMapping(params = "action=addGateway")
     public void addGateway(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        String address = request.getParameter("Address");
-        String gatewayDeviceNo = request.getParameter("GatewayDeviceNo");
-        if ((StringUtil.isNotEmpty(gatewayDeviceNo)) && (StringUtil.isNotEmpty(address))) {
+        String gatewayPort = request.getParameter("gatewayPort");
+        String iP = request.getParameter("iP");
+        String gatewayDeviceID = request.getParameter("gatewayDeviceID");
+        if (StringUtil.isNotEmpty(gatewayDeviceID)) {
             Map<String, Object> param = new HashMap<String, Object>();
-            param.put("Reserve", gatewayDeviceNo);
-            param.put("Address", address);
+            param.put("gatewayDeviceID", gatewayDeviceID);
+            if (StringUtil.isNotEmpty(gatewayPort)){
+                param.put("gatewayPort", gatewayPort);
+            }
+            if (StringUtil.isNotEmpty(iP)){
+                param.put("iP", iP);
+            }
             try {
                 gatewayService.addGateway(param);
                 resultMap.put("result", "success");
@@ -304,24 +327,20 @@ public class HomeController extends BaseController {
     @RequestMapping(params = "action=updateGateway")
     public void updateGateway(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        String gatewayId = request.getParameter("GatewayId");
-        String gatewayPort = request.getParameter("GatewayPort");
-        String ip = request.getParameter("IP");
-        String address = request.getParameter("Address");
-        if (StringUtil.isNotEmpty(gatewayId)) {
+        String gatewayPort = request.getParameter("gatewayPort");
+        String iP = request.getParameter("iP");
+        String gatewayDeviceID = request.getParameter("gatewayDeviceID");
+        if (StringUtil.isNotEmpty(gatewayDeviceID)) {
             Map<String, Object> param = new HashMap<String, Object>();
-            param.put("GatewayId", gatewayId);
+            param.put("gatewayDeviceID", gatewayDeviceID);
             if (StringUtil.isNotEmpty(gatewayPort)) {
                 param.put("GatewayPort", Integer.parseInt(gatewayPort));
             }
-            if (StringUtil.isNotEmpty(ip)) {
-                param.put("IP", ip);
-            }
-            if (StringUtil.isNotEmpty(address)) {
-                param.put("Address", address);
+            if (StringUtil.isNotEmpty(iP)) {
+                param.put("iP", iP);
             }
             try {
-                gatewayService.updateGatewayByID(param);
+                gatewayService.updateGatewayByGatewayDeviceID(param);
                 resultMap.put("result", "success");
             }
             catch (Exception e) {
@@ -347,13 +366,10 @@ public class HomeController extends BaseController {
     @RequestMapping(params = "action=delGateway")
     public void delGateway(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        String gatewayId = request.getParameter("GatewayId");
-        if (StringUtil.isNotEmpty(gatewayId)) {
-            Map<String, Object> param = new HashMap<String, Object>();
-            param.put("GatewayId", gatewayId);
-            param.put("IsDeleted", 1);
+        String gatewayDeviceID = request.getParameter("gatewayDeviceID");
+        if (StringUtil.isNotEmpty(gatewayDeviceID)) {
             try {
-                gatewayService.updateGatewayByID(param);
+                gatewayService.delGatewayByGatewayDeviceID(gatewayDeviceID);
                 resultMap.put("result", "success");
             }
             catch (Exception e) {
@@ -379,10 +395,10 @@ public class HomeController extends BaseController {
     @RequestMapping(params = "action=getDeviceListByGatewayId")
     public void getDeviceListByGatewayId(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        String deviceGetwayId = request.getParameter("deviceGetwayId");
-        if (StringUtil.isNotEmpty(deviceGetwayId)) {
+        String gatewayDeviceID = request.getParameter("gatewayDeviceID");
+        if (StringUtil.isNotEmpty(gatewayDeviceID)) {
             Map<String, Object> param = new HashMap<String, Object>();
-            param.put("deviceGetwayId", deviceGetwayId);
+            param.put("gatewayDeviceID", gatewayDeviceID);
             try {
                 List<Map<String, Object>> deviceList = deviceService.selectDeviceList(param);
                 resultMap.put("result", "success");
@@ -454,7 +470,7 @@ public class HomeController extends BaseController {
         String deviceNo = request.getParameter("DeviceNo");
         String state = request.getParameter("State");
         String deviceData = request.getParameter("DeviceData");
-        String getwayId = request.getParameter("GetwayId");
+        String gatewayDeviceID = request.getParameter("gatewayDeviceID");
         String name = request.getParameter("Name");
         if (StringUtil.isNotEmpty(deviceTypeID)) {
             Map<String, Object> param = new HashMap<String, Object>();
@@ -468,8 +484,8 @@ public class HomeController extends BaseController {
             if (StringUtil.isNotEmpty(deviceData)) {
                 param.put("DeviceData", deviceData);
             }
-            if (StringUtil.isNotEmpty(getwayId)) {
-                param.put("GetwayId", Integer.parseInt(getwayId));
+            if (StringUtil.isNotEmpty(gatewayDeviceID)) {
+                param.put("gatewayDeviceID", Integer.parseInt(gatewayDeviceID));
             }
             if (StringUtil.isNotEmpty(name)) {
                 param.put("Name", name);
@@ -506,7 +522,7 @@ public class HomeController extends BaseController {
         String deviceNo = request.getParameter("DeviceNo");
         String state = request.getParameter("State");
         String deviceData = request.getParameter("DeviceData");
-        String getwayId = request.getParameter("GetwayId");
+        String gatewayDeviceID = request.getParameter("gatewayDeviceID");
         String name = request.getParameter("Name");
         if (StringUtil.isNotEmpty(deviceId)) {
             Map<String, Object> param = new HashMap<String, Object>();
@@ -523,8 +539,8 @@ public class HomeController extends BaseController {
             if (StringUtil.isNotEmpty(deviceData)) {
                 param.put("DeviceData", deviceData);
             }
-            if (StringUtil.isNotEmpty(getwayId)) {
-                param.put("GetwayId", getwayId);
+            if (StringUtil.isNotEmpty(gatewayDeviceID)) {
+                param.put("gatewayDeviceID", gatewayDeviceID);
             }
             if (StringUtil.isNotEmpty(name)) {
                 param.put("Name", name);

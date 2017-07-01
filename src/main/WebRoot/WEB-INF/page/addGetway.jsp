@@ -10,18 +10,13 @@
 <%@include file="/page/common/jsp/base.jsp" %>
 <html>
 <%--引入基础设置--%>
+<script type="text/javascript" src="${path}/page/js/third/jweixin-1.2.0.js" charset="utf8"></script>
 <%@include file="/page/common/jsp/baseInclude.jsp" %>
 <title>添加网关</title>
 <link rel="stylesheet" type="text/css" href="${path}/page/css/register.css"/>
 <link rel="stylesheet" type="text/css" href="${path}/page/css/site.css">
 <link rel="stylesheet" id="cal_style" type="text/css" href="${path}/page/css/flatpickr.min.css">
-<script type="text/javascript" src="${path}/page/js/third/jweixin-1.2.0.js" charset="utf8"></script>
-<script type="text/javascript" src="${path}/page/js/addGetWay.js" charset="utf8"></script>
 <style>
-    body {
-        background: url("${path}/page/common/img/bg_login.png") no-repeat;
-        background-size: 100% 100%;
-    }
     .center-block{
         float: none;
     }
@@ -51,18 +46,19 @@
 
     $(function () {
         alert("登录手机号：["+account.mobelPhone+"]");
-        console.log("[appId:" + appId + "][timestamp:" + timestamp + "][nonceStr:" + nonceStr + "][signature:" + signature + "]");
+        alert("[appId:" + appId + "][timestamp:" + timestamp + "][nonceStr:" + nonceStr + "][signature:" + signature + "]");
     });
 </script>
+<script type="text/javascript" src="${path}/page/js/addGetWay.js" charset="utf8"></script>
 </head>
 <body>
 <div class="spec-middle center-block">
             <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 ">
                 <div class="row-item">
                 <img src="${path}/page/img/icon/deviceNo.png" class="icon pull-left"/>
-                <img src="${path}/page/img/visible.png" class=" remark pull-right"/>
+                <img id="scanfordevice_btn" src="${path}/page/img/icon/scanicon.png" class=" remark pull-right"/>
                 <div class="row-center">
-                    <input id="deviceNo" type="text" class="deviceNo" placeholder="设备号">
+                    <input id="deviceNo" type="text" class="deviceNo" placeholder="扫描添加设备">
                 </div>
             </div>
             <div class="row-item">

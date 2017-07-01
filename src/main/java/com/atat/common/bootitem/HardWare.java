@@ -12,9 +12,13 @@ public class HardWare {
 
 
     private IoSession session;
-    private int number;
+    private String number;
 
-    public HardWare(IoSession session, int number) {
+    public HardWare(IoSession session) {
+        this.session = session;
+    }
+
+    public HardWare(IoSession session, String number) {
         this.session = session;
         this.number = number;
     }
@@ -27,11 +31,11 @@ public class HardWare {
         this.session = session;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

@@ -23,7 +23,7 @@
             <if test="Reserve1 != null">
                 Reserve1,
             </if>
-            <if test="GetwayId != null">
+            <if test="gatewayDeviceID != null">
                 GetwayId,
             </if>
             CreatedDate,ModifiedDate,
@@ -48,8 +48,8 @@
             <if test="Reserve1 != null">
                 #{Reserve1},
             </if>
-            <if test="GetwayId != null">
-                #{GetwayId,jdbcType=INTEGER},
+            <if test="gatewayDeviceID != null">
+                #{gatewayDeviceID},
             </if>
             now() , now() ,0
         </trim>
@@ -79,12 +79,11 @@
         de.Name deviceName,de.GetwayId deviceGetwayId,
         dt.Name deviceTypeName, dt.Model deviceTypeModel, dt.Attention deviceTypeAttention,
         dt.Describtion deviceTypeDescribtion, dt.Reserve deviceTypeReserve,
-        dg.GatewayPort gatewayGatewayPort, dg.IP gatewayIP, dg.Address gatewayAddress,
-        dg.Reserve gatewayReserve
+        dg.GatewayPort gatewayGatewayPort, dg.IP gatewayIP
         FROM
         Device de
         LEFT JOIN DeviceType dt ON de.DeviceTypeId = dt.id
-        LEFT JOIN Gateway dg ON de.GetwayId = dg.id
+        LEFT JOIN Gateway dg ON de.GetwayId = dg.gatewayDeviceID
         WHERE
         de.IsDeleted = 0
         <if test="deviceId  != null and deviceId != ''">
@@ -108,8 +107,8 @@
         <if test="deviceName  != null">
             and de.Name = #{deviceName}
         </if>
-        <if test="deviceGetwayId  != null">
-            and de.GetwayId = #{deviceGetwayId,jdbcType=INTEGER}
+        <if test="gatewayDeviceID  != null">
+            and de.GetwayId = #{gatewayDeviceID}
         </if>
         <if test="deviceTypeName  != null and deviceTypeName != ''">
             and dt.Name = #{deviceTypeName}
@@ -122,9 +121,6 @@
         </if>
         <if test="gatewayIP  != null and gatewayIP != ''">
             and dg.IP = #{gatewayIP}
-        </if>
-        <if test="gatewayAddress  != null and gatewayAddress != ''">
-            and dg.Address = #{gatewayAddress}
         </if>
         ORDER BY id ASC
     </select>
@@ -150,8 +146,8 @@
             <if test="Name != null">
                 Name=#{Name},
             </if>
-            <if test="GetwayId != null">
-                GetwayId=#{GetwayId},
+            <if test="gatewayDeviceID != null">
+                GetwayId=#{gatewayDeviceID},
             </if>
             <if test="IsDeleted != null">
                 IsDeleted= #{IsDeleted},

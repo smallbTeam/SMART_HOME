@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atat.device.dao.GatewayDao">
+
+    <insert id="addGateway" parameterType="java.util.Map">
+        INSERT INTO Gateway
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="gatewayPort != null">
+                gatewayPort,
+            </if>
+            <if test="iP != null">
+                iP,
+            </if>
+            <if test="gatewayDeviceID != null">
+                gatewayDeviceID,
+            </if>
+            createdDate,
+            modifiedDate,
+            isDeleted
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="gatewayPort != null">
+                #{gatewayPort},
+            </if>
+            <if test="iP != null">
+                #{iP},
+            </if>
+            <if test="gatewayDeviceID != null">
+                #{gatewayDeviceID},
+            </if>
+            now(), now(), 0
+        </trim>
+    </insert>
+
+    <update id="updateGatewayByGatewayDeviceID" parameterType="java.util.Map">
+        update Gateway
+        <trim prefix="set" suffixOverrides=",">
+            <if test="gatewayPort != null">
+                gatewayPort =#{gatewayPort},
+            </if>
+            <if test="iP != null">
+                iP =#{iP},
+            </if>
+            modifiedDate =now(),
+            <if test="isDeleted != null">
+                isDeleted =#{isDeleted},
+            </if>
+        </trim>
+        where gatewayDeviceID = #{gatewayDeviceID}
+    </update>
+
+    <select id="selectCustomerGatewayList" parameterType="java.util.Map"
+                     resultType="java.util.Map">
+    select
+    gawa.gatewayPort gatewayPort,
+    gawa.iP iP,
+    gawa.gatewayDeviceID gatewayDeviceID,
+    gawa.createdDate createdDate,
+    gawa.modifiedDate modifiedDate,
+    gawa.isDeleted isDeleted,
+    gawa.id gatewayKey,
+    cuga.address address
+    from Gateway gawa
+    LEFT JOIN CustomerGateway cuga on gawa.gatewayDeviceID = cuga.gatewayDeviceID
+    WHERE
+    gawa.isDeleted = 0 and cuga.isDeleted = 0
+    <if test="gatewayKey != null">
+        and gawa.id =#{gatewayKey}
+    </if>
+    <if test="gatewayPort != null">
+        and gawa.gatewayPort =#{gatewayPort}
+    </if>
+    <if test="iP != null">
+        and gawa.iP =#{iP}
+    </if>
+    <if test="gatewayDeviceID != null">
+        and gawa.gatewayDeviceID =#{gatewayDeviceID}
+    </if>
+    <if test="createdDate != null">
+        and gawa.createdDate =#{createdDate}
+    </if>
+    <if test="modifiedDate != null">
+        and gawa.modifiedDate =#{modifiedDate}
+    </if>
+    <if test="customerId != null">
+        and cuga.customerId =#{customerId}
+    </if>
+    <if test="address != null">
+        and cuga.address LIKE #{address}
+    </if>
+    ORDER BY gawa.id ASC
+</select>
+
+    <select id="selectGatewayList" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        select
+        gawa.gatewayPort gatewayPort,
+        gawa.iP iP,
+        gawa.gatewayDeviceID gatewayDeviceID,
+        gawa.createdDate createdDate,
+        gawa.modifiedDate modifiedDate,
+        gawa.isDeleted isDeleted,
+        gawa.id gatewayKey
+        from Gateway gawa
+        WHERE
+        gawa.isDeleted = 0
+        <if test="gatewayKey != null">
+            and gawa.id =#{gatewayKey}
+        </if>
+        <if test="gatewayPort != null">
+            and gawa.gatewayPort =#{gatewayPort}
+        </if>
+        <if test="iP != null">
+            and gawa.iP =#{iP}
+        </if>
+        <if test="gatewayDeviceID != null">
+            and gawa.gatewayDeviceID =#{gatewayDeviceID}
+        </if>
+        <if test="createdDate != null">
+            and gawa.createdDate =#{createdDate}
+        </if>
+        <if test="modifiedDate != null">
+            and gawa.modifiedDate =#{modifiedDate}
+        </if>
+        ORDER BY gawa.id ASC
+    </select>
+
+    <delete id="delGatewayByKey" parameterType="java.lang.Integer">
+        DELETE FROM  Gateway
+        where
+        id = #{gatewayKey}
+    </delete>
+
+</mapper>
