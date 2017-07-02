@@ -119,7 +119,6 @@
 </div>
 <script type="text/javascript" src='${path}/page/js/index.js' charset="utf8"></script>
 <script type="text/javascript" src='${path}/page/js/flatpickr.js' charset="utf8"></script>
-<script type="text/javascript" src='${path}/page/js/third/layer/layer.js' charset="utf8"></script>
 
 <script type="text/javascript">
     var wxId = '${wxId}';
@@ -153,6 +152,7 @@
         var timer;
         var phoneReg = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/;
         var reg = /^[a-zA-z]\w{3,15}$/;
+        var phoneValidate = false;
 
         function listenField(id, reg) {
             if (!reg.test($(id).val())) {
@@ -266,7 +266,8 @@
             var url = "${path}/verificationMsg?action=sendMsg&mobelPhone=" + mobelPhone + "&timeStamp=" + timestamp;
             //console.log("[" + url + "]");
             $.get(url, function (msg) {
-                //console.log("msg:" + msg.operationResult);
+                alert("msg:"+msg.operationResult);
+//                console.log("msg:" + msg.operationResult);
                 if (msg.result == 'success') {
                     //请求成功
                     var countdown = 60;
@@ -313,7 +314,9 @@
                 //console.log("验证结果[" + JSON.stringify(msg) + "]");
                 if (msg.operationResult) {
                     $('#validate').slideUp("slow");
+                    phoneValidate = true;
                 } else {
+                    phoneValidate = false;
                     layer.msg("验证失败!");
                     $('#validatecode').val("");
                     $('#validatecode').attr("placeholder", "验证码错误！");
@@ -351,7 +354,7 @@
                             var str = $("#birth").val(); // 日期字符串
                             str = str.replace(/-/g, '/'); // 将-替换成/，因为下面这个构造函数只支持/分隔的日期字符串
                             var birthday = new Date(str).getTime();
-                            var url = "${path}/client/account?action=registAccount&mobelPhone=" + $("#phoneNumber").val() +"&password="+ $("#pwd").val() + "&nickName=" + $("#nickName").val() + "&birthday=" + birthday + "&sex=" + sex;
+                            var url = "${path}/client/account?action=registAccount&mobelPhone=" + $("#phoneNumber").val() +"&password="  + $("#pwd").val() + "&nickName=" + $("#nickName").val() + "&birthday=" + birthday + "&sex=" + sex;
                             //console.log(url);
 
                             if (wxId !== null && wxId !== undefined && wxId !== '') {
@@ -361,7 +364,7 @@
                             $.get(url, function (msg) {
                                 if (msg.result == 'success') {
                                     //请求成功
-                                    window.location.href = "${path}/client/home?action=index&mobelPhone=" + $("#phoneNumber").val();
+                                    window.location.href = "${path}/client/home?action=index&customerId=" + msg.operationResult;
                                     layer.closeAll();
                                 } else {
                                     //请求失败
@@ -370,14 +373,15 @@
                                 return false;
                             });
                         } else {
-                            alert("用户已存在")
+                            layer.msg("用户已存在");
                         }
                     } else {
-                        alert(result.error)
+                        layer.msg(result.error);
+
                     }
                 },
                 error: function () {
-                    alert("验证失败");
+                    layer.msg("验证失败");
                 }
             });
         });

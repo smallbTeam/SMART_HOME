@@ -4,3 +4,12 @@ function isNotNull(id) {
     }
     return false;
 }
+
+function isNotNullOfStr(str) {
+    if (str != "" && str != null && str != undefined) {
+        return true;
+    }
+    return false;
+}
+
+

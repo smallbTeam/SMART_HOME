@@ -86,7 +86,7 @@ public class HomeController extends BaseController {
      */
     @RequestMapping(params = "action=deviceList")
     public ModelAndView clientDeviceList() {
-        ModelAndView mav = new ModelAndView("client/home/deviceList");
+        ModelAndView mav = new ModelAndView("client/home/detail");
         return mav;
     }
 
@@ -143,6 +143,7 @@ public class HomeController extends BaseController {
             throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String customerId = request.getParameter("customerId");
+        System.out.println("customerId:"+customerId);
         if (StringUtil.isNotEmpty(customerId)) {
             Map<String, Object> param = new HashMap<String, Object>();
             param.put("customerId", customerId);
@@ -240,7 +241,7 @@ public class HomeController extends BaseController {
         }
         else {
             resultMap.put("result", "error");
-            resultMap.put("error", "用户Id及网关Id均不能为空");
+            resultMap.put("error", "用户Id及网关名称均不能为空");
         }
         this.renderJson(response, resultMap);
     }

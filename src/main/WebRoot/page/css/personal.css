@@ -1,0 +1,414 @@
+body {
+    background-color: #f0f0f0;
+    font-family: arial, san-serif;
+    width: 100%;
+    /*padding:0;  !*去除内边距*!*/
+    /*border:0;   !*去除边框*!*/
+    /*margin:0;*/
+    /*overflow: hidden;*/
+    min-height: 600px;
+    /*overflow-x:hidden;*/
+
+}
+
+
+
+nav {
+    width: 100%;
+    /*margin:0 auto;*/
+    /*margin-top:0px;*/
+    padding: 0;
+    /*background: #ff782e;*/
+    filter:alpha(opacity=50 finishopacity=50 style=1 startx=0,starty=0,finishx=150,finishy=0) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#2BB4EA,endcolorstr=#3687CB,gradientType=0);
+    -ms-filter:alpha(opacity=50 finishopacity=50 style=1 startx=0,starty=0,finishx=150,finishy=0) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#2BB4EA,endcolorstr=#3687CB,gradientType=0);
+
+    background:-moz-linear-gradient(left, #2BB4EA, #3687CB);
+    background:-webkit-gradient(linear, 0 25%, 100% 50%, from(#2BB4EA), to(#3687CB));
+
+}
+nav .menu {
+    margin-top:-62px;
+    width: 62px;
+    /*height: 100%;*/
+    margin-right: 0px;
+    float: right;
+    /* height:70px; */
+    /*background-color: #ff782e;*/
+    /*border-radius:10px;    */
+
+    color:#fff;
+    display:block;
+    position: relative;
+    font-size: 20px;
+    padding:20px 10px;
+    -webkit-transition: 300ms ease;
+    -moz-transition: 300ms ease;
+    -o-transition: 300ms ease;
+    -ms-transition: 300ms ease;
+    transition: 300ms ease;
+    /*border-bottom: 3px solid #cc6025;*/
+}
+
+nav .titleView {
+    margin: 0 100px;
+    height: 100%;
+    /*background: #1abc9c;*/
+    text-align: center;
+    font-size: 16px;
+    color: white;
+
+}
+nav .titleView span {
+    margin: 0;
+    height: 64px;
+    line-height: 62px;
+}
+
+nav .menuleft {
+    width: 62px;
+    left: 0;
+    float: left;
+    margin-top: 0;
+    /*background-color: #ff782e;*/
+    border-radius:10px;
+    color:#fff;
+    display:inline-block;
+    position: relative;
+    font-size: 20px;
+    padding:20px 10px;
+    -webkit-transition: 300ms ease;
+    -moz-transition: 300ms ease;
+    -o-transition: 300ms ease;
+    -ms-transition: 300ms ease;
+    transition: 300ms ease;
+    /*border-bottom: 3px solid #cc6025;*/
+}
+
+
+
+.menuleft .dropdownIcon {
+    display: block;
+    width:50%;
+    /*margin-top:2px;*/
+    /* position: absolute; */
+    margin:0;
+    float:left;
+    height: 22px;
+}
+
+
+
+.menuleft .dropdownIcon span {
+    width:24px;
+    height:2px;
+    border-radius:3px;
+    color:#fff;
+    display:block;
+    background: white;
+    margin:4px;
+}
+
+/*nav:hover .menu{*/
+/*cursor:pointer;*/
+/*background: #ff853a;    */
+/*}*/
+
+.menuleft:hover .dropdownIcon span{
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow:    0px 3px 5px 0px rgba(50, 50, 50, 0.3);
+    box-shadow:         0px 3px 5px 0px rgba(50, 50, 50, 0.3);
+}
+
+nav .dropDown {
+    background: #f0f0f0;
+    border-radius: 10px;
+    text-align: center;
+    width: 150px;
+    right: 10px;
+    /*float: right;*/
+    padding:0;
+    list-style:none;
+    position: fixed;
+    /*position: fixed;*/
+
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-box-shadow: #666 0px 0px 10px;
+    -moz-box-shadow: #666 0px 0px 10px;
+    box-shadow: #666 0px 0px 10px;
+
+    margin-top:20px;
+    display:none;
+    z-index: 1000;
+}
+
+nav .leftM {
+    background: #f0f0f0;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 20px;
+    left:10px;
+    /*min-width: 300px;*/
+    /*width: 100%;*/
+    right: 10px;
+    /*float: left;*/
+    padding:0;
+    list-style:none;
+    position: fixed;
+    display:none;
+    z-index: 1000;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-box-shadow: #666 0px 0px 10px;
+    -moz-box-shadow: #666 0px 0px 10px;
+    box-shadow: #666 0px 0px 10px;
+
+}
+
+nav .dropDown:before {
+    content: "";
+    position:absolute;
+    border: 15px solid #f0f0f0;
+    border-top: 0 solid transparent!important;
+    border-right: 15px solid transparent!important;
+    border-left: 15px solid transparent!important;
+    right:10px;
+    top:-15px;
+
+}
+
+nav .leftM :before {
+    content: "";
+    position:absolute;
+    border: 15px solid #f0f0f0;
+    border-top: 0 solid transparent!important;
+    border-right: 15px solid transparent!important;
+    border-left: 15px solid transparent!important;
+    left: 10px;
+    top:-15px;
+
+}
+
+nav .dropDown a ,.leftM  a{
+    color: #494b4d;
+    text-decoration: none;
+    display:block;
+    padding:20px 0;
+    font-weight:700;
+    font-size:16px
+}
+
+nav .dropDown li:nth-child(even) a ,.leftM li:nth-child(even) a{
+    background:#ebebeb
+}
+/*图标*/
+.return {
+    /*box-sizing : border-box;*/
+    /*display    : inline-block;*/
+    /*font-size  : 20px;*/
+
+    width:6px;
+    height:6px;
+    border-radius:6px;
+    color:#fff;
+    display:block;
+    background: white;
+    margin: 8px 18px;
+}
+
+.return:before {
+    content        : '';
+    pointer-events : none;
+    position       : absolute;
+    left           : 30%;
+    top            : 50%;
+    transform      : translate(0, -50%);
+    box-shadow     : inset 0 0 0 1em;
+    width:6px;
+    height:6px;
+    border-radius:6px;
+    color: #ffffff;
+    display:block;
+}
+
+.return:after {
+    content        : '';
+    pointer-events : none;
+    position       : absolute;
+    right          : 30%;
+    top            : 50%;
+    transform      : translate(0, -50%);
+    box-shadow     : inset 0 0 0 1em;
+    width:6px;
+    height:6px;
+    border-radius:6px;
+    color: #ffffff;
+    display:block;
+}
+
+.arrowUp {
+    padding: 10px;
+}
+
+.arrowUp:after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-top: 3px solid #FFFFFF;
+    border-left: 3px solid #FFFFFF;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+
+
+
+.gateWay_content{
+    margin: 10px 0;
+    height: auto;
+    min-height: 120px;
+    background: #ffffff;
+    padding: 0px 10px;
+    position: relative;
+
+    /*border-radius: 5px;*/
+}
+
+
+
+h3.title {
+    color: rgba(9, 7, 8, 0.4);
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.1;
+    width: auto;
+}
+h3.title span {
+    display: block;     /*设置为块级元素会独占一行形成上下居中的效果*/
+    font-size: 22px;
+    color: rgba(33, 33, 33, 0.58);
+    position: relative;   /*定位横线（当横线的父元素）*/
+    padding: 5px;
+}
+h3.title span:before, h3.title span:after {
+    content: '';                 /*CSS伪类用法*/
+    position: absolute;         /*定位背景横线的位置*/
+    top: 52%;
+    background: rgba(73, 73, 73, 0.35);
+    width: 35%;
+    height: 1px;
+}
+h3.title span:before{
+    left: 0%;        /*调整背景横线的左右距离*/
+    margin-right: 65%;
+
+}
+h3.title span:after {
+    right: 0%;
+    left: 65%;        /*调整背景横线的左右距离*/
+
+}
+
+/*翘边阴影区域*/
+.common-detail {
+    margin: 0px 0 0;
+    min-height: 120px;
+    height: auto;
+}
+
+.line {
+    height: 44px;
+    /*line-height: 44px;*/
+    padding: 12px 0;
+    /*background: #00b300;*/
+    color: rgba(33, 33, 33, 0.58);
+    /*border-bottom: 1px solid rgba(73, 73, 73, 0.35);*/
+    -webkit-box-shadow: -0px 1px 0px rgba(50, 50, 50, 0.1);
+    -moz-box-shadow:    -0px 1px 0px rgba(50, 50, 50, 0.1);
+    box-shadow:         -0px 1px 0px rgba(50, 50, 50, 0.1);
+
+}
+.common-detail .line:last-child {
+    border-bottom: none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
+.line .right-content{
+    /*margin-right: 10px;*/
+}
+
+.line .arrowRight {
+    /*padding: 5px 0px;*/
+    margin-right: 5px;
+    margin-top: 8px;
+
+}
+
+.line .arrowRight:after {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-top: 2px solid rgba(50, 50, 50, 0.1);
+    border-right: 2px solid rgba(50, 50, 50, 0.1);
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.line img {
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
+}
+.line span {
+    padding: 5px 5px 5px 10px ;
+    font-size: 16px;
+
+}
+
+
+.gateWay_detail{
+    /*background: #f0f0f0;*/
+    margin: 0 0 15px;
+    /*border-radius: 5px;*/
+}
+
+
+.device-content{
+    margin: 10px 0;
+    background: #ffffff;
+    padding: 0px 10px 10px;
+    height: auto;
+}
+
+.cicle-menu {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    margin-left: 50%;
+    font-size: 20px;
+    transform: translate(-50%,0);
+    text-align: center;
+    padding: 50px 0;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow:    0px 3px 5px 0px rgba(50, 50, 50, 0.3);
+    box-shadow:         0px 3px 5px 0px rgba(50, 50, 50, 0.3);
+
+    color: rgba(33, 33, 33, 0.58);
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.cicle-menu span {
+
+}
+
+.slider {
+
+}
