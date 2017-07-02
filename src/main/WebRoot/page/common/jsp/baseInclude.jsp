@@ -12,3 +12,4 @@
 
 <!-- jQuery文件 -->
 <script type="text/javascript" src='${path}/page/js/jquery.js'  charset="utf8"></script>
+<script type="text/javascript" src='${path}/page/js/third/layer/layer.js' charset="utf8"></script>
