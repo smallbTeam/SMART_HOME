@@ -485,7 +485,7 @@ public class HomeController extends BaseController {
                 param.put("DeviceData", deviceData);
             }
             if (StringUtil.isNotEmpty(gatewayDeviceID)) {
-                param.put("gatewayDeviceID", Integer.parseInt(gatewayDeviceID));
+                param.put("gatewayDeviceID", gatewayDeviceID);
             }
             if (StringUtil.isNotEmpty(name)) {
                 param.put("Name", name);
@@ -493,8 +493,7 @@ public class HomeController extends BaseController {
             try {
                 deviceService.addDevice(param);
                 resultMap.put("result", "success");
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 logger.error("添加设备出错" + e, e);
                 resultMap.put("result", "failed");
                 resultMap.put("error", "系统出错");
