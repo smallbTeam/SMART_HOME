@@ -74,6 +74,21 @@ public class ClientAccountController extends BaseController {
         return mav;
     }
 
+    @RequestMapping(params = "action=personal")
+    public ModelAndView personal(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView mav = new ModelAndView("personal");
+        String mobelPhone = request.getParameter("mobelPhone");
+        if (StringUtil.isNotEmpty(mobelPhone)) {
+            Map<String, Object> param = new HashMap<String, Object>();
+            param.put("MobelPhone", mobelPhone);
+            List<Map<String, Object>> customerList = clientAccountService.selectCustomerList(param);
+            if (CollectionUtil.isNotEmpty(customerList)) {
+                mav.addObject("account", customerList.get(0));
+            }
+        }
+        return mav;
+    }
+
     /**
      * 微信跳转页面
      * 
@@ -211,7 +226,7 @@ public class ClientAccountController extends BaseController {
                 resultMap.put("operationResult", loginRes);
             }
             catch (Exception e) {
-                logger.error("添加用户出错" + e, e);
+                logger.error("用户登录出错" + e, e);
                 resultMap.put("result", "failed");
                 resultMap.put("error", "系统出错");
             }
