@@ -92,7 +92,10 @@
                     "reserve":'${account.Reserve}',
                     "token":'${account.Token}'
                 };
+
+//                假数据
                 account.id = '58';
+                account.mobelPhone = '13652091037';
 //                var index = layer.load(1, {
 //                    shade: [0.1,'#fff'] //0.1透明度的白色背景
 //                });
@@ -214,7 +217,7 @@
 
                             $('#detail_' + deviceItem.id).click(function () {
                                 var id = $(this).attr("id").split("_").last();
-                                window.location.href = "${path}/client/home?action=personal&mobelPhone=" + account.mobelPhone;
+                                <%--window.location.href = "${path}/client/home?action=personal&mobelPhone=" + account.mobelPhone;--%>
                             });
                             $('#deviceMenu_' + deviceItem.id).click(function () {
                                 var id = $(this).attr("id").split("_").last();
@@ -517,6 +520,10 @@
                     addGateway();
                 });
 
+                $("#personal").click(function () {
+                    window.location.href = "${path}/client/account?action=personal&mobelPhone="+account.mobelPhone;
+                });
+
             });
 
         </script>
@@ -543,7 +550,7 @@
         <i class="plus"></i>
     </div>
     <ul id="rightM" class="dropDown">
-        <li><a href="${path}/"><i class="personal"></i> 个人中心</a></li>
+        <li id="personal"><a href="#"><i class="personal"></i> 个人中心</a></li>
         <li id="addGateWayBtn"><a href="#">添加网关</a></li>
     </ul>
     <ul id="leftM" class=" leftM">

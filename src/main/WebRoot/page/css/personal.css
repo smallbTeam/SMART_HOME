@@ -15,8 +15,8 @@ body {
 
 nav {
     width: 100%;
-    /*margin:0 auto;*/
-    /*margin-top:0px;*/
+    height: 62px;
+
     padding: 0;
     /*background: #ff782e;*/
     filter:alpha(opacity=50 finishopacity=50 style=1 startx=0,starty=0,finishx=150,finishy=0) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#2BB4EA,endcolorstr=#3687CB,gradientType=0);

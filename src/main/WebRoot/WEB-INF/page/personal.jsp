@@ -82,32 +82,32 @@
                     <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
                     <span class="pull-left">性别</span>
                     <i class="arrowRight pull-right" ></i>
-                    <span class="right-content pull-right">女</span>
+                    <span id="gender" class="right-content pull-right"></span>
 
                 </div>
-                <div class="line">
-                    <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
-                    <span class="pull-left">年龄</span>
-                    <i class="arrowRight pull-right" ></i>
-                    <span class="right-content pull-right">女</span>
-                </div>
+                <%--<div class="line">--%>
+                    <%--<img src="${path}/page/img/icon/blue.png" class="pull-left"/>--%>
+                    <%--<span class="pull-left">年龄</span>--%>
+                    <%--<i class="arrowRight pull-right" ></i>--%>
+                    <%--<span id="age" class="right-content pull-right">女</span>--%>
+                <%--</div>--%>
                 <div class="line">
                     <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
                     <span class="pull-left">出生日期</span>
                     <i class="arrowRight pull-right" ></i>
-                    <span class="right-content pull-right">女</span>
+                    <span id="birth" class="right-content pull-right"></span>
                 </div>
                 <div class="line">
                     <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
                     <span class="pull-left">用户名</span>
                     <i class="arrowRight pull-right" ></i>
-                    <span class="right-content pull-right">女</span>
+                    <span id="nickName" class="right-content pull-right"></span>
                 </div>
                 <div class="line">
                     <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
                     <span class="pull-left">手机号码</span>
                     <i class="arrowRight pull-right" ></i>
-                    <span class="right-content pull-right">女</span>
+                    <span id="phoneNum" class="right-content pull-right"></span>
                 </div>
             </div>
         </div>
@@ -132,6 +132,22 @@
         $(".menuleft").click(function () {
             window.history.back();
         });
+
+        var account = {"id":'${account.id}',
+            "mobelPhone":'${account.MobelPhone}',
+            "wxId":'${account.WxId}',
+            "nickName":'${account.NickName}',
+            "birthday":'${account.Birthday}',
+            "sex":'${account.Sex}',
+            "reserve":'${account.Reserve}',
+            "token":'${account.Token}'
+        };
+
+        $("#gender").val(account.sex);
+        $("#birth").val(account.birthday);
+        $("#phoneNum").val(account.mobelPhone);
+        $("#nickName").val(account.nickName);
+
 
     });
 
