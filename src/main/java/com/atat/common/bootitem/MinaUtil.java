@@ -26,9 +26,10 @@ public class MinaUtil {
 
     public static Map<String,Object> InPutMessageToString(String [] msg){
         Map map = new HashMap<String, Object>();
-        map.put("wendu",StringToFloat(msg[1],"wendu"));
-        map.put("shidu",StringToFloat(msg[2],"shidu"));
-        map.put("pm",StringToFloat(msg[3],"pm"));
+        map.put("devicenumber",msg[0]);
+        map.put("wendu",StringToFloat(msg[2],"wendu"));
+        map.put("shidu",StringToFloat(msg[3],"shidu"));
+        map.put("pm2.5",StringToFloat(msg[4],"pm"));
         return map;
     }
 

@@ -1,53 +1,43 @@
 package com.atat.common.bootitem;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import com.atat.common.util.JsonUtil;
+import com.atat.device.service.DeviceService;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import static com.atat.common.bootitem.MinaUtil.InPutMessageToString;
 
 public class MinaServerHandler extends IoHandlerAdapter {
 	public static Logger logger = LoggerFactory.getLogger(MinaServerHandler.class);
 	public static List<HardWare>  list = new ArrayList<HardWare>();
-//	private int state = 0;
+	//	private int state = 0;
 
-//	public static void sendMessage(int i,String msg){
-//		logger.info("sendMessage-listCount::"+list.size());
-//			try {
-//				int j = 0;
-//				for (HardWare handware : list) {
-//					if (handware.getNumber() == i) {
-//						IoSession session = list.get(j).getSession();
-//						if (msg.equals("off")) {
-//							list.remove(j);
-//							//SystemWebSocketHandler.sendMessage(-2, list.size() + "_" + j);
-//						} else {
-//							String mess[] = msg.split(" ");
-//							byte[] bar = new byte[mess.length];
-//							for (int z = 0; z < mess.length; z++) {
-//								bar[z] = (byte) Integer.parseInt(mess[z], 16);
-//							}
-//							IoBuffer buffers = IoBuffer.allocate(bar.length);
-//							buffers.put(bar, 0, bar.length);
-//							buffers.flip();
-//							session.write(buffers);
-//
-//						}
-//
-//					}
-//					j += 1;
-//				}
-//			}catch (Exception e){
-//				System.out.println(e);
-//			}
-//	}
+	public static void sendMessage(String msg,IoSession number) {
+		logger.info("sendMessage-listCount::" + list.size());
+		System.out.println("发送数据:====>"+msg);
+		try {
+			for (HardWare handware : list) {
+				if (handware.getSession().equals(number)) {
+					System.out.println("aaaaaaaaaaaaaa");
+					byte[] bar = msg.getBytes();
+					IoBuffer buffers = IoBuffer.allocate(bar.length);
+					buffers.put(bar, 0, bar.length);
+					buffers.flip();
+					number.write(buffers);
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 
 
 	@Override
@@ -67,6 +57,11 @@ public class MinaServerHandler extends IoHandlerAdapter {
 	@Override
 	public void messageReceived(IoSession session, Object message)
 			throws Exception {
+		ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");// 此文件放在SRC目录下
+		DeviceService deviceService = (DeviceService) context.getBean("deviceService");
+
+
+
 		for(int i=0;i<list.size();i++){
 			if(session.getRemoteAddress().equals(list.get(i).getSession().getRemoteAddress())){
 				IoBuffer ioBuffer = (IoBuffer)message;
@@ -76,26 +71,41 @@ public class MinaServerHandler extends IoHandlerAdapter {
 				String [] str = stringmsg.split("\\|");
 				list.get(i).setNumber(str[0]);
 				Map<String,Object> map =  InPutMessageToString(str);
+				String gatewayDeviceID = (String) map.get("devicenumber");
+				Iterator it = map.keySet().iterator();
+				while (it.hasNext()) {
+					String key = it.next().toString();//设备类型名称
+					Object value = map.get(key);//设备值
+					String valuestr = JsonUtil.toJson(value);
+					if (!"devicenumber".equals(key)){
+						logger.info("网关"+gatewayDeviceID+"下设备,[设备类型："+key+"][设备信号值："+valuestr+"]");
+						//将设备信息存储到数据库
+						Map<String, Object> param = new HashMap<String, Object>();
+						param.put("gatewayDeviceID",gatewayDeviceID);
+						param.put("Name",key);
+						param.put("DeviceData",valuestr);
+						deviceService.addOrUpdateDeviceDataBydeviceTypeAndgateway(param);
+					}
+				}
+				sendMessage("OK\\\r\\\n", session);
 			}
 		}
 
 
-
-
-//		StringBuilder stringBuilder = new StringBuilder("");
-//		if (b == null || b.length <= 0) {
-//			System.out.printf("为空");
-//		}
-//		for (int i = 0; i < b.length; i++) {
-//			int v = b[i] & 0xFF;
-//			String hv = Integer.toHexString(v);
-//			if (hv.length() < 2) {
-//				stringBuilder.append(0);
-//			}
-//			stringBuilder.append(hv+" ");
-//		}
-//		String content = "设备"+style+"发来的消息："+String.valueOf(stringBuilder);
-//		System.out.println(content);
+		//		StringBuilder stringBuilder = new StringBuilder("");
+		//		if (b == null || b.length <= 0) {
+		//			System.out.printf("为空");
+		//		}
+		//		for (int i = 0; i < b.length; i++) {
+		//			int v = b[i] & 0xFF;
+		//			String hv = Integer.toHexString(v);
+		//			if (hv.length() < 2) {
+		//				stringBuilder.append(0);
+		//			}
+		//			stringBuilder.append(hv+" ");
+		//		}
+		//		String content = "设备"+style+"发来的消息："+String.valueOf(stringBuilder);
+		//		System.out.println(content);
 	}
 
 	@Override

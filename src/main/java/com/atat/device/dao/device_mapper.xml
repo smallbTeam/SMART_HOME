@@ -89,16 +89,16 @@
         <if test="deviceId  != null and deviceId != ''">
             and de.id = #{deviceId,jdbcType=INTEGER}
         </if>
-        <if test="deviceTypeId  != null and deviceTypeId != ''">
-            and de.DeviceTypeId = #{deviceTypeId,jdbcType=INTEGER}
+        <if test="deviceTypeId  != null">
+            and de.DeviceTypeId = #{deviceTypeId}
         </if>
-        <if test="DeviceNo  != null and DeviceNo != ''">
+        <if test="DeviceNo  != null">
             and de.DeviceNo = #{DeviceNo}
         </if>
         <if test="deviceState  != null">
-            and de.State = #{deviceState,jdbcType=INTEGER}
+            and de.State = #{deviceState}
         </if>
-        <if test="DeviceData  != null and DeviceData != ''">
+        <if test="DeviceData  != null">
             and de.DeviceData = #{DeviceData}
         </if>
         <if test="deviceReserve1  != null">
@@ -117,7 +117,7 @@
             and dt.id = #{deviceTypeModel}
         </if>
         <if test="gatewayGatewayPort  != null">
-            and dg.GatewayPort = #{gatewayGatewayPort,jdbcType=INTEGER}
+            and dg.GatewayPort = #{gatewayGatewayPort}
         </if>
         <if test="gatewayIP  != null and gatewayIP != ''">
             and dg.IP = #{gatewayIP}
@@ -238,9 +238,9 @@
 
     <select id="selectDeviceType" parameterType="java.util.Map"
             resultType="java.util.Map">
-        select id, Name, Model, Attention, Describtion, CreatedDate,
-        ModifiedDate, Reserve
-        from DeviceType
+        select dt.id id, dt.Name, dt.Model, dt.Attention, dt.Describtion, dt.CreatedDate,
+        dt.ModifiedDate, dt.Reserve
+        from DeviceType dt
         where IsDeleted = 0
         <if test="Name  != null and Name != ''">
             and Name LIKE #{Name}

@@ -38,6 +38,12 @@ public interface DeviceService {
     public void addDeviceType(Map<String,Object> param);
 
     /**
+     * 添加设备类型
+     * @param param
+     */
+    public void addOrUpdateDeviceDataBydeviceTypeAndgateway(Map<String,Object> param);
+
+    /**
      * 更新设备类型
      * @param param
      */
