@@ -69,24 +69,13 @@ public class HomeController extends BaseController {
     }
 
     /**
-     * 个人中心页面
-     * 
-     * @return
-     */
-    @RequestMapping(params = "action=personal")
-    public ModelAndView clientPersonal() {
-        ModelAndView mav = new ModelAndView("client/home/personal");
-        return mav;
-    }
-
-    /**
      * 设别列表页面
      * 
      * @return
      */
     @RequestMapping(params = "action=deviceList")
     public ModelAndView clientDeviceList() {
-        ModelAndView mav = new ModelAndView("client/home/detail");
+        ModelAndView mav = new ModelAndView("detail");
         return mav;
     }
 

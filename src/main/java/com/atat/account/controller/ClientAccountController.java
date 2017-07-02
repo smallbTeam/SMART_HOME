@@ -74,8 +74,13 @@ public class ClientAccountController extends BaseController {
         return mav;
     }
 
+    /**
+     * 个人中心页面
+     *
+     * @return
+     */
     @RequestMapping(params = "action=personal")
-    public ModelAndView personal(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView clientPersonal(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView("personal");
         String mobelPhone = request.getParameter("mobelPhone");
         if (StringUtil.isNotEmpty(mobelPhone)) {
