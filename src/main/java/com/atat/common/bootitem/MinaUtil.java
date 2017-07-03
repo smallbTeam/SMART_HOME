@@ -29,7 +29,7 @@ public class MinaUtil {
         map.put("devicenumber",msg[0]);
         map.put("wendu",StringToFloat(msg[2],"wendu"));
         map.put("shidu",StringToFloat(msg[3],"shidu"));
-        map.put("pm2.5",StringToFloat(msg[4],"pm"));
+        map.put("pm",StringToFloat(msg[4],"pm"));
         return map;
     }
 

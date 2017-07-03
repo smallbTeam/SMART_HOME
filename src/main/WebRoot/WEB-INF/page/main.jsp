@@ -97,8 +97,8 @@
             };
 
 //                假数据
-                account.id = '58';
-                account.mobelPhone = '13652091037';
+//                account.id = '58';
+//                account.mobelPhone = '13652091037';
 //                var index = layer.load(1, {
 //                    shade: [0.1,'#fff'] //0.1透明度的白色背景
 //                });
