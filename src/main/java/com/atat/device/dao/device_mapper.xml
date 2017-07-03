@@ -89,8 +89,8 @@
         <if test="deviceId  != null and deviceId != ''">
             and de.id = #{deviceId,jdbcType=INTEGER}
         </if>
-        <if test="deviceTypeId  != null">
-            and de.DeviceTypeId = #{deviceTypeId}
+        <if test="DeviceTypeId  != null">
+            and de.DeviceTypeId = #{DeviceTypeId}
         </if>
         <if test="DeviceNo  != null">
             and de.DeviceNo = #{DeviceNo}
@@ -137,7 +137,7 @@
             <if test="State != null">
                 State=#{State},
             </if>
-            <if test="DeviceData != DeviceData">
+            <if test="DeviceData != null">
                 DeviceData=#{DeviceData},
             </if>
             <if test="Reserve1 != null">
@@ -243,7 +243,7 @@
         from DeviceType dt
         where IsDeleted = 0
         <if test="Name  != null and Name != ''">
-            and Name LIKE #{Name}
+            and Name = #{Name}
         </if>
         <if test="Model  != null and Model != ''">
             and Model = #{Model}
