@@ -85,12 +85,12 @@ public class ClientAccountServiceImpl implements ClientAccountService {
         param.put("Password",password);
         List<Map<String, Object>> customerList = customerMapper.selectCustomerList(param);
         if (CollectionUtil.isNotEmpty(customerList)){
-            Map<String, Object> customer = customerList.get(0);
-            //绑定wxId
-            Map<String, Object> updateParam = new HashMap<String, Object>();
-            updateParam.put("CustomerId",customer.get("id"));
-            updateParam.put("WxId",wxId);
-            customerMapper.updateCustomerById(param);
+//            Map<String, Object> customer = customerList.get(0);
+//            //绑定wxId
+//            Map<String, Object> updateParam = new HashMap<String, Object>();
+//            updateParam.put("CustomerId",customer.get("id"));
+//            updateParam.put("WxId",wxId);
+//            customerMapper.updateCustomerById(param);
             return 1;
         } else {
            return 0;
