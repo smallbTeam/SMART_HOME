@@ -97,8 +97,8 @@
             };
 
 //                假数据
-//                account.id = '58';
-//                account.mobelPhone = '13652091037';
+                account.id = '58';
+                account.mobelPhone = '13652091037';
 //                var index = layer.load(1, {
 //                    shade: [0.1,'#fff'] //0.1透明度的白色背景
 //                });
@@ -293,8 +293,22 @@
                                 if ($.inArray(gatewayItem, gatewayArray) == -1) {
                                     gatewayArray.push(gatewayItem);
                                     $("#leftM").prepend('<li id="gateWayId_' + gatewayItem.id + '"><a href="#">' + gatewayItem.address + '</a></li>');
-                                    $('#gateWayId_' + item.id).click(function () {
-                                        var id = $(this).attr("id").split("_").last();
+                                    $('#gateWayId_' + gatewayItem.id).click(function () {
+                                        $("#devicelistPanel").empty();
+                                        var id = $(this).attr("id").split("_")[1];
+
+//                                        if ($('#rightM').slideDown){
+//                                            $('#rightM').slideUp("slow");
+//                                        }
+                                        $('#leftM').slideUp("slow");
+
+                                        for (var i in gatewayArray){
+                                            if (gatewayArray[i].id == id) {
+                                                current_gateway = gatewayArray[i];
+                                                reloadPageContent(current_gateway);
+                                            }
+                                        }
+
                                     });
                                 }
                             }
@@ -322,6 +336,8 @@
 
             //请求页面数据
             refresh();
+
+
 
             function addDeviceDialog(deviceTypes) {
                 var dialog = '<div id="addDeviceDialog" class="box">' +
@@ -521,10 +537,12 @@
 
 //              页面事件响应
             $("#addGateWayBtn").click(function () {
-                addGateway();
+//                addGateway();
+                window.location.href = "${path}/client/home?action=addGetway&mobelPhone=" + account.mobelPhone;
             });
             $("#addGateWay").click(function () {
-                addGateway();
+//                addGateway();
+                window.location.href = "${path}/client/home?action=addGetway&mobelPhone=" + account.mobelPhone;
             });
 
             $("#personal").click(function () {

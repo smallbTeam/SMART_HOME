@@ -29,8 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 用户 账户操作相关页面
- * 
+ *
  * @author ligw
  * @version $Id AccountController.java, v 0.1 2017-06-03 21:48 ligw Exp $$
  */
