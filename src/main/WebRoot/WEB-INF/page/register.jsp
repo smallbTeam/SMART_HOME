@@ -43,7 +43,7 @@
 <canvas id="contentConvas">
 </canvas>
 
-<div class="container reg-content">
+<div class="reg-content container ">
 
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-xs-12 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
@@ -90,7 +90,7 @@
                 <div class="row-item">
                     <img src="${path}/page/img/icon/gender.png" class=" icon pull-left"/>
                     <img src="${path}/page/img/visible.png" class=" remark pull-right"/>
-                    <div class="row-center gender">
+                    <div class="gender row-center ">
                         <!--<input type="text" class="" placeholder="性别">-->
                         <select id="gender" class="">
                             <option value="1">男性</option>
