@@ -3,6 +3,7 @@ package com.atat.common.bootitem;
 import java.util.*;
 
 import com.atat.common.util.JsonUtil;
+import com.atat.device.config.SystemWebSocketHandler;
 import com.atat.device.service.DeviceService;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.service.IoHandlerAdapter;
@@ -20,6 +21,7 @@ public class MinaServerHandler extends IoHandlerAdapter {
 	public static List<HardWare>  list = new ArrayList<HardWare>();
 	//	private int state = 0;
 
+	///////////////根据返回值直接发送ok
 	public static void sendMessage(String msg,IoSession number) {
 		logger.info("sendMessage-listCount::" + list.size());
 		System.out.println("发送数据:====>"+msg);
@@ -71,6 +73,11 @@ public class MinaServerHandler extends IoHandlerAdapter {
 				String [] str = stringmsg.split("\\|");
 				list.get(i).setNumber(str[0]);
 				Map<String,Object> map =  InPutMessageToString(str);
+				sendMessage("OK\\\r\\\n", session);
+
+				/////向websocket发送数据
+				SystemWebSocketHandler.sendMessage(map);
+
 				String gatewayDeviceID = (String) map.get("devicenumber");
 				Iterator it = map.keySet().iterator();
 				while (it.hasNext()) {
@@ -87,7 +94,6 @@ public class MinaServerHandler extends IoHandlerAdapter {
 						deviceService.addOrUpdateDeviceDataBydeviceTypeAndgateway(param);
 					}
 				}
-				sendMessage("OK\\\r\\\n", session);
 			}
 		}
 
