@@ -56,16 +56,17 @@
             <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 ">
                 <div class="row-item">
                 <img src="${path}/page/img/icon/deviceNo.png" class="icon pull-left"/>
-                <img id="scanfordevice_btn" src="${path}/page/img/icon/scanicon.png" class=" remark pull-right"/>
+                <img  id="scanfordevice_btn" src="${path}/page/img/icon/scanicon.png" class=" remark pull-right"/>
+                    <img style="margin-top: 10px;margin-right: 5px" src="${path}/page/img/visible.png" class="remark pull-right"/>
                 <div class="row-center">
-                    <input id="deviceNo" type="text" class="deviceNo" placeholder="扫描添加设备">
+                    <input style="width: 80%" id="deviceNo" type="text" class="deviceNo" placeholder="扫描添加设备">
                 </div>
             </div>
             <div class="row-item">
                 <img src="${path}/page/img/icon/wangguan.png" class="icon pull-left"/>
                 <img src="${path}/page/img/visible.png" class="remark pull-right"/>
                 <div class="row-center">
-                    <input id="wangguan" type="text" class="wangguan" placeholder="网关">
+                    <input id="wangguan" type="text" class="wangguan" placeholder="网关所在地址">
                 </div>
             </div>
             <div class=" btn-content">

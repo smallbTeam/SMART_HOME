@@ -6,7 +6,7 @@ $(function () {
         timestamp: timestamp, // 必填，生成签名的时间戳
         nonceStr: nonceStr, // 必填，生成签名的随机串
         signature: signature,// 必填，签名，见附录1
-        jsApiList: ['scanQRCode','configWXDeviceWiFi'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        jsApiList: ['scanQRCode', 'configWXDeviceWiFi'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
     });
 
     wx.ready(function () {
@@ -17,53 +17,66 @@ $(function () {
     wx.error(function (res) {
         // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
         alert("error");
-        alert("error:["+JSON.stringify(res)+"]");
+        alert("error:[" + JSON.stringify(res) + "]");
     });
 });
 
 $(document).ready(function () {
     $("#addgetway_btn").click(function () {
-        wx.checkJsApi({
-            jsApiList: ['configWXDeviceWiFi'],
-            success: function (res) {
-                alert("checksuccess");
-                WeixinJSBridge.invoke('configWXDeviceWiFi', {'key': 'wnqE4KH53r7UVwEs'}, function (res) {
-                    alert("errmsg：[" + JSON.stringify(res) + "]");
-                    var err_msg = res.err_msg;
-                    if (err_msg == 'configWXDeviceWiFi:ok') {
-                        // $('#message').html("配置 WIFI成功，<span id='second'>5</span>秒后跳转到首页。");
-                        // setInterval(count, 1000);
-                        alert("配置 WIFI成功");
-                        $.ajax({
-                            url: path + "/client/home?action=addGatewayForCustomer",
-                            type: "POST",
-                            data: {
-                                customerId:account.id,
-                                gatewayDeviceID:$("#deviceNo").val(),
-                                address:$("#wangguan").val()
-                            },
-                            dataType: "json",
-                            success: function (result) {
-                                console.log(result);
-                                if (result.result == "success") {
-                                    window.location.href = "${path}/client/home?action=index&mobelPhone=" + account.mobelPhone;
-                                    layer.closeAll();
-                                } else {
-                                    alert(result.error)
-                                }
-                            },
-                            error: function () {
-                                alert("验证失败");
+        var res = /^[\S]{1,}$/;
+        if (!res.test($("#deviceNo").val())) {
+            $("#deviceNo").parent().prev("img").attr("src", path+"/page/img/icon/failed.png");
+            $("#deviceNo").attr('placeholder', "请扫描添加设备!");
+        } else {
+            $("#deviceNo").parent().prev("img").attr("src", path+"/page/img/icon/success.png");
+            if (!res.test($("#wangguan").val())) {
+                $("#wangguan").parent().prev("img").attr("src", path+"/page/img/icon/failed.png");
+                $("#wangguan").attr('placeholder', "请填写网关所在地址!");
+            } else {
+                $("#wangguan").parent().prev("img").attr("src", path+"/page/img/icon/success.png");
+                wx.checkJsApi({
+                    jsApiList: ['configWXDeviceWiFi'],
+                    success: function (res) {
+                        alert("checksuccess");
+                        WeixinJSBridge.invoke('configWXDeviceWiFi', {'key': 'wnqE4KH53r7UVwEs'}, function (res) {
+                            alert("errmsg：[" + JSON.stringify(res) + "]");
+                            var err_msg = res.err_msg;
+                            if (err_msg == 'configWXDeviceWiFi:ok') {
+                                // $('#message').html("配置 WIFI成功，<span id='second'>5</span>秒后跳转到首页。");
+                                // setInterval(count, 1000);
+                                alert("配置 WIFI成功");
+                                $.ajax({
+                                    url: path + "/client/home?action=addGatewayForCustomer",
+                                    type: "POST",
+                                    data: {
+                                        customerId: account.id,
+                                        gatewayDeviceID: $("#deviceNo").val(),
+                                        address: $("#wangguan").val()
+                                    },
+                                    dataType: "json",
+                                    success: function (result) {
+                                        console.log(result);
+                                        if (result.result == "success") {
+                                            window.location.href = path+"/client/home?action=index&mobelPhone=" + account.mobelPhone;
+                                            layer.closeAll();
+                                        } else {
+                                            alert(result.error)
+                                        }
+                                    },
+                                    error: function () {
+                                        alert("验证失败");
+                                    }
+                                });
+                                return;
+                            } else {
+                                // $('#message').html("配置 WIFI失败，是否<a href=\"/wechat/scan/airkiss" + window.location.search + "\">再次扫描</a>。<br>不配置WIFI,<a href=\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf1867e87a4eeeb16&redirect_uri=http://letux.xyz/wechat/page/main&response_type=code&scope=snsapi_base&state=1#wechat_redirect\">直接进入首页</a>。");
+                                alert("配置 WIFI失败");
                             }
                         });
-                        return;
-                    } else {
-                        // $('#message').html("配置 WIFI失败，是否<a href=\"/wechat/scan/airkiss" + window.location.search + "\">再次扫描</a>。<br>不配置WIFI,<a href=\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf1867e87a4eeeb16&redirect_uri=http://letux.xyz/wechat/page/main&response_type=code&scope=snsapi_base&state=1#wechat_redirect\">直接进入首页</a>。");
-                        alert("配置 WIFI失败");
                     }
                 });
             }
-        });
+        }
     });
     $("#scanfordevice_btn").click(function () {
         alert("cominto QRCode Scan");
@@ -78,6 +91,6 @@ $(document).ready(function () {
             }
         });
     });
-    });
+});
 
 

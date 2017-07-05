@@ -68,7 +68,7 @@
                     <img src="${path}/page/img/icon/nickname.png" class=" icon pull-left"/>
                     <img src="${path}/page/img/visible.png" class=" remark pull-right"/>
                     <div class="row-center">
-                        <input id="nickName" type="text" class="" placeholder="昵称">
+                        <input id="nickName" type="text" class="" placeholder="姓名">
                     </div>
                 </div>
 
@@ -151,11 +151,9 @@
 
         var timer;
         var phoneReg = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/;
-        var reg = /^[a-zA-z]\w{3,15}$/;
         var phoneValidate = false;
-
-        function listenField(id, reg) {
-            if (!reg.test($(id).val())) {
+        function listenField(id, vai) {
+            if (!vai.test($(id).val())) {
                 //                $(id).
                 $(id).parent().prev("img").attr("src", "${path}/page/img/icon/failed.png");
                 $(id).val("");
@@ -168,7 +166,7 @@
         }
 
         function validatePWD() {
-
+            var reg = /^[a-zA-z]\w{3,15}$/;
             if (listenField("#pwdAgain", reg) && listenField("#pwd", reg)) {
                 if (($("#pwdAgain").val() == $("#pwd").val()) && isNotNull("#pwd")) {
                     $("#pwdAgain").parent().prev("img").attr("src", "${path}/page/img/icon/success.png");
@@ -205,16 +203,16 @@
         });
 
         $("#nickName").change(function () {
-
-            if (listenField("#nickName", reg)) {
-
+            var res = /^[\S]{1,}$/;
+            if (listenField("#nickName", res)) {
             } else {
-                $(this).attr('placeholder', "请输入6-22位数字字母组合!");
+                $(this).attr('placeholder', "请填写姓名!");
             }
 
         });
 
         $("#pwd").change(function () {
+            var reg = /^[a-zA-z]\w{3,15}$/;
             //console.log("pwd:" + $("#pwdAgain").val() + ":pwd:" + $("#pwd").val());
             //            if (listenField("#pwd",reg)){
             if (isNotNull("#pwdAgain")) {
@@ -234,6 +232,7 @@
         });
 
         $("#pwdAgain").change(function () {
+            var reg = /^[a-zA-z]\w{3,15}$/;
             //            if (listenField("#pwdAgain",reg)){
             if (isNotNull("#pwd")) {
                 //                    //console.log("hello");
@@ -277,7 +276,6 @@
                     $("#phoneNumber").attr("disabled", "true");
 
                     timer = setInterval(function () {
-
                         if (countdown - 0 > 1) {
                             --countdown;
                             $("#sendCode").text(countdown + "秒后重新获取");
@@ -338,7 +336,6 @@
 
         $("#regbtn").click(function () {
             //验证手机号是否已存在
-
             $.ajax({
                 url: "${path}/client/account?action=accountIsExit",
                 type: "GET",
