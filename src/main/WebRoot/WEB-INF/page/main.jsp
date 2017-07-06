@@ -14,6 +14,9 @@
     <%@include file="/page/common/jsp/baseInclude.jsp" %>
     <title>设备列表</title>
 
+
+        <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
+
     <!-- home部分通用css -->
     <link rel="stylesheet" type="text/css" href="${path}/page/css/main.css">
     <style>
@@ -84,6 +87,48 @@
 
     <script>
         $(document).ready(function () {
+//           webscoket
+            var ws = null;
+
+//                网关列表数组
+            var gatewayArray = new Array();
+            var deviceArray = new Array();
+            var current_gateway;
+
+
+//            webscoket
+            function WebSocketTest() {
+                if ('WebSocket' in window) {
+                    ws = new WebSocket('ws://127.0.0.1:8080/smarthome/webSocketServer');
+                }
+                else if ('MozWebSocket' in window) {
+                    ws = new MozWebSocket("ws://127.0.0.1:8080/smarthome/webSocketServer");
+                }
+                else {
+                    ws = new SockJS("http://127.0.0.1:8080/smarthome/sockjs/webSocketServer");
+                }
+                // 打开一个 web socket
+                ws.onopen = function () {
+                        // Web Socket 已连接上，使用 send() 方法发送数据
+
+                };
+
+                ws.onmessage = function (evt) {
+                    var msg = evt.data;
+                    $("#device_pm_info").html(msg.pm);
+                    $("#device_shidu_info").html(msg.shidu);
+                    $("#device_wendu_info").html(msg.wendu);
+                };
+
+                ws.onclose = function () {
+
+                };
+
+            }
+            window.onbeforeunload = function () {
+                ws.close();
+            }
+            WebSocketTest();
 
             var account = {
                 "id": '${account.id}',
@@ -97,8 +142,8 @@
             };
 
 //                假数据
-//                account.id = '58';
-//                account.mobelPhone = '13652091037';
+                account.id = '58';
+                account.mobelPhone = '13652091037';
 //                var index = layer.load(1, {
 //                    shade: [0.1,'#fff'] //0.1透明度的白色背景
 //                });
@@ -110,10 +155,6 @@
 
             });
 
-//                网关列表数组
-            var gatewayArray = new Array();
-            var deviceArray = new Array();
-            var current_gateway;
 
 //        网关切换，页面数据重新加载
             function reloadPageContent(gateway) {
@@ -220,17 +261,31 @@
 //                                alert("delete:list-content_"+$(this).attr("id").split("_")[1]);
 
                                             var id = $(this).attr("id").split("_")[1];
+                                            $.ajax({
+                                               url: "${path}/client/home?action=delDeviceById",
+                                                data: {
+                                                    DeviceId: id
+                                                },
+                                                success: function (msg) {
+                                                   if (msg.result == "success") {
+                                                       $("#list-content_" + id).remove();
 
-                                            $("#list-content_" + id).remove();
-
+                                                   }else{
+                                                       layer.msg("删除失败");
+                                                   }
+                                                },
+                                            error: function () {
+                                                   layer.msg("删除失败");
+                                            }
+                                            });
                                         });
                                         $('#edit_' + deviceItem.id).click(function () {
-                                            var id = $(this).attr("id").split("_").last();
+                                            var id = $(this).attr("id").split("_")[1];
                                         });
 
                                         $('#detail_' + deviceItem.id).click(function () {
-                                            var id = $(this).attr("id").split("_").last();
-                                            <%--window.location.href = "${path}/client/home?action=personal&mobelPhone=" + account.mobelPhone;--%>
+                                            var id = $(this).attr("id").split("_")[1];
+                                            window.location.href = "${path}/client/home?action=deviceList&deviceId=" + id;
                                         });
                                         $('#deviceMenu_' + deviceItem.id).click(function () {
                                             var id = $(this).attr("id").split("_").last();
@@ -305,6 +360,7 @@
                                         for (var i in gatewayArray){
                                             if (gatewayArray[i].id == id) {
                                                 current_gateway = gatewayArray[i];
+                                                ws.send(current_gateway.id);
                                                 reloadPageContent(current_gateway);
                                             }
                                         }
@@ -314,6 +370,7 @@
                             }
                             if (gatewayArray.length > 0) {
                                 current_gateway = gatewayArray[0];
+                                ws.send(current_gateway.id);
                                 reloadPageContent(current_gateway);
                             }
                             if (!isExist("#gateWayId_nomore")) {

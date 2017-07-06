@@ -66,75 +66,6 @@
 
 </nav>
 
-<!--内容区 -->
-<section id="gateWay_content" class="gateWay_content">
-    <div class="top">
-        <div id="topContent" class="topContent">
-            <div class="row">
-                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
-                    <h3 class="title"><span>设备信息</span>Qixu Lorem</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
-
-            <div id class="common-detail">
-                <div class="line">
-                    <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
-                    <span class="pull-left">设备类型</span>
-                    <span id="deviceType" class="pull-right">空调</span>
-                </div>
-                <div class="line">
-                    <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
-                    <span class="pull-left">设备型号</span>
-                    <span id="deviceNum" class="pull-right">未开启</span>
-                </div>
-                <div class="line">
-                    <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
-                    <span class="pull-left">设备款式</span>
-                    <span id="deviceName" class="pull-right">未开启</span>
-                </div>
-                <div class="line">
-                    <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
-                    <span class="pull-left">设备编号</span>
-                    <span id="deviceNo" class="pull-right">未开启</span>
-                </div>
-                <div class="line">
-                    <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
-                    <span class="pull-left">设备状态</span>
-                    <span id="deviceStatus" class="pull-right">未开启</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="gateWay_detail">
-        <div class="row">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
-
-            </div><!--col-xs-12-->
-        </div> <!--row-->
-    </div><!--gateWay_detail-->
-
-</section>
-
-<!--内容区 -->
-<section id="device-ct" class="device-content">
-    <div class="row">
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
-            <h3 class="title"><span>控制区</span>对当前设备进行管控</h3>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 ">
-            <div class="cicle-menu">
-                <span>开启</span>
-            </div>
-        </div><!--col-xs-12 -->
-    </div><!--row -->
-</section>
 
 <!--内容区 -->
 <section id="dev " class="device-content">
@@ -233,12 +164,11 @@
             window.history.back();
         });
 
-        var deviceId = <%=request.getParameter("deviceId")%>;
 //        加载设备信息
         $.ajax({
             url:"${path}/client/home?action=getDeviceByDeviceId",
             data: {
-                deviceId : deviceId
+                deviceId : <%=request.getParameter("")%>
             },
             success: function (msg) {
                 if (msg.result == "success") {
@@ -248,27 +178,6 @@
 //                        dt.Name deviceTypeName, dt.Model deviceTypeModel, dt.Attention deviceTypeAttention,
 //                        dt.Describtion deviceTypeDescribtion, dt.Reserve deviceTypeReserve,
 //                        dg.GatewayPort gatewayGatewayPort, dg.IP gatewayIP
-                    var result = msg.operationResult;
-                    var device = {
-                        "id": result.id,
-                        "deviceTypeId": result.deviceTypeId,
-                        "DeviceNo": result.DeviceNo,
-                        "deviceState": result.deviceState,
-                        "DeviceData": result.DeviceData,
-                        "deviceReserve1": result.deviceReserve1,
-                        "deviceName": result.deviceName,
-                        "deviceTypeModel": result.deviceTypeModel,
-                        "deviceTypeAttention": result.deviceTypeAttention,
-                        "deviceTypeDescribtion": result.deviceTypeDescribtion,
-                        "deviceTypeReserve": result.deviceTypeReserve,
-                        "gatewayGatewayPort": result.gatewayGatewayPort,
-                        "gatewayIP": result.gatewayIP
-                    }
-                    $("#deviceName").html(device.deviceName);
-                    $("#devicetype").html(device.deviceTypeModel);
-                    $("#deviceNo").html(device.deviceTypeId);
-                    $("#deviceStatus").html(device.deviceState);
-                    $("#deviceNum").html(device.deviceTypeDescribtion);
 
 
                 }else{
