@@ -65,6 +65,13 @@ public class HomeController extends BaseController {
                 mav.addObject("account", customerList.get(0));
             }
         }
+        GetSignatureUrl signatureUrl = new GetSignatureUrl();
+        Map<String, Object> map = signatureUrl.getSignature(mobelPhone);
+        String appid = BasePropertyDate.WX_APPID;
+        mav.addObject("appid", appid);
+        mav.addObject("noncestr", map.get("noncestr"));
+        mav.addObject("timestamp", map.get("timestamp"));
+        mav.addObject("signaturet", map.get("signaturet"));
         return mav;
     }
 
