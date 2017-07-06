@@ -122,6 +122,19 @@ public class HomeController extends BaseController {
     }
 
     /**
+     * 设别列表页面
+     *
+     * @return
+     */
+    @RequestMapping(params = "action=chartDetail")
+    public ModelAndView deviceDataChart(HttpServletRequest request, HttpServletResponse response) {
+        String deviceId = request.getParameter("deviceId");
+        String sinnalId = request.getParameter("sinnalId");
+        ModelAndView mav = new ModelAndView("chartDetail");
+        return mav;
+    }
+
+    /**
      * 依据客户ID获取网关列表
      *
      * @param request
