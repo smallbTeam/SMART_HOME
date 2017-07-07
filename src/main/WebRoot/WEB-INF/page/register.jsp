@@ -353,7 +353,6 @@
                             var birthday = new Date(str).getTime();
                             var url = "${path}/client/account?action=registAccount&mobelPhone=" + $("#phoneNumber").val() +"&password="  + $("#pwd").val() + "&nickName=" + $("#nickName").val() + "&birthday=" + birthday + "&sex=" + sex;
                             //console.log(url);
-
                             if (wxId !== null && wxId !== undefined && wxId !== '') {
                                 url = "${path}/client/account?action=registAccount&mobelPhone=" + $("#phoneNumber").val() +"&password=" + $("#pwd").val() + "&nickName=" + $("#nickName").val() + "&birthday=" + birthday + "&sex=" + sex + "&wxId=" + wxId;
                             }
@@ -361,7 +360,7 @@
                             $.get(url, function (msg) {
                                 if (msg.result == 'success') {
                                     //请求成功
-                                    window.location.href = "${path}/client/home?action=index&customerId=" + msg.operationResult;
+                                    window.location.href = "${path}/client/home?action=index&mobelPhone=" + msg.operationResult;
                                     layer.closeAll();
                                 } else {
                                     //请求失败

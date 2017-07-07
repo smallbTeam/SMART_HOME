@@ -38,7 +38,7 @@ $(document).ready(function () {
                     jsApiList: ['configWXDeviceWiFi'],
                     success: function (res) {
                         alert("checksuccess");
-                        WeixinJSBridge.invoke('configWXDeviceWiFi', {'key': 'wnqE4KH53r7UVwEs'}, function (res) {
+                        WeixinJSBridge.invoke('configWXDeviceWiFi', {}, function (res) {
                             alert("errmsg：[" + JSON.stringify(res) + "]");
                             var err_msg = res.err_msg;
                             if (err_msg == 'configWXDeviceWiFi:ok') {
