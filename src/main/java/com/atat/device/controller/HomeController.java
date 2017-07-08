@@ -9,6 +9,7 @@ import com.atat.common.base.controller.BaseController;
 import com.atat.common.prop.BasePropertyDate;
 import com.atat.common.util.CollectionUtil;
 import com.atat.common.util.DateUtil;
+import com.atat.common.util.JsonUtil;
 import com.atat.common.util.StringUtil;
 import com.atat.device.service.CustomerGatewayService;
 import com.atat.device.service.DeviceService;
@@ -67,6 +68,9 @@ public class HomeController extends BaseController {
         }
         GetSignatureUrl signatureUrl = new GetSignatureUrl();
         Map<String, Object> map = signatureUrl.getSignature(mobelPhone);
+
+        System.out.println("微信相关数据："+ JsonUtil.toJson(map,true));
+
         String appid = BasePropertyDate.WX_APPID;
         mav.addObject("appid", appid);
         mav.addObject("noncestr", map.get("noncestr"));

@@ -126,6 +126,7 @@
 
     <script>
         $(document).ready(function () {
+            alert("come into main");
 //           webscoket
             var ws = null;
 
@@ -160,6 +161,7 @@
             function WebSocketTest() {
                 if ('WebSocket' in window) {
                     ws = new WebSocket('ws://s-357114.gotocdn.com/smart_home/webSocketServer');
+                    //ws = new WebSocket('ws://127.0.0.1:9080/smarthome/webSocketServer');
                 }
                 else if ('MozWebSocket' in window) {
                     ws = new MozWebSocket("ws://s-357114.gotocdn.com/smart_home/webSocketServer");
@@ -170,11 +172,11 @@
                 // 打开一个 web socket
                 ws.onopen = function () {
                         // Web Socket 已连接上，使用 send() 方法发送数据
-
                 };
 
                 ws.onmessage = function (evt) {
                     var msg = evt.data;
+                    alert("msg:"+msg);
                     var jsonmsg = JSON.parse(msg);
                     $("#device_pm_info").html(jsonmsg.pm);
                     $("#device_shidu_info").html(jsonmsg.shidu);
