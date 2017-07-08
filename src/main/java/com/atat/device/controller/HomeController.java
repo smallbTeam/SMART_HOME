@@ -230,19 +230,18 @@ public class HomeController extends BaseController {
      * @param response
      * @throws IOException
      */
-    @RequestMapping(params = "action=addGatewayForCustomer")////'
+    @RequestMapping(params = "action=addGatewayForCustomer")
     public void addGatewayForCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String customerId = request.getParameter("customerId");
         String gatewayDeviceID = request.getParameter("gatewayDeviceID");
         String address = request.getParameter("address");
-        if ((StringUtil.isNotEmpty(customerId)) && (StringUtil.isNotEmpty(gatewayDeviceID))) {
+        if ((StringUtil.isNotEmpty(customerId)) && (StringUtil.isNotEmpty(gatewayDeviceID))
+                && (StringUtil.isNotEmpty(address))) {
             Map<String, Object> param = new HashMap<String, Object>();
             param.put("customerId", Integer.parseInt(customerId));
             param.put("gatewayDeviceID", gatewayDeviceID);
-            if (StringUtil.isNotEmpty(address)){
-                param.put("address", address);
-            }
+            param.put("address", address);
             try {
                 customerGatewayService.addGatewayForCustomer(param);
                 resultMap.put("result", "success");
@@ -252,8 +251,7 @@ public class HomeController extends BaseController {
                 resultMap.put("result", "failed");
                 resultMap.put("error", "系统出错");
             }
-        }
-        else {
+        } else {
             resultMap.put("result", "error");
             resultMap.put("error", "用户Id及网关名称均不能为空");
         }

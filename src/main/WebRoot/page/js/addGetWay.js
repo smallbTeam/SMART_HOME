@@ -57,21 +57,21 @@ $(document).ready(function () {
                                     success: function (result) {
                                         console.log(result);
                                         if (result.result == "success") {
-                                            window.location.href = path+"/client/home?action=index&mobelPhone=" + account.mobelPhone;
-                                            layer.closeAll();
+                                            alert("添加网关成功");
                                         } else {
-                                            alert(result.error)
+                                            alert("添加网关失败："+result.error)
                                         }
                                     },
                                     error: function () {
-                                        alert("验证失败");
+                                        alert("添加网关失败");
+
                                     }
                                 });
-                                return;
                             } else {
                                 // $('#message').html("配置 WIFI失败，是否<a href=\"/wechat/scan/airkiss" + window.location.search + "\">再次扫描</a>。<br>不配置WIFI,<a href=\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf1867e87a4eeeb16&redirect_uri=http://letux.xyz/wechat/page/main&response_type=code&scope=snsapi_base&state=1#wechat_redirect\">直接进入首页</a>。");
                                 alert("配置 WIFI失败");
                             }
+                            window.location.href = path+"/client/home?action=index&mobelPhone=" + account.mobelPhone;
                         });
                     }
                 });

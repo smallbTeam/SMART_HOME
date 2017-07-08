@@ -55,16 +55,15 @@
                                 // $('#message').html("配置 WIFI成功，<span id='second'>5</span>秒后跳转到首页。");
                                 // setInterval(count, 1000);
                                 alert("配置 WIFI成功");
-                                window.location.href = "${path}/client/home?action=index&mobelPhone=" + account.mobelPhone;
                             } else {
                                 // $('#message').html("配置 WIFI失败，是否<a href=\"/wechat/scan/airkiss" + window.location.search + "\">再次扫描</a>。<br>不配置WIFI,<a href=\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf1867e87a4eeeb16&redirect_uri=http://letux.xyz/wechat/page/main&response_type=code&scope=snsapi_base&state=1#wechat_redirect\">直接进入首页</a>。");
                                 alert("配置 WIFI失败");
                             }
+                            window.location.href = "${path}/client/home?action=index&mobelPhone=" + account.mobelPhone;
                         });
                     }
                 });
             });
-
             wx.error(function (res) {
                 // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
                 alert("error");

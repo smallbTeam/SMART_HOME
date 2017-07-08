@@ -75,9 +75,6 @@ public class MinaServerHandler extends IoHandlerAdapter {
 				Map<String,Object> map =  InPutMessageToString(str);
 				sendMessage("OK\\\r\\\n", session);
 
-				/////向websocket发送数据
-				SystemWebSocketHandler.sendMessage(map);
-
 				String gatewayDeviceID = (String) map.get("devicenumber");
 				Iterator it = map.keySet().iterator();
 				while (it.hasNext()) {
