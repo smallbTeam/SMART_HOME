@@ -66,14 +66,6 @@ public class HomeController extends BaseController {
                 mav.addObject("account", customerList.get(0));
             }
         }
-        GetSignatureUrl signatureUrl = new GetSignatureUrl();
-        String mainurl = "http://s-357114.gotocdn.com/smart_home/client/home?action=index&mobelPhone="+mobelPhone;
-        Map<String, Object> map = signatureUrl.getSignature(mainurl);
-        String appid = BasePropertyDate.WX_APPID;
-        mav.addObject("appid", appid);
-        mav.addObject("noncestr", map.get("noncestr"));
-        mav.addObject("timestamp", map.get("timestamp"));
-        mav.addObject("signaturet", map.get("signaturet"));
         return mav;
     }
 
@@ -105,7 +97,6 @@ public class HomeController extends BaseController {
                 mav.addObject("account", customerList.get(0));
             }
         }
-
         GetSignatureUrl signatureUrl = new GetSignatureUrl();
         String mainurl = "http://s-357114.gotocdn.com/smart_home/client/home?action=addGetway&mobelPhone="+mobelPhone;
         Map<String, Object> map = signatureUrl.getSignature(mainurl);
@@ -116,6 +107,31 @@ public class HomeController extends BaseController {
         mav.addObject("signaturet", map.get("signaturet"));
         return mav;
     }
+
+    @RequestMapping(params = "action=openWifiScan")
+    public ModelAndView openWifiScan(HttpServletRequest request, HttpServletResponse response) {
+        String mobelPhone = request.getParameter("mobelPhone");
+        ModelAndView mav = new ModelAndView("openWifiScan");
+        if (StringUtil.isNotEmpty(mobelPhone)) {
+            Map<String, Object> param = new HashMap<String, Object>();
+            param.put("MobelPhone", mobelPhone);
+            List<Map<String, Object>> customerList = clientAccountService.selectCustomerList(param);
+            if (CollectionUtil.isNotEmpty(customerList)) {
+                mav.addObject("account", customerList.get(0));
+            }
+        }
+        GetSignatureUrl signatureUrl = new GetSignatureUrl();
+        String mainurl = "http://s-357114.gotocdn.com/smart_home/client/home?action=openWifiScan&mobelPhone="+mobelPhone;
+        Map<String, Object> map = signatureUrl.getSignature(mainurl);
+        String appid = BasePropertyDate.WX_APPID;
+        mav.addObject("appid", appid);
+        mav.addObject("noncestr", map.get("noncestr"));
+        mav.addObject("timestamp", map.get("timestamp"));
+        mav.addObject("signaturet", map.get("signaturet"));
+        return mav;
+    }
+
+
 
     /**
      * 设别列表页面

@@ -134,6 +134,7 @@ public class ClientAccountController extends BaseController {
                     if (null != customerMap) {
                         mav = new ModelAndView("main");
                         mav.addObject("account", customerMap);
+
                         GetSignatureUrl signatureUrl = new GetSignatureUrl();
                         String mainurl = "http://s-357114.gotocdn.com/smart_home/client/account/wxUidIsExit";
                         Map<String, Object> weixinInfoMap = signatureUrl.getSignature(mainurl);
