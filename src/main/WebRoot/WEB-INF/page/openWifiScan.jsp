@@ -39,7 +39,7 @@
                 timestamp: timestamp, // 必填，生成签名的时间戳
                 nonceStr: nonceStr, // 必填，生成签名的随机串
                 signature: signature,// 必填，签名，见附录1
-                jsApiList: ['scanQRCode', 'configWXDeviceWiFi'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                jsApiList: ['configWXDeviceWiFi'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
 
             wx.ready(function () {
@@ -48,14 +48,14 @@
                     jsApiList: ['configWXDeviceWiFi'],
                     success: function (res) {
                         alert("checksuccess");
-                        WeixinJSBridge.invoke('configWXDeviceWiFi', {'key': 'wnqE4KH53r7UVwEs'}, function (res) {
+                        WeixinJSBridge.invoke('configWXDeviceWiFi', {}, function (res) {
                             alert("errmsg：[" + JSON.stringify(res) + "]");
                             var err_msg = res.err_msg;
                             if (err_msg == 'configWXDeviceWiFi:ok') {
                                 // $('#message').html("配置 WIFI成功，<span id='second'>5</span>秒后跳转到首页。");
                                 // setInterval(count, 1000);
                                 alert("配置 WIFI成功");
-                                window.location.href = path+"/client/home?action=index&mobelPhone=" + account.mobelPhone;
+                                window.location.href = "${path}/client/home?action=index&mobelPhone=" + account.mobelPhone;
                             } else {
                                 // $('#message').html("配置 WIFI失败，是否<a href=\"/wechat/scan/airkiss" + window.location.search + "\">再次扫描</a>。<br>不配置WIFI,<a href=\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf1867e87a4eeeb16&redirect_uri=http://letux.xyz/wechat/page/main&response_type=code&scope=snsapi_base&state=1#wechat_redirect\">直接进入首页</a>。");
                                 alert("配置 WIFI失败");
