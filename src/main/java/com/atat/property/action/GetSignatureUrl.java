@@ -17,7 +17,7 @@ import java.util.UUID;
  */
 public class GetSignatureUrl {
 
-    public Map<String, Object> getSignature(String phone) {
+    public Map<String, Object> getSignature(String mainurl) {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");// 此文件放在SRC目录下
         PropertyMapService propertyMapService = (PropertyMapService) context.getBean("propertyMapService");
@@ -35,19 +35,16 @@ public class GetSignatureUrl {
         // 时间戳
         String timestamp = String.valueOf(new Date().getTime());
         //url
-        String mainurl = "http://s-357114.gotocdn.com/smart_home/client/home?action=addGetway&mobelPhone="+phone;
+        //String mainurl = "http://s-357114.gotocdn.com/smart_home/client/home?action=addGetway&mobelPhone="+phone;
         //获取jsapiticket
         String jsapiticketTicket = (String) propertyMapService.getPropertyMapByKey("jsapiticketTicket").get("propval");
         /////拼接sha1
         String str1 = "jsapi_ticket="+jsapiticketTicket+"&noncestr="+noncestr+"&timestamp="+timestamp+"&url="+mainurl;
-
-
         try {
             signature = sha1(str1);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-
         jsapiticket_ticket.put("noncestr",noncestr);
         jsapiticket_ticket.put("timestamp",timestamp);
         jsapiticket_ticket.put("signaturet",signature);

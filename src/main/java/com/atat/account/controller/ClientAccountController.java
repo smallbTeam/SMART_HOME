@@ -13,6 +13,7 @@ import com.atat.common.util.JsonUtil;
 import com.atat.common.util.StringUtil;
 import com.atat.common.util.httpClient.HttpClientUtil;
 import com.atat.common.util.httpClient.URLUtil;
+import com.atat.property.action.GetSignatureUrl;
 import com.atat.property.action.WeixinAction;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
@@ -133,6 +134,13 @@ public class ClientAccountController extends BaseController {
                     if (null != customerMap) {
                         mav = new ModelAndView("main");
                         mav.addObject("account", customerMap);
+                        GetSignatureUrl signatureUrl = new GetSignatureUrl();
+                        String mainurl = "http://s-357114.gotocdn.com/smart_home/client/account/wxUidIsExit";
+                        Map<String, Object> weixinInfoMap = signatureUrl.getSignature(mainurl);
+                        mav.addObject("appid", appid);
+                        mav.addObject("noncestr", weixinInfoMap.get("noncestr"));
+                        mav.addObject("timestamp", weixinInfoMap.get("timestamp"));
+                        mav.addObject("signaturet", weixinInfoMap.get("signaturet"));
                     }
                     else {
                         mav.addObject("wxId", wxId);

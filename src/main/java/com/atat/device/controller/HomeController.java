@@ -67,10 +67,8 @@ public class HomeController extends BaseController {
             }
         }
         GetSignatureUrl signatureUrl = new GetSignatureUrl();
-        Map<String, Object> map = signatureUrl.getSignature(mobelPhone);
-
-        System.out.println("微信相关数据："+ JsonUtil.toJson(map,true));
-
+        String mainurl = "http://s-357114.gotocdn.com/smart_home/client/home?action=index&mobelPhone="+mobelPhone;
+        Map<String, Object> map = signatureUrl.getSignature(mainurl);
         String appid = BasePropertyDate.WX_APPID;
         mav.addObject("appid", appid);
         mav.addObject("noncestr", map.get("noncestr"));
@@ -99,15 +97,6 @@ public class HomeController extends BaseController {
     public ModelAndView addGetway(HttpServletRequest request, HttpServletResponse response) {
         String mobelPhone = request.getParameter("mobelPhone");
         ModelAndView mav = new ModelAndView("addGetway");
-//        String accessToken = (String) propertyMapService.getPropertyMapByKey("accessToken").get("propval");
-//        String jsapiticketTimestamp = (String) propertyMapService.getPropertyMapByKey("jsapiticketTimestamp").get("propval");
-//        String jsapiticketNnoncestr = (String) propertyMapService.getPropertyMapByKey("jsapiticketNnoncestr").get("propval");
-//        String jsapiticketMainurl = (String) propertyMapService.getPropertyMapByKey("jsapiticketMainurl").get("propval");
-//        String jsapiticketTicket = (String) propertyMapService.getPropertyMapByKey("jsapiticketTicket").get("propval");
-//        String jsapiticketSignaturet = (String) propertyMapService.getPropertyMapByKey("jsapiticketSignaturet").get("propval");
-
-//        String appid = BasePropertyDate.WX_APPID;
-//        String secret = BasePropertyDate.WX_SECRET;
         if (StringUtil.isNotEmpty(mobelPhone)) {
             Map<String, Object> param = new HashMap<String, Object>();
             param.put("MobelPhone", mobelPhone);
@@ -118,17 +107,13 @@ public class HomeController extends BaseController {
         }
 
         GetSignatureUrl signatureUrl = new GetSignatureUrl();
-        Map<String, Object> map = signatureUrl.getSignature(mobelPhone);
+        String mainurl = "http://s-357114.gotocdn.com/smart_home/client/home?action=addGetway&mobelPhone="+mobelPhone;
+        Map<String, Object> map = signatureUrl.getSignature(mainurl);
         String appid = BasePropertyDate.WX_APPID;
         mav.addObject("appid", appid);
         mav.addObject("noncestr", map.get("noncestr"));
         mav.addObject("timestamp", map.get("timestamp"));
         mav.addObject("signaturet", map.get("signaturet"));
-
-//        mav.addObject("appid", appid);
-//        mav.addObject("noncestr", jsapiticketNnoncestr);
-//        mav.addObject("timestamp", jsapiticketTimestamp);
-//        mav.addObject("signaturet", jsapiticketSignaturet);
         return mav;
     }
 
