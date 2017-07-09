@@ -44,7 +44,7 @@
         <!-- 是否在自动回收超时连接的时候打印连接的超时错误  -->
         <property name="logAbandoned" value="true" />
         <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
-        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <property name="minEvictableIdleTimeMillis" value="100" />
         <!--是否缓存preparedStatement，也就是PSCache。-->
         <!--PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭-->
         <!--<property name="poolPreparedStatements" value="false" />-->
@@ -68,6 +68,9 @@
         监控统计用的filter:stat日志用的filter:log4j防御sql注入的filter:wall-->
         <property name="filters" value="stat" />
     </bean>
+
+
+
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSourceDruid" />
         <!-- mybatis配置xml路径 -->
@@ -117,5 +120,20 @@
     <bean id="wrappedDataSourcet" class="net.bull.javamelody.SpringDataSourceFactoryBean">
         <property name="targetName" value="dataSourceDruid" />
     </bean>
+
+    <!--druid spring monitor setting -->
+    <!--<bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor" />-->
+    <!--<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">-->
+        <!--<property name="patterns">-->
+            <!--<list>-->
+                <!--<value>com.atat.property.action.*</value>-->
+                <!--<value>com.atat.property.service.*</value>-->
+                <!--<value>com.atat.property.dao.*</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--<aop:config proxy-target-class="true">-->
+        <!--<aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />-->
+    <!--</aop:config>-->
 
 </beans>

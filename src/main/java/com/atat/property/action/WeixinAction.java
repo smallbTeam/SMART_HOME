@@ -92,82 +92,17 @@ public class WeixinAction {
                     String errmsg = (String) jsapiResMap.get("errmsg");
                     String ticket = (String) jsapiResMap.get("ticket");
                     Integer expires_in_jsapi = (Integer) jsapiResMap.get("expires_in");
-//                    if (StringUtil.isNotEmpty(ticket)) {
-//                        // 校验签名用的参数 参与签名的字段包括noncestr（随机字符串）, 有效的jsapi_ticket,
-//                        // timestamp（时间戳）, url（当前网页的URL，不包含#及其后面部分）
-//                        // 随机字符串
-//                        String noncestr = UUID.randomUUID().toString().replaceAll("-", "");
-//                        // 时间戳
-//                        String timestamp = String.valueOf(new Date().getTime());
-//                        String mainurl = "http://s-357114.gotocdn.com/smart_home/client/home?action=addGetway";
-//                        // 获取签名
-//                        String str1 = "jsapi_ticket="+ticket+"&noncestr="+noncestr+"&timestamp="+timestamp+"&url="+mainurl;
-//                        logger.info("\n\n\n\n\nstr1:"+str1+"\n\n\n\n\n\n");
-//                        // signature
-//                        String signature = "";
-//                        try {
-//                            signature = sha1(str1);
-//                            logger.info("\n\n\n\n\nsignature:"+signature+"\n\n\n\n\n\n");
-//                            // 保存时间戳
-//                            Map<String, Object> jsapiticket_timestamp = new HashMap<String, Object>();
-//                            jsapiticket_timestamp.put("propertyMapKey", "jsapiticketTimestamp");
-//                            propList = propertyMapService.selectPropertyMapList(jsapiticket_timestamp);
-//                            if (CollectionUtil.isNotEmpty(propList)) {
-//                                jsapiticket_timestamp.put("propval", timestamp);
-//                                propertyMapService.updatePropertyMapByKey(jsapiticket_timestamp);
-//                            }
-//                            else {
-//                                propertyMapService.addPropertyMap(jsapiticket_timestamp);
-//                            }
-//                            // 保存随机字符串
-//                            Map<String, Object> jsapiticket_noncestr = new HashMap<String, Object>();
-//                            jsapiticket_noncestr.put("propertyMapKey", "jsapiticketNnoncestr");
-//                            propList = propertyMapService.selectPropertyMapList(jsapiticket_noncestr);
-//                            if (CollectionUtil.isNotEmpty(propList)) {
-//                                jsapiticket_noncestr.put("propval", noncestr);
-//                                propertyMapService.updatePropertyMapByKey(jsapiticket_noncestr);
-//                            }
-//                            else {
-//                                propertyMapService.addPropertyMap(jsapiticket_noncestr);
-//                            }
-//                            // 保存url
-//                            Map<String, Object> jsapiticket_mainurl = new HashMap<String, Object>();
-//                            jsapiticket_mainurl.put("propertyMapKey", "jsapiticketMainurl");
-//                            propList = propertyMapService.selectPropertyMapList(jsapiticket_mainurl);
-//                            if (CollectionUtil.isNotEmpty(propList)) {
-//                                jsapiticket_mainurl.put("propval", mainurl);
-//                                propertyMapService.updatePropertyMapByKey(jsapiticket_mainurl);
-//                            }
-//                            else {
-//                                propertyMapService.addPropertyMap(jsapiticket_mainurl);
-//                            }
-                            // 保存ticket
-                            Map<String, Object> jsapiticket_ticket = new HashMap<String, Object>();
-                            jsapiticket_ticket.put("propertyMapKey", "jsapiticketTicket");
-                            propList = propertyMapService.selectPropertyMapList(jsapiticket_ticket);
-                            if (CollectionUtil.isNotEmpty(propList)) {
-                                jsapiticket_ticket.put("propval", ticket);
-                                propertyMapService.updatePropertyMapByKey(jsapiticket_ticket);
-                            }
-                            else {
-                                propertyMapService.addPropertyMap(jsapiticket_ticket);
-                            }
-//                            // 保存signature
-//                            Map<String, Object> jsapiticket_signature = new HashMap<String, Object>();
-//                            jsapiticket_signature.put("propertyMapKey", "jsapiticketSignaturet");
-//                            propList = propertyMapService.selectPropertyMapList(jsapiticket_signature);
-//                            if (CollectionUtil.isNotEmpty(propList)) {
-//                                jsapiticket_signature.put("propval", signature);
-//                                propertyMapService.updatePropertyMapByKey(jsapiticket_signature);
-//                            }
-//                            else {
-//                                propertyMapService.addPropertyMap(jsapiticket_signature);
-//                            }
-//                        }
-//                        catch (NoSuchAlgorithmException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
+                    // 保存ticket
+                    Map<String, Object> jsapiticket_ticket = new HashMap<String, Object>();
+                    jsapiticket_ticket.put("propertyMapKey", "jsapiticketTicket");
+                    propList = propertyMapService.selectPropertyMapList(jsapiticket_ticket);
+                    if (CollectionUtil.isNotEmpty(propList)) {
+                        jsapiticket_ticket.put("propval", ticket);
+                        propertyMapService.updatePropertyMapByKey(jsapiticket_ticket);
+                    }
+                    else {
+                        propertyMapService.addPropertyMap(jsapiticket_ticket);
+                    }
                 }
                 catch (Exception e) {
                     logger.error("[微信平台get请求jsapiTicket][Http请求异常" + e.getMessage() + "]", e);

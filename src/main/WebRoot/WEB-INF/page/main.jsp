@@ -13,7 +13,7 @@
     <%--引入基础设置--%>
     <%@include file="/page/common/jsp/baseInclude.jsp" %>
     <title>设备列表</title>
-        <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
+    <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
     <!-- home部分通用css -->
     <link rel="stylesheet" type="text/css" href="${path}/page/css/main.css">
     <style>
@@ -91,263 +91,73 @@
             "token": '${account.Token}'
         };
         $(function () {
-            alert("登录手机号：["+account.mobelPhone+"]");
+            alert("登录手机号：[" + account.mobelPhone + "]");
+
         });
 
     </script>
 
     <script>
-
-        var gatewayArray;
-        var deviceArray;
-        var current_gateway;
-
-        // 数据请求
-        function refresh() {
-            gatewayArray = new Array();
-            deviceArray = new Array();
-
-            $.ajax({
-                url: "${path}/client/home?action=getGatewayListByCustomerId",
-                type: "GET",
-                data: {
-                    customerId: account.id
-                },
-                dataType: "json",
-                success: function (result) {
-//                        console.log(result);
-                    if (result.result == "success") {
-//                            alert("itemId:"+JSON.stringify(result));
-                        var jsons = result.operationResult;
-                        for (var i in jsons) {
-                            var item = jsons[i];
-//                                alert("item:"+item.gatewayDeviceID);
-                            var gatewayItem = {
-                                "id": item.gatewayDeviceID,
-//                                        "gatewayPort": item.gatewayPort,
-//                                        "ip": item.address,
-                                "address": item.address
-//                                        "modifiedDate": item.modifiedDate,
-//                                        "reserve": item.reserve
-                            };
-                            if ($.inArray(gatewayItem, gatewayArray) == -1) {
-                                alert("gatewayItem"+JSON.stringify(gatewayItem));
-                                gatewayArray.push(gatewayItem);
-                                $("#leftM").prepend('<li id="gateWayId_' + gatewayItem.id + '"><a href="#">' + gatewayItem.address + '</a></li>');
-                                $('#gateWayId_' + gatewayItem.id).click(function () {
-                                    $("#devicelistPanel").empty();
-                                    var id = $(this).attr("id").split("_")[1];
-
-//                                        }
-                                    $('#leftM').slideUp("slow");
-
-                                    for (var i in gatewayArray){
-                                        if (gatewayArray[i].id == id) {
-//                                                alert(current_gateway.id);
-                                            current_gateway = gatewayArray[i];
-                                            reloadPageContent(current_gateway);
-                                        }
-                                    }
-
-                                });
-                            }
-                        }
-
-                        if (gatewayArray.length > 0) {
-
-//                                alert(current_gateway.id);
-                            current_gateway = gatewayArray[0];
-                            alert("gatewayItemID"+current_gateway.id);
-                            reloadPageContent(current_gateway);
-                        }
-                        if (!isExist("#gateWayId_nomore")) {
-                            $("#leftM").append('<li id="gateWayId_nomore"><a href="#">没有更多数据了哦！</a></li>');
-                        }
-                    } else {
-                        layer.alert(result.error);
-                        $("#leftM").append('<li id="gateWayId_nomore"><a href="#">没有更多数据了哦！</a></li>');
-
-                    }
-                },
-                error: function () {
-                    layer.error();
-                    $("#leftM").append('<li id="gateWayId_nomore"><a href="#">没有更多数据了哦！</a></li>');
-
-                }
-            });
-
-        }
-
-
-        //        网关切换，页面数据重新加载
-        function reloadPageContent(gateway) {
-            if (!gateway) {
-                return;
-            }
-            $("#page-content").css("display", "block");
-            $("#nodata").css("display", "none");
-            $("#gatewayIP").html(gateway.address);
-            $("#gatewayName").html(gateway.address);
-            $("#gatewayStatus").html("isOn");
-
-            $.ajax({
-                url: "${path}/client/home?action=getDeviceListByGatewayId",
-                type: "GET",
-                data: {
-                    gatewayDeviceID: gateway.id
-                },
-                dataType: "json",
-                success: function (result) {
-                    if (result.result == "success") {
-                        var wenduval = "温度：";
-                        var shiduval = "空气湿度：";
-                        var pm = "PM2.5：";
-                        for (var i in result.operationResult) {
-                            var itemD = result.operationResult[i];
-                            console.log("设备信息："+JSON.stringify(itemD));
-//                            alert("itm:"+itemD.id);
-                            if (itemD.deviceTypeName == "wendu") {
-                                wenduval += itemD.DeviceData;
-                            } else if (itemD.deviceTypeName == "shidu") {
-                                shiduval += itemD.DeviceData;
-                            } else if (itemD.deviceTypeName == "pm") {
-                                pm += itemD.DeviceData;
-                            } else {
-                                var deviceItem = {
-                                    "deviceTypeAttention": itemD.deviceTypeAttention,
-                                    "DeviceData": itemD.DeviceData,
-                                    "deviceTypeId": itemD.deviceTypeId,
-                                    "DeviceNo": itemD.DeviceNo,
-                                    "gatewayIP": itemD.gatewayIP,
-                                    "deviceTypeName": itemD.deviceTypeName,
-                                    "gatewayGatewayPort": itemD.gatewayGatewayPort,
-                                    "id": itemD.id,
-                                    "deviceGetwayId": itemD.deviceGetwayId,
-                                    "deviceName": itemD.deviceName,
-                                    "deviceTypeModel": itemD.deviceTypeModel,
-                                    "deviceTypeDescribtion": itemD.deviceTypeDescribtion,
-                                    "deviceState": itemD.deviceState
-                                };
-
-                                if ($.inArray(deviceItem, deviceArray) == -1) {
-
-                                    deviceArray.push(deviceItem);
-                                    //向设备列表区域添加每条设备信息
-                                    var html = '<div id="list-content_' + deviceItem.id + '" class="list-content">' +
-                                        '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ">' +
-                                        '<div class="list-item">' +
-                                        '<div class="list-item-content">' +
-                                        '<div class="leftContent">' +
-                                        '<div id="deviceMenu_' + deviceItem.id + '" class="device-menu">' +
-                                        '<img src="${path}/page/img/icon/ison.png"/>' +
-                                        '</div>' +
-                                        ' <span id="deviceStatus_' + deviceItem.id + '" class="subtitle">状态：开启中</span>' +
-                                        '</div>' +
-                                        '<div class="rightContent">' +
-                                        '<div class="topLabel">' +
-                                        '<div class="title">海尔变频空调</div>' +
-                                        '<span class="subline">型号：x30698</span>' +
-                                        '<span class="subline">设备编号：0102030</span>' +
-                                        '<span class="contentline">设备状态：良好</span>' +
-                                        '<br/>' +
-                                        '<span class="contentline">设备类型：空调</span>' +
-                                        '<br/>' +
-                                        '<span class="contentline">设备类型：空调</span>' +
-                                        '</div>' +
-                                        '<div class="bottomLabel ">' +
-                                        '<div class="bottomLabel-item pull-left"><img src="${path}/page/img/icon/blue.png"/><span>正常</span></div>' +
-                                        '<div class="bottomLabel-item pull-left"><img src="${path}/page/img/icon/blue.png"/><span>18c</span></div>' +
-                                        '<div class="bottomLabel-item pull-left"><img src="${path}/page/img/icon/blue.png"/><span>100</span></div>' +
-                                        '</div>' +
-                                        '<div class="list-item-hover">' +
-                                        '<div id="delete_' + deviceItem.id + '" class="item-icon ">' +
-                                        '<img src="${path}/page/img/icon/delete.png" alt="img30"/>' +
-                                        '<span>删除</span>' +
-                                        '</div>' +
-                                        '<div id="edit_' + deviceItem.id + '" class="item-icon ">' +
-                                        '<img src="${path}/page/img/icon/edit.png" alt="img30"/>' +
-                                        '<span>编辑</span>' +
-                                        '</div>' +
-                                        '<div id="detail_' + deviceItem.id + '" class="item-icon ">' +
-                                        '<img src="${path}/page/img/icon/detail.png" alt="img30"/>' +
-                                        '<span>详情</span>' +
-                                        '</div>' +
-                                        '  </div>' +
-                                        ' </div>' +
-                                        ' </div>' +
-                                        '</div>' +
-                                        '</div><!--list-content col-xs-12 -->' +
-                                        '</div><!--list-content -->';
-
-                                    $("#devicelistPanel").append(html);
-                                    $('#delete_' + deviceItem.id).click(function () {
-//                                alert("delete:list-content_"+$(this).attr("id").split("_")[1]);
-
-                                        var id = $(this).attr("id").split("_")[1];
-                                        $.ajax({
-                                            url: "${path}/client/home?action=delDeviceById",
-                                            data: {
-                                                DeviceId: id
-                                            },
-                                            success: function (msg) {
-                                                if (msg.result == "success") {
-                                                    $("#list-content_" + id).remove();
-
-                                                }else{
-                                                    layer.msg("删除失败");
-                                                }
-                                            },
-                                            error: function () {
-                                                layer.msg("删除失败");
-                                            }
-                                        });
-                                    });
-                                    $('#edit_' + deviceItem.id).click(function () {
-                                        var id = $(this).attr("id").split("_")[1];
-                                    });
-
-                                    $('#detail_' + deviceItem.id).click(function () {
-                                        var id = $(this).attr("id").split("_")[1];
-                                        window.location.href = "${path}/client/home?action=deviceList&deviceId=" + id;
-                                    });
-                                    $('#deviceMenu_' + deviceItem.id).click(function () {
-                                        var id = $(this).attr("id").split("_").last();
-                                    });
-                                }
-                            }
-                        }
-                        $('#device_shidu_info').html(shiduval);
-                        $('#device_wendu_info').html(wenduval);
-                        $('#device_pm_info').html(pm);
-                    }
-
-                    if (!isExist("#btnadddevice")) {
-                        var btnadddevice = '<div id="btnadddevice" class="list-content">' +
-                            '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ">' +
-                            '<div id="btn-adddevice" class="btn-adddevice">' + '' +
-                            '<button >添加设备' +
-                            '</button>' +
-                            '</div>' +
-                            '</div><!--list-content col-xs-12 -->' +
-                            '</div><!--list-content -->';
-                        $("#devicelistPanel").append(btnadddevice);
-                        $("#btn-adddevice").click(function () {
-                            addDevice();
-                        });
-                    }
-                },
-                error: function () {
-                    layer.error();
-                }
-            });
-
-        }
-
-
         $(document).ready(function () {
+            alert("come into main");
+//           webscoket
+            var ws = null;
+
+//                网关列表数组
+            var gatewayArray = new Array();
+            var deviceArray = new Array();
+            var current_gateway;
+
             $("#openAirKiss_btn").click(function () {
                 window.location.href = "${path}/client/home?action=openWifiScan&mobelPhone=" + account.mobelPhone;
             });
+
+//            webscoket
+            function WebSocketTest() {
+                if ('WebSocket' in window) {
+                    ws = new WebSocket('ws://s-357114.gotocdn.com/smart_home/webSocketServer');
+//                    ws = new WebSocket('ws://127.0.0.1:9080/smarthome/webSocketServer');
+                      //ws = new WebSocket('ws://localhost:8080/smarthome/webSocketServer');
+                }
+                else if ('MozWebSocket' in window) {
+                    ws = new MozWebSocket("ws://s-357114.gotocdn.com/smart_home/webSocketServer");
+                }
+                else {
+                    ws = new SockJS("http://s-357114.gotocdn.com/smart_home/sockjs/webSocketServer");
+                }
+                // 打开一个 web socket
+                ws.onopen = function () {
+                    // Web Socket 已连接上，使用 send() 方法发送数据
+                };
+
+                ws.onmessage = function (evt) {
+                    var msg = evt.data;
+                    alert("msg:" + msg);
+                    var jsonmsg = JSON.parse(msg);
+                    $("#device_pm_info").html(jsonmsg.pm);
+                    $("#device_shidu_info").html(jsonmsg.shidu);
+                    $("#device_wendu_info").html(jsonmsg.wendu);
+                };
+
+                ws.onclose = function () {
+
+                };
+
+            }
+
+            window.onbeforeunload = function () {
+                ws.close();
+            };
+            WebSocketTest();
+
+//                假数据
+//                account.id = '58';
+//                account.mobelPhone = '13652091037';
+//                var index = layer.load(1, {
+//                    shade: [0.1,'#fff'] //0.1透明度的白色背景
+//                });
+            var deviceId="1";
+            var signalId="1";
 
 
             $('.dropDown').mouseleave(function () {
@@ -357,8 +167,261 @@
 
             });
 
+
+//        网关切换，页面数据重新加载
+            function reloadPageContent(gateway) {
+                if (!gateway) {
+                    return;
+                }
+                $("#page-content").css("display", "block");
+                $("#nodata").css("display", "none");
+                $("#gatewayIP").html(gateway.address);
+                $("#gatewayName").html(gateway.address);
+                $("#gatewayStatus").html("isOn");
+                $("#devicelistPanel").empty();
+
+                deviceArray = new Array();
+                $.ajax({
+                    url: "${path}/client/home?action=getDeviceListByGatewayId",
+                    type: "GET",
+                    data: {
+                        gatewayDeviceID: gateway.id
+                    },
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.result == "success") {
+                            var wenduval = "温度：";
+                            var shiduval = "空气湿度：";
+                            var pm = "PM2.5：";
+                            for (var i in result.operationResult) {
+                                var itemD = result.operationResult[i];
+                                console.log("设备信息：" + JSON.stringify(itemD));
+//                            alert("itm:"+itemD.id);
+                                if (itemD.deviceTypeName == "wendu") {
+                                    wenduval += itemD.DeviceData;
+                                } else if (itemD.deviceTypeName == "shidu") {
+                                    shiduval += itemD.DeviceData;
+                                } else if (itemD.deviceTypeName == "pm") {
+                                    pm += itemD.DeviceData;
+                                } else {
+                                    var deviceItem = {
+                                        "deviceTypeAttention": itemD.deviceTypeAttention,
+                                        "DeviceData": itemD.DeviceData,
+                                        "deviceTypeId": itemD.deviceTypeId,
+                                        "DeviceNo": itemD.DeviceNo,
+                                        "gatewayIP": itemD.gatewayIP,
+                                        "deviceTypeName": itemD.deviceTypeName,
+                                        "gatewayGatewayPort": itemD.gatewayGatewayPort,
+                                        "id": itemD.id,
+                                        "deviceGetwayId": itemD.deviceGetwayId,
+                                        "deviceName": itemD.deviceName,
+                                        "deviceTypeModel": itemD.deviceTypeModel,
+                                        "deviceTypeDescribtion": itemD.deviceTypeDescribtion,
+                                        "deviceState": itemD.deviceState
+                                    };
+
+                                    if ($.inArray(deviceItem, deviceArray) == -1) {
+
+                                        deviceArray.push(deviceItem);
+                                        //向设备列表区域添加每条设备信息
+                                        var html = '<div id="list-content_' + deviceItem.id + '" class="list-content">' +
+                                            '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ">' +
+                                            '<div class="list-item">' +
+                                            '<div class="list-item-content">' +
+                                            '<div class="leftContent">' +
+                                            '<div id="deviceMenu_' + deviceItem.id + '" class="device-menu">' +
+                                            '<img src="${path}/page/img/icon/ison.png"/>' +
+                                            '</div>' +
+                                            ' <span id="deviceStatus_' + deviceItem.id + '" class="subtitle">状态：开启中</span>' +
+                                            '</div>' +
+                                            '<div class="rightContent">' +
+                                            '<div class="topLabel">' +
+                                            '<div class="title">海尔变频空调</div>' +
+                                            '<span class="subline">型号：x30698</span>' +
+                                            '<span class="subline">设备编号：0102030</span>' +
+                                            '<span class="contentline">设备状态：良好</span>' +
+                                            '<br/>' +
+                                            '<span class="contentline">设备类型：空调</span>' +
+                                            '<br/>' +
+                                            '<span class="contentline">设备类型：空调</span>' +
+                                            '</div>' +
+                                            '<div class="bottomLabel ">' +
+                                            '<div class="bottomLabel-item pull-left"><img src="${path}/page/img/icon/blue.png"/><span>正常</span></div>' +
+                                            '<div class="bottomLabel-item pull-left"><img src="${path}/page/img/icon/blue.png"/><span>18c</span></div>' +
+                                            '<div class="bottomLabel-item pull-left"><img src="${path}/page/img/icon/blue.png"/><span>100</span></div>' +
+                                            '</div>' +
+                                            '<div class="list-item-hover">' +
+                                            '<div id="delete_' + deviceItem.id + '" class="item-icon ">' +
+                                            '<img src="${path}/page/img/icon/delete.png" alt="img30"/>' +
+                                            '<span>删除</span>' +
+                                            '</div>' +
+                                            '<div id="edit_' + deviceItem.id + '" class="item-icon ">' +
+                                            '<img src="${path}/page/img/icon/edit.png" alt="img30"/>' +
+                                            '<span>编辑</span>' +
+                                            '</div>' +
+                                            '<div id="detail_' + deviceItem.id + '" class="item-icon ">' +
+                                            '<img src="${path}/page/img/icon/detail.png" alt="img30"/>' +
+                                            '<span>详情</span>' +
+                                            '</div>' +
+                                            '  </div>' +
+                                            ' </div>' +
+                                            ' </div>' +
+                                            '</div>' +
+                                            '</div><!--list-content col-xs-12 -->' +
+                                            '</div><!--list-content -->';
+
+                                        $("#devicelistPanel").append(html);
+                                        $('#delete_' + deviceItem.id).click(function () {
+//                                alert("delete:list-content_"+$(this).attr("id").split("_")[1]);
+
+                                            var id = $(this).attr("id").split("_")[1];
+                                            $.ajax({
+                                                url: "${path}/client/home?action=delDeviceById",
+                                                data: {
+                                                    DeviceId: id
+                                                },
+                                                success: function (msg) {
+                                                    if (msg.result == "success") {
+                                                        $("#list-content_" + id).remove();
+
+                                                    } else {
+                                                        layer.msg("删除失败");
+                                                    }
+                                                },
+                                                error: function () {
+                                                    layer.msg("删除失败");
+                                                }
+                                            });
+                                        });
+                                        $('#edit_' + deviceItem.id).click(function () {
+                                            var id = $(this).attr("id").split("_")[1];
+                                            var index = -1;
+                                            for (var i in deviceArray){
+                                                if(id == deviceArray[i].id){
+                                                    index = i;
+                                                }
+                                            }
+                                            if (index == -1) return;
+                                            addDevice(false,deviceArray[index]);
+                                        });
+
+                                        $('#detail_' + deviceItem.id).click(function () {
+                                            var id = $(this).attr("id").split("_")[1];
+                                            window.location.href = "${path}/client/home?action=deviceList&deviceId=" + id;
+                                        });
+                                        $('#deviceMenu_' + deviceItem.id).click(function () {
+                                            var id = $(this).attr("id").split("_").last();
+                                        });
+                                    }
+                                }
+                            }
+                            $('#device_shidu_info').html(shiduval);
+                            $('#device_wendu_info').html(wenduval);
+                            $('#device_pm_info').html(pm);
+                        }
+
+                        if (!isExist("#btnadddevice")) {
+                            var btnadddevice = '<div id="btnadddevice" class="list-content">' +
+                                '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ">' +
+                                '<div id="btn-adddevice" class="btn-adddevice">' + '' +
+                                '<button >添加设备' +
+                                '</button>' +
+                                '</div>' +
+                                '</div><!--list-content col-xs-12 -->' +
+                                '</div><!--list-content -->';
+                            $("#devicelistPanel").append(btnadddevice);
+                            $("#btn-adddevice").click(function () {
+                                addDevice(true,null);
+                            });
+                        }
+                    },
+                    error: function () {
+                        layer.error();
+                    }
+                });
+
+            }
+
+//        数据请求
+            function refresh() {
+                $.ajax({
+                    url: "${path}/client/home?action=getGatewayListByCustomerId",
+                    type: "GET",
+                    data: {
+                        customerId: account.id
+                    },
+                    dataType: "json",
+                    success: function (result) {
+//                        console.log(result);
+                        if (result.result == "success") {
+//                            alert("itemId:"+JSON.stringify(result));
+                            var jsons = result.operationResult;
+                            for (var i in jsons) {
+                                var item = jsons[i];
+//                                alert("item:"+item.gatewayDeviceID);
+                                var gatewayItem = {
+                                    "id": item.gatewayDeviceID,
+//                                        "gatewayPort": item.gatewayPort,
+//                                        "ip": item.address,
+                                    "address": item.address
+//                                        "modifiedDate": item.modifiedDate,
+//                                        "reserve": item.reserve
+                                };
+                                if ($.inArray(gatewayItem, gatewayArray) == -1) {
+                                    alert("gatewayItem" + JSON.stringify(gatewayItem));
+                                    gatewayArray.push(gatewayItem);
+                                    $("#leftM").prepend('<li id="gateWayId_' + gatewayItem.id + '"><a href="#">' + gatewayItem.address + '</a></li>');
+                                    $('#gateWayId_' + gatewayItem.id).click(function () {
+                                        $("#devicelistPanel").empty();
+                                        var id = $(this).attr("id").split("_")[1];
+
+//                                        if ($('#rightM').slideDown){
+//                                            $('#rightM').slideUp("slow");
+//                                        }
+                                        $('#leftM').slideUp("slow");
+
+                                        for (var i in gatewayArray) {
+                                            if (gatewayArray[i].id == id) {
+//                                                alert(current_gateway.id);
+                                                current_gateway = gatewayArray[i];
+                                                ws.send(current_gateway.id);
+                                                reloadPageContent(current_gateway);
+                                            }
+                                        }
+
+                                    });
+                                }
+                            }
+
+                            if (gatewayArray.length > 0) {
+
+//                                alert(current_gateway.id);
+                                current_gateway = gatewayArray[0];
+                                alert("gatewayItemID" + current_gateway.id);
+                                ws.send(current_gateway.id);
+                                reloadPageContent(current_gateway);
+                            }
+                            if (!isExist("#gateWayId_nomore")) {
+                                $("#leftM").append('<li id="gateWayId_nomore"><a href="#">没有更多数据了哦！</a></li>');
+                            }
+                        } else {
+                            layer.alert(result.error);
+                            $("#leftM").append('<li id="gateWayId_nomore"><a href="#">没有更多数据了哦！</a></li>');
+
+                        }
+                    },
+                    error: function () {
+                        layer.error();
+                        $("#leftM").append('<li id="gateWayId_nomore"><a href="#">没有更多数据了哦！</a></li>');
+
+                    }
+                });
+
+            }
+
             //请求页面数据
             refresh();
+
 
             function addDeviceDialog(deviceTypes) {
                 var dialog = '<div id="addDeviceDialog" class="box">' +
@@ -518,7 +581,7 @@
                 });
             }
 
-            function addDevice() {
+            function addDevice(isAdd,device) {
                 var deviceTypes = new Array();
                 $.ajax({
                     url: "${path}/client/home?action=getDeviceTypeList",
@@ -544,8 +607,11 @@
 
                                 deviceTypes.push(dt);
                             }
-                            addDeviceDialog(deviceTypes);
-
+                            if (isAdd) {
+                                addDeviceDialog(deviceTypes);
+                            } else {
+                                updateDeviceMsg(device, deviceTypes);
+                            }
                         } else {
                             layer.alert(result.error);
                         }
@@ -553,6 +619,126 @@
                     error: function () {
                         layer.msg("请求失败！");
                     }
+                });
+            }
+
+
+            //            更新设备信息
+            function updateDeviceMsg(device, deviceTypes) {
+                var dialog = '<div id="updateDeviceDialog" class="box">' +
+                    '<form role="form" >' +
+                    '<div class="form-group">' +
+                    '<label for="name">设备类型</label>' +
+                    '<select id="deviceTypeCurrent"  class="form-control" >';
+
+                var index = 0;
+                for (var i in deviceTypes) {
+                    dialog += '<option value="' + deviceTypes[i].id + '">' + deviceTypes[i].name + '</option>';
+                    if (deviceTypes[i].id == device.deviceTypeId) {
+                        index = i;
+                    }
+                }
+                dialog += '</select>';
+
+                dialog += '<div class="form-group">' +
+                    '</div>' +
+                    '<label for="name">设备名称</label>' +
+                    '<input type="text" class="form-control" id="update_gatewayName" placeholder="请输入设备名称" value="' + device.deviceName + '" required>' +
+                    '<label for="name">设备型号</label>' +
+                    '<input type="text" class="form-control" id="update_gatewayNo" placeholder="请输入设备型号"  value="' + device.DeviceNo + '" required>' +
+                    '</div>' +
+                    '</form>' +
+                    '</div>';
+
+
+                layer.confirm(dialog, {
+                    title: "修改信息",
+                    btn: ["更新"], //按钮
+                    width: "100%"
+                }, function () {
+                    $.ajax({
+                        url: "${path}/client/home?action=updateDeviceById",
+                        type: "GET",
+                        data: {
+                            customerId: account.id,
+                            Name: $("#update_gatewayName").val(),
+                            DeviceTypeId: $("#deviceTypeCurrent").val(),
+                            gatewayDeviceID: current_gateway.id,
+                            DeviceNo: $("#update_gatewayNo").val(),
+                            DeviceId: device.id,
+                            gatewayDeviceID: device.gatewayDeviceID
+
+                        },
+                        dataType: "json",
+                        success: function (result) {
+                            //console.log(result);
+                            if (result.result == "success") {
+                                layer.msg("更新成功")
+                                reloadPageContent(current_gateway);
+                                refresh();
+                            } else {
+                                layer.alert(result.error);
+                            }
+                        },
+                        error: function () {
+                            layer.msg("请求失败！");
+                        }
+                    });
+                });
+
+                $("#deviceTypeCurrent")[index].selected(true);
+            }
+
+            //更新网关信息，留用
+            function updateGateway(gateway) {
+                var dialog = '<div class="box">' +
+                    '<form >' +
+                    '<div class="form-group">' +
+                    '<label for="name">网关名称</label>' +
+                    '<input type="text" class="form-control" id="update_gatewayIP" placeholder="请输入网关IP地址" value="' + gateway.address + '" required>' +
+
+//                            '<label for="name">网关IP</label>'+
+//                            '<input type="text" class="form-control" id="add_gatewayIP" placeholder="请输入网关IP">'+
+
+                    '<label for="name">网关地址</label>' +
+                    '<input type="text" class="form-control" id="update_gatewayPort" placeholder="请输入网关端口" value="' + gateway.address + '"  required>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '</div>' +
+//                            '<div id="addGatewaySubmit" class="btn-default" >提交</div>'+
+                    '</form>' +
+                    '</div>';
+
+
+                layer.confirm(dialog, {
+                    title: "更新网关配置",
+                    btn: ["更新"], //按钮
+//                            width: "100%"
+                }, function () {
+                    $.ajax({
+                        url: "${path}/client/home?action=updateGateway",
+                        type: "GET",
+                        data: {
+                            customerId: account.id,
+                            address: $("#update_gatewayPort").val(),
+                            iP: $("#update_gatewayIP").val(),
+                            gatewayDeviceID: gateway.id
+                        },
+                        dataType: "json",
+                        success: function (result) {
+                            //console.log(result);
+                            if (result.result == "success") {
+                                layer.msg("更新成功");
+                                refresh();
+                            } else {
+                                layer.alert(result.error);
+                            }
+                        },
+                        error: function () {
+                            layer.msg("请求失败！");
+
+                        }
+                    });
                 });
             }
 
@@ -570,9 +756,19 @@
                 window.location.href = "${path}/client/account?action=personal&mobelPhone=" + account.mobelPhone;
             });
 
-        });
+            $('#device_shidu_item').click(function () {
+                window.location.href = "${path}/client/home?action=chartDetail&deviceId=" + deviceId + "&sinnalId=" + signalId;
+            });
 
-        window.setInterval('refresh()',10000);
+            $('#device_wendu_item').click(function () {
+                window.location.href = "${path}/client/home?action=chartDetail&deviceId=" + deviceId + "&sinnalId=" + signalId;
+            });
+
+            $('#device_pm_item').click(function () {
+                window.location.href = "${path}/client/home?action=chartDetail&deviceId=" + deviceId + "&sinnalId=" + signalId;
+            });
+
+        });
 
     </script>
 
@@ -641,18 +837,18 @@
                     <div class="row content">
                         <div class="col-xs-4">
                             <div class="item square">
-                                <img src="${path}/page/img/icon/settings.png">
+                                <img src="${path}/page/img/icon/settings.png" id="device_shidu_item">
                                 <span id="device_shidu_info">空气湿度：--%</span>
                             </div>
                         </div>
                         <div class="col-xs-4">
-                            <div class="item square">
+                            <div class="item square" id="device_wendu_item">
                                 <img src="${path}/page/img/icon/settings.png">
                                 <span id="device_wendu_info">温度：--</span>
                             </div>
                         </div>
                         <div class="col-xs-4">
-                            <div class="item square">
+                            <div class="item square" id="device_pm_item">
                                 <img src="${path}/page/img/icon/settings.png">
                                 <span id="device_pm_info">PM2.5：--%</span>
                             </div>

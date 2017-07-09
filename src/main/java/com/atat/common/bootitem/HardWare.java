@@ -10,25 +10,17 @@ public class HardWare {
 
     public HardWare (){};
 
-
-    private IoSession session;
     private String number;
+    private int count;
 
-    public HardWare(IoSession session) {
-        this.session = session;
+    public HardWare(int count) {
+        this.count = count;
     }
 
-    public HardWare(IoSession session, String number) {
-        this.session = session;
+
+    public HardWare(String number,int count) {
         this.number = number;
-    }
-
-    public IoSession getSession() {
-        return session;
-    }
-
-    public void setSession(IoSession session) {
-        this.session = session;
+        this.count = count;
     }
 
     public String getNumber() {
@@ -39,6 +31,13 @@ public class HardWare {
         this.number = number;
     }
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 
 
 }
