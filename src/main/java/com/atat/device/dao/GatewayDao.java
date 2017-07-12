@@ -20,7 +20,7 @@ public interface GatewayDao {
      * 依据主键更新
      * @param param
      */
-    public void  updateGatewayByGatewayDeviceID(Map<String, Object> param);
+    public void  updateGatewayBySerialNumber(Map<String, Object> param);
 
     /**
      * 依据条件查找列表
@@ -29,12 +29,16 @@ public interface GatewayDao {
      */
     public List<Map<String, Object>> selectGatewayList(Map<String, Object> param);
 
-    public List<Map<String, Object>> selectCustomerGatewayList(Map<String, Object> param);
-
     /**
      * 依据主键删除记录
-     * @param gatewayKey
+     * @param gatewayId
      */
-    public void  delGatewayByKey(Integer gatewayKey);
+    public void  delGatewayById(Long gatewayId);
+
+    /**
+     * 依据网关设备序号删除网关
+     * @param serialNumber
+     */
+    public void delGatewayBySerialNumber(String serialNumber);
 
 }

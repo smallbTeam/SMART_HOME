@@ -20,7 +20,7 @@ public interface PropertyMapDao {
      * 依据主键更新
      * @param param
      */
-    public void  updatePropertyMapByKey(Map<String, Object> param);
+    public void  updatePropertyMapById(Map<String, Object> param);
 
     /**
      * 依据条件查找列表
@@ -31,8 +31,8 @@ public interface PropertyMapDao {
 
     /**
      * 依据主键删除记录
-     * @param propertyMapKey
+     * @param propertyMapId
      */
-    public void  delPropertyMapByKey(String propertyMapKey);
+    public void  delPropertyMapById(String propertyMapId);
 
 }

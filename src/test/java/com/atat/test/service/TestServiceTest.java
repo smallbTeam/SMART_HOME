@@ -5,16 +5,9 @@
  */
 package com.atat.test.service;
 
-import com.atat.account.bean.Customer;
-import com.atat.account.service.ClientAccountService;
-import com.atat.common.util.JsonUtil;
-import com.github.pagehelper.PageInfo;
-import org.junit.Assert;
-import org.junit.Test;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.annotation.Resource;
 
 /**
  * @author ligw

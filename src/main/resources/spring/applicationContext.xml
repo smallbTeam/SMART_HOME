@@ -23,7 +23,7 @@
 
     <bean id="weixinAction" class="com.atat.property.action.WeixinAction"></bean>
     <bean id="propertyMapService" class="com.atat.property.service.impl.PropertyMapServiceImpl"></bean>
-    <bean id="deviceService" class="com.atat.device.service.impl.DeviceServiceImpl"></bean>
+    <bean id="deviceDataNowService" class="com.atat.device.service.impl.DeviceDataNowServiceImpl"></bean>
 
     <!-- 读取properties属性配置文件 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

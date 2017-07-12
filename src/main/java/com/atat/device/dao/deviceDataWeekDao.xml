@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atat.device.dao.DeviceDataWeekDao">
+
+    <insert id="addDeviceDataWeek" parameterType="java.util.Map">
+        INSERT INTO device_data_week
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                    recordTime,
+                <if test="deviceId != null">
+                    deviceId,
+                </if>
+                <if test="value != null">
+                    value,
+                </if>
+                <if test="categoryParameterId != null">
+                    categoryParameterId,
+                </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{recordTime},
+                <if test="deviceId != null">
+                    #{deviceId},
+                </if>
+                <if test="value != null">
+                    #{value},
+                </if>
+                <if test="categoryParameterId != null">
+                    #{categoryParameterId},
+                </if>
+        </trim>
+    </insert>
+
+
+    <select id="selectDeviceDataWeekList" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        select
+            deviceId deviceId,
+            value value,
+            categoryParameterId categoryParameterId,
+        recordTime deviceDataWeekId
+        from device_data_week
+        WHERE
+        1=1
+        <if test="deviceDataWeekId != null">
+            and recordTime =#{deviceDataWeekId}
+        </if>
+            <if test="deviceId != null">
+                and deviceId =#{deviceId}
+            </if>
+            <if test="value != null">
+                and value =#{value}
+            </if>
+            <if test="categoryParameterId != null">
+                and categoryParameterId =#{categoryParameterId}
+            </if>
+        ORDER BY recordTime ASC
+    </select>
+
+    <delete id="delDeviceDataWeekById" parameterType="java.lang.String">
+        DELETE FROM  device_data_week
+        where
+        recordTime = #{deviceDataWeekId}
+    </delete>
+
+</mapper>

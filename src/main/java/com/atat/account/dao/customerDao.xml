@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atat.account.dao.CustomerDao">
+
+    <insert id="addCustomer" parameterType="java.util.Map">
+        INSERT INTO customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="mobelPhone != null">
+                    mobelPhone,
+                </if>
+                <if test="password != null">
+                    password,
+                </if>
+                <if test="wxId != null">
+                    wxId,
+                </if>
+                <if test="nickName != null">
+                    nickName,
+                </if>
+                <if test="birthday != null">
+                    birthday,
+                </if>
+                <if test="sex != null">
+                    sex,
+                </if>
+                <if test="token != null">
+                    token,
+                </if>
+                    createdDate,
+                    modifiedDate,
+                    isDeleted,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="mobelPhone != null">
+                    #{mobelPhone},
+                </if>
+                <if test="password != null">
+                    #{password},
+                </if>
+                <if test="wxId != null">
+                    #{wxId},
+                </if>
+                <if test="nickName != null">
+                    #{nickName},
+                </if>
+                <if test="birthday != null">
+                    #{birthday},
+                </if>
+                <if test="sex != null">
+                    #{sex},
+                </if>
+                <if test="token != null">
+                    #{token},
+                </if>
+               now(),now(),0
+        </trim>
+    </insert>
+
+    <update id="updateCustomerById" parameterType="java.util.Map">
+        update customer
+        <trim prefix="set" suffixOverrides=",">
+                <if test="mobelPhone != null">
+                    mobelPhone =#{mobelPhone},
+                </if>
+                <if test="password != null">
+                    password =#{password},
+                </if>
+                <if test="wxId != null">
+                    wxId =#{wxId},
+                </if>
+                <if test="nickName != null">
+                    nickName =#{nickName},
+                </if>
+                <if test="birthday != null">
+                    birthday =#{birthday},
+                </if>
+                <if test="sex != null">
+                    sex =#{sex},
+                </if>
+                <if test="token != null">
+                    token =#{token},
+                </if>
+                    modifiedDate = now(),
+                <if test="isDeleted != null">
+                    isDeleted =#{isDeleted},
+                </if>
+        </trim>
+        where id = #{customerId}
+    </update>
+
+    <select id="selectCustomerList" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        select
+            mobelPhone mobelPhone,
+            wxId wxId,
+            nickName nickName,
+            birthday birthday,
+            sex sex,
+            token token,
+            createdDate createdDate,
+            modifiedDate modifiedDate,
+            isDeleted isDeleted,
+        id customerId
+        from customer
+        WHERE
+        1=1
+        <if test="customerId != null">
+            and id =#{customerId}
+        </if>
+            <if test="mobelPhone != null">
+                and mobelPhone =#{mobelPhone}
+            </if>
+            <if test="password != null">
+                and password =#{password}
+            </if>
+            <if test="wxId != null">
+                and wxId =#{wxId}
+            </if>
+            <if test="nickName != null">
+                and nickName =#{nickName}
+            </if>
+            <if test="birthday != null">
+                and birthday =#{birthday}
+            </if>
+            <if test="sex != null">
+                and sex =#{sex}
+            </if>
+            <if test="token != null">
+                and token =#{token}
+            </if>
+            <if test="createdDate != null">
+                and createdDate =#{createdDate}
+            </if>
+            <if test="modifiedDate != null">
+                and modifiedDate =#{modifiedDate}
+            </if>
+            <if test="isDeleted != null">
+                and isDeleted =#{isDeleted}
+            </if>
+        ORDER BY id ASC
+    </select>
+
+    <delete id="delCustomerById" parameterType="java.lang.Integer">
+        DELETE FROM  customer
+        where
+        id = #{customerId}
+    </delete>
+
+</mapper>

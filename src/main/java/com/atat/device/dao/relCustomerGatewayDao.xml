@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atat.device.dao.RelCustomerGatewayDao">
+
+    <insert id="addRelCustomerGateway" parameterType="java.util.Map">
+        INSERT INTO rel_customer_gateway
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="customerId != null">
+                    customerId,
+                </if>
+                <if test="gatewaySerialNumber != null">
+                    gatewaySerialNumber,
+                </if>
+                <if test="isOnwer != null">
+                    isOnwer,
+                </if>
+                <if test="gatewayName != null">
+                    gatewayName,
+                </if>
+                    createdDate,
+                    modifiedDate,
+                    isDeleted
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="customerId != null">
+                    #{customerId},
+                </if>
+                <if test="gatewaySerialNumber != null">
+                    #{gatewaySerialNumber},
+                </if>
+                <if test="isOnwer != null">
+                    #{isOnwer},
+                </if>
+                <if test="gatewayName != null">
+                    #{gatewayName},
+                </if>
+            now(), now(), 0
+        </trim>
+    </insert>
+
+    <update id="updateRelCustomerGatewayById" parameterType="java.util.Map">
+        update rel_customer_gateway
+        <trim prefix="set" suffixOverrides=",">
+                <if test="customerId != null">
+                    customerId =#{customerId},
+                </if>
+                <if test="gatewaySerialNumber != null">
+                    gatewaySerialNumber =#{gatewaySerialNumber},
+                </if>
+                <if test="isOnwer != null">
+                    isOnwer =#{isOnwer},
+                </if>
+                <if test="gatewayName != null">
+                    gatewayName =#{gatewayName},
+                </if>
+                    modifiedDate = now(),
+                <if test="isDeleted != null">
+                    isDeleted =#{isDeleted},
+                </if>
+        </trim>
+        where id = #{relCustomerGatewayId}
+    </update>
+
+    <select id="selectRelCustomerGatewayList" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        select
+        rcg.customerId customerId,
+        rcg.gatewaySerialNumber gatewaySerialNumber,
+        rcg.isOnwer isOnwer,
+        rcg.gatewayName gatewayName,
+        rcg.createdDate createdDate,
+        rcg.modifiedDate modifiedDate,
+        rcg.id relCustomerGatewayId,
+        gaw.address address,
+        gaw.port port,
+        gaw.parameter parameter,
+        gaw.ip ip,
+        gaw.createdDate createdDate,
+        gaw.modifiedDate modifiedDate,
+        gaw.id gatewayId
+        from rel_customer_gateway rcg
+        LEFT JOIN gateway gaw on rcg.gatewaySerialNumber = gaw.serialNumber
+        WHERE
+        rcg.isDeleted = 0 and gaw.isDeleted = 0
+        <if test="relCustomerGatewayId != null">
+            and rcg.id =#{relCustomerGatewayId}
+        </if>
+            <if test="customerId != null">
+                and rcg.customerId =#{customerId}
+            </if>
+            <if test="gatewaySerialNumber != null">
+                and rcg.gatewaySerialNumber =#{gatewaySerialNumber}
+            </if>
+            <if test="isOnwer != null">
+                and rcg.isOnwer =#{isOnwer}
+            </if>
+            <if test="gatewayName != null">
+                and rcg.gatewayName =#{gatewayName}
+            </if>
+            <if test="createdDate != null">
+                and rcg.createdDate =#{createdDate}
+            </if>
+            <if test="modifiedDate != null">
+                and rcg.modifiedDate =#{modifiedDate}
+            </if>
+        ORDER BY rcg.id ASC
+    </select>
+
+    <delete id="delRelCustomerGatewayById" parameterType="java.lang.Long">
+        DELETE FROM  rel_customer_gateway
+        where
+        id = #{relCustomerGatewayId}
+    </delete>
+
+</mapper>

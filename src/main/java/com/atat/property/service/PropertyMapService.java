@@ -21,7 +21,7 @@ public interface PropertyMapService {
      * 依据主键更新
      * @param param
      */
-    public void  updatePropertyMapByKey(Map<String, Object> param);
+    public void  updatePropertyMapById(Map<String, Object> param);
 
     /**
      * 依据条件查找列表
@@ -41,15 +41,15 @@ public interface PropertyMapService {
             Integer pageSize);
 
     /**
-     * 依据Key查找详情
-     * @param propertyMapKey
+     * 依据Id查找详情
+     * @param propertyMapId
      * @return
      */
-    public Map<String, Object> getPropertyMapByKey(String propertyMapKey);
+    public Map<String, Object> getPropertyMapById(String propertyMapId);
 
     /**
-     * 依据Key删除记录
-     * @param propertyMapKey
+     * 依据Id删除记录
+     * @param propertyMapId
      */
-    public void delPropertyMapByKey(String propertyMapKey);
+    public void delPropertyMapById(String propertyMapId);
 }

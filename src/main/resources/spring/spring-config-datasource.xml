@@ -38,13 +38,13 @@
         如果需要可以通过配置useUnfairLock属性为true使用非公平锁。-->
         <property name="maxWait" value="${dataSource.maxWait}" />
         <!-- 是否自动回收超时连接  -->
-        <property name="removeAbandoned" value="true" />
+        <property name="removeAbandoned" value="false" />
         <!--超时时间(以秒数为单位)property -->
-        <property name="removeAbandonedTimeout" value="3600" />
+        <property name="removeAbandonedTimeout" value="30" />
         <!-- 是否在自动回收超时连接的时候打印连接的超时错误  -->
         <property name="logAbandoned" value="true" />
         <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
-        <property name="minEvictableIdleTimeMillis" value="100" />
+        <property name="minEvictableIdleTimeMillis" value="25200000" />
         <!--是否缓存preparedStatement，也就是PSCache。-->
         <!--PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭-->
         <!--<property name="poolPreparedStatements" value="false" />-->
@@ -56,9 +56,9 @@
         <!--如果validationQuery为null，testOnBorrow、testOnReturn、testWhileIdle都不会其作用。-->
         <property name="validationQuery" value="select 1 from dual" />
         <!--申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。-->
-        <property name="testOnBorrow" value="true" />
+        <property name="testOnBorrow" value="false" />
         <!--归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能-->
-        <!--<property name="testOnReturn" value="false" />-->
+        <property name="testOnReturn" value="false" />
         <!--建议配置为true，不影响性能，并且保证安全性。
         申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。-->
         <property name="testWhileIdle" value="true" />
@@ -66,10 +66,9 @@
         <property name="timeBetweenEvictionRunsMillis" value="60000" />
         <!--filters:属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：
         监控统计用的filter:stat日志用的filter:log4j防御sql注入的filter:wall-->
-        <property name="filters" value="stat" />
+        <!--<property name="filters" value="stat" />-->
+        <property name="filters" value="mergeStat" />
     </bean>
-
-
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSourceDruid" />
@@ -81,13 +80,15 @@
         <!-- <property name="typeAliases" value="org.springframework.util.LinkedCaseInsensitiveMap"
             /> -->
     </bean>
+    <!-- 配置sqlSessionTemplate -->
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 映射扫描路径 -->
         <property name="basePackage" value="com.atat.**.dao" />
         <!-- session工厂注入,如果多数据源情况下必写,防止注入失败 -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-        <!-- <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"
-            /> -->
     </bean>
     <!-- 数据库事务策略 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

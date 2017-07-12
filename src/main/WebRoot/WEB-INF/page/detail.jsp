@@ -236,7 +236,7 @@
         var deviceId = <%=request.getParameter("deviceId")%>;
 //        加载设备信息
         $.ajax({
-            url:"${path}/client/home?action=getDeviceByDeviceId",
+            url:"${path}/client/device?action=getDeviceByDeviceId",
             data: {
                 deviceId : deviceId
             },

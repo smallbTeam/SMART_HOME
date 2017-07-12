@@ -1,6 +1,7 @@
 package com.atat.common.bootitem;
 
 import com.atat.common.util.JsonUtil;
+import com.atat.device.service.DeviceDataNowService;
 import com.atat.device.service.DeviceService;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.session.IoSession;
@@ -29,7 +30,7 @@ public class MinaUtil {
     public static Map<String,Object> InPutMessageToString(String [] msg){
         Map map = new HashMap<String, Object>();
         map.put("devicenumber",msg[0]);
-        map.put("state",msg[1]);
+        //.put("state",msg[1]);
         map.put("wendu",StringToFloat(msg[2],"wendu"));
         map.put("shidu",StringToFloat(msg[3],"shidu"));
         map.put("pm",StringToFloat(msg[4],"pm"));
@@ -70,22 +71,26 @@ public class MinaUtil {
     public static void sendEnviTosql(Map<String, Object>  map){
 
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");// 此文件放在SRC目录下
-        DeviceService deviceService = (DeviceService) context.getBean("deviceService");
+        DeviceDataNowService deviceDataNowService = (DeviceDataNowService) context.getBean("deviceDataNowService");
 
-        //////向数据库传送数据
-				String gatewayDeviceID = (String) map.get("devicenumber");
+                //////向数据库传送数据
+				String gatewaySerialNumber = (String) map.get("devicenumber");
 				Iterator it = map.keySet().iterator();
 				while (it.hasNext()) {
 					String key = it.next().toString();//设备类型名称
-					Object value = map.get(key);//设备值
-					String valuestr = JsonUtil.toJson(value);
+					String value = JsonUtil.toJson((Object)map.get(key));//设备值
 					if (!"devicenumber".equals(key)){
 						//将设备信息存储到数据库
 						Map<String, Object> param = new HashMap<String, Object>();
-						param.put("gatewayDeviceID",gatewayDeviceID);
-						param.put("Name",key);
-						param.put("DeviceData",valuestr);
-						deviceService.addOrUpdateDeviceDataBydeviceTypeAndgateway(param);
+                        // 网关设备序号
+                        param.put("gatewaySerialNumber",gatewaySerialNumber);
+                        // 设备序号
+						param.put("seriaNumber",gatewaySerialNumber);
+                        // 属性code
+						param.put("code",key);
+                        // 值
+						param.put("value",value);
+                        deviceDataNowService.addDeviceData(param);
 					}
 				}
     }

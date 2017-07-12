@@ -24,8 +24,8 @@ public class PropertyMapServiceImpl implements PropertyMapService {
     }
 
     @Override
-    public void  updatePropertyMapByKey(Map<String, Object> param) {
-        propertyMapDao.updatePropertyMapByKey(param);
+    public void  updatePropertyMapById(Map<String, Object> param) {
+        propertyMapDao.updatePropertyMapById(param);
     }
 
     @Override
@@ -46,10 +46,10 @@ public class PropertyMapServiceImpl implements PropertyMapService {
     }
 
     @Override
-    public Map<String, Object> getPropertyMapByKey(String propertyMapKey) {
+    public Map<String, Object> getPropertyMapById(String propertyMapId) {
         Map<String, Object> propertyMapinfo = new HashMap<String, Object>();
         Map<String, Object> rs = new HashMap<String, Object>();
-        rs.put("propertyMapKey", propertyMapKey);
+        rs.put("propertyMapId", propertyMapId);
         List<Map<String, Object>> propertyMapList = propertyMapDao.selectPropertyMapList(rs);
         if ((null != propertyMapList) && (propertyMapList.size() > 0)) {
             propertyMapinfo = propertyMapList.get(0);
@@ -58,8 +58,8 @@ public class PropertyMapServiceImpl implements PropertyMapService {
     }
 
     @Override
-    public void delPropertyMapByKey(String propertyMapKey) {
-        propertyMapDao.delPropertyMapByKey(propertyMapKey);
+    public void delPropertyMapById(String propertyMapId) {
+        propertyMapDao.delPropertyMapById(propertyMapId);
     }
 
 }

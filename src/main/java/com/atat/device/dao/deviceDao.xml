@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atat.device.dao.DeviceDao">
+
+    <insert id="addDevice" parameterType="java.util.Map">
+        INSERT INTO device
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="seriaNumber != null">
+                    seriaNumber,
+                </if>
+                <if test="deviceCategoryId != null">
+                    deviceCategoryId,
+                </if>
+                <if test="gatewaySerialNumber != null">
+                    gatewaySerialNumber,
+                </if>
+                <if test="parentId != null">
+                    parentId,
+                </if>
+                <if test="state != null">
+                    state,
+                </if>
+                <if test="name != null">
+                    name,
+                </if>
+                    createdDate,
+                    modifiedDate,
+                    isDeleted
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="seriaNumber != null">
+                    #{seriaNumber},
+                </if>
+                <if test="deviceCategoryId != null">
+                    #{deviceCategoryId},
+                </if>
+                <if test="gatewaySerialNumber != null">
+                    #{gatewaySerialNumber},
+                </if>
+                <if test="parentId != null">
+                    #{parentId},
+                </if>
+                <if test="state != null">
+                    #{state},
+                </if>
+                <if test="name != null">
+                    #{name},
+                </if>
+            now(),now(), 0
+        </trim>
+    </insert>
+
+    <update id="updateDeviceById" parameterType="java.util.Map">
+        update device
+        <trim prefix="set" suffixOverrides=",">
+                <if test="seriaNumber != null">
+                    seriaNumber =#{seriaNumber},
+                </if>
+                <if test="deviceCategoryId != null">
+                    deviceCategoryId =#{deviceCategoryId},
+                </if>
+                <if test="gatewaySerialNumber != null">
+                    gatewaySerialNumber =#{gatewaySerialNumber},
+                </if>
+                <if test="parentId != null">
+                    parentId =#{parentId},
+                </if>
+                <if test="state != null">
+                    state =#{state},
+                </if>
+                <if test="name != null">
+                    name =#{name},
+                </if>
+                    modifiedDate =now(),
+                <if test="isDeleted != null">
+                    isDeleted =#{isDeleted},
+                </if>
+        </trim>
+        where id = #{deviceId}
+    </update>
+
+    <select id="selectDeviceList" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        select
+            seriaNumber seriaNumber,
+            deviceCategoryId deviceCategoryId,
+            gatewaySerialNumber gatewaySerialNumber,
+            parentId parentId,
+            state state,
+            name name,
+            createdDate createdDate,
+            modifiedDate modifiedDate,
+        id deviceId
+        from device
+        WHERE
+        isDeleted = 0
+        <if test="deviceId != null">
+            and id =#{deviceId}
+        </if>
+            <if test="seriaNumber != null">
+                and seriaNumber =#{seriaNumber}
+            </if>
+            <if test="deviceCategoryId != null">
+                and deviceCategoryId =#{deviceCategoryId}
+            </if>
+            <if test="gatewaySerialNumber != null">
+                and gatewaySerialNumber =#{gatewaySerialNumber}
+            </if>
+            <if test="parentId != null">
+                and parentId =#{parentId}
+            </if>
+            <if test="state != null">
+                and state =#{state}
+            </if>
+            <if test="name != null">
+                and name =#{name}
+            </if>
+            <if test="createdDate != null">
+                and createdDate =#{createdDate}
+            </if>
+            <if test="modifiedDate != null">
+                and modifiedDate =#{modifiedDate}
+            </if>
+        ORDER BY id ASC
+    </select>
+
+    <delete id="delDeviceById" parameterType="java.lang.Long">
+        DELETE FROM  device
+        where
+        id = #{deviceId}
+    </delete>
+
+</mapper>

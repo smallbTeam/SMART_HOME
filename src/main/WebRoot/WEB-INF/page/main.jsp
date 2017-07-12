@@ -81,14 +81,13 @@
             return false;
         }
         var account = {
-            "id": '${account.id}',
-            "mobelPhone": '${account.MobelPhone}',
-            "wxId": '${account.WxId}',
-            "nickName": '${account.NickName}',
-            "birthday": '${account.Birthday}',
-            "sex": '${account.Sex}',
-            "reserve": '${account.Reserve}',
-            "token": '${account.Token}'
+            "id": '${account.customerId}',
+            "mobelPhone": '${account.mobelPhone}',
+            "wxId": '${account.wxId}',
+            "nickName": '${account.nickName}',
+            "birthday": '${account.birthday}',
+            "sex": '${account.sex}',
+            "token": '${account.token}'
         };
         $(function () {
             alert("登录手机号：[" + account.mobelPhone + "]");
@@ -99,7 +98,6 @@
 
     <script>
         $(document).ready(function () {
-            alert("come into main");
 //           webscoket
             var ws = null;
 
@@ -117,7 +115,7 @@
                 if ('WebSocket' in window) {
                     ws = new WebSocket('ws://s-357114.gotocdn.com/smart_home/webSocketServer');
 //                    ws = new WebSocket('ws://127.0.0.1:9080/smarthome/webSocketServer');
-                      //ws = new WebSocket('ws://localhost:8080/smarthome/webSocketServer');
+                    //ws = new WebSocket('ws://localhost:8080/smarthome/webSocketServer');
                 }
                 else if ('MozWebSocket' in window) {
                     ws = new MozWebSocket("ws://s-357114.gotocdn.com/smart_home/webSocketServer");
@@ -156,8 +154,8 @@
 //                var index = layer.load(1, {
 //                    shade: [0.1,'#fff'] //0.1透明度的白色背景
 //                });
-            var deviceId="1";
-            var signalId="1";
+            var deviceId = "1";
+            var signalId = "1";
 
 
             $('.dropDown').mouseleave(function () {
@@ -175,34 +173,54 @@
                 }
                 $("#page-content").css("display", "block");
                 $("#nodata").css("display", "none");
-                $("#gatewayIP").html(gateway.address);
+                $("#gatewayIP").html(gateway.ip);
                 $("#gatewayName").html(gateway.address);
                 $("#gatewayStatus").html("isOn");
                 $("#devicelistPanel").empty();
 
                 deviceArray = new Array();
                 $.ajax({
-                    url: "${path}/client/home?action=getDeviceListByGatewayId",
+                    url: "${path}/client/device?action=getDeviceListByGatewayId",
                     type: "GET",
                     data: {
-                        gatewayDeviceID: gateway.id
+                        gatewaySerialNumber: gateway.id
                     },
                     dataType: "json",
                     success: function (result) {
                         if (result.result == "success") {
-                            var wenduval = "温度：";
-                            var shiduval = "空气湿度：";
-                            var pm = "PM2.5：";
                             for (var i in result.operationResult) {
                                 var itemD = result.operationResult[i];
-                                console.log("设备信息：" + JSON.stringify(itemD));
-//                            alert("itm:"+itemD.id);
-                                if (itemD.deviceTypeName == "wendu") {
-                                    wenduval += itemD.DeviceData;
-                                } else if (itemD.deviceTypeName == "shidu") {
-                                    shiduval += itemD.DeviceData;
-                                } else if (itemD.deviceTypeName == "pm") {
-                                    pm += itemD.DeviceData;
+                               // console.log("设备信息：" + JSON.stringify(itemD));
+                               // alert("itm:"+itemD.deviceId);
+                                if (itemD.deviceCategoryId == 1) {
+                                    var wenduval = "";
+                                    var shiduval = "";
+                                    var pm = "";
+                                    $.ajax({
+                                        url: "${path}/client/device?action=getDeviceByDeviceId",
+                                        type: "GET",
+                                        data: {
+                                            deviceId: itemD.deviceId
+                                        },
+                                        dataType: "json",
+                                        success: function (result) {
+                                            console.log("设备网管数据：" + JSON.stringify(result));
+                                            for (var j in result.operationResult.deviceDataList) {
+                                                var deviceData = result.operationResult.deviceDataList[j];
+                                                if (deviceData.categoryParameterId == 1) {
+                                                    wenduval += deviceData.name + ":" + deviceData.value + deviceData.unit;
+                                                    $('#device_wendu_info').html(wenduval);
+                                                } else if (deviceData.categoryParameterId == 2) {
+                                                    shiduval += deviceData.name + ":" + deviceData.value + deviceData.unit;
+                                                    $('#device_shidu_info').html(shiduval);
+                                                } else if (deviceData.categoryParameterId == 3) {
+                                                    pm += deviceData.name + ":" + deviceData.value + deviceData.unit;
+                                                    $('#device_pm_info').html(pm);
+                                                }
+                                            }
+                                        }
+                                    });
+
                                 } else {
                                     var deviceItem = {
                                         "deviceTypeAttention": itemD.deviceTypeAttention,
@@ -276,9 +294,9 @@
 
                                             var id = $(this).attr("id").split("_")[1];
                                             $.ajax({
-                                                url: "${path}/client/home?action=delDeviceById",
+                                                url: "${path}/client/device?action=delDeviceById",
                                                 data: {
-                                                    DeviceId: id
+                                                    deviceId: id
                                                 },
                                                 success: function (msg) {
                                                     if (msg.result == "success") {
@@ -296,18 +314,18 @@
                                         $('#edit_' + deviceItem.id).click(function () {
                                             var id = $(this).attr("id").split("_")[1];
                                             var index = -1;
-                                            for (var i in deviceArray){
-                                                if(id == deviceArray[i].id){
+                                            for (var i in deviceArray) {
+                                                if (id == deviceArray[i].id) {
                                                     index = i;
                                                 }
                                             }
                                             if (index == -1) return;
-                                            addDevice(false,deviceArray[index]);
+                                            addDevice(false, deviceArray[index]);
                                         });
 
                                         $('#detail_' + deviceItem.id).click(function () {
                                             var id = $(this).attr("id").split("_")[1];
-                                            window.location.href = "${path}/client/home?action=deviceList&deviceId=" + id;
+                                            window.location.href = "${path}/client/device?action=getDeviceByDeviceId&deviceId=" + id;
                                         });
                                         $('#deviceMenu_' + deviceItem.id).click(function () {
                                             var id = $(this).attr("id").split("_").last();
@@ -315,9 +333,6 @@
                                     }
                                 }
                             }
-                            $('#device_shidu_info').html(shiduval);
-                            $('#device_wendu_info').html(wenduval);
-                            $('#device_pm_info').html(pm);
                         }
 
                         if (!isExist("#btnadddevice")) {
@@ -331,7 +346,7 @@
                                 '</div><!--list-content -->';
                             $("#devicelistPanel").append(btnadddevice);
                             $("#btn-adddevice").click(function () {
-                                addDevice(true,null);
+                                addDevice(true, null);
                             });
                         }
                     },
@@ -345,7 +360,7 @@
 //        数据请求
             function refresh() {
                 $.ajax({
-                    url: "${path}/client/home?action=getGatewayListByCustomerId",
+                    url: "${path}/client/device?action=getGatewayListByCustomerId",
                     type: "GET",
                     data: {
                         customerId: account.id
@@ -360,10 +375,10 @@
                                 var item = jsons[i];
 //                                alert("item:"+item.gatewayDeviceID);
                                 var gatewayItem = {
-                                    "id": item.gatewayDeviceID,
+                                    "id": item.gatewaySerialNumber,
 //                                        "gatewayPort": item.gatewayPort,
 //                                        "ip": item.address,
-                                    "address": item.address
+                                    "address": item.gatewayName
 //                                        "modifiedDate": item.modifiedDate,
 //                                        "reserve": item.reserve
                                 };
@@ -384,7 +399,7 @@
                                             if (gatewayArray[i].id == id) {
 //                                                alert(current_gateway.id);
                                                 current_gateway = gatewayArray[i];
-                                                ws.send(current_gateway.id);
+                                                ws.send(current_gateway.gatewayId);
                                                 reloadPageContent(current_gateway);
                                             }
                                         }
@@ -454,14 +469,14 @@
                     width: "100%"
                 }, function () {
                     $.ajax({
-                        url: "${path}/client/home?action=addDevice",
+                        url: "${path}/client/device?action=addDevice",
                         type: "GET",
                         data: {
-                            customerId: account.id,
-                            Name: $("#add_gatewayName").val(),
-                            DeviceTypeId: $("#deviceType").val(),
-                            gatewayDeviceID: current_gateway.id,
-                            DeviceNo: $("#add_gatewayNo").val(),
+                            //customerId: account.id,
+                            name: $("#add_gatewayName").val(),
+                            deviceCategoryId: $("#deviceType").val(),
+                            gatewaySerialNumber: current_gateway.gatewayId,
+                            seriaNumber: $("#add_gatewayNo").val(),
                         },
                         dataType: "json",
                         success: function (result) {
@@ -503,13 +518,13 @@
 //                            width: "100%"
                     }, function () {
                         $.ajax({
-                            url: "${path}/client/home?action=addDeviceType",
+                            url: "${path}/client/device?action=addDeviceCategory",
                             type: "GET",
                             data: {
                                 customerId: account.id,
-                                Model: $("#add_deviceTypeModel").val(),
-//                          iP: $("#add_gatewayIP").val(),
-                                Name: $("#add_deviceTypeName").val()
+                                model: $("#add_deviceTypeModel").val(),
+//                             iP: $("#add_gatewayIP").val(),
+                                name: $("#add_deviceTypeName").val()
                             },
                             dataType: "json",
                             success: function (result) {
@@ -555,13 +570,13 @@
 //                            width: "100%"
                 }, function () {
                     $.ajax({
-                        url: "${path}/client/home?action=addGatewayForCustomer",
+                        url: "${path}/client/device?action=addGatewayForCustomer",
                         type: "GET",
                         data: {
                             customerId: account.id,
-                            address: $("#add_gatewayPort").val(),
+                            gatewayName: $("#add_gatewayPort").val(),
 //                          iP: $("#add_gatewayIP").val(),
-                            gatewayDeviceID: $("#add_gatewayName").val()
+                            gatewaySerialNumber: $("#add_gatewayName").val()
                         },
                         dataType: "json",
                         success: function (result) {
@@ -581,10 +596,10 @@
                 });
             }
 
-            function addDevice(isAdd,device) {
+            function addDevice(isAdd, device) {
                 var deviceTypes = new Array();
                 $.ajax({
-                    url: "${path}/client/home?action=getDeviceTypeList",
+                    url: "${path}/client/device?action=getDeviceCategoryList",
                     type: "GET",
                     data: {},
                     dataType: "json",
@@ -596,13 +611,10 @@
                                 var item = result.operationResult[i];
                                 var dt = {
                                     "id": item.id,
-                                    "name": item.Name,
-                                    "Model": item.Model
-//                                        "Attention":item.Attention,
-//                                        "Describtion":item.Describtion,
-//                                        "CreatedDate":item.CreatedDate,
-//                                        "ModifiedDate":itme.ModifiedDate,
-//                                        "Reserve": itme.Reserve
+                                    "name": item.name,
+                                    "model": item.model,
+//                                  "attention":item.attention,
+//                                  "describtion":item.describtion,
                                 };
 
                                 deviceTypes.push(dt);
@@ -657,16 +669,16 @@
                     width: "100%"
                 }, function () {
                     $.ajax({
-                        url: "${path}/client/home?action=updateDeviceById",
+                        url: "${path}/client/device?action=updateDeviceById",
                         type: "GET",
                         data: {
-                            customerId: account.id,
-                            Name: $("#update_gatewayName").val(),
-                            DeviceTypeId: $("#deviceTypeCurrent").val(),
-                            gatewayDeviceID: current_gateway.id,
-                            DeviceNo: $("#update_gatewayNo").val(),
-                            DeviceId: device.id,
-                            gatewayDeviceID: device.gatewayDeviceID
+                            name: $("#update_gatewayName").val(),
+                            deviceId: device.id,
+                            deviceCategoryId: current_gateway.id,
+                            parentId: account.id,
+                            gatewaySerialNumber: $("#deviceTypeCurrent").val(),
+                            seriaNumber: $("#update_gatewayNo").val(),
+                            deviceId: device.gatewayDeviceID
 
                         },
                         dataType: "json",
@@ -716,13 +728,13 @@
 //                            width: "100%"
                 }, function () {
                     $.ajax({
-                        url: "${path}/client/home?action=updateGateway",
+                        url: "${path}/client/device?action=updateGateway",
                         type: "GET",
                         data: {
-                            customerId: account.id,
+//                            customerId: account.id,
                             address: $("#update_gatewayPort").val(),
-                            iP: $("#update_gatewayIP").val(),
-                            gatewayDeviceID: gateway.id
+//                            iP: $("#update_gatewayIP").val(),
+                            serialNumber: gateway.id
                         },
                         dataType: "json",
                         success: function (result) {
@@ -745,11 +757,11 @@
 //              页面事件响应
             $("#addGateWayBtn").click(function () {
 //                addGateway();
-                window.location.href = "${path}/client/home?action=addGetway&mobelPhone=" + account.mobelPhone;
+                window.location.href = "${path}/client/device?action=addGetway&mobelPhone=" + account.mobelPhone;
             });
             $("#addGateWay").click(function () {
 //                addGateway();
-                window.location.href = "${path}/client/home?action=addGetway&mobelPhone=" + account.mobelPhone;
+                window.location.href = "${path}/client/device?action=addGetway&mobelPhone=" + account.mobelPhone;
             });
 
             $("#personal").click(function () {
@@ -757,15 +769,15 @@
             });
 
             $('#device_shidu_item').click(function () {
-                window.location.href = "${path}/client/home?action=chartDetail&deviceId=" + deviceId + "&sinnalId=" + signalId;
+                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&sinnalId=" + signalId;
             });
 
             $('#device_wendu_item').click(function () {
-                window.location.href = "${path}/client/home?action=chartDetail&deviceId=" + deviceId + "&sinnalId=" + signalId;
+                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&sinnalId=" + signalId;
             });
 
             $('#device_pm_item').click(function () {
-                window.location.href = "${path}/client/home?action=chartDetail&deviceId=" + deviceId + "&sinnalId=" + signalId;
+                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&sinnalId=" + signalId;
             });
 
         });

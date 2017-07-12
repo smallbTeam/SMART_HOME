@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atat.device.dao.DeviceCategoryDao">
+
+    <insert id="addDeviceCategory" parameterType="java.util.Map">
+        INSERT INTO device_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="model != null">
+                    model,
+                </if>
+                <if test="name != null">
+                    name,
+                </if>
+                <if test="parentId != null">
+                    parentId,
+                </if>
+                <if test="attention != null">
+                    attention,
+                </if>
+                <if test="describtion != null">
+                    describtion,
+                </if>
+                    createdDate,
+                    modifiedDate,
+                    isDeleted
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="model != null">
+                    #{model},
+                </if>
+                <if test="name != null">
+                    #{name},
+                </if>
+                <if test="parentId != null">
+                    #{parentId},
+                </if>
+                <if test="attention != null">
+                    #{attention},
+                </if>
+                <if test="describtion != null">
+                    #{describtion},
+                </if>
+            now(), now(), 0
+        </trim>
+    </insert>
+
+    <update id="updateDeviceCategoryById" parameterType="java.util.Map">
+        update device_category
+        <trim prefix="set" suffixOverrides=",">
+                <if test="model != null">
+                    model =#{model},
+                </if>
+                <if test="name != null">
+                    name =#{name},
+                </if>
+                <if test="parentId != null">
+                    parentId =#{parentId},
+                </if>
+                <if test="attention != null">
+                    attention =#{attention},
+                </if>
+                <if test="describtion != null">
+                    describtion =#{describtion},
+                </if>
+                    modifiedDate =now(),
+                <if test="isDeleted != null">
+                    isDeleted =#{isDeleted},
+                </if>
+        </trim>
+        where id = #{deviceCategoryId}
+    </update>
+
+    <select id="selectDeviceCategoryList" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        select
+            model model,
+            name name,
+            parentId parentId,
+            attention attention,
+            describtion describtion,
+            createdDate createdDate,
+            modifiedDate modifiedDate,
+        id deviceCategoryId
+        from device_category
+        WHERE
+        isDeleted = 0
+        <if test="deviceCategoryId != null">
+            and id =#{deviceCategoryId}
+        </if>
+            <if test="model != null">
+                and model =#{model}
+            </if>
+            <if test="name != null">
+                and name =#{name}
+            </if>
+            <if test="parentId != null">
+                and parentId =#{parentId}
+            </if>
+            <if test="attention != null">
+                and attention =#{attention}
+            </if>
+            <if test="describtion != null">
+                and describtion =#{describtion}
+            </if>
+            <if test="createdDate != null">
+                and createdDate =#{createdDate}
+            </if>
+            <if test="modifiedDate != null">
+                and modifiedDate =#{modifiedDate}
+            </if>
+        ORDER BY id ASC
+    </select>
+
+    <delete id="delDeviceCategoryById" parameterType="java.lang.Long">
+        DELETE FROM  device_category
+        where
+        id = #{deviceCategoryId}
+    </delete>
+
+</mapper>

@@ -3,7 +3,7 @@
 <mapper namespace="com.atat.property.dao.PropertyMapDao">
 
     <insert id="addPropertyMap" parameterType="java.util.Map">
-        INSERT INTO propertyMap
+        INSERT INTO property_map
         <trim prefix="(" suffix=")" suffixOverrides=",">
             propkey,
                 <if test="propval != null">
@@ -11,44 +11,44 @@
                 </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            #{propertyMapKey}
+            #{propertyMapId}
                 <if test="propval != null">
                     #{propval},
                 </if>
         </trim>
     </insert>
 
-    <update id="updatePropertyMapByKey" parameterType="java.util.Map">
-        update propertyMap
+    <update id="updatePropertyMapById" parameterType="java.util.Map">
+        update property_map
         <trim prefix="set" suffixOverrides=",">
                 <if test="propval != null">
                     propval =#{propval},
                 </if>
         </trim>
-        where propkey = #{propertyMapKey}
+        where propkey = #{propertyMapId}
     </update>
 
     <select id="selectPropertyMapList" parameterType="java.util.Map"
             resultType="java.util.Map">
         select
             propval propval,
-        propkey propertyMapKey
-        from propertyMap
+        propkey propertyMapId
+        from property_map
         WHERE
         1=1
-        <if test="propertyMapKey != null">
-            and propkey =#{propertyMapKey}
+        <if test="propertyMapId != null">
+            and propkey =#{propertyMapId}
         </if>
             <if test="propval != null">
                 and propval =#{propval}
             </if>
-        ORDER BY propkey ASC
+        ORDER BY convert(propkey using gbk) ASC
     </select>
 
-    <delete id="delPropertyMapByKey" parameterType="java.lang.String">
-        DELETE FROM  propertyMap
+    <delete id="delPropertyMapById" parameterType="java.lang.String">
+        DELETE FROM  property_map
         where
-        propkey = #{propertyMapKey}
+        propkey = #{propertyMapId}
     </delete>
 
 </mapper>

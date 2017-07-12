@@ -1,0 +1,610 @@
+@CHARSET "UTF-8";
+/* 完善bootstrop的居中样式 */
+/* 水平、垂直居中样式 */
+.center-block{
+	float: none;	
+}
+
+/* 通用隐藏样式 */
+.spec-hidden{
+	visibility:hidden;
+}
+
+/* 通用display：none样式 */
+.spec-none{
+	display: none;
+}
+
+.center-middle{
+	position: absolute;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, 25%);
+}
+
+/* ----------重写bootstrop .form-control 样式 为spec-form-control   【开始】     去除样式width：100%   ------*/
+.spec-form-control {
+	display: block;
+	/* width: 100%; */
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+
+.spec-form-control:focus {
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6)
+}
+
+.spec-form-control::-moz-placeholder {
+	color: #999;
+	opacity: 1
+}
+
+.spec-form-control:-ms-input-placeholder {
+	color: #999
+}
+
+.spec-form-control::-webkit-input-placeholder {
+	color: #999
+}
+
+.spec-form-control::-ms-expand {
+	background-color: transparent;
+	border: 0
+}
+
+.spec-form-control[disabled], .spec-form-control[readonly], fieldset[disabled] .spec-form-control
+	{
+	background-color: #eee;
+	opacity: 1
+}
+
+.spec-form-control[disabled], fieldset[disabled] .spec-form-control {
+	cursor: not-allowed
+}
+
+textarea.spec-form-control {
+	height: auto
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	input[type=date].spec-form-control, input[type=time].spec-form-control, input[type=datetime-local].spec-form-control,
+		input[type=month].spec-form-control {
+		line-height: 34px
+	}
+}
+
+.form-group-sm .spec-form-control {
+	height: 30px;
+	padding: 5px 10px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px
+}
+
+.form-group-sm select.spec-form-control {
+	height: 30px;
+	line-height: 30px
+}
+
+.form-group-sm select[multiple].spec-form-control, .form-group-sm textarea.spec-form-control
+	{
+	height: auto
+}
+
+.form-group-lg .spec-form-control {
+	height: 46px;
+	padding: 10px 16px;
+	font-size: 18px;
+	line-height: 1.3333333;
+	border-radius: 6px
+}
+
+.form-group-lg select.spec-form-control {
+	height: 46px;
+	line-height: 46px
+}
+
+.form-group-lg select[multiple].spec-form-control, .form-group-lg textarea.spec-form-control
+	{
+	height: auto
+}
+
+.has-feedback .spec-form-control {
+	padding-right: 42.5px
+}
+
+.has-success .spec-form-control {
+	border-color: #3c763d;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075)
+}
+
+.has-success .spec-form-control:focus {
+	border-color: #2b542c;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168
+}
+
+
+.has-warning .spec-form-control {
+	border-color: #8a6d3b;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075)
+}
+
+.has-warning .spec-form-control:focus {
+	border-color: #66512c;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #c0a16b;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #c0a16b
+}
+
+.has-error .spec-form-control {
+	border-color: #a94442;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075)
+}
+
+.has-error .spec-form-control:focus {
+	border-color: #843534;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483
+}
+
+@media ( min-width :768px) {
+	.form-inline .spec-form-control {
+		display: inline-block;
+		width: auto;
+		vertical-align: middle
+	}
+	
+	.form-inline .input-group .spec-form-control{
+		width: auto
+	}
+	
+	.form-inline .input-group>.spec-form-control {
+		/* width: 100% */
+	}
+
+	.navbar-form .spec-form-control {
+		display: inline-block;
+		width: auto;
+		vertical-align: middle
+	}
+	
+	.navbar-form .input-group .spec-form-control{
+		width: auto
+	}
+	.navbar-form .input-group>.spec-form-control {
+		/* width: 100% */
+	}
+}
+
+.input-group .spec-form-control {
+	position: relative;
+	z-index: 2;
+	float: left;
+	width: 100%;
+	margin-bottom: 0
+}
+
+.input-group .spec-form-control:focus {
+	z-index: 3
+}
+
+.input-group-lg>.spec-form-control{
+	height: 46px;
+	padding: 10px 16px;
+	font-size: 18px;
+	line-height: 1.3333333;
+	border-radius: 6px
+}
+
+select.input-group-lg>.spec-form-control{
+	height: 46px;
+	line-height: 46px
+}
+
+select[multiple].input-group-lg>.spec-form-control,textarea.input-group-lg>.spec-form-control{
+	height: auto
+}
+
+.input-group-sm>.spec-form-control{
+	height: 30px;
+	padding: 5px 10px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px
+}
+
+select.input-group-sm>.spec-form-control{
+	height: 30px;
+	line-height: 30px
+}
+
+select[multiple].input-group-sm>.spec-form-control, textarea.input-group-sm>.spec-form-control{
+	height: auto
+}
+
+.input-group .spec-form-control{
+	display: table-cell
+}
+
+.input-group .spec-form-control:not (:first-child ):not (:last-child ){
+	border-radius: 0
+}
+
+.input-group .spec-form-control:first-child{
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0
+}
+
+.input-group .spec-form-control:last-child{
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0
+}
+/* ----------重写bootstrop .form-control 样式    【结束】        ------*/
+
+/* --------table bootstrop 样式调整   【开始】  -------*/
+#table-content-propertyRepairList,#table-content-dormitoryElectricityList{
+	min-height: 416px;
+}
+table.admin_list_table{
+	width:100%;
+	margin-left:-1px;
+}
+
+table.admin_list_table>tbody>tr.spectablehr, table.admin_list_table>tfoot>tr.spectablehr{
+	border-top:solid 1px #fff;
+	border-bottom:none ;
+	width:95px;
+	height: 25px;
+}
+
+table.admin_list_table>tbody>tr.jqgrow, table.admin_list_table>tfoot>tr.jqgrow{
+	height: 25px !important;
+}
+
+table.admin_list_table>tbody>tr>td, table.admin_list_table>tfoot>tr>td{
+	text-overflow:ellipsis;
+	overflow:hidden;
+	text-align:center;
+	border-bottom:none;
+	font-size:12px;
+	font-weight:300;
+	height:20px;
+	padding: 8px;
+}
+
+table.admin_list_table>tbody>tr.jqgrow>td, table.admin_list_table>tfoot>tr.jqgrow>td{
+	padding: 8px !important;
+}
+
+table.admin_list_table.table-striped>tbody>tr:nth-child(odd)>td,table.admin_list_table.table-striped>tbody>tr:nth-child(odd)>th{
+	background-color:#FFF;
+}
+table.admin_list_table.table-striped>tbody>tr:nth-child(even)>th,table.admin_list_table.table-striped>tbody>tr:nth-child(even)>td{
+	background-color:#F0F5F8;
+}
+table.admin_list_table.table-hover>tbody>tr:hover{ 
+	cursor:pointer;
+}
+table.admin_list_table.table-hover>tbody>tr:hover>td{
+	background-color: #E0E7EB;
+}
+table.admin_list_table a:hover,a:focus {
+    text-decoration: none;
+}
+
+/* 超出表格长度不折行显示 */
+table.autosize_table .short_lg_nowrap{
+	text-align:center;
+	min-width:400px;
+	height:20px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+
+table.admin_list_table .normal_nowrap{
+	min-width:250px;
+	height:20px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+
+table.autosize_table .short_nowrap{
+	text-align:center;
+	min-width:170px;
+	height:20px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+table.autosize_table .short_narrow_nowrap{
+	text-align:center;
+	min-width:80px;
+	height:20px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+table.autosize_table .short_three_nowrap{
+	text-align:center;
+	min-width:40px;
+	height:20px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+
+table.table_for_showContent{
+	width:100%;
+}
+table.table_for_showContent div{
+	display: inline-block;
+}
+table.table_for_showContent tr td{
+	text-overflow:ellipsis;
+	overflow:hidden;
+	text-align: center;
+	border-bottom:none;
+	font-size:12px;
+	font-weight:300;
+	height:32px;
+	padding: 10px 0px;
+}
+/* --------table bootstrop 样式调整   【结束】  -------*/
+
+/* --------Tab组件样式调整  bootstrop 样式调整   【结束】  -------*/
+.tab-pane{
+	padding:10px 10px 15px 10px;
+}
+.admin-panel-tabs{
+	background-color: rgb(240, 245, 248);
+	padding-top:15px;
+	padding:0px;
+	border:none;
+	width:100%;
+	height:100%;
+	min-width:900px;
+}
+
+.nav-tabs{
+	height:42px;
+	background-color:#3B344D;
+	border:solid 0px #ccc;
+}
+
+.admin-panel-tabs .nav-tabs li{
+	text-align:center;
+}
+
+.admin-panel-tabs .nav-tabs li:hover{
+	color:#3B344D;
+}
+
+.admin-panel-tabs .nav-tabs li a{
+	width:16.4%;
+    min-width:152px;
+	height:42px;
+	color:#fff;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	margin-top:2px;
+	margin-left:8px;
+	font-size: 14px;
+    font-weight: 500;
+    text-align:center;
+}
+
+.admin-panel-tabs .nav-tabs a{
+	border:none;
+}
+
+.admin-panel-tabs .nav-tabs a:hover{
+	background:#3B315A;
+	cursor:pointer;
+}
+
+.admin-panel-tabs .nav-tabs .active a{
+	color:#3B344D;
+}
+
+.admin-panel-tabs .nav-tabs .active a:hover{
+	background:White;
+	cursor:inherit;
+}
+
+.am-tabs-bd,.am-tab-panel{
+	width:100%;
+	height:100%;
+	min-width:900px;
+	padding-bottom:10px;
+	padding:0px; 
+	background-color: #F0F5F8;
+	border:none;
+}
+
+.admin-select-input-group{
+	font-size: 12px;
+    margin-bottom: 8px;
+    padding:15px 0px 0px;
+    border: solid 1px #ccc;
+    background-color: #F3F3F5;
+}
+
+.admin-select-input-group label{
+	margin-top: 7px;
+}
+
+.admin-select-input-group .admin-lable-input .input-group,.admin-aou-input-group .admin-lable-input .input-group{
+	float: left;
+    display: inline-table;
+}
+
+.admin-lable-text-group label{
+	font-size: 12px;
+    margin-bottom: 8px;
+    padding:15px 0px 0px;
+    margin-top: 7px;
+}
+
+.admin-lable-text-group label.spec-no-padding{
+	padding-left:5px;
+}
+/* --------Tab组件样式调整  bootstrop 样式调整   【结束】  -------*/
+
+/* -------------------底部分页页码显示调整 ------【开始】---- */
+/*定义分页标识的位置*/
+.page-break{
+	margin-bottom: 0px;
+    text-align: center;
+   /*  position: absolute;
+    bottom: 27px; */
+    height: 30px;
+    width: 100%;
+}
+.am-pagination li{
+	text-align:center;
+}
+.am-pagination  a{
+	text-align:center;
+	font-size:12px;
+	/* width:50px; */
+	height:22px;	
+	color:#515659;
+	cursor:pointer;
+}
+.am-pagination .am-active a:hover,.am-pagination li a:hover{
+	background:#ccc;
+	border-color:#ccc;
+	cursor:pointer;
+}
+.am-pagination .am-active a{
+	background:#fff;
+	border-color:#fff;
+	color:#515659;
+}
+.am-pagination>.am-disabled>a,.am-pagination .am-pre-page,.am-pagination .am-next-page{
+	border-radius:5px;
+	background:#3B315A;
+	border-color:#434c5d;
+	color:#fff;
+	padding-top:4px;
+	padding-right:5px;
+	padding-bottom:4px;
+	padding-left:5px;
+}
+/* 分页冲突新加代码start */
+.am-pagination>li>a, .am-pagination>li>span {
+    position: relative;
+    display: block;
+    padding: .5em .5em;
+    text-decoration: none;
+    line-height: 1.2;
+    background-color: #fff;
+    border: 1px;
+    border-radius: 0.2em;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+.am-pagination input{
+	height:1.4em;
+	width:2.1em;
+	margin-top:0;
+	font-size:12px;
+	text-align:center;
+	color: #515659;
+}
+/* -------------------底部分页页码显示调整 ------【结束】---- */
+/* --------------没数据页面 ----------------【开始】------*/
+.no_data{
+	width:100%;
+	height:100%;
+	border:0px;
+}
+
+.no_data_inner{
+	margin:0px;
+	border:0px;
+	display:block;
+	padding-top:20%;
+	padding-left:40%;
+}
+/* --------------没数据页面 ----------------【结束】------*/
+/* -----------首页整体布局调整---------------【开始】-------- */
+body{
+	min-height:100%;
+	font-size:12px;
+}
+
+.spec-footer{
+    bottom: 0;
+    width: 100%;
+	padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top:20px;
+    color: #99979c;
+    text-align: center;
+    background-color: #2a2730;
+}
+
+.spec-loginout{
+	position: relative;
+    top: 0px;
+    float: right;
+    z-index: 99;
+    height:50px;
+    padding:13px 0;
+    color: #ffffff;
+}
+
+.student-header-info{
+	display: inline-block;
+    vertical-align: middle;
+}
+
+.spec-center{
+	border:none;
+	margin: 0 auto;
+    width: 100%;
+    min-width:900px;
+}
+/* -----------首页整体布局调整---------------【结束】-------- */
+
+/* 调整jqGridecss */
+input.ui-pg-input.form-control{
+	display: inline-block;
+}
+
+.spec-table thead>tr{
+	background-color:#3B344D;
+	margin-bottom: 10px;
+}
+
+.spec-table thead>tr>th{
+	text-align:center;
+	color:#fff;
+	height: 27px !important;
+    padding: 8px !important;
+}

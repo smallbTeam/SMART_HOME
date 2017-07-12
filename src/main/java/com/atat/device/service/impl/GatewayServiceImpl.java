@@ -24,8 +24,8 @@ public class GatewayServiceImpl implements GatewayService {
     }
 
     @Override
-    public void  updateGatewayByGatewayDeviceID(Map<String, Object> param) {
-        gatewayDao.updateGatewayByGatewayDeviceID(param);
+    public void  updateGatewayBySerialNumber(Map<String, Object> param) {
+        gatewayDao.updateGatewayBySerialNumber(param);
     }
 
     @Override
@@ -33,27 +33,22 @@ public class GatewayServiceImpl implements GatewayService {
         return gatewayDao.selectGatewayList(param);
     }
 
-    public List<Map<String, Object>> selectCustomerGatewayList(Map<String, Object> param) {
-        return gatewayDao.selectCustomerGatewayList(param);
-    }
-
     @Override
     public PageInfo<Map<String, Object>> getGatewayPageTurn(Map<String, Object> param, Integer pageNo, Integer pageSize) {
         pageNo = pageNo == null?1:pageNo;
-
         pageSize = pageSize == null?10:pageSize;
         PageHelper.startPage(pageNo, pageSize);
-        List<Map<String,Object>> list = gatewayDao.selectCustomerGatewayList(param);
+        List<Map<String,Object>> list = gatewayDao.selectGatewayList(param);
         //用PageInfo对结果进行包装
         PageInfo<Map<String,Object>> page = new PageInfo<Map<String,Object>>(list);
         return page;
     }
 
     @Override
-    public Map<String, Object> getGatewayByKey(Integer gatewayKey) {
+    public Map<String, Object> getGatewayBySerialNumber(String serialNumber) {
         Map<String, Object> gatewayinfo = new HashMap<String, Object>();
         Map<String, Object> rs = new HashMap<String, Object>();
-        rs.put("gatewayKey", gatewayKey);
+        rs.put("serialNumber", serialNumber);
         List<Map<String, Object>> gatewayList = gatewayDao.selectGatewayList(rs);
         if ((null != gatewayList) && (gatewayList.size() > 0)) {
             gatewayinfo = gatewayList.get(0);
@@ -62,11 +57,14 @@ public class GatewayServiceImpl implements GatewayService {
     }
 
     @Override
-    public void delGatewayByGatewayDeviceID(String gatewayDeviceID) {
-        Map<String, Object> param = new HashMap<String, Object>();
-        param.put("isDeleted", 1);
-        param.put("gatewayDeviceID", gatewayDeviceID);
-        gatewayDao.updateGatewayByGatewayDeviceID(param);
+    public void delGatewayById(Long gatewayId) {
+        gatewayDao.delGatewayById(gatewayId);
     }
 
+    @Override public void delGatewayBySerialNumber(String serialNumber) {
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("isDeleted", 1);
+        param.put("serialNumber", serialNumber);
+        gatewayDao.updateGatewayBySerialNumber(param);
+    }
 }

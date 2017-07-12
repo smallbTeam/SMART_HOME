@@ -262,7 +262,8 @@
             var mobelPhone = $("#phoneNumber").val();
             //发送验证码请求
             var timestamp = Date.parse(new Date());
-            var url = "${path}/verificationMsg?action=sendMsg&mobelPhone=" + mobelPhone + "&timeStamp=" + timestamp;
+            <%--var url = "${path}/verificationMsg?action=sendMsg&mobelPhone=" + mobelPhone + "&timeStamp=" + timestamp;--%>
+            var url = "${path}/verificationMsg?action=sendMsg&mobelPhone=" + mobelPhone;
             //console.log("[" + url + "]");
             $.get(url, function (msg) {
                 alert("msg:"+msg.operationResult);

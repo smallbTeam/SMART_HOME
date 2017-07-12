@@ -4,8 +4,7 @@
  */
 package com.atat.account.controller;
 
-import com.atat.account.bean.Customer;
-import com.atat.account.service.ClientAccountService;
+import com.atat.account.service.CustomerService;
 import com.atat.common.base.controller.BaseController;
 import com.atat.common.prop.BasePropertyDate;
 import com.atat.common.util.CollectionUtil;
@@ -14,7 +13,6 @@ import com.atat.common.util.StringUtil;
 import com.atat.common.util.httpClient.HttpClientUtil;
 import com.atat.common.util.httpClient.URLUtil;
 import com.atat.property.action.GetSignatureUrl;
-import com.atat.property.action.WeixinAction;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,8 +35,12 @@ import java.util.Map;
 @RequestMapping(value = "client/account")
 public class ClientAccountController extends BaseController {
 
+//    @Resource
+//    private ClientAccountService clientAccountService;
+
     @Resource
-    private ClientAccountService clientAccountService;
+    private CustomerService customerService;
+
 
     /**
      * 用户注册页面
@@ -84,12 +85,7 @@ public class ClientAccountController extends BaseController {
         ModelAndView mav = new ModelAndView("personal");
         String mobelPhone = request.getParameter("mobelPhone");
         if (StringUtil.isNotEmpty(mobelPhone)) {
-            Map<String, Object> param = new HashMap<String, Object>();
-            param.put("MobelPhone", mobelPhone);
-            List<Map<String, Object>> customerList = clientAccountService.selectCustomerList(param);
-            if (CollectionUtil.isNotEmpty(customerList)) {
-                mav.addObject("account", customerList.get(0));
-            }
+                mav.addObject("account", customerService.getCustomerByMobelPhone(mobelPhone));
         }
         return mav;
     }
@@ -130,8 +126,8 @@ public class ClientAccountController extends BaseController {
                 String wxId = (String) resMap.get("openid");
                 if (StringUtil.isNotEmpty(wxId)){
                     // 判定openId是否已经在表中存在
-                    Map<String, Object> customerMap = clientAccountService.selectCustomerByWxid(wxId);
-                    if (null != customerMap) {
+                    Map<String, Object> customerMap = customerService.getCustomerByWxId(wxId);
+                    if (CollectionUtil.isNotEmpty(customerMap)) {
                         mav = new ModelAndView("main");
                         mav.addObject("account", customerMap);
 
@@ -179,26 +175,27 @@ public class ClientAccountController extends BaseController {
         if ((StringUtil.isNotEmpty(mobelPhone)) && (StringUtil.isNotEmpty(password))
                 && (StringUtil.isNotEmpty(nickName)) && (StringUtil.isNotEmpty(birthday))
                 && (StringUtil.isNotEmpty(sex))) {
-            Customer customer = new Customer();
-            customer.setMobelPhone(mobelPhone);
-            customer.setPassword(password);
+            Map<String, Object> param = new HashMap<String, Object>();
+            //Customer customer = new Customer();
+            param.put("mobelPhone",mobelPhone);
+            param.put("password",password);
             if (StringUtil.isNotEmpty(wxId)) {
-                customer.setWxId(wxId);
+                param.put("wxId",wxId);
             }
             if (StringUtil.isNotEmpty(token)) {
-                customer.setToken(token);
+                param.put("token",token);
             }
             if (StringUtil.isNotEmpty(nickName)) {
-                customer.setNickName(nickName);
+                param.put("nickName",nickName);
             }
             if (StringUtil.isNotEmpty(birthday)) {
-                customer.setBirthday(new Date(Long.parseLong(birthday)));
+                param.put("birthday",new Date(Long.parseLong(birthday)));
             }
             if (StringUtil.isNotEmpty(sex)) {
-                customer.setSex(Integer.parseInt(sex));
+                param.put("sex",Integer.parseInt(sex));
             }
             try {
-                clientAccountService.addCustomer(customer);
+                customerService.addCustomer(param);
                 resultMap.put("result", "success");
                 resultMap.put("operationResult", mobelPhone);
             }
@@ -234,7 +231,7 @@ public class ClientAccountController extends BaseController {
         String wxId = request.getParameter("wxId");
         if (StringUtil.isNotEmpty(mobelPhone) && StringUtil.isNotEmpty(password) && StringUtil.isNotEmpty(wxId)) {
             try {
-                Integer loginRes = clientAccountService.accountLogin(mobelPhone,password,wxId);
+                Integer loginRes = customerService.accountLogin(mobelPhone,password,wxId);
                 resultMap.put("result", "success");
                 resultMap.put("operationResult", loginRes);
             }
@@ -265,7 +262,7 @@ public class ClientAccountController extends BaseController {
         if (StringUtil.isNotEmpty(strMobelPhone)) {
             try {
                 // 依据手机号查询用户是否已存在
-                Customer customer = clientAccountService.getCustomerByMobel(strMobelPhone);
+                Map<String, Object> customer = customerService.getCustomerByMobelPhone(strMobelPhone);
                 if (null != customer) {
                     resultMap.put("result", "success");
                     resultMap.put("operationResult", true);
@@ -304,7 +301,7 @@ public class ClientAccountController extends BaseController {
             param.put("MobelPhone", strMobelPhone);
             try {
                 // 依据手机号查询用户是否已存在
-                PageInfo<Map<String, Object>> customerPageInfo = clientAccountService.getCustomerPageTurn(param, null, null);
+                PageInfo<Map<String, Object>> customerPageInfo = customerService.getCustomerPageTurn(param, null, null);
                 if (null != customerPageInfo) {
                     resultMap.put("result", "success");
                     resultMap.put("operationResult", customerPageInfo);
@@ -347,30 +344,30 @@ public class ClientAccountController extends BaseController {
         String token = request.getParameter("token");
         if (StringUtil.isNotEmpty(customerId)) {
             Map<String, Object> param = new HashMap<String, Object>();
-            param.put("CustomerId", Integer.parseInt(customerId));
+            param.put("customerId", Integer.parseInt(customerId));
             if (StringUtil.isNotEmpty(mobelPhone)) {
-                param.put("MobelPhone", mobelPhone);
+                param.put("mobelPhone", mobelPhone);
             }
             if (StringUtil.isNotEmpty(password)) {
-                param.put("Password", password);
+                param.put("password", password);
             }
             if (StringUtil.isNotEmpty(wxId)) {
-                param.put("WxId", wxId);
+                param.put("wxId", wxId);
             }
             if (StringUtil.isNotEmpty(nickName)) {
-                param.put("NickName", nickName);
+                param.put("nickName", nickName);
             }
             if (StringUtil.isNotEmpty(sex)) {
-                param.put("Sex", Integer.parseInt(sex));
+                param.put("sex", Integer.parseInt(sex));
             }
             if (StringUtil.isNotEmpty(token)) {
-                param.put("Token", token);
+                param.put("token", token);
             }
             if (StringUtil.isNotEmpty(birthday)) {
-                param.put("Birthday", new Date(Long.parseLong(birthday)));
+                param.put("birthday", new Date(Long.parseLong(birthday)));
             }
             try {
-                clientAccountService.updateCustomerById(param);
+                customerService.updateCustomerById(param);
                 resultMap.put("result", "success");
             }
             catch (Exception e) {

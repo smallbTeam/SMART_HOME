@@ -1,0 +1,60 @@
+package com.atat.device.service.impl;
+
+import com.atat.device.dao.DeviceDataDayDao;
+import com.atat.device.service.DeviceDataDayService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+@Service
+public class DeviceDataDayServiceImpl implements DeviceDataDayService {
+
+    @Autowired
+    private DeviceDataDayDao deviceDataDayDao;
+
+    @Override
+    public void  addDeviceDataDay(Map<String, Object> param) {
+        deviceDataDayDao.addDeviceDataDay(param);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectDeviceDataDayList(Map<String, Object> param) {
+        return deviceDataDayDao.selectDeviceDataDayList(param);
+    }
+
+    @Override
+    public PageInfo<Map<String, Object>> getDeviceDataDayPageTurn(Map<String, Object> param, Integer pageNo, Integer pageSize) {
+        pageNo = pageNo == null?1:pageNo;
+
+        pageSize = pageSize == null?10:pageSize;
+        PageHelper.startPage(pageNo, pageSize);
+        List<Map<String,Object>> list = deviceDataDayDao.selectDeviceDataDayList(param);
+        //用PageInfo对结果进行包装
+        PageInfo<Map<String,Object>> page = new PageInfo<Map<String,Object>>(list);
+        return page;
+    }
+
+    @Override
+    public Map<String, Object> getDeviceDataDayById(String deviceDataDayId) {
+        Map<String, Object> deviceDataDayinfo = new HashMap<String, Object>();
+        Map<String, Object> rs = new HashMap<String, Object>();
+        rs.put("deviceDataDayId", deviceDataDayId);
+        List<Map<String, Object>> deviceDataDayList = deviceDataDayDao.selectDeviceDataDayList(rs);
+        if ((null != deviceDataDayList) && (deviceDataDayList.size() > 0)) {
+            deviceDataDayinfo = deviceDataDayList.get(0);
+        }
+        return deviceDataDayinfo;
+    }
+
+    @Override
+    public void delDeviceDataDayById(String deviceDataDayId) {
+        deviceDataDayDao.delDeviceDataDayById(deviceDataDayId);
+    }
+
+}

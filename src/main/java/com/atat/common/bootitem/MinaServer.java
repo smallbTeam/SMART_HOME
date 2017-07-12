@@ -20,7 +20,7 @@ public class MinaServer {
 			// 创建一个非阻塞的server端的Socket
 			acceptor = new NioSocketAcceptor();
 			// 设置日志过滤器
-			acceptor.getFilterChain().addLast("logger",new LoggingFilter());
+//			acceptor.getFilterChain().addLast("logger",new LoggingFilter());
 
 			// 设置读取数据的缓冲区大小
 			acceptor.getSessionConfig().setReadBufferSize(2048);
@@ -30,9 +30,11 @@ public class MinaServer {
 			acceptor.setHandler(new MinaServerHandler());
 			// 绑定端口
 			acceptor.bind(new InetSocketAddress(PORT));
-			logger.info("服务端启动成功...     端口号为：" + PORT);
+			System.out.println("服务端启动成功...     端口号为：" + PORT);
+//			logger.info("服务端启动成功...     端口号为：" + PORT);
 		} catch (Exception e) {
-			logger.error("服务端启动异常....", e);
+			System.out.println("服务端启动异常...."+e);
+//			logger.error("服务端启动异常....", e);
 			e.printStackTrace();
 		}
 	}

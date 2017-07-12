@@ -18,10 +18,10 @@ public interface GatewayService {
     public void  addGateway(Map<String, Object> param);
 
     /**
-     * 依据网关设备ID更新
+     * 依据网关设备号更新
      * @param param
      */
-    public void  updateGatewayByGatewayDeviceID(Map<String, Object> param);
+    public void  updateGatewayBySerialNumber(Map<String, Object> param);
 
     /**
      * 依据条件查找列表
@@ -30,7 +30,6 @@ public interface GatewayService {
      */
     public List<Map<String, Object>> selectGatewayList(Map<String, Object> param);
 
-    public List<Map<String, Object>> selectCustomerGatewayList(Map<String, Object> param);
     /**
      * 依据条件查找分页列表
      * @param param
@@ -41,15 +40,21 @@ public interface GatewayService {
     public PageInfo<Map<String, Object>> getGatewayPageTurn(Map<String, Object> param, Integer pageNo, Integer pageSize);
 
     /**
-     * 依据Key查找详情
-     * @param gatewayKey
+     * 依据网关设备号查找详情
+     * @param serialNumber
      * @return
      */
-    public Map<String, Object> getGatewayByKey(Integer gatewayKey);
+    public Map<String, Object> getGatewayBySerialNumber(String serialNumber);
 
     /**
-     * 依据Key删除记录
-     * @param gatewayDeviceID
+     * 依据Id删除记录
+     * @param gatewayId
      */
-    public void delGatewayByGatewayDeviceID(String gatewayDeviceID);
+    public void delGatewayById(Long gatewayId);
+
+    /**
+     * 依据网关设备序号删除网关
+     * @param serialNumber
+     */
+    public void delGatewayBySerialNumber(String serialNumber);
 }

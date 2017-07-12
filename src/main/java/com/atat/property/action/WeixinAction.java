@@ -71,7 +71,7 @@ public class WeixinAction {
                 List<Map<String, Object>> propList = propertyMapService.selectPropertyMapList(param);
                 if (CollectionUtil.isNotEmpty(propList)) {
                     param.put("propval", access_token);
-                    propertyMapService.updatePropertyMapByKey(param);
+                    propertyMapService.updatePropertyMapById(param);
                 }
                 else {
                     propertyMapService.addPropertyMap(param);
@@ -98,7 +98,7 @@ public class WeixinAction {
                     propList = propertyMapService.selectPropertyMapList(jsapiticket_ticket);
                     if (CollectionUtil.isNotEmpty(propList)) {
                         jsapiticket_ticket.put("propval", ticket);
-                        propertyMapService.updatePropertyMapByKey(jsapiticket_ticket);
+                        propertyMapService.updatePropertyMapById(jsapiticket_ticket);
                     }
                     else {
                         propertyMapService.addPropertyMap(jsapiticket_ticket);

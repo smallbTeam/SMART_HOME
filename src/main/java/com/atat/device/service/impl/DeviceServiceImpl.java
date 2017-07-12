@@ -1,123 +1,101 @@
-/**
- * Company
- * Copyright (C) 2004-2017 All Rights Reserved.
- */
 package com.atat.device.service.impl;
 
 import com.atat.common.util.CollectionUtil;
-import com.atat.device.dao.DeviceMapper;
+import com.atat.device.dao.CategoryParameterDao;
+import com.atat.device.dao.DeviceDao;
+import com.atat.device.dao.DeviceDataNowDao;
 import com.atat.device.service.DeviceService;
-import org.apache.ibatis.jdbc.Null;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author ligw
- * @version $Id DeviceServiceImpl.java, v 0.1 2017-06-17 19:18 ligw Exp $$
- */
 @Service
-public class DeviceServiceImpl implements DeviceService{
+public class DeviceServiceImpl implements DeviceService {
 
-    @Resource
-    private DeviceMapper deviceMapper;
+    @Autowired
+    private DeviceDao deviceDao;
 
-    @Override public void addDevice(Map<String, Object> param) {
-        deviceMapper.addDevice(param);
+    @Autowired
+    private CategoryParameterDao categoryParameterDao;
 
+    @Autowired
+    private DeviceDataNowDao deviceDataNowDao;
+
+    @Override
+    public void addDevice(Map<String, Object> param) {
+        deviceDao.addDevice(param);
     }
 
-    @Override public List<Map<String, Object>> selectDeviceList(Map<String, Object> param) {
-        return deviceMapper.selectDeviceList(param);
+    @Override
+    public void updateDeviceById(Map<String, Object> param) {
+        deviceDao.updateDeviceById(param);
     }
 
-    @Override public void updateDeviceById(Map<String, Object> param) {
-        deviceMapper.updateDeviceById(param);
+    @Override
+    public List<Map<String, Object>> selectDeviceList(Map<String, Object> param) {
+        return deviceDao.selectDeviceList(param);
     }
 
-    @Override public void addDeviceType(Map<String, Object> param) {
-        deviceMapper.addDeviceType(param);
+    @Override
+    public PageInfo<Map<String, Object>> getDevicePageTurn(Map<String, Object> param, Integer pageNo,
+            Integer pageSize) {
+        pageNo = pageNo == null ? 1 : pageNo;
+        pageSize = pageSize == null ? 10 : pageSize;
+        PageHelper.startPage(pageNo, pageSize);
+        List<Map<String, Object>> list = deviceDao.selectDeviceList(param);
+        // 用PageInfo对结果进行包装
+        PageInfo<Map<String, Object>> page = new PageInfo<Map<String, Object>>(list);
+        return page;
     }
 
-    @Override public void addOrUpdateDeviceDataBydeviceTypeAndgateway(Map<String, Object> param) {
-        //判断设备类型是否存在并返回id
-        Integer deviceTypeId = addOrGetdeviceTypeByName((String) param.get("Name"));
-        if (null != deviceTypeId){
-            Map<String, Object> selectparam = new HashMap<String, Object>();
-            selectparam.put("DeviceTypeId",deviceTypeId);
-            selectparam.put("gatewayDeviceID",(String) param.get("gatewayDeviceID"));
-            List<Map<String, Object>> deviceList = deviceMapper.selectDeviceList(selectparam);
-            if (CollectionUtil.isNotEmpty(deviceList)){
-                selectparam.put("DeviceId",Integer.parseInt(((Long) deviceList.get(0).get("id")).toString()));
-                selectparam.put("DeviceData",(String) param.get("DeviceData"));
-                deviceMapper.updateDeviceById(selectparam);
-            } else {
-                selectparam.put("DeviceData",(String) param.get("DeviceData"));
-                deviceMapper.addDevice(selectparam);
+    @Override
+    public Map<String, Object> getDeviceById(Long deviceId) {
+        Map<String, Object> deviceinfo = new HashMap<String, Object>();
+        Map<String, Object> rs = new HashMap<String, Object>();
+        rs.put("deviceId", deviceId);
+        List<Map<String, Object>> deviceList = deviceDao.selectDeviceList(rs);
+        if ((null != deviceList) && (deviceList.size() > 0)) {
+            deviceinfo = deviceList.get(0);
+            // 依据设备Id查询设备参数
+            // 查询设备对应设备类别的参数
+            Long deviceCategoryId = (Long) deviceinfo.get("deviceCategoryId");
+            Map<String, Object> param = new HashMap<String, Object>();
+            param.put("deviceCategoryId",deviceCategoryId);
+            List<Map<String, Object>> deviceDataList = new ArrayList<Map<String, Object>>();
+            List<Map<String, Object>> categoryParameterList = categoryParameterDao.selectCategoryParameterList(param);
+            if (CollectionUtil.isNotEmpty(categoryParameterList)){
+                for (Map<String, Object> categoryParameter:categoryParameterList){
+                    //依次查询设别信号值
+                    Long categoryParameterId = (Long) categoryParameter.get("categoryParameterId");
+                    Map<String, Object> param_dd = new HashMap<String, Object>();
+                    param_dd.put("deviceId", deviceId);
+                    param_dd.put("categoryParameterId", categoryParameterId);
+                    param_dd.put("limit", 1);
+                    List<Map<String, Object>> deviceDataNowList = (List<Map<String, Object>>)deviceDataNowDao.selectDeviceDataNowList(param);
+                    if (CollectionUtil.isNotEmpty(deviceDataNowList)){
+                        Map<String, Object> deviceDataNow = deviceDataNowList.get(0);
+                        categoryParameter.put("recordTime",deviceDataNow.get("recordTime"));
+                        categoryParameter.put("value",deviceDataNow.get("value"));
+                    }
+                    deviceDataList.add(categoryParameter);
+                }
             }
-        } else {
-            System.out.println("\n\n\n\n\n\n\n\n\\n\n\n设备类型添加失败\n\n\n\n\n\n\n\n\n\n\n");
+            deviceinfo.put("deviceDataList",deviceDataList);
         }
+        return deviceinfo;
     }
 
-    @Override public void updateDeviceTypeByID(Map<String, Object> param) {
-        deviceMapper.updateDeviceTypeByID(param);
-    }
-
-    @Override public List<Map<String, Object>> selectDeviceType(Map<String, Object> param) {
-
-        return deviceMapper.selectDeviceType(param);
-    }
-
-    @Override public void addDeviceData(Map<String, Object> param) {
-        deviceMapper.addDeviceData(param);
-    }
-
-    @Override public List<Map<String, Object>> selectDeviceDataList(Map<String, Object> param) {
-        return deviceMapper.selectDeviceDataList(param);
-    }
-
-    @Override public void addDeviceDailyData(Map<String, Object> param) {
-        deviceMapper.addDeviceDailyData(param);
-    }
-
-    @Override public List<Map<String, Object>> selectDeviceDailyDataList(Map<String, Object> param) {
-        return deviceMapper.selectDeviceDailyDataList(param);
-    }
-
-    @Override public void addDeviceMonthData(Map<String, Object> param) {
-        deviceMapper.addDeviceMonthData(param);
-    }
-
-    @Override public List<Map<String, Object>> selectDeviceMonthDataList(Map<String, Object> param) {
-        return deviceMapper.selectDeviceMonthDataList(param);
-    }
-
-    /**
-     * 依据设备类型名获取或新增设备类型
-     * @return
-     */
-    public Integer addOrGetdeviceTypeByName(String Name){
-        Integer deviceTypeId;
+    @Override
+    public void delDeviceById(Long deviceId) {
         Map<String, Object> param = new HashMap<String, Object>();
-        param.put("Name",Name);
-        List<Map<String, Object>> deviceTypeList = deviceMapper.selectDeviceType(param);
-        if (CollectionUtil.isNotEmpty(deviceTypeList)){
-            deviceTypeId = Integer.parseInt(((Long) deviceTypeList.get(0).get("id")).toString());
-            return deviceTypeId;
-        } else {
-            //添加设备属性
-            deviceMapper.addDeviceType(param);
-            deviceTypeList = deviceMapper.selectDeviceType(param);
-            if (CollectionUtil.isNotEmpty(deviceTypeList)) {
-                deviceTypeId = Integer.parseInt(((Long) deviceTypeList.get(0).get("id")).toString());
-                return deviceTypeId;
-            }
-            return null;
-        }
-
+        param.put("isDeleted", 1);
+        param.put("deviceId", deviceId);
+        deviceDao.updateDeviceById(param);
     }
 }

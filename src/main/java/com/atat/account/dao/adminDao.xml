@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atat.account.dao.AdminDao">
+
+    <insert id="addAdmin" parameterType="java.util.Map">
+        INSERT INTO admin
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="mobelPhone != null">
+                    mobelPhone,
+                </if>
+                <if test="password != null">
+                    password,
+                </if>
+                <if test="nickName != null">
+                    nickName,
+                </if>
+                <if test="permissionLevel != null">
+                    permissionLevel,
+                </if>
+                <if test="token != null">
+                    token,
+                </if>
+                    createdDate,
+                    modifiedDate,
+                    isDeleted,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="mobelPhone != null">
+                    #{mobelPhone},
+                </if>
+                <if test="password != null">
+                    #{password},
+                </if>
+                <if test="nickName != null">
+                    #{nickName},
+                </if>
+                <if test="permissionLevel != null">
+                    #{permissionLevel},
+                </if>
+                <if test="token != null">
+                    #{token},
+                </if>
+            now(),now(),0
+        </trim>
+    </insert>
+
+    <update id="updateAdminById" parameterType="java.util.Map">
+        update admin
+        <trim prefix="set" suffixOverrides=",">
+                <if test="mobelPhone != null">
+                    mobelPhone =#{mobelPhone},
+                </if>
+                <if test="password != null">
+                    password =#{password},
+                </if>
+                <if test="nickName != null">
+                    nickName =#{nickName},
+                </if>
+                <if test="permissionLevel != null">
+                    permissionLevel =#{permissionLevel},
+                </if>
+                <if test="token != null">
+                    token =#{token},
+                </if>
+                    modifiedDate = now(),
+                <if test="isDeleted != null">
+                    isDeleted =#{isDeleted},
+                </if>
+        </trim>
+        where id = #{adminId}
+    </update>
+
+    <select id="selectAdminList" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        select
+            mobelPhone mobelPhone,
+            nickName nickName,
+            permissionLevel permissionLevel,
+            token token,
+            createdDate createdDate,
+            modifiedDate modifiedDate,
+            isDeleted isDeleted,
+        id adminId
+        from admin
+        WHERE
+        isDeleted = 0
+        <if test="adminId != null">
+            and id =#{adminId}
+        </if>
+            <if test="mobelPhone != null">
+                and mobelPhone =#{mobelPhone}
+            </if>
+            <if test="password != null">
+                and password =#{password}
+            </if>
+            <if test="nickName != null">
+                and nickName =#{nickName}
+            </if>
+            <if test="permissionLevel != null">
+                and permissionLevel =#{permissionLevel}
+            </if>
+            <if test="token != null">
+                and token =#{token}
+            </if>
+            <if test="modifiedDate != null">
+                and modifiedDate =#{modifiedDate}
+            </if>
+        ORDER BY id ASC
+    </select>
+
+    <delete id="delAdminById" parameterType="java.lang.Integer">
+        DELETE FROM  admin
+        where
+        id = #{adminId}
+    </delete>
+
+</mapper>
