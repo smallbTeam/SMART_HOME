@@ -196,6 +196,7 @@
                                     var wenduval = "";
                                     var shiduval = "";
                                     var pm = "";
+
                                     $.ajax({
                                         url: "${path}/client/device?action=getDeviceByDeviceId",
                                         type: "GET",
