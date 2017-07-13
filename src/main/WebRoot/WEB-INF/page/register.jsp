@@ -112,7 +112,6 @@
                 <div class=" btn-content">
                     <button id="regbtn">注册</button>
                 </div>
-
             </div>
         </div>
     </div>

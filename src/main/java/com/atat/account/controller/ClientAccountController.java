@@ -35,9 +35,6 @@ import java.util.Map;
 @RequestMapping(value = "client/account")
 public class ClientAccountController extends BaseController {
 
-//    @Resource
-//    private ClientAccountService clientAccountService;
-
     @Resource
     private CustomerService customerService;
 
@@ -263,11 +260,10 @@ public class ClientAccountController extends BaseController {
             try {
                 // 依据手机号查询用户是否已存在
                 Map<String, Object> customer = customerService.getCustomerByMobelPhone(strMobelPhone);
-                if (null != customer) {
+                if (CollectionUtil.isNotEmpty(customer)) {
                     resultMap.put("result", "success");
                     resultMap.put("operationResult", true);
-                }
-                else {
+                } else {
                     resultMap.put("result", "success");
                     resultMap.put("operationResult", false);
                 }

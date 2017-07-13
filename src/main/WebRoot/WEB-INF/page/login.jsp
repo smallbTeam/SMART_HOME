@@ -64,7 +64,7 @@
                     <img src="${path}/page/img/icon/pwd.png" class=" icon pull-left"/>
                     <!--<img src="img/icon/success.png" class=" remark pull-right"/>-->
                     <div class="row-center">
-                        <input type="text" class="" placeholder="密码">
+                        <input type="text" id="password" class="" placeholder="密码">
                     </div>
                 </div>
 
@@ -108,7 +108,36 @@
             $('#validate').slideDown("slow");
         });
         $("#accountLogin").on("click",function(){
-            window.location.href = "${path}/client/home?action=index&mobelPhone=" + $("#phoneNumber").val();
+            $('#accountLogin').text('登录中...');
+            $.ajax({
+                url:"${path}/client/account?action=accountLogin",
+                type:"post",
+                data:{
+                    "mobelPhone":$("#phoneNumber").val(),
+                    "password":$("#password").val(),
+                    "wxid":wxId,
+                },
+                dataType:"json",
+                success:function(data){
+                    if(data.result == "success" && null != data.operationResult
+                        && "" != data.operationResult){
+                        if((0 == data.operationResult)){
+                            alert("手机号或密码错误");
+                            $('#accountLogin').text('登录');
+                        } else {
+                            window.location.href = "${path}/client/home?action=index&mobelPhone=" + $("#phoneNumber").val();
+                        }
+                    } else {
+                        alert("系统错误");
+                        $('#accountLogin').text('登录');
+                    }
+                },
+                error:function(e) {
+                    alert("系统错误");
+                    $('#accountLogin').text('登录');
+                    console.log(e);
+                }
+            });
         });
 
     });

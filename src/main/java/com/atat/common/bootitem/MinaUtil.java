@@ -29,7 +29,8 @@ public class MinaUtil {
     //////将数据转换为map
     public static Map<String,Object> InPutMessageToString(String [] msg){
         Map map = new HashMap<String, Object>();
-        map.put("devicenumber",msg[0]);
+        map.put("gatewaySerialNumber",msg[0]);
+        map.put("serialNumber",msg[0]);
         //.put("state",msg[1]);
         map.put("wendu",StringToFloat(msg[2],"wendu"));
         map.put("shidu",StringToFloat(msg[3],"shidu"));
@@ -72,9 +73,11 @@ public class MinaUtil {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");// 此文件放在SRC目录下
         DeviceDataNowService deviceDataNowService = (DeviceDataNowService) context.getBean("deviceDataNowService");
-
                 //////向数据库传送数据
-				String gatewaySerialNumber = (String) map.get("devicenumber");
+				String gatewaySerialNumber = (String) map.get("gatewaySerialNumber");
+                map.remove("gatewaySerialNumber");
+				String serialNumber = (String) map.get("serialNumber");
+                map.remove("serialNumber");
 				Iterator it = map.keySet().iterator();
 				while (it.hasNext()) {
 					String key = it.next().toString();//设备类型名称
@@ -85,7 +88,7 @@ public class MinaUtil {
                         // 网关设备序号
                         param.put("gatewaySerialNumber",gatewaySerialNumber);
                         // 设备序号
-						param.put("seriaNumber",gatewaySerialNumber);
+						param.put("seriaNumber",serialNumber);
                         // 属性code
 						param.put("code",key);
                         // 值

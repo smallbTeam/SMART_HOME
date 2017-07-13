@@ -57,7 +57,7 @@ public class MinaServerHandler extends IoHandlerAdapter {
 
 		 ///////////根据协议获取传输数据类型数据
 		//shuju00传输温度，湿度，pm
-		if(str[1].equals("00")){
+		if(str[1].equals("shuju00")){
 			Map<String,Object> map =  InPutMessageToString(str);
 //			hd = list.get(session);
 			sendEnviTosql(map);
