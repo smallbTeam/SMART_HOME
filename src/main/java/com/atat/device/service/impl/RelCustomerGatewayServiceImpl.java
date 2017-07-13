@@ -1,6 +1,7 @@
 package com.atat.device.service.impl;
 
 import com.atat.common.util.CollectionUtil;
+import com.atat.device.dao.DeviceDao;
 import com.atat.device.dao.GatewayDao;
 import com.atat.device.dao.RelCustomerGatewayDao;
 import com.atat.device.service.RelCustomerGatewayService;
@@ -23,6 +24,9 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
 
     @Autowired
     private GatewayDao gatewayDao;
+
+    @Autowired
+    private DeviceDao deviceDao;
 
     @Override
     public void  addRelCustomerGateway(Map<String, Object> param) {
@@ -78,9 +82,14 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
             //如果客户是网关拥有着则直接删除网关
             if (((Integer)1).equals((Integer) relCustomerGateway.get("isOnwer"))){
                 Map<String, Object> del_param = new HashMap<String, Object>();
+                String gatewaySerialNumber = (String) param.get("gatewaySerialNumber");
                 del_param.put("isDeleted", 1);
-                del_param.put("serialNumber", param.get("gatewaySerialNumber"));
+                del_param.put("serialNumber", gatewaySerialNumber);
                 gatewayDao.updateGatewayBySerialNumber(del_param);
+                //删除当前网关关联的所有用户
+                relCustomerGatewayDao.deleteRelCustomerGatewayByGatewayNum(gatewaySerialNumber);
+                //删除当前网关关联的所有设备
+                deviceDao.deleteDeviceByGatewayNum(gatewaySerialNumber);
             }
             //解除关联
             Long relCustomerGatewayId = (Long)relCustomerGateway.get("relCustomerGatewayId");
@@ -91,18 +100,57 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
         }
     }
 
-    @Override public void addGatewayForCustomer(Map<String, Object> param) {
+    @Override public Integer addGatewayForCustomer(Map<String, Object> param) {
         Integer isOnwer = 0;
         //判断是否是初次添加
         Map<String, Object> param_se = new HashMap<String, Object>();
-        param_se.put("serialNumber", param.get("gatewaySerialNumber"));
+        String gatewaySerialNumber = (String) param.get("gatewaySerialNumber");
+        param_se.put("serialNumber", gatewaySerialNumber);
         if (CollectionUtil.isEmpty((List<Map<String, Object>>)gatewayDao.selectGatewayList(param_se))){
             Map<String, Object> param_cu = new HashMap<String, Object>();
-            param_cu.put("serialNumber", param.get("gatewaySerialNumber"));
+            param_cu.put("serialNumber", gatewaySerialNumber);
             gatewayDao.addGateway(param_cu);
             isOnwer = 1;
+            param.put("isOnwer",isOnwer);
+            relCustomerGatewayDao.addRelCustomerGateway(param);
+            //初次添加网关 添加网管下设备 设备序号与网管保持一致
+            Map<String, Object> paramDevice = new HashMap<String, Object>();
+            paramDevice.put("seriaNumber",gatewaySerialNumber);
+            paramDevice.put("deviceCategoryId",1);
+            paramDevice.put("gatewaySerialNumber",gatewaySerialNumber);
+            deviceDao.addDevice(paramDevice);
+            return 1;
+        } else {
+            return 0;
         }
-        param.put("isOnwer",isOnwer);
-        relCustomerGatewayDao.addRelCustomerGateway(param);
+    }
+
+    @Override public Integer addGateWayByInvite(Map<String, Object> param) {
+        //网关Id
+        String gatewaySerialNumber = (String) param.get("gatewaySerialNumber");
+        //邀请人Id'
+        Long customerId = (Long) param.get("customerId");
+        //被邀请人Id
+        Long invitederId = (Long) param.get("invitederId");
+        Map<String, Object> paramCheckOnwer = new HashMap<String, Object>();
+        //判断原用户是否拥有权限
+        paramCheckOnwer.put("gatewaySerialNumber",gatewaySerialNumber);
+        paramCheckOnwer.put("customerId",customerId);
+        List<Map<String, Object>> relCustomerGatewayList = relCustomerGatewayDao.selectRelCustomerGatewayList(paramCheckOnwer);
+        if (CollectionUtil.isEmpty(relCustomerGatewayList)) {
+            return 0;
+        }
+        if (!((Integer)1).equals((Integer) relCustomerGatewayList.get(0).get("isOnwer"))){
+            return 0;
+        }
+        //新用户下是否已经拥有
+        Map<String, Object> paramCheckInviteder = new HashMap<String, Object>();
+        paramCheckInviteder.put("gatewaySerialNumber",customerId);
+        paramCheckInviteder.put("customerId",invitederId);
+        List<Map<String, Object>> customerGatewayList = relCustomerGatewayDao.selectRelCustomerGatewayList(paramCheckOnwer);
+        if (CollectionUtil.isEmpty(customerGatewayList)) {
+           relCustomerGatewayDao.addRelCustomerGateway(paramCheckInviteder);
+        }
+        return 1;
     }
 }

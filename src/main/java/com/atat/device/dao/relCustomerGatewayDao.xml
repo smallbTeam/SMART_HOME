@@ -112,4 +112,10 @@
         id = #{relCustomerGatewayId}
     </delete>
 
+    <update id="deleteRelCustomerGatewayByGatewayNum" parameterType="java.lang.String">
+        update rel_customer_gateway
+        SET  isDeleted = 1
+        where gatewaySerialNumber = #{gatewaySerialNumber}
+    </update>
+
 </mapper>

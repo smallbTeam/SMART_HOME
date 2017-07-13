@@ -137,7 +137,7 @@ public class GateWayController extends BaseController {
 
     /**
      * 为用户添加网关
-     * 
+     * return 0网关已被添加 1网关成功添加
      * @param request
      * @param response
      * @throws IOException
@@ -155,8 +155,48 @@ public class GateWayController extends BaseController {
             param.put("gatewaySerialNumber", gatewaySerialNumber);
             param.put("gatewayName", gatewayName);
             try {
-                relCustomerGatewayService.addGatewayForCustomer(param);
+                Integer addRes = relCustomerGatewayService.addGatewayForCustomer(param);
                 resultMap.put("result", "success");
+                resultMap.put("operationResult", addRes);
+            }
+            catch (Exception e) {
+                logger.error(" 为用户添加网关出错" + e, e);
+                resultMap.put("result", "failed");
+                resultMap.put("error", "系统出错");
+            }
+        } else {
+            resultMap.put("result", "error");
+            resultMap.put("error", "用户Id及网关名称均不能为空");
+        }
+        this.renderJson(response, resultMap);
+    }
+
+    /**
+     * 用户邀请注册
+     * return  1成功 0没有权限
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping(params = "action=addGateWayByInvite")
+    public void addGateWayByInvite(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        String gatewaySerialNumber = request.getParameter("gatewaySerialNumber");
+        String customerId = request.getParameter("customerId");
+        String invitederId = request.getParameter("invitederId");
+        if (StringUtil.isNotEmpty(gatewaySerialNumber) && StringUtil.isNotEmpty(customerId)
+                && StringUtil.isNotEmpty(invitederId)) {
+            Map<String, Object> param = new HashMap<String, Object>();
+            //网关Id
+            param.put("gatewaySerialNumber",gatewaySerialNumber);
+            //邀请人Id'
+            param.put("customerId",Long.parseLong(customerId));
+            //被邀请人Id
+            param.put("invitederId",Long.parseLong(invitederId));
+            try {
+                Integer addRes = relCustomerGatewayService.addGateWayByInvite(param);
+                resultMap.put("result", "success");
+                resultMap.put("operationResult", addRes);
             }
             catch (Exception e) {
                 logger.error(" 为用户添加网关出错" + e, e);

@@ -63,5 +63,11 @@ public interface RelCustomerGatewayService {
      * 用户绑定网关
      * @param param
      */
-    public void  addGatewayForCustomer(Map<String, Object> param);
+    public Integer  addGatewayForCustomer(Map<String, Object> param);
+
+    /**
+     *
+     * @return
+     */
+    public Integer addGateWayByInvite(Map<String, Object> param);
 }

@@ -35,4 +35,10 @@ public interface DeviceDao {
      */
     public void  delDeviceById(Long deviceId);
 
+    /**
+     * 依据网关设备序列号删除设备
+     * @param gatewaySerialNumber
+     */
+    public void  deleteDeviceByGatewayNum(String gatewaySerialNumber);
+
 }

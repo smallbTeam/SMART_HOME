@@ -35,4 +35,10 @@ public interface RelCustomerGatewayDao {
      */
     public void  delRelCustomerGatewayById(Long relCustomerGatewayId);
 
+    /**
+     * 依据网关设备Id移除关联关系
+     * @param gatewaySerialNumber
+     */
+    public void deleteRelCustomerGatewayByGatewayNum(String gatewaySerialNumber);
+
 }

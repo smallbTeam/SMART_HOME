@@ -67,10 +67,10 @@ public class WeixinAction {
             if (StringUtil.isNotEmpty(access_token)) {
                 // 保存accessToken
                 Map<String, Object> param = new HashMap<String, Object>();
-                param.put("propertyMapKey", "accessToken");
+                param.put("propertyMapId", "accessToken");
                 List<Map<String, Object>> propList = propertyMapService.selectPropertyMapList(param);
+                param.put("propval", access_token);
                 if (CollectionUtil.isNotEmpty(propList)) {
-                    param.put("propval", access_token);
                     propertyMapService.updatePropertyMapById(param);
                 }
                 else {
@@ -94,10 +94,10 @@ public class WeixinAction {
                     Integer expires_in_jsapi = (Integer) jsapiResMap.get("expires_in");
                     // 保存ticket
                     Map<String, Object> jsapiticket_ticket = new HashMap<String, Object>();
-                    jsapiticket_ticket.put("propertyMapKey", "jsapiticketTicket");
+                    jsapiticket_ticket.put("propertyMapId", "jsapiticketTicket");
                     propList = propertyMapService.selectPropertyMapList(jsapiticket_ticket);
+                    jsapiticket_ticket.put("propval", ticket);
                     if (CollectionUtil.isNotEmpty(propList)) {
-                        jsapiticket_ticket.put("propval", ticket);
                         propertyMapService.updatePropertyMapById(jsapiticket_ticket);
                     }
                     else {

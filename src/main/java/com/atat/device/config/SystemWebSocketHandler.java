@@ -25,7 +25,7 @@ public class SystemWebSocketHandler extends TextWebSocketHandler {
 
     public static void sendMessage(Map<String, Object> map) {
         if (users.size() > 0) {
-            String devicenumber = (String) map.get("devicenumber");
+            String devicenumber = (String) map.get("gatewaySerialNumber");
             System.out.println("发送出去的网关号------------->" + devicenumber);
             Iterator it = users.keySet().iterator();
             while (it.hasNext()) {
@@ -34,7 +34,7 @@ public class SystemWebSocketHandler extends TextWebSocketHandler {
                 if (devicenumber.equals(value)) {
                     String str = JsonUtil.toJson(map);
                     // 发出去内容
-                    System.out.println("发送湖区的消息------------->" + str);
+                    System.out.println("发送出去的消息------------->" + str);
                     CharBuffer toMsg = CharBuffer.wrap(str.toCharArray());
                     TextMessage message = new TextMessage(toMsg);
                     try {

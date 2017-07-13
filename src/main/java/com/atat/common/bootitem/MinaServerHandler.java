@@ -60,6 +60,7 @@ public class MinaServerHandler extends IoHandlerAdapter {
 		if(str[1].equals("shuju00")){
 			Map<String,Object> map =  InPutMessageToString(str);
 //			hd = list.get(session);
+			SystemWebSocketHandler.sendMessage(map);
 			sendEnviTosql(map);
 
 			/////如果当前session中网关和之前网关名称一样则继续执行
@@ -90,7 +91,6 @@ public class MinaServerHandler extends IoHandlerAdapter {
 //				sendEnviTosql(map);
 //				System.out.println("网关信息不通发送数据");
 //			}
-			SystemWebSocketHandler.sendMessage(map);
 		}
 	}
 

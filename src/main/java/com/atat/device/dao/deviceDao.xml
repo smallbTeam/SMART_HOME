@@ -130,4 +130,10 @@
         id = #{deviceId}
     </delete>
 
+    <update id="deleteDeviceByGatewayNum" parameterType="java.lang.String">
+        update device
+         set isDeleted = 1
+        where gatewaySerialNumber = #{gatewaySerialNumber}
+    </update>
+
 </mapper>

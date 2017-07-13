@@ -20,14 +20,13 @@
         var nonceStr = '${noncestr}';
         var signature = '${signaturet}';
         var account = {
-            "id": '${account.id}',
-            "mobelPhone": '${account.MobelPhone}',
-            "wxId": '${account.WxId}',
-            "nickName": '${account.NickName}',
-            "birthday": '${account.Birthday}',
-            "sex": '${account.Sex}',
-            "reserve": '${account.Reserve}',
-            "token": '${account.Token}'
+            "id": '${account.customerId}',
+            "mobelPhone": '${account.mobelPhone}',
+            "wxId": '${account.wxId}',
+            "nickName": '${account.nickName}',
+            "birthday": '${account.birthday}',
+            "sex": '${account.sex}',
+            "token": '${account.token}'
         };
         $(function () {
             alert("登录手机号：["+account.mobelPhone+"]");

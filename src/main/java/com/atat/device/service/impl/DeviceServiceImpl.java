@@ -77,7 +77,7 @@ public class DeviceServiceImpl implements DeviceService {
                     param_dd.put("deviceId", deviceId);
                     param_dd.put("categoryParameterId", categoryParameterId);
                     param_dd.put("limit", 1);
-                    List<Map<String, Object>> deviceDataNowList = (List<Map<String, Object>>)deviceDataNowDao.selectDeviceDataNowList(param);
+                    List<Map<String, Object>> deviceDataNowList = (List<Map<String, Object>>)deviceDataNowDao.selectDeviceDataNowList(param_dd);
                     if (CollectionUtil.isNotEmpty(deviceDataNowList)){
                         Map<String, Object> deviceDataNow = deviceDataNowList.get(0);
                         categoryParameter.put("recordTime",deviceDataNow.get("recordTime"));

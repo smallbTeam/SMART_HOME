@@ -46,18 +46,24 @@ $(document).ready(function () {
                                 // setInterval(count, 1000);
                                 alert("配置 WIFI成功");
                                 $.ajax({
-                                    url: path + "/client/home?action=addGatewayForCustomer",
+                                    url: path + "/client/device?action=addGatewayForCustomer",
                                     type: "POST",
                                     data: {
                                         customerId: account.id,
-                                        gatewayDeviceID: $("#deviceNo").val(),
-                                        address: $("#wangguan").val()
+                                        gatewaySerialNumber: $("#deviceNo").val(),
+                                        gatewayName: $("#wangguan").val()
                                     },
                                     dataType: "json",
                                     success: function (result) {
                                         console.log(result);
                                         if (result.result == "success") {
-                                            alert("添加网关成功");
+                                            if (result.operationResult == 0){
+                                                alert("网关已被添加，请联系网管所有者");
+                                            } else if (result.operationResult == 1){
+                                                alert("网关成功");
+                                            } else {
+                                                alert("添加网关异常")
+                                            }
                                         } else {
                                             alert("添加网关失败："+result.error)
                                         }

@@ -34,14 +34,13 @@
     var timestamp = '${timestamp}';
     var nonceStr = '${noncestr}';
     var signature = '${signaturet}';
-    var account = {"id":'${account.id}',
-        "mobelPhone":'${account.MobelPhone}',
-        "wxId":'${account.WxId}',
-        "nickName":'${account.NickName}',
-        "birthday":'${account.Birthday}',
-        "sex":'${account.Sex}',
-        "reserve":'${account.Reserve}',
-        "token":'${account.Token}'
+    var account = {"id":'${account.customerId}',
+        "mobelPhone":'${account.mobelPhone}',
+        "wxId":'${account.wxId}',
+        "nickName":'${account.nickName}',
+        "birthday":'${account.birthday}',
+        "sex":'${account.sex}',
+        "token":'${account.token}'
     }
 
     $(function () {
@@ -66,7 +65,7 @@
                 <img src="${path}/page/img/icon/wangguan.png" class="icon pull-left"/>
                 <img src="${path}/page/img/visible.png" class="remark pull-right"/>
                 <div class="row-center">
-                    <input id="wangguan" type="text" class="wangguan" placeholder="网关所在地址">
+                    <input id="wangguan" type="text" class="wangguan" placeholder="网关名称">
                 </div>
             </div>
             <div class=" btn-content">
