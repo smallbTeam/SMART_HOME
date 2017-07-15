@@ -263,6 +263,7 @@ public class ClientAccountController extends BaseController {
                 if (CollectionUtil.isNotEmpty(customer)) {
                     resultMap.put("result", "success");
                     resultMap.put("operationResult", true);
+                    resultMap.put("customer", customer);
                 } else {
                     resultMap.put("result", "success");
                     resultMap.put("operationResult", false);

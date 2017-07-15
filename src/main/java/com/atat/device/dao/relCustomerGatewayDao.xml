@@ -78,10 +78,16 @@
         gaw.createdDate createdDate,
         gaw.modifiedDate modifiedDate,
         gaw.id gatewayId
+        cus.mobelPhone mobelPhone,
+        cus.wxId wxId,
+        cus.nickName nickName,
+        cus.birthday birthday,
+        cus.sex sex
         from rel_customer_gateway rcg
         LEFT JOIN gateway gaw on rcg.gatewaySerialNumber = gaw.serialNumber
+        LEFT  JOIN customer cus ON  rcg.customerId = cus.id
         WHERE
-        rcg.isDeleted = 0 and gaw.isDeleted = 0
+        rcg.isDeleted = 0 and gaw.isDeleted = 0 AND  cus.isDeleted = 0
         <if test="relCustomerGatewayId != null">
             and rcg.id =#{relCustomerGatewayId}
         </if>

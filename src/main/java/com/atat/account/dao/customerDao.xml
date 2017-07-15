@@ -99,11 +99,10 @@
             token token,
             createdDate createdDate,
             modifiedDate modifiedDate,
-            isDeleted isDeleted,
         id customerId
         from customer
         WHERE
-        1=1
+        isDeleted = 0
         <if test="customerId != null">
             and id =#{customerId}
         </if>

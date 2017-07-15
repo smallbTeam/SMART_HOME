@@ -2,21 +2,19 @@ package com.atat.device.service.impl;
 
 import com.atat.account.dao.CustomerDao;
 import com.atat.common.util.CollectionUtil;
+import com.atat.common.util.StringUtil;
 import com.atat.device.dao.DeviceDao;
 import com.atat.device.dao.GatewayDao;
 import com.atat.device.dao.RelCustomerGatewayDao;
 import com.atat.device.service.RelCustomerGatewayService;
+import com.atat.message.service.ShortMessageService;
 import com.atat.message.service.WeixinMessageService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import java.util.*;
 
 @Service
 public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService {
@@ -35,6 +33,9 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
 
     @Autowired
     private WeixinMessageService weixinMessageService;
+
+    @Autowired
+    private ShortMessageService shortMessageService;
 
     @Override
     public void  addRelCustomerGateway(Map<String, Object> param) {
@@ -148,25 +149,38 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
         if (CollectionUtil.isEmpty(relCustomerGatewayList)) {
             return 0;
         }
-        if (!((Integer)1).equals((Integer) relCustomerGatewayList.get(0).get("isOnwer"))){
+        Map<String, Object> onwerCustomerInfo = relCustomerGatewayList.get(0);
+        if (!((Integer)1).equals((Integer) onwerCustomerInfo.get("isOnwer"))){
             return 0;
         }
-        //新用户下是否已经拥有
+        String onwerName = (String) onwerCustomerInfo.get("nickName");
+        String onwerPhone = (String) onwerCustomerInfo.get("mobelPhone");
+        String gatewayName = (String) onwerCustomerInfo.get("gatewayName");
+        //网关拥有着短信昵称
+        String onwerTishi = StringUtil.isEmpty(onwerName) ? onwerPhone : onwerName;
+        //新用户下是否已经拥有该网关
         Map<String, Object> paramCheckInviteder = new HashMap<String, Object>();
-        paramCheckInviteder.put("gatewaySerialNumber",customerId);
+        paramCheckInviteder.put("gatewaySerialNumber",gatewaySerialNumber);
         paramCheckInviteder.put("customerId",invitederId);
         List<Map<String, Object>> customerGatewayList = relCustomerGatewayDao.selectRelCustomerGatewayList(paramCheckOnwer);
         if (CollectionUtil.isEmpty(customerGatewayList)) {
            relCustomerGatewayDao.addRelCustomerGateway(paramCheckInviteder);
            //推送微信消息
-            Map<String, Object> customerinfo = new HashMap<String, Object>();
             Map<String, Object> rs = new HashMap<String, Object>();
             rs.put("customerId", customerId);
             List<Map<String, Object>> customerList = customerDao.selectCustomerList(rs);
-            if ((null != customerList) && (customerList.size() > 0)) {
-                customerinfo = customerList.get(0);
-                String wxId = (String) customerinfo.get("wxId");
-                //weixinMessageService.sendWeixinMessage();
+            if (CollectionUtil.isNotEmpty(customerList)) {
+                Map<String, Object> invitedCustomerinfo = customerList.get(0);
+                String invitedPhone = (String) invitedCustomerinfo.get("mobelPhone");
+                String invitedName = (String) invitedCustomerinfo.get("nickName");
+                String invitedTishi = StringUtil.isEmpty(invitedName) ? invitedPhone : invitedName;
+                //String wxId = (String) customerinfo.get("wxId");
+                //List<String> touser = new ArrayList<String>();
+                //touser.add(wxId);
+                //weixinMessageService.sendWeixinMessage(touser,null,);
+                String msgContent = "尊敬的"+invitedTishi+"！你好！用户"+onwerTishi+"给您分享了"+gatewayName+"网关,请前往\"ATAT智能家\"公众号查看";
+                //发送短信
+                shortMessageService.sendShortMessage(invitedPhone,msgContent);
             }
         }
         return 1;

@@ -8,9 +8,7 @@ import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 
-
-import static com.atat.common.bootitem.MinaUtil.InPutMessageToString;
-import static com.atat.common.bootitem.MinaUtil.sendEnviTosql;
+import static com.atat.common.bootitem.MinaUtil.*;
 
 public class MinaServerHandler extends IoHandlerAdapter {
 //	public static List<HardWare>  list = new ArrayList<HardWare>();
@@ -41,6 +39,7 @@ public class MinaServerHandler extends IoHandlerAdapter {
 		list.put(session,new HardWare(0));
 	}
 
+
 	@Override
 	public void messageReceived(IoSession session, Object message)
 			throws Exception {
@@ -55,13 +54,12 @@ public class MinaServerHandler extends IoHandlerAdapter {
 		String stringmsg = new String(b);
 		String [] str = stringmsg.split("\\|");
 
-		 ///////////根据协议获取传输数据类型数据
-		//shuju00传输温度，湿度，pm
-		if(str[1].equals("shuju00")){
-			Map<String,Object> map =  InPutMessageToString(str);
+		if(str[1].equals("KQSJ")){
+			//////将数据转换为map
+			List<Map<String,Object>> map =  InPutMessageToMap(str);
 //			hd = list.get(session);
-			SystemWebSocketHandler.sendMessage(map);
-			sendEnviTosql(map);
+			SystemWebSocketHandler.sendMessage(map.get(1));
+			sendEnviTosql(map.get(0));
 
 			/////如果当前session中网关和之前网关名称一样则继续执行
 			/////否则上传数据，并重新计算数据
@@ -91,6 +89,13 @@ public class MinaServerHandler extends IoHandlerAdapter {
 //				sendEnviTosql(map);
 //				System.out.println("网关信息不通发送数据");
 //			}
+		}else if(str[1].equals("KQTS")){
+			/////向后台发送数据
+			Map map = new HashMap<String, Object>();
+			map = InPutMessageToString(str);
+			sendEnviTosql(map);
+
+			AlarmPush(str);
 		}
 	}
 

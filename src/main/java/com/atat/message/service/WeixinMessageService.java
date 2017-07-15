@@ -4,6 +4,7 @@
  */
 package com.atat.message.service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,5 +12,5 @@ import java.util.Map;
  * @version $Id weixinMessageService.java, v 0.1 2017-07-15 16:00 ligw Exp $$
  */
 public interface WeixinMessageService {
-    public Integer sendWeixinMessage(String touser,String url,String template_id, Map data);
+    public Integer sendWeixinMessage(List<String> touser,String url,String template_id, Map data);
 }

@@ -12,5 +12,5 @@ public class BasePropertyDate {
 
     public static final String WX_APPID = "wxe53df1855bab1cc8";
     public static final String WX_SECRET = "70f10e2dfd552c39fd4be98c81fd0f0d";
-
+    public static final String WX_WARN_MODEL = "L9KbX2H3pprmm2J3c3uh7TAonffAjMqYLMST78BAlmE";///微信警告模板
 }
