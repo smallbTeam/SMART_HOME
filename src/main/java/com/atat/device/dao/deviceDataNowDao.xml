@@ -36,7 +36,7 @@
         deviceId deviceId,
         value value,
         categoryParameterId categoryParameterId,
-        recordTime deviceDataNowId
+        recordTime recordTime
         from device_data_now
         WHERE
         1=1

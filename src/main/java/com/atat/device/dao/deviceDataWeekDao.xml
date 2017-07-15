@@ -50,7 +50,7 @@
             deviceId deviceId,
             value value,
             categoryParameterId categoryParameterId,
-        recordTime deviceDataWeekId
+        recordTime recordTime
         from device_data_week
         WHERE
         1=1

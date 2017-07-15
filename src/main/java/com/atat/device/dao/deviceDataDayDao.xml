@@ -49,7 +49,7 @@
             deviceId deviceId,
             value value,
             categoryParameterId categoryParameterId,
-        recordTime deviceDataDayId
+        recordTime recordTime
         from device_data_day
         WHERE
         1=1
