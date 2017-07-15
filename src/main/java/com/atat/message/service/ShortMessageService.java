@@ -4,6 +4,8 @@
  */
 package com.atat.message.service;
 
+import org.springframework.stereotype.Service;
+
 /**
  * @author ligw
  * @version $Id messageService.java, v 0.1 2017-07-15 15:57 ligw Exp $$

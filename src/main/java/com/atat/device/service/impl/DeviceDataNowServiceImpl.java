@@ -140,7 +140,7 @@ public class DeviceDataNowServiceImpl implements DeviceDataNowService {
                 cal.add(Calendar.HOUR, -3);
                 param_sdd.put("recordTimeStart", cal.getTime().getTime());
                 List<Map<String, Object>> deviceThreeHourData = deviceDataNowDao.selectDeviceDataNowList(param_sdd);
-                categoryParameter.put("deviceThreeHourData", deviceThreeHourData);
+                categoryParameter.put("deviceEchartsData", deviceThreeHourData);
             }
         }
         return categoryParameter;

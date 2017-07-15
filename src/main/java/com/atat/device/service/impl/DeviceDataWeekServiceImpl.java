@@ -88,7 +88,7 @@ public class DeviceDataWeekServiceImpl implements DeviceDataWeekService {
                 cal.add(Calendar.YEAR, -1);
                 param_sdd.put("recordTimeStart", cal.getTime().getTime());
                 List<Map<String, Object>> deviceThreeHourData = deviceDataWeekDao.selectDeviceDataWeekList(param_sdd);
-                categoryParameter.put("deviceThreeHourData", deviceThreeHourData);
+                categoryParameter.put("deviceEchartsData", deviceThreeHourData);
             }
         }
         return categoryParameter;

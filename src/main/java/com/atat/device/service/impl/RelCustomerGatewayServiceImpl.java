@@ -166,7 +166,7 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
             if ((null != customerList) && (customerList.size() > 0)) {
                 customerinfo = customerList.get(0);
                 String wxId = (String) customerinfo.get("wxId");
-                weixinMessageService.sendWeixinMessage();
+                //weixinMessageService.sendWeixinMessage();
             }
         }
         return 1;

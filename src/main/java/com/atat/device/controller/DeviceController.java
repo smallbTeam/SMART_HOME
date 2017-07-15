@@ -43,15 +43,17 @@ public class DeviceController extends BaseController {
     }
 
     /**
-     * 设备列表页面
+     * 设备图表页面
      *
      * @return
      */
     @RequestMapping(params = "action=chartDetail")
     public ModelAndView deviceDataChart(HttpServletRequest request, HttpServletResponse response) {
         String deviceId = request.getParameter("deviceId");
-        String sinnalId = request.getParameter("sinnalId");
+        String code = request.getParameter("code");
         ModelAndView mav = new ModelAndView("chartDetail");
+        mav.addObject("deviceId",deviceId);
+        mav.addObject("code",code);
         return mav;
     }
 

@@ -89,7 +89,7 @@ public class DeviceDataHourServiceImpl implements DeviceDataHourService {
                 cal.add(Calendar.DATE, -1);
                 param_sdd.put("recordTimeStart", cal.getTime().getTime());
                 List<Map<String, Object>> deviceThreeHourData = deviceDataHourDao.selectDeviceDataHourList(param_sdd);
-                categoryParameter.put("deviceThreeHourData", deviceThreeHourData);
+                categoryParameter.put("deviceEchartsData", deviceThreeHourData);
             }
         }
         return categoryParameter;
