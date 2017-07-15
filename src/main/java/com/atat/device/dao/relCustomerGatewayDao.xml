@@ -77,7 +77,7 @@
         gaw.ip ip,
         gaw.createdDate createdDate,
         gaw.modifiedDate modifiedDate,
-        gaw.id gatewayId
+        gaw.id gatewayId,
         cus.mobelPhone mobelPhone,
         cus.wxId wxId,
         cus.nickName nickName,
