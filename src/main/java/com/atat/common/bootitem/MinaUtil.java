@@ -1,5 +1,6 @@
 package com.atat.common.bootitem;
 
+import com.alibaba.fastjson.JSONObject;
 import com.atat.account.service.CustomerService;
 import com.atat.common.prop.BasePropertyDate;
 import com.atat.common.util.JsonUtil;
@@ -155,14 +156,13 @@ public class MinaUtil {
                 Date date=new Date();
                 DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-                    Map<String, Object> putData = new HashMap<String, Object>();
+                    JSONObject putData = new JSONObject();
 
-                    putData.put("first",ContentToMap("Hello，Attention:","#173177"));
-                    putData.put("system",ContentToMap(ContentToMap(i,str[1]),"#173177"));
-                    putData.put("time",ContentToMap(format.format(date),"#173177"));
-                    putData.put("account",ContentToMap("1","#173177"));
-                    putData.put("remark",ContentToMap("AttentionPlace","#173177"));
-
+                    putData.put("first", ContentToJsonObj("EHello，Attention:","#173177"));
+                    putData.put("system", ContentToJsonObj(ContentToMap(i,str[1]),"#173177"));
+                    putData.put("time", ContentToJsonObj(format.format(date),"#173177"));
+                    putData.put("account", ContentToJsonObj("1","#173177"));
+                    putData.put("remark", ContentToJsonObj("AttentionPlace","#173177"));
                 Integer result = weixinMessageService.sendWeixinMessage(customerWxIdList,"",BasePropertyDate.WX_WARN_MODEL,putData);
 
                 }
@@ -176,11 +176,11 @@ public class MinaUtil {
      * @param color
      * @return
      */
-    private static String ContentToMap(String content, String color){
-        Map<String,Object> map = new HashMap<String,Object>();
-        map.put("value",content);
-        map.put("color",color);
-        return JsonUtil.toJson(map);
+    private static JSONObject ContentToJsonObj(String content, String color){
+        JSONObject dd = new JSONObject();
+        dd.put("value", content);//消息提示
+        dd.put("color", color);
+        return dd;
     }
 
     /**

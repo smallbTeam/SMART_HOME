@@ -8,6 +8,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.atat.common.util.JsonUtil;
 import com.atat.common.util.StringUtil;
 import com.atat.common.util.httpClient.HttpClientUtil;
+import com.atat.common.util.httpClient.HttpsConnection;
+import com.atat.common.util.weixinClient.CommonUtil;
 import com.atat.message.service.WeixinMessageService;
 import com.atat.property.dao.PropertyMapDao;
 import com.atat.property.service.PropertyMapService;
@@ -29,7 +31,7 @@ public class WeixinMessageServiceImpl implements WeixinMessageService{
     @Resource
     private PropertyMapDao propertyMapDao;
 
-    @Override public Integer sendWeixinMessage(List<String> touser, String url, String template_id, Map data) {
+    @Override public Integer sendWeixinMessage(List<String> touser, String url, String template_id, JSONObject data) {
 
         System.out.print("\n\n\n\n\\n\n\n\n\n\n\naaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
@@ -39,25 +41,14 @@ public class WeixinMessageServiceImpl implements WeixinMessageService{
         String accesstoken = (String) propMapList.get(0).get("propval");
         String urls = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token="+accesstoken;
             for(int i=0;i<touser.size();i++){
-                /////发送数据
-                String resJson = "";
-                Map<String, String> postdata = new HashMap<String, String>();
-                postdata.put("touser",touser.get(i));
-                postdata.put("template_id",template_id);
-                if(StringUtil.isNotEmpty(url)){
-                    postdata.put("url",url);
-                }
-                String str = JsonUtil.toJson(data);//.replaceAll("\"","\'");
-                System.out.println(str);
-                postdata.put("data",str);
-
-                System.out.print("nbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
-//               resJson = HttpClientUtil.doPost(urls,postdata,"utf-8");
-                String postdataStr = JsonUtil.toJson(postdata).replaceAll("\\\\\\\\","");
-                System.out.println(postdataStr);
-                //JSONObject json = JSONObject.parseObject(postdataStr);
-                resJson = HttpClientUtil.post(postdataStr,urls);
-                Map<String, Object> resMap = JsonUtil.fromJson(resJson, Map.class);
+                //封装数据
+                JSONObject json = new JSONObject();
+                json.put("touser", touser.get(i));//接收者wxName
+                json.put("template_id", template_id);//消息模板
+                //json.put("url", "http://weix");//填写url可查看详情
+                json.put("data", data);
+                JSONObject resJsonObj = CommonUtil.httpsRequest(urls, "POST", json.toString());
+                Map<String, Object> resMap = JsonUtil.fromJson(resJsonObj.toString(), Map.class);
                 String errcode = resMap.get("errcode")+"";
                 String errmsg = (String) resMap.get("errmsg");
                 System.out.print("\n\nerrcode:"+errcode+"\n\n\n\nerrmsg:"+errmsg+"\n\n\n\n");
