@@ -1,10 +1,12 @@
 package com.atat.device.service.impl;
 
+import com.atat.account.dao.CustomerDao;
 import com.atat.common.util.CollectionUtil;
 import com.atat.device.dao.DeviceDao;
 import com.atat.device.dao.GatewayDao;
 import com.atat.device.dao.RelCustomerGatewayDao;
 import com.atat.device.service.RelCustomerGatewayService;
+import com.atat.message.service.WeixinMessageService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,12 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
 
     @Autowired
     private DeviceDao deviceDao;
+
+    @Autowired
+    private CustomerDao customerDao;
+
+    @Autowired
+    private WeixinMessageService weixinMessageService;
 
     @Override
     public void  addRelCustomerGateway(Map<String, Object> param) {
@@ -150,6 +158,16 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
         List<Map<String, Object>> customerGatewayList = relCustomerGatewayDao.selectRelCustomerGatewayList(paramCheckOnwer);
         if (CollectionUtil.isEmpty(customerGatewayList)) {
            relCustomerGatewayDao.addRelCustomerGateway(paramCheckInviteder);
+           //推送微信消息
+            Map<String, Object> customerinfo = new HashMap<String, Object>();
+            Map<String, Object> rs = new HashMap<String, Object>();
+            rs.put("customerId", customerId);
+            List<Map<String, Object>> customerList = customerDao.selectCustomerList(rs);
+            if ((null != customerList) && (customerList.size() > 0)) {
+                customerinfo = customerList.get(0);
+                String wxId = (String) customerinfo.get("wxId");
+                weixinMessageService.sendWeixinMessage();
+            }
         }
         return 1;
     }
