@@ -26,6 +26,7 @@
     <bean id="deviceDataNowService" class="com.atat.device.service.impl.DeviceDataNowServiceImpl"></bean>
     <bean id="deviceDataHourService" class="com.atat.device.service.impl.DeviceDataHourServiceImpl"></bean>
     <bean id="deviceDataDayService" class="com.atat.device.service.impl.DeviceDataDayServiceImpl"></bean>
+    <bean id="shortMessageService" class="com.atat.message.service.impl.ShortMessageServiceImpl"></bean>
     <bean id="relCustomerGatewayService" class="com.atat.device.service.impl.RelCustomerGatewayServiceImpl"></bean>
     <bean id="weixinMessageService" class="com.atat.message.service.impl.WeixinMessageServiceImpl"></bean>
 
