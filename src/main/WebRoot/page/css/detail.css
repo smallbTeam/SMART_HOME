@@ -395,5 +395,5 @@ h3.title span:after {
     position: relative;
     width: 100%;
     min-height: 400px;
-    background: #00b300;
+    /*background: #00b300;*/
 }

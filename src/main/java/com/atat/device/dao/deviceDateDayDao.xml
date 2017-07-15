@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atat.device.dao.DeviceDateDayDao">
+
+    <insert id="addDeviceDateDay" parameterType="java.util.Map">
+        INSERT INTO device_date_day
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            recordTime,
+                <if test="deviceId != null">
+                    deviceId,
+                </if>
+                <if test="value != null">
+                    value,
+                </if>
+                <if test="categoryParameterId != null">
+                    categoryParameterId,
+                </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{deviceDateDayId}
+                <if test="deviceId != null">
+                    #{deviceId},
+                </if>
+                <if test="value != null">
+                    #{value},
+                </if>
+                <if test="categoryParameterId != null">
+                    #{categoryParameterId},
+                </if>
+        </trim>
+    </insert>
+
+    <update id="updateDeviceDateDayById" parameterType="java.util.Map">
+        update device_date_day
+        <trim prefix="set" suffixOverrides=",">
+                <if test="deviceId != null">
+                    deviceId =#{deviceId},
+                </if>
+                <if test="value != null">
+                    value =#{value},
+                </if>
+                <if test="categoryParameterId != null">
+                    categoryParameterId =#{categoryParameterId},
+                </if>
+        </trim>
+        where recordTime = #{deviceDateDayId}
+    </update>
+
+    <select id="selectDeviceDateDayList" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        select
+            deviceId deviceId,
+            value value,
+            categoryParameterId categoryParameterId,
+        recordTime deviceDateDayId
+        from device_date_day
+        WHERE
+        1=1
+        <if test="deviceDateDayId != null">
+            and recordTime =#{deviceDateDayId}
+        </if>
+            <if test="deviceId != null">
+                and deviceId =#{deviceId}
+            </if>
+            <if test="value != null">
+                and value =#{value}
+            </if>
+            <if test="categoryParameterId != null">
+                and categoryParameterId =#{categoryParameterId}
+            </if>
+        ORDER BY recordTime ASC
+    </select>
+
+    <delete id="delDeviceDateDayById" parameterType="java.lang.String">
+        DELETE FROM  device_date_day
+        where
+        recordTime = #{deviceDateDayId}
+    </delete>
+
+</mapper>

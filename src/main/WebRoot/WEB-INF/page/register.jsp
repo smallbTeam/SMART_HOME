@@ -164,6 +164,26 @@
             }
         }
 
+        $("#phoneNumber").keydown(function () {
+            if(event.keyCode == "13") {//判断如果按下的是回车键则执行下面的代码
+                $("#validateCode").focus();
+            }
+        });
+        $("#validateCode").keydown(function () {
+            if(event.keyCode == "13") {//判断如果按下的是回车键则执行下面的代码
+                $("#nickName").focus();
+            }
+        });
+        $("#nickName").keydown(function () {
+            if(event.keyCode == "13") {//判断如果按下的是回车键则执行下面的代码
+                $("#pwd").focus();
+            }
+        });
+        $("#pwd").keydown(function () {
+            if(event.keyCode == "13") {//判断如果按下的是回车键则执行下面的代码
+                $("#pwdAgain").focus();
+            }
+        });
         function validatePWD() {
             var reg = /^[a-zA-z]\w{3,15}$/;
             if (listenField("#pwdAgain", reg) && listenField("#pwd", reg)) {

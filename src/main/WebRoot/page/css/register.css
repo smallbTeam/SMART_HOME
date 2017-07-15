@@ -11,7 +11,6 @@ input:-moz-placeholder { color: rgba(33, 33, 33, 0.58); }
 
 
 
-
 .top-icon {
     margin-top: 0px;
     background: url("../img/cellbg.jpg") no-repeat;
@@ -118,7 +117,7 @@ input:-moz-placeholder { color: rgba(33, 33, 33, 0.58); }
     /*padding: 5px 0;*/
     /*max-width: 10%;*/
     /*background: #a6e1ec;*/
-    color: #00b300;
+
     left: 0;
 
 }
@@ -126,7 +125,10 @@ input:-moz-placeholder { color: rgba(33, 33, 33, 0.58); }
 .validate .row-center  {
     display: block;
     margin:0 160px 0 40px;
-    height: 44px;
+    height: 40px;
+    line-height: 30px;
+    text-indent: 0;
+
     /*background: #f0ad4e;*/
     padding: 0;
 }
@@ -134,16 +136,19 @@ input:-moz-placeholder { color: rgba(33, 33, 33, 0.58); }
 .validate .row-center input {
     width: 100%;
     height: 44px;
-    line-height: 44px;
+    line-height: 34px;
     border: none;
     outline: none;
     font-size: 18px;
+    margin: 0;
+    padding: 0;
     /*margin: -44px 0;*/
     color: rgba(33, 33, 33, 0.58);
-    background: rgba(255,255,255,0.0);
+    background: rgba(255,255,255,0.1);
 }
 
 .validate button {
+    margin-top: 5px;
     width: auto;
     height: 34px;
     line-height: 34px;
@@ -179,7 +184,7 @@ input:-moz-placeholder { color: rgba(33, 33, 33, 0.58); }
     outline: none;
     border: none;
     background: rgba(255,255,255,0);
-    color: rgba(73, 73, 73, 0.35);
+    color: rgba(33, 33, 33, 0.5);
 }
 
 .forgot .btn-left {
@@ -223,19 +228,24 @@ input:-moz-placeholder { color: rgba(33, 33, 33, 0.58); }
 .row-item .row-center {
     display: block;
     margin:0 40px;
-    height: 44px;
-    line-height: 44px;
+    height: 40px;
+    line-height: 30px;
+    text-indent: 0;
+    color: rgba(33, 33, 33, 0.58);
+
     /*background: #f0ad4e;*/
-    padding: 0;
+    padding:  0;
 }
 
 .gender {
     display: block;
     margin: 0 0px 0 40px;
     height: 44px;
-    line-height: 44px;
+    line-height: 30px;
     /*background: #f0ad4e;*/
-    padding: 0;
+    /*padding: 5px 0 ;*/
+    color: rgba(33, 33, 33, 0.58);
+
 }
 
 
@@ -243,10 +253,10 @@ input:-moz-placeholder { color: rgba(33, 33, 33, 0.58); }
     margin: -5px 0 0;
     height: 44px;
     width: 100%;
-    line-height: 44px;
-    /*line-height: 44px;*/
-    text-indent: 0;
-    background: #00b300;
+    line-height: 34px;
+    /*background: #f0ad4e;*/
+    padding: 0px ;
+    /*text-indent: 0;*/
     font-size: 18px;
     border: none;
     outline:none;
@@ -273,6 +283,8 @@ input:-moz-placeholder { color: rgba(33, 33, 33, 0.58); }
     outline: none;
     font-size: 18px;
     margin: 0;
+    text-indent: 0;
+    padding: 0;
     color: rgba(33, 33, 33, 0.58);
     background: rgba(255,255,255,0.0);
 

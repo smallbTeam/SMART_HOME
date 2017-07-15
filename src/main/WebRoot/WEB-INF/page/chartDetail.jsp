@@ -34,6 +34,11 @@
         .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
             padding: 0;
         }
+
+        .current {
+            color: #2BB4EA;
+        }
+
     </style>
 </head>
 <body>
@@ -58,9 +63,9 @@
         <i class="return"></i>
     </div>
     <ul id="rightM" class="dropDown">
-        <li><a href="#"><i class="personal"></i> Menu</a></li>
-        <li><a href="#">Menu Item 2</a></li>
-        <li><a href="#">Menu Item 3</a></li>
+        <li><a href="#" class=""><i class="personal "></i>当日统计</a></li>
+        <li><a href="#">本月统计</a></li>
+        <li><a href="#">本年统计</a></li>
     </ul>
 
 
@@ -85,39 +90,142 @@
 </section>
 
 <script type="text/javascript" src='${path}/page/js/third/echarts.min.js' charset="utf8"></script>
+<script type="text/javascript" src='${path}/page/js/index.js' charset="utf8"></script>
 
 <script>
     $(document).ready(function () {
 //        var ctx = $("#chart").getContext("2d");
 
 //        var myChart = echarts.init(document.getElementById('chart'));
+
+        //
+        $('.dropDown').mouseleave(function () {
+            $('.dropDown').slideUp("slow", function () {
+                $(this).fadeOut(2000);
+            });
+
+        });
+
+        <%--var deviceD = {--%>
+            <%--deviceId: ${deviceId},--%>
+            <%--code: ${code},--%>
+            <%--type: "day"--%>
+        <%--};--%>
+         var deviceD = {            
+             deviceId: "1",
+             code: "wendu",
+             type: "day"            
+         };                         
+        $.ajax({
+            url: "${path}/client/device?action=getDeviceDataMap",
+            type: "GET",
+            data: {
+                //customerId: account.id,
+                deviceId: deviceD.deviceId,
+                code: deviceD.code,
+                type: deviceD.type
+            },
+            dataType: "json",
+            success: function (result) {
+                //console.log(result);
+                if (result.result == "success") {
+                    var operationResult = result.operationResult;
+                    var common = {
+                                "unit": operationResult.unit,
+                            "code": operationResult.code,
+                            "isReadOnly": operationResult.isReadOnly,
+                            "createdDate": operationResult.createdDate,
+                            "deviceCategoryId": operationResult.deviceCategoryId,
+                            "dataType": operationResult.dataType,
+                             "name": operationResult.name,
+                             "modifiedDate": operationResult.modifiedDate,
+                             "type": operationResult.type,
+                             "categoryParameterId": operationResult.categoryParameterId
+                    } ;
+//                      layer.msg("resutl:"+JSON.stringify(operationResult.deviceEchartsData) );
+                    for (var i in operationResult.deviceEchartsData) {
+                        var  item = operationResult.deviceEchartsData[i];
+//                        layer.msg("resutl:"+item.value);
+
+                        var item_msg = {
+                                   "recordTime": item.recordTime,
+                                            "deviceId": item.deviceId,
+                                            "value": item.value,
+                                            "categoryParameterId": item.categoryParameterId
+                        };
+                        addData(item_msg,common.type);
+                    }
+
+                     if (option && typeof option === "object") {
+                         myChart.setOption(option, true);
+                     }
+
+                } else {
+                    layer.alert(result.error);
+                }
+            },
+            error: function () {
+                layer.msg("请求失败！");
+
+            }
+        });
+
+
         var dom = document.getElementById("chart");
         var myChart = echarts.init(dom);
         var app = {};
         option = null;
         var base = +new Date(2014, 9, 3);
         var oneDay = 24 * 3600 * 1000;
+        var oneHour= 3600 * 1000;
+        var oneMinute= 60*1000;
+
         var date = [];
 
-        var data = [Math.random() * 150];
+        var data = [Math.random() * 250];
+        var secondDate = new Date(base.valueOf() - 60*60*1000);
         var now = new Date(base);
 
-        function addData(shift) {
-            now = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/');
+        function add0(m){return m<10?'0'+m:m }
+        function format(timestamp,type){
+                var time = new Date(timestamp);
+            	var year = time.getFullYear();
+            	var month = time.getMonth()+1;   
+            	var date = time.getDate();       
+            	var hours = time.getHours();     
+            	var minutes = time.getMinutes(); 
+         if (type == 0){             //年
+              	return year+'/'+add0(month)+'/'+add0(date);
+         }else if (type == 1) { //月                                                          	
+              	return year+'/'+add0(month)+'/'+add0(date)+' '+add0(hours);
+         }                  //2小时                                                            	
+        	return year+'/'+add0(month)+'/'+add0(date)+' '+add0(hours)+':'+add0(minutes);       	
+        }
+
+
+        function addData(msg,type) {
+            now = format(now.getTime(),type);
             date.push(now);
-            data.push((Math.random() - 0.4) * 10 + data[data.length - 1]);
 
-            if (shift) {
-                date.shift();
-                data.shift();
+            data.push(msg.value);
+            if (type == 0) {
+               now = new Date(+new Date(now) + oneDay);
+            }else if (type == 1) {
+                 now = new Date(+new Date(now) + oneHour);
+            }else{
+                now = new Date(+new Date(now) + oneMinute);
             }
-
-            now = new Date(+new Date(now) + oneDay);
         }
 
-        for (var i = 1; i < 100; i++) {
-            addData();
-        }
+        var msg = {
+            "recordTime": 1500036668393,
+            "deviceId": 1,
+            "value": 11.11,
+            "categoryParameterId": 1
+        };
+//        for (var i = 1; i < 100; i++) {
+//            addData(msg,2);
+//        }
 
         option = {
             xAxis: {
@@ -126,7 +234,7 @@
                 data: date
             },
             yAxis: {
-                boundaryGap: [0, '50%'],
+//                boundaryGap: [0, '20%'],
                 type: 'value'
             },
             series: [
@@ -144,50 +252,27 @@
             ]
         };
 
-        setInterval(function () {
-            addData(true);
-            myChart.setOption({
-                xAxis: {
-                    data: date
-                },
-                series: [{
-                    name:'成交',
-                    data: data
-                }]
-            });
-        }, 500);;
-        if (option && typeof option === "object") {
-            myChart.setOption(option, true);
-        }
+//        setInterval(function () {
+//            addData(true);
+//            myChart.setOption({
+//                xAxis: {
+//                    data: date
+//                },
+//                series: [{
+//                    name:'成交',
+//                    data: data
+//                }]
+//            });
+//        }, 500);
+       
+       
+       
 
     $(".menuleft").click(function () {
             window.history.back();
         });
 
-//        加载设备信息
-        $.ajax({
-            url:"${path}/client/home?action=getDeviceByDeviceId",
-            data: {
-                deviceId : <%=request.getParameter("")%>
-            },
-            success: function (msg) {
-                if (msg.result == "success") {
-//                    de.id, de.DeviceTypeId deviceTypeId, de.DeviceNo,
-//                        de.State deviceState, de.DeviceData, de.Reserve1 deviceReserve1,
-//                        de.Name deviceName,de.GetwayId deviceGetwayId,
-//                        dt.Name deviceTypeName, dt.Model deviceTypeModel, dt.Attention deviceTypeAttention,
-//                        dt.Describtion deviceTypeDescribtion, dt.Reserve deviceTypeReserve,
-//                        dg.GatewayPort gatewayGatewayPort, dg.IP gatewayIP
 
-
-                }else{
-                    layer.msg("设备信息加载失败！");
-                }
-            },
-            error: function (error) {
-
-            }
-        });
 
 
     });

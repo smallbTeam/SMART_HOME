@@ -130,7 +130,7 @@
 
                 ws.onmessage = function (evt) {
                     var msg = evt.data;
-                    alert("msg:" + msg);
+//                    alert("msg:" + msg);
                     var jsonmsg = JSON.parse(msg);
                     $("#device_pm_info").html(jsonmsg.pm);
                     $("#device_shidu_info").html(jsonmsg.shidu);
@@ -155,7 +155,7 @@
 //                    shade: [0.1,'#fff'] //0.1透明度的白色背景
 //                });
             var deviceId = "1";
-            var signalId = "1";
+            var code = "1";
 
 
             $('.dropDown').mouseleave(function () {
@@ -770,15 +770,15 @@
             });
 
             $('#device_shidu_item').click(function () {
-                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&sinnalId=" + signalId;
+                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&code=" + code;
             });
 
             $('#device_wendu_item').click(function () {
-                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&sinnalId=" + signalId;
+                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&code=" + code;
             });
 
             $('#device_pm_item').click(function () {
-                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&sinnalId=" + signalId;
+                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&code=" + code;
             });
 
         });
@@ -849,8 +849,8 @@
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
                     <div class="row content">
                         <div class="col-xs-4">
-                            <div class="item square">
-                                <img src="${path}/page/img/icon/settings.png" id="device_shidu_item">
+                            <div class="item square"  id="device_shidu_item">
+                                <img src="${path}/page/img/icon/settings.png">
                                 <span id="device_shidu_info">空气湿度：--%</span>
                             </div>
                         </div>

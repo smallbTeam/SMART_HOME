@@ -72,7 +72,7 @@
                     <button id="accountLogin">登录</button>
                 </div>
                 <div class="forgot">
-                    <button class="btn-right pull-right">忘记密码?</button>
+                    <%--<button class="btn-right pull-right">忘记密码?</button>--%>
                     <button class="btn-left pull-left">注册</button>
                 </div>
             </div>
@@ -139,7 +139,24 @@
                 }
             });
         });
+        $("#phoneNumber").keydown(function () {
+            if(event.keyCode == "13") {//判断如果按下的是回车键则执行下面的代码
+                $("#password").focus();
+            }
+        });
+        $("#password").keydown(function () {
+            if(event.keyCode == "13") {//判断如果按下的是回车键则执行下面的代码
+                //ajax网络请求提交登录数据
 
+            }
+        });
+
+        $("#forgot").click(function () {
+
+        });
+        $("#register").click(function () {
+            window.location.href = "${path}/client/account?action=register"
+        });
     });
 </script>
 </body>
