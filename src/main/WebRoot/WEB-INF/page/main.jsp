@@ -815,12 +815,13 @@
                     success: function (result) {
                         //console.log(result);
                         if (result.operationResult) {
+                            var invitederId = result.customer.customerId;
 //                            layer.msg("更新成功");
                             $.ajax({
                                 url: "${path}/client/device?action=addGateWayByInvite",
                                 type: "GET",
                                 data: {
-                                    invitederId: $("#invate_phoneNum").val(),
+                                    invitederId: invitederId,
                                     gatewaySerialNumber: current_gateway.id,
                                     customerId: account.id
                                 },

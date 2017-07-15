@@ -4,6 +4,7 @@
  */
 package com.atat.message.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.atat.common.util.JsonUtil;
 import com.atat.common.util.StringUtil;
 import com.atat.common.util.httpClient.HttpClientUtil;
@@ -30,10 +31,12 @@ public class WeixinMessageServiceImpl implements WeixinMessageService{
 
     @Override public Integer sendWeixinMessage(List<String> touser, String url, String template_id, Map data) {
 
+        System.out.print("\n\n\n\n\\n\n\n\n\n\n\naaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
         Map<String, Object> param_sepm = new HashMap<String, Object>();
         param_sepm.put("propertyMapId","accessToken");
         List<Map<String,Object>> propMapList = propertyMapDao.selectPropertyMapList(param_sepm);
-        String accesstoken = (String) propMapList.get(0).get("propertyMapId");
+        String accesstoken = (String) propMapList.get(0).get("propval");
         String urls = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token="+accesstoken;
             for(int i=0;i<touser.size();i++){
                 /////发送数据
@@ -44,10 +47,20 @@ public class WeixinMessageServiceImpl implements WeixinMessageService{
                 if(StringUtil.isNotEmpty(url)){
                     postdata.put("url",url);
                 }
-                postdata.put("data",JsonUtil.toJson(data));
-                resJson = HttpClientUtil.doPost(urls,postdata,"utf-8");
+                String str = JsonUtil.toJson(data);//.replaceAll("\"","\'");
+                System.out.println(str);
+                postdata.put("data",str);
+
+                System.out.print("nbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+//               resJson = HttpClientUtil.doPost(urls,postdata,"utf-8");
+                String postdataStr = JsonUtil.toJson(postdata).replaceAll("\\\\\\\\","");
+                System.out.println(postdataStr);
+                //JSONObject json = JSONObject.parseObject(postdataStr);
+                resJson = HttpClientUtil.post(postdataStr,urls);
                 Map<String, Object> resMap = JsonUtil.fromJson(resJson, Map.class);
-                String errcode = (String) resMap.get("errcode");
+                String errcode = resMap.get("errcode")+"";
+                String errmsg = (String) resMap.get("errmsg");
+                System.out.print("\n\nerrcode:"+errcode+"\n\n\n\nerrmsg:"+errmsg+"\n\n\n\n");
                 if(errcode.equals("0")){
                     return 1;
                 }else{

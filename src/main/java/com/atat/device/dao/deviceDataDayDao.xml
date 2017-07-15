@@ -32,7 +32,7 @@
 
     <insert id="addDeviceDataDayList" parameterType="java.util.List">
         INSERT INTO device_data_week
-        recordTime, deviceId, value, categoryParameterId
+        (recordTime, deviceId, value, categoryParameterId)
         values
         <foreach collection ="list" item="deviceData" index= "index" separator =",">
             (#{deviceData.recordTime},

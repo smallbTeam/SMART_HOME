@@ -53,10 +53,10 @@ public class MinaUtil {
         map2.put("shidu", StringToFloat(msg[3], "shidu"));
         map.put("pm", StringToFloat(msg[4].substring(0, msg[4].length() - 2), "pm"));
         map2.put("pm", StringToFloat(msg[4], "pm"));
-        map.put("pm", StringToFloat(msg[5].substring(0, msg[5].length() - 2), "voc"));
-        map2.put("pm", StringToFloat(msg[5], "voc"));
-        map.put("pm", StringToFloat(msg[6].substring(0, msg[6].length() - 2), "co2"));
-        map2.put("pm", StringToFloat(msg[6], "co2"));
+        map.put("voc", StringToFloat(msg[5].substring(0, msg[5].length() - 2), "voc"));
+        map2.put("voc", StringToFloat(msg[5], "voc"));
+        map.put("co2", StringToFloat(msg[6].substring(0, msg[6].length() - 2), "co2"));
+        map2.put("co2", StringToFloat(msg[6], "co2"));
         list.add(map);
         list.add(map2);
         return list;
@@ -155,14 +155,15 @@ public class MinaUtil {
                 Date date=new Date();
                 DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-                Map<String, Object> putData = new HashMap<String, Object>();
-                putData.put("first",ContentToMap("您好，请注意:","#173177"));
-                putData.put("system",ContentToMap(ContentToMap(i,str[1]),"#173177"));
-                putData.put("time",ContentToMap(format.format(date),"#173177"));
-                putData.put("account",ContentToMap("1","#173177"));
-                putData.put("remark",ContentToMap("请您注意","#173177"));
+                    Map<String, Object> putData = new HashMap<String, Object>();
 
-                int result = weixinMessageService.sendWeixinMessage(customerWxIdList,"",BasePropertyDate.WX_WARN_MODEL,putData);
+                    putData.put("first",ContentToMap("Hello，Attention:","#173177"));
+                    putData.put("system",ContentToMap(ContentToMap(i,str[1]),"#173177"));
+                    putData.put("time",ContentToMap(format.format(date),"#173177"));
+                    putData.put("account",ContentToMap("1","#173177"));
+                    putData.put("remark",ContentToMap("AttentionPlace","#173177"));
+
+                Integer result = weixinMessageService.sendWeixinMessage(customerWxIdList,"",BasePropertyDate.WX_WARN_MODEL,putData);
 
                 }
             }
@@ -175,11 +176,11 @@ public class MinaUtil {
      * @param color
      * @return
      */
-    private static Map<String,Object> ContentToMap(String content, String color){
+    private static String ContentToMap(String content, String color){
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("value",content);
         map.put("color",color);
-        return map;
+        return JsonUtil.toJson(map);
     }
 
     /**
@@ -222,11 +223,12 @@ public class MinaUtil {
 
         map.put("serialNumber", msg[0]);
 
-        map.put("wendu", StringToFloat(msg[2], "wendu"));
-        map.put("shidu", StringToFloat(msg[3], "shidu"));
-        map.put("pm", StringToFloat(msg[4], "pm"));
-        map.put("pm", StringToFloat(msg[5], "voc"));
-        map.put("pm", StringToFloat(msg[6], "co2"));
+
+        map.put("wendu", StringToFloat(msg[2].substring(0, msg[2].length() - 2), "wendu"));
+        map.put("shidu", StringToFloat(msg[3].substring(0, msg[3].length() - 2), "shidu"));
+        map.put("pm", StringToFloat(msg[4].substring(0, msg[4].length() - 2), "pm"));
+        map.put("voc", StringToFloat(msg[5].substring(0, msg[5].length() - 2), "voc"));
+        map.put("co2", StringToFloat(msg[6].substring(0, msg[6].length() - 2), "co2"));
         return map;
     }
 

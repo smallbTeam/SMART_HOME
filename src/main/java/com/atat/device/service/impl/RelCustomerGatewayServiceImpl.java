@@ -150,7 +150,7 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
             return 0;
         }
         Map<String, Object> onwerCustomerInfo = relCustomerGatewayList.get(0);
-        if (!((Integer)1).equals((Integer) onwerCustomerInfo.get("isOnwer"))){
+        if (!(Boolean) onwerCustomerInfo.get("isOnwer")){
             return 0;
         }
         String onwerName = (String) onwerCustomerInfo.get("nickName");
@@ -162,15 +162,17 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
         Map<String, Object> paramCheckInviteder = new HashMap<String, Object>();
         paramCheckInviteder.put("gatewaySerialNumber",gatewaySerialNumber);
         paramCheckInviteder.put("customerId",invitederId);
-        List<Map<String, Object>> customerGatewayList = relCustomerGatewayDao.selectRelCustomerGatewayList(paramCheckOnwer);
+        List<Map<String, Object>> customerGatewayList = relCustomerGatewayDao.selectRelCustomerGatewayList(paramCheckInviteder);
         if (CollectionUtil.isEmpty(customerGatewayList)) {
+            paramCheckInviteder.put("isOnwer",0);
+            paramCheckInviteder.put("gatewayName",gatewayName);
            relCustomerGatewayDao.addRelCustomerGateway(paramCheckInviteder);
            //推送微信消息
             Map<String, Object> rs = new HashMap<String, Object>();
-            rs.put("customerId", customerId);
-            List<Map<String, Object>> customerList = customerDao.selectCustomerList(rs);
-            if (CollectionUtil.isNotEmpty(customerList)) {
-                Map<String, Object> invitedCustomerinfo = customerList.get(0);
+            rs.put("customerId", invitederId);
+            List<Map<String, Object>> invitedCustomerList = customerDao.selectCustomerList(rs);
+            if (CollectionUtil.isNotEmpty(invitedCustomerList)) {
+                Map<String, Object> invitedCustomerinfo = invitedCustomerList.get(0);
                 String invitedPhone = (String) invitedCustomerinfo.get("mobelPhone");
                 String invitedName = (String) invitedCustomerinfo.get("nickName");
                 String invitedTishi = StringUtil.isEmpty(invitedName) ? invitedPhone : invitedName;
