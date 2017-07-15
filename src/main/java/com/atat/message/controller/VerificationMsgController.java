@@ -2,7 +2,7 @@
  * Company
  * Copyright (C) 2004-2017 All Rights Reserved.
  */
-package com.atat.verification.controller;
+package com.atat.message.controller;
 
 import com.atat.common.base.controller.BaseController;
 import com.atat.common.util.JsonUtil;
