@@ -10,5 +10,5 @@ package com.atat.message.service;
  */
 public interface ShortMessageService {
 
-        public Integer sendShortMessage(String mobelPhone, String msg);
+        public Integer sendShortMessage(String mobelPhone, String msmContent);
 }

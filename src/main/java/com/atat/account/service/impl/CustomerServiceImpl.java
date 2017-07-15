@@ -3,6 +3,7 @@ package com.atat.account.service.impl;
 import com.atat.account.dao.CustomerDao;
 import com.atat.account.service.CustomerService;
 import com.atat.common.util.CollectionUtil;
+import com.atat.common.util.StringUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,12 +93,12 @@ public class CustomerServiceImpl implements CustomerService {
         param.put("password",password);
         List<Map<String, Object>> customerList = customerDao.selectCustomerList(param);
         if (CollectionUtil.isNotEmpty(customerList)){
-            //            Map<String, Object> customer = customerList.get(0);
-            //            //绑定wxId
-            //            Map<String, Object> updateParam = new HashMap<String, Object>();
-            //            updateParam.put("CustomerId",customer.get("id"));
-            //            updateParam.put("WxId",wxId);
-            //            customerMapper.updateCustomerById(param);
+            if (StringUtil.isNotEmpty(wxId)) {
+                Map<String, Object> customer = customerList.get(0);
+                //绑定wxId
+                customer.put("wxId", wxId);
+                customerDao.updateCustomerById(param);
+            }
             return 1;
         } else {
             return 0;

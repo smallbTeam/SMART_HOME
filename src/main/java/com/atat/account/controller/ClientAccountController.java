@@ -226,7 +226,7 @@ public class ClientAccountController extends BaseController {
         String password = request.getParameter("password");
         // wxId
         String wxId = request.getParameter("wxId");
-        if (StringUtil.isNotEmpty(mobelPhone) && StringUtil.isNotEmpty(password) && StringUtil.isNotEmpty(wxId)) {
+        if (StringUtil.isNotEmpty(mobelPhone) && StringUtil.isNotEmpty(password)) {
             try {
                 Integer loginRes = customerService.accountLogin(mobelPhone,password,wxId);
                 resultMap.put("result", "success");
@@ -282,6 +282,45 @@ public class ClientAccountController extends BaseController {
     }
 
     /**
+     * 用户更换手机号
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping(params = "action=accountUpdateMobile")
+    public void accountUpdateMobile(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        String newMobelPhone = request.getParameter("newMobelPhone");
+        String customerId = request.getParameter("customerId");
+        if ((StringUtil.isNotEmpty(newMobelPhone)) && (StringUtil.isNotEmpty(customerId)) ) {
+            try {
+                // 依据手机号查询用户是否已存在
+                Map<String, Object> customer = customerService.getCustomerByMobelPhone(newMobelPhone);
+                if (CollectionUtil.isEmpty(customer)) {
+                    Map<String, Object> param = new HashMap<String, Object>();
+                    param.put("customerId", Integer.parseInt(customerId));
+                    param.put("mobelPhone", newMobelPhone);
+                    customerService.updateCustomerById(param);
+                    resultMap.put("result", "success");
+                    resultMap.put("operationResult",1);
+                } else {
+                    resultMap.put("result", "success");
+                    resultMap.put("operationResult",0);
+                }
+            } catch (NumberFormatException e) {
+                logger.error("依据手机号查询用户是否已存在出错" + e, e);
+                resultMap.put("result", "failed");
+                resultMap.put("error", "系统出错");
+            }
+        }
+        else {
+            resultMap.put("result", "error");
+            resultMap.put("error", "用户Id和手机号不能为空");
+        }
+        this.renderJson(response, resultMap);
+    }
+
+    /**
      * 用户分页
      * 
      * @param request
@@ -331,7 +370,6 @@ public class ClientAccountController extends BaseController {
     public void updateAccount(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String customerId = request.getParameter("customerId");
-        String mobelPhone = request.getParameter("mobelPhone");
         String password = request.getParameter("password");
         String wxId = request.getParameter("wxId");
         String nickName = request.getParameter("nickName");
@@ -341,9 +379,6 @@ public class ClientAccountController extends BaseController {
         if (StringUtil.isNotEmpty(customerId)) {
             Map<String, Object> param = new HashMap<String, Object>();
             param.put("customerId", Integer.parseInt(customerId));
-            if (StringUtil.isNotEmpty(mobelPhone)) {
-                param.put("mobelPhone", mobelPhone);
-            }
             if (StringUtil.isNotEmpty(password)) {
                 param.put("password", password);
             }
