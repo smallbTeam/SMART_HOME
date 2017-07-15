@@ -6,13 +6,9 @@ package com.atat.message.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.atat.common.util.JsonUtil;
-import com.atat.common.util.StringUtil;
-import com.atat.common.util.httpClient.HttpClientUtil;
-import com.atat.common.util.httpClient.HttpsConnection;
 import com.atat.common.util.weixinClient.CommonUtil;
 import com.atat.message.service.WeixinMessageService;
 import com.atat.property.dao.PropertyMapDao;
-import com.atat.property.service.PropertyMapService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
