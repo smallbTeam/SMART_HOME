@@ -3,6 +3,7 @@ package com.atat.device.service.impl;
 import com.atat.common.util.CollectionUtil;
 import com.atat.device.dao.CategoryParameterDao;
 import com.atat.device.dao.DeviceDao;
+import com.atat.device.dao.DeviceDataHourDao;
 import com.atat.device.dao.DeviceDataNowDao;
 import com.atat.device.service.DeviceDataNowService;
 import com.github.pagehelper.PageHelper;
@@ -23,6 +24,9 @@ public class DeviceDataNowServiceImpl implements DeviceDataNowService {
 
     @Autowired
     private CategoryParameterDao categoryParameterDao;
+
+    @Autowired
+    private DeviceDataHourDao deviceDataHourDao;
 
     @Override
     public void addDeviceDataNow(Map<String, Object> param) {
@@ -47,7 +51,7 @@ public class DeviceDataNowServiceImpl implements DeviceDataNowService {
     }
 
     @Override
-    public Map<String, Object> getDeviceDataNowById(String deviceDataNowId) {
+    public Map<String, Object> getDeviceDataNowById(Long deviceDataNowId) {
         Map<String, Object> deviceDataNowinfo = new HashMap<String, Object>();
         Map<String, Object> rs = new HashMap<String, Object>();
         rs.put("deviceDataNowId", deviceDataNowId);
@@ -59,7 +63,7 @@ public class DeviceDataNowServiceImpl implements DeviceDataNowService {
     }
 
     @Override
-    public void delDeviceDataNowById(String deviceDataNowId) {
+    public void delDeviceDataNowById(Long deviceDataNowId) {
         deviceDataNowDao.delDeviceDataNowById(deviceDataNowId);
     }
 
@@ -134,11 +138,33 @@ public class DeviceDataNowServiceImpl implements DeviceDataNowService {
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(new Date());
                 cal.add(Calendar.HOUR, -3);
-                param_sdd.put("recordTimeStart", cal.getTime());
-                List<Map<String, Object>> deviceThreeHourData = deviceDataNowDao.selectDeviceDataNowList(param);
+                param_sdd.put("recordTimeStart", cal.getTime().getTime());
+                List<Map<String, Object>> deviceThreeHourData = deviceDataNowDao.selectDeviceDataNowList(param_sdd);
                 categoryParameter.put("deviceThreeHourData", deviceThreeHourData);
             }
         }
         return categoryParameter;
+    }
+
+    @Override public void timingFormateForThreeHour() {
+        //分别计算前六小时到前三小时内的平均值
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.HOUR, -3);
+        List<Map<String, Object>> deviceDataList = new ArrayList<Map<String, Object>>();
+        for (int i=0;i<3;i++){
+            Long recordTimeEnd = cal.getTime().getTime();
+            cal.add(Calendar.HOUR, -1);
+            Long recordTimeStart = cal.getTime().getTime();
+            Map<String, Object> param_oneHour = new HashMap<String, Object>();
+            param_oneHour.put("recordTimeStart",recordTimeStart);
+            param_oneHour.put("recordTimeEnd",recordTimeEnd);
+            deviceDataList.addAll(deviceDataNowDao.timingNowAverageData(param_oneHour));
+        }
+        //存入小时表
+        deviceDataHourDao.addDeviceDataHourList(deviceDataList);
+        //移除now表之前的数据
+        cal.add(Calendar.HOUR, 3);
+        deviceDataNowDao.delDeviceDataNowByEndTime(cal.getTime().getTime());
     }
 }

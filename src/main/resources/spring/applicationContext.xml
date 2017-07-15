@@ -24,6 +24,8 @@
     <bean id="weixinAction" class="com.atat.property.action.WeixinAction"></bean>
     <bean id="propertyMapService" class="com.atat.property.service.impl.PropertyMapServiceImpl"></bean>
     <bean id="deviceDataNowService" class="com.atat.device.service.impl.DeviceDataNowServiceImpl"></bean>
+    <bean id="deviceDataHourService" class="com.atat.device.service.impl.DeviceDataHourServiceImpl"></bean>
+    <bean id="deviceDataDayService" class="com.atat.device.service.impl.DeviceDataDayServiceImpl"></bean>
 
     <!-- 读取properties属性配置文件 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

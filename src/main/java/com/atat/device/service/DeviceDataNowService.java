@@ -39,13 +39,13 @@ public interface DeviceDataNowService {
      * @param deviceDataNowId
      * @return
      */
-    public Map<String, Object> getDeviceDataNowById(String deviceDataNowId);
+    public Map<String, Object> getDeviceDataNowById(Long deviceDataNowId);
 
     /**
      * 依据Id删除记录
      * @param deviceDataNowId
      */
-    public void delDeviceDataNowById(String deviceDataNowId);
+    public void delDeviceDataNowById(Long deviceDataNowId);
 
     /**
      * 添加设备数据
@@ -60,4 +60,9 @@ public interface DeviceDataNowService {
      * @return
      */
     public Map<String, Object> getThreeHourDeviceData(Long deviceId,String code);
+
+    /**
+     * 3H执行一次定时任务 将3h之前的数据清空  每小时求平均值存入小时表数据库
+     */
+    public void timingFormateForThreeHour();
 }

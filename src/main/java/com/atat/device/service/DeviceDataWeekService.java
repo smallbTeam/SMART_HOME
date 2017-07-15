@@ -39,13 +39,13 @@ public interface DeviceDataWeekService {
      * @param deviceDataWeekId
      * @return
      */
-    public Map<String, Object> getDeviceDataWeekById(String deviceDataWeekId);
+    public Map<String, Object> getDeviceDataWeekById(Long deviceDataWeekId);
 
     /**
      * 依据Id删除记录
      * @param deviceDataWeekId
      */
-    public void delDeviceDataWeekById(String deviceDataWeekId);
+    public void delDeviceDataWeekById(Long deviceDataWeekId);
 
     /**
      * 获取指定设备指定参数1年内变化

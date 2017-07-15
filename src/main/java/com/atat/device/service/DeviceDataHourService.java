@@ -39,13 +39,13 @@ public interface DeviceDataHourService {
      * @param deviceDataHourId
      * @return
      */
-    public Map<String, Object> getDeviceDataHourById(String deviceDataHourId);
+    public Map<String, Object> getDeviceDataHourById(Long deviceDataHourId);
 
     /**
      * 依据Id删除记录
      * @param deviceDataHourId
      */
-    public void delDeviceDataHourById(String deviceDataHourId);
+    public void delDeviceDataHourById(Long deviceDataHourId);
 
     /**
      * 获取指定设备指定参数1天内变化
@@ -54,4 +54,9 @@ public interface DeviceDataHourService {
      * @return
      */
     public Map<String, Object> getOneDayDeviceData(Long deviceId,String code);
+
+    /**
+     * 1天执行一次定时任务 1天前的数据清空  每天平均值存入天表数据库
+     */
+    public void timingFormateForOneDay();
 }

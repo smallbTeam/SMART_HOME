@@ -40,7 +40,7 @@ public class DeviceDataController extends BaseController {
 
 
     /**
-     * 获取设备数据 依据网关设备号 设备序号 获取设备近三天数据
+     * 获取设备数据 依据网关设备号 设备序号 获取设备数据
      *
      * @param request
      * @param response

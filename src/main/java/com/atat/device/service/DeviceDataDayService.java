@@ -38,11 +38,18 @@ public interface DeviceDataDayService {
      * @param deviceDataDayId
      * @return
      */
-    public Map<String, Object> getDeviceDataDayById(String deviceDataDayId);
+    public Map<String, Object> getDeviceDataDayById(Long deviceDataDayId);
 
     /**
      * 依据Id删除记录
      * @param deviceDataDayId
      */
-    public void delDeviceDataDayById(String deviceDataDayId);
+    public void delDeviceDataDayById(Long deviceDataDayId);
+
+    /**
+     * 计算一周前的设备平均值 存入周表 移除天表一周前的数据
+     */
+    public void timingFormateForOneWeek();
+
+
 }

@@ -28,6 +28,19 @@ public interface DeviceDataNowDao {
      * 依据主键删除记录
      * @param deviceDataNowId
      */
-    public void  delDeviceDataNowById(String deviceDataNowId);
+    public void  delDeviceDataNowById(Long deviceDataNowId);
+
+    /**
+     * 分类计算平均值
+     * @param param
+     * @return
+     */
+    public List<Map<String, Object>> timingNowAverageData(Map<String, Object> param);
+
+    /**
+     * 移除截止时间前的记录
+     * @param recordTimeEnd
+     */
+    public void  delDeviceDataNowByEndTime(Long recordTimeEnd);
 
 }

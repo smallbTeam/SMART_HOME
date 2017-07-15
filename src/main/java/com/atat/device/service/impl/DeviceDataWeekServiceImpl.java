@@ -48,7 +48,7 @@ public class DeviceDataWeekServiceImpl implements DeviceDataWeekService {
     }
 
     @Override
-    public Map<String, Object> getDeviceDataWeekById(String deviceDataWeekId) {
+    public Map<String, Object> getDeviceDataWeekById(Long deviceDataWeekId) {
         Map<String, Object> deviceDataWeekinfo = new HashMap<String, Object>();
         Map<String, Object> rs = new HashMap<String, Object>();
         rs.put("deviceDataWeekId", deviceDataWeekId);
@@ -60,7 +60,7 @@ public class DeviceDataWeekServiceImpl implements DeviceDataWeekService {
     }
 
     @Override
-    public void delDeviceDataWeekById(String deviceDataWeekId) {
+    public void delDeviceDataWeekById(Long deviceDataWeekId) {
         deviceDataWeekDao.delDeviceDataWeekById(deviceDataWeekId);
     }
 
@@ -86,8 +86,8 @@ public class DeviceDataWeekServiceImpl implements DeviceDataWeekService {
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(new Date());
                 cal.add(Calendar.YEAR, -1);
-                param_sdd.put("recordTimeStart", cal.getTime());
-                List<Map<String, Object>> deviceThreeHourData = deviceDataWeekDao.selectDeviceDataWeekList(param);
+                param_sdd.put("recordTimeStart", cal.getTime().getTime());
+                List<Map<String, Object>> deviceThreeHourData = deviceDataWeekDao.selectDeviceDataWeekList(param_sdd);
                 categoryParameter.put("deviceThreeHourData", deviceThreeHourData);
             }
         }

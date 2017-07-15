@@ -30,13 +30,26 @@
         </trim>
     </insert>
 
+    <insert id="addDeviceDataHourList" parameterType="java.util.List">
+        INSERT INTO device_data_week
+        recordTime, deviceId, value, categoryParameterId
+        values
+        <foreach collection ="list" item="deviceData" index= "index" separator =",">
+            (#{deviceData.recordTime},
+            #{deviceData.deviceId},
+            #{deviceData.value},
+            #{deviceData.categoryParameterId}
+            )
+        </foreach >
+    </insert>
+
     <select id="selectDeviceDataHourList" parameterType="java.util.Map"
             resultType="java.util.Map">
         select
             deviceId deviceId,
             value value,
             categoryParameterId categoryParameterId,
-        recordTime deviceDataHourId
+            recordTime recordTime
         from device_data_hour
         WHERE
         1=1
@@ -55,7 +68,37 @@
         ORDER BY recordTime ASC
     </select>
 
-    <delete id="delDeviceDataHourById" parameterType="java.lang.String">
+    <select id="timingHourAverageData" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        SELECT
+        deviceId deviceId,
+        AVG(VALUE) `value`,
+        categoryParameterId categoryParameterId,
+        recordTime recordTime
+        FROM
+        device_data_hour
+        WHERE
+        1=1
+        <if test="recordTimeStart !=null">
+            <![CDATA[ and  recordTime >= #{recordTimeStart}]]>
+        </if>
+        <if test="recordTimeEnd !=null">
+            <![CDATA[ and  recordTime <= #{recordTimeEnd}]]>
+        </if>
+        GROUP BY
+        deviceId,
+        categoryParameterId
+    </select>
+
+    <delete id="delDeviceDataHourByEndTime" parameterType="java.lang.Long">
+        DELETE FROM  device_data_hour
+        where
+        <![CDATA[ and  recordTime <= #{recordTimeEnd}]]>
+    </delete>
+
+
+
+    <delete id="delDeviceDataHourById" parameterType="java.lang.Long">
         DELETE FROM  device_data_hour
         where
         recordTime = #{deviceDataHourId}

@@ -68,11 +68,68 @@
 		<property name="cronExpression" value="0 0 0/1 * * ?" />
 	</bean>
 
+	<bean id="timeFormateThreeHour"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 这个就是定时器的那个类 -->
+		<property name="targetObject">
+			<bean class="com.atat.device.service.impl.DeviceDataNowServiceImpl" />
+		</property>
+		<!-- 这个就是要执行的方法，也就是这前定义的run -->
+		<property name="targetMethod" value="timingFormateForThreeHour" />
+		<!--<property name="concurrent" value="false" /> -->
+		<!-- 作业不并发调度，也就意味着单线程，不写就是true -->
+	</bean>
+	<!-- 这个用来配置定时任务的执行时间 -->
+	<bean id="timeFormateThreeHourTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="timeFormateThreeHour" />
+		<property name="cronExpression" value="0 5 0/3 * * ?" />
+	</bean>
+
+	<bean id="timeFormateOneDay"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 这个就是定时器的那个类 -->
+		<property name="targetObject">
+			<bean class="com.atat.device.service.impl.DeviceDataHourServiceImpl" />
+		</property>
+		<!-- 这个就是要执行的方法，也就是这前定义的run -->
+		<property name="targetMethod" value="timingFormateForOneDay" />
+		<!--<property name="concurrent" value="false" /> -->
+		<!-- 作业不并发调度，也就意味着单线程，不写就是true -->
+	</bean>
+	<!-- 这个用来配置定时任务的执行时间 -->
+	<bean id="timeFormateOneDayTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="timeFormateOneDay" />
+		<property name="cronExpression" value="0 0 1 * * ?" />
+	</bean>
+
+	<bean id="timeFormateOneWeek"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 这个就是定时器的那个类 -->
+		<property name="targetObject">
+			<bean class="com.atat.device.service.impl.DeviceDataDayServiceImpl" />
+		</property>
+		<!-- 这个就是要执行的方法，也就是这前定义的run -->
+		<property name="targetMethod" value="timingFormateForOneWeek" />
+		<!--<property name="concurrent" value="false" /> -->
+		<!-- 作业不并发调度，也就意味着单线程，不写就是true -->
+	</bean>
+	<!-- 这个用来配置定时任务的执行时间 -->
+	<bean id="timeFormateOneWeekTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="timeFormateOneWeek" />
+		<property name="cronExpression" value="0 30 0 ? * L" />
+	</bean>
+
 	<!-- 配置执行定时器的工厂，在list中配置的bean，都会加载到这个工厂中，然后定时运行 -->
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
 				<ref bean="cronTrigger" />
+				<ref bean="timeFormateThreeHourTrigger" />
+				<ref bean="timeFormateOneDayTrigger" />
+				<ref bean="timeFormateOneWeekTrigger" />
 			</list>
 		</property>
 	</bean>

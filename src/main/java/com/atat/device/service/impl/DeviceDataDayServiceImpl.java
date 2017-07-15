@@ -1,22 +1,23 @@
 package com.atat.device.service.impl;
 
 import com.atat.device.dao.DeviceDataDayDao;
+import com.atat.device.dao.DeviceDataWeekDao;
 import com.atat.device.service.DeviceDataDayService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import java.util.*;
 
 @Service
 public class DeviceDataDayServiceImpl implements DeviceDataDayService {
 
     @Autowired
     private DeviceDataDayDao deviceDataDayDao;
+
+    @Autowired
+    private DeviceDataWeekDao deviceDataWeekDao;
 
     @Override
     public void  addDeviceDataDay(Map<String, Object> param) {
@@ -41,7 +42,7 @@ public class DeviceDataDayServiceImpl implements DeviceDataDayService {
     }
 
     @Override
-    public Map<String, Object> getDeviceDataDayById(String deviceDataDayId) {
+    public Map<String, Object> getDeviceDataDayById(Long deviceDataDayId) {
         Map<String, Object> deviceDataDayinfo = new HashMap<String, Object>();
         Map<String, Object> rs = new HashMap<String, Object>();
         rs.put("deviceDataDayId", deviceDataDayId);
@@ -53,8 +54,27 @@ public class DeviceDataDayServiceImpl implements DeviceDataDayService {
     }
 
     @Override
-    public void delDeviceDataDayById(String deviceDataDayId) {
+    public void delDeviceDataDayById(Long deviceDataDayId) {
         deviceDataDayDao.delDeviceDataDayById(deviceDataDayId);
     }
 
+    @Override public void timingFormateForOneWeek() {
+        //分别计算前一周前的设备平均值的平均值
+        List<Map<String, Object>> deviceDataList = new ArrayList<Map<String, Object>>();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.DATE, -7);
+        Long recordTimeEnd = cal.getTime().getTime();
+        cal.add(Calendar.DATE, -7);
+        Long recordTimeStart = cal.getTime().getTime();
+        Map<String, Object> param_day = new HashMap<String, Object>();
+        param_day.put("recordTimeStart",recordTimeStart);
+        param_day.put("recordTimeEnd",recordTimeEnd);
+        deviceDataList.addAll(deviceDataDayDao.timingDayAverageData(param_day));
+        //存入天表
+        deviceDataWeekDao.addDeviceDataWeekList(deviceDataList);
+        //移除Hour表之前的数据
+        cal.add(Calendar.DATE, 7);
+        deviceDataDayDao.delDeviceDataDayByEndTime(cal.getTime().getTime());
+    }
 }

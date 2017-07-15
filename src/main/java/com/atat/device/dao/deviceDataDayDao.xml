@@ -30,6 +30,18 @@
         </trim>
     </insert>
 
+    <insert id="addDeviceDataDayList" parameterType="java.util.List">
+        INSERT INTO device_data_week
+        recordTime, deviceId, value, categoryParameterId
+        values
+        <foreach collection ="list" item="deviceData" index= "index" separator =",">
+            (#{deviceData.recordTime},
+            #{deviceData.deviceId},
+            #{deviceData.value},
+            #{deviceData.categoryParameterId}
+            )
+        </foreach >
+    </insert>
 
     <select id="selectDeviceDataDayList" parameterType="java.util.Map"
             resultType="java.util.Map">
@@ -56,7 +68,35 @@
         ORDER BY recordTime ASC
     </select>
 
-    <delete id="delDeviceDataDayById" parameterType="java.lang.String">
+    <select id="timingDayAverageData" parameterType="java.util.Map"
+            resultType="java.util.Map">
+        SELECT
+        deviceId deviceId,
+        AVG(VALUE) `value`,
+        categoryParameterId categoryParameterId,
+        recordTime recordTime
+        FROM
+        device_data_day
+        WHERE
+        1=1
+        <if test="recordTimeStart !=null">
+            <![CDATA[ and  recordTime >= #{recordTimeStart}]]>
+        </if>
+        <if test="recordTimeEnd !=null">
+            <![CDATA[ and  recordTime <= #{recordTimeEnd}]]>
+        </if>
+        GROUP BY
+        deviceId,
+        categoryParameterId
+    </select>
+
+    <delete id="delDeviceDataDayByEndTime" parameterType="java.lang.Long">
+        DELETE FROM  device_data_day
+        where
+        <![CDATA[ and  recordTime <= #{recordTimeEnd}]]>
+    </delete>
+
+    <delete id="delDeviceDataDayById" parameterType="java.lang.Long">
         DELETE FROM  device_data_day
         where
         recordTime = #{deviceDataDayId}

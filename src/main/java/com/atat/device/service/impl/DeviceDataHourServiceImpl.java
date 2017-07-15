@@ -1,10 +1,7 @@
 package com.atat.device.service.impl;
 
 import com.atat.common.util.CollectionUtil;
-import com.atat.device.dao.CategoryParameterDao;
-import com.atat.device.dao.DeviceCategoryDao;
-import com.atat.device.dao.DeviceDao;
-import com.atat.device.dao.DeviceDataHourDao;
+import com.atat.device.dao.*;
 import com.atat.device.service.DeviceDataHourService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -24,6 +21,9 @@ public class DeviceDataHourServiceImpl implements DeviceDataHourService {
 
     @Autowired
     private CategoryParameterDao categoryParameterDao;
+
+    @Autowired
+    private DeviceDataDayDao deviceDataDayDao;
 
     @Override
     public void  addDeviceDataHour(Map<String, Object> param) {
@@ -49,7 +49,7 @@ public class DeviceDataHourServiceImpl implements DeviceDataHourService {
     }
 
     @Override
-    public Map<String, Object> getDeviceDataHourById(String deviceDataHourId) {
+    public Map<String, Object> getDeviceDataHourById(Long deviceDataHourId) {
         Map<String, Object> deviceDataHourinfo = new HashMap<String, Object>();
         Map<String, Object> rs = new HashMap<String, Object>();
         rs.put("deviceDataHourId", deviceDataHourId);
@@ -61,7 +61,7 @@ public class DeviceDataHourServiceImpl implements DeviceDataHourService {
     }
 
     @Override
-    public void delDeviceDataHourById(String deviceDataHourId) {
+    public void delDeviceDataHourById(Long deviceDataHourId) {
         deviceDataHourDao.delDeviceDataHourById(deviceDataHourId);
     }
 
@@ -87,11 +87,31 @@ public class DeviceDataHourServiceImpl implements DeviceDataHourService {
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(new Date());
                 cal.add(Calendar.DATE, -1);
-                param_sdd.put("recordTimeStart", cal.getTime());
-                List<Map<String, Object>> deviceThreeHourData = deviceDataHourDao.selectDeviceDataHourList(param);
+                param_sdd.put("recordTimeStart", cal.getTime().getTime());
+                List<Map<String, Object>> deviceThreeHourData = deviceDataHourDao.selectDeviceDataHourList(param_sdd);
                 categoryParameter.put("deviceThreeHourData", deviceThreeHourData);
             }
         }
         return categoryParameter;
+    }
+
+    @Override public void timingFormateForOneDay() {
+        //分别计算前一天前的设备平均值的平均值
+        List<Map<String, Object>> deviceDataList = new ArrayList<Map<String, Object>>();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.DATE, -1);
+        Long recordTimeEnd = cal.getTime().getTime();
+        cal.add(Calendar.DATE, -1);
+        Long recordTimeStart = cal.getTime().getTime();
+        Map<String, Object> param_day = new HashMap<String, Object>();
+        param_day.put("recordTimeStart",recordTimeStart);
+        param_day.put("recordTimeEnd",recordTimeEnd);
+        deviceDataList.addAll(deviceDataHourDao.timingHourAverageData(param_day));
+        //存入天表
+        deviceDataDayDao.addDeviceDataDayList(deviceDataList);
+        //移除Hour表之前的数据
+        cal.add(Calendar.DATE, 1);
+        deviceDataHourDao.delDeviceDataHourByEndTime(cal.getTime().getTime());
     }
 }

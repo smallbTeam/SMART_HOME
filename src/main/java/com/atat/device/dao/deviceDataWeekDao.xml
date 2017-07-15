@@ -30,6 +30,19 @@
         </trim>
     </insert>
 
+    <insert id="addDeviceDataWeekList" parameterType="java.util.List">
+        INSERT INTO device_data_week
+            recordTime, deviceId, value, categoryParameterId
+        values
+        <foreach collection ="list" item="deviceData" index= "index" separator =",">
+          (#{deviceData.recordTime},
+          #{deviceData.deviceId},
+          #{deviceData.value},
+          #{deviceData.categoryParameterId}
+          )
+        </foreach >
+    </insert>
+
 
     <select id="selectDeviceDataWeekList" parameterType="java.util.Map"
             resultType="java.util.Map">
@@ -56,7 +69,7 @@
         ORDER BY recordTime ASC
     </select>
 
-    <delete id="delDeviceDataWeekById" parameterType="java.lang.String">
+    <delete id="delDeviceDataWeekById" parameterType="java.lang.Long">
         DELETE FROM  device_data_week
         where
         recordTime = #{deviceDataWeekId}
