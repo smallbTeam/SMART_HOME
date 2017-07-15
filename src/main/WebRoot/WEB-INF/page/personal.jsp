@@ -78,7 +78,7 @@
         <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
 
             <div id class="common-detail">
-                <div class="line">
+                <div class="line"  id="genderDiv" >
                     <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
                     <span class="pull-left">性别</span>
                     <i class="arrowRight pull-right" ></i>
@@ -91,19 +91,19 @@
                     <%--<i class="arrowRight pull-right" ></i>--%>
                     <%--<span id="age" class="right-content pull-right">女</span>--%>
                 <%--</div>--%>
-                <div class="line">
+                <div class="line"  id="birthDiv" >
                     <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
                     <span class="pull-left">出生日期</span>
                     <i class="arrowRight pull-right" ></i>
                     <span id="birth" class="right-content pull-right"></span>
                 </div>
-                <div class="line">
+                <div class="line"  id="nickNameDiv">
                     <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
                     <span class="pull-left">用户名</span>
                     <i class="arrowRight pull-right" ></i>
                     <span id="nickName" class="right-content pull-right"></span>
                 </div>
-                <div class="line">
+                <div class="line" id="phoneNumDiv">
                     <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
                     <span class="pull-left">手机号码</span>
                     <i class="arrowRight pull-right" ></i>
@@ -148,6 +148,158 @@
         $("#phoneNum").val(account.mobelPhone);
         $("#nickName").val(account.nickName);
 
+        $("#phoneNumDiv").click(function () {
+            var dialog = '<div class="box">' +
+                '<form >' +
+                '<div class="form-group">' +
+                '<label for="name">手机号码</label>' +
+                '<input type="text" class="form-control" id="invate_phoneNum" placeholder="请输入手机号"  required>' +
+
+//                            '<label for="name">网关IP</label>'+
+//                            '<input type="text" class="form-control" id="add_gatewayIP" placeholder="请输入网关IP">'+
+
+                '</div>' +
+                '<div class="form-group">' +
+                '</div>' +
+//                            '<div id="addGatewaySubmit" class="btn-default" >提交</div>'+
+                '</form>' +
+                '</div>';
+
+
+            layer.confirm(dialog, {
+                title: "更改手机号",
+                btn: ["提交"], //按钮
+//                            width: "100%"
+            }, function () {
+                $.ajax({
+                    url: "${path}/client/account?action=accountUpdateMobile",
+                    type: "GET",
+                    data: {
+                        mobelPhone: $("#invate_phoneNum").val(),
+                        customerId: account.id
+                    },
+                    dataType: "json",
+                    success: function (result) {
+                        //console.log(result);
+                        if (result.operationResult == 1) {
+                            layer.msg("更新成功");
+                            $("#phoneNum").val( $("#invate_phoneNum").val());
+
+                        } else {
+                            layer.msg("发送邀请失败");
+                        }
+                    },
+                    error: function () {
+                        layer.msg("请求失败！");
+
+                    }
+                });
+            });
+        });
+        $("#genderDiv").click(function () {
+            var dialog = '<div class="box">' +
+                '<form >' +
+                '<div class="form-group">' +
+                '<label for="name">性别</label>' +
+                ' <select id="up_gender" class="">'+
+            ' <option value="1">男性</option>'+
+            ' <option value="0">女性</option>'+
+            ' <option value="-1">未知</option>'+
+
+            ' </select>'+
+
+//                            '<label for="name">网关IP</label>'+
+//                            '<input type="text" class="form-control" id="add_gatewayIP" placeholder="请输入网关IP">'+
+
+                '</div>' +
+                '<div class="form-group">' +
+                '</div>' +
+//                            '<div id="addGatewaySubmit" class="btn-default" >提交</div>'+
+                '</form>' +
+                '</div>';
+
+
+            layer.confirm(dialog, {
+                title: "修改信息",
+                btn: ["提交"], //按钮
+//                            width: "100%"
+            }, function () {
+                $.ajax({
+                    url: "${path}/client/account?action=updateAccount",
+                    type: "GET",
+                    data: {
+                        sex: $("#up_gender").val(),
+                        customerId: account.id
+                    },
+                    dataType: "json",
+                    success: function (result) {
+                        //console.log(result);
+                        if (result.operationResult == 1) {
+                            layer.msg("更新成功");
+                            $("#gender").val( $("#up_gender").val());
+
+
+                        } else {
+                            layer.msg("修改失败");
+                        }
+                    },
+                    error: function () {
+                        layer.msg("请求失败！");
+
+                    }
+                });
+            });
+        });
+        $("#nickNameDiv").click(function () {
+            var dialog = '<div class="box">' +
+                '<form >' +
+                '<div class="form-group">' +
+                '<label for="name">用户名</label>' +
+                '<input type="text" class="form-control" id="up_nickName" placeholder="请输入用户名"  required>' +
+
+
+
+//                            '<label for="name">网关IP</label>'+
+//                            '<input type="text" class="form-control" id="add_gatewayIP" placeholder="请输入网关IP">'+
+
+                '</div>' +
+                '<div class="form-group">' +
+                '</div>' +
+//                            '<div id="addGatewaySubmit" class="btn-default" >提交</div>'+
+                '</form>' +
+                '</div>';
+
+
+            layer.confirm(dialog, {
+                title: "更改用户名",
+                btn: ["提交"], //按钮
+//                            width: "100%"
+            }, function () {
+                $.ajax({
+                    url: "${path}/client/account?action=updateAccount",
+                    type: "GET",
+                    data: {
+                        nickName: $("#up_nickName").val(),
+                        customerId: account.id
+                    },
+                    dataType: "json",
+                    success: function (result) {
+                        //console.log(result);
+                        if (result.operationResult == 1) {
+                            layer.msg("更新成功");
+                            $("#nickName").val( $("#up_nickName").val());
+
+                        } else {
+                            layer.msg("发送邀请失败");
+                        }
+                    },
+                    error: function () {
+                        layer.msg("请求失败！");
+
+                    }
+                });
+            });
+        });
 
     });
 

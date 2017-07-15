@@ -90,7 +90,7 @@
             "token": '${account.token}'
         };
         $(function () {
-            alert("登录手机号：[" + account.mobelPhone + "]");
+//            alert("登录手机号：[" + account.mobelPhone + "]");
 
         });
 
@@ -781,6 +781,77 @@
                 window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&code=" + code;
             });
 
+            $("#shareWithSomeone").click(function () {
+            var dialog = '<div class="box">' +
+                '<form >' +
+                '<div class="form-group">' +
+//                '<label for="name">手机号码</label>' +
+                '<input type="text" class="form-control" id="invate_phoneNum" placeholder="请输入邀请用户手机号"  required>' +
+
+//                            '<label for="name">网关IP</label>'+
+//                            '<input type="text" class="form-control" id="add_gatewayIP" placeholder="请输入网关IP">'+
+
+                '</div>' +
+                '<div class="form-group">' +
+                '</div>' +
+//                            '<div id="addGatewaySubmit" class="btn-default" >提交</div>'+
+                '</form>' +
+                '</div>';
+
+
+            layer.confirm(dialog, {
+                title: "共享",
+                btn: ["分享"], //按钮
+//                            width: "100%"
+            }, function () {
+                $.ajax({
+                    url: "${path}/client/account?action=accountIsExit",
+                    type: "GET",
+                    data: {
+                        mobelPhone: $("#invate_phoneNum").val()
+//                        serialNumber: current_gateway.id
+                    },
+                    dataType: "json",
+                    success: function (result) {
+                        //console.log(result);
+                        if (result.operationResult) {
+//                            layer.msg("更新成功");
+                            $.ajax({
+                                url: "${path}/client/device?action=addGateWayByInvite",
+                                type: "GET",
+                                data: {
+                                    invitederId: $("#invate_phoneNum").val(),
+                                    gatewaySerialNumber: current_gateway.id,
+                                    customerId: account.id
+                                },
+                                dataType: "json",
+                                success: function (result) {
+                                    //console.log(result);
+                                    if (result.result == "success") {
+                                    layer.msg("已成功发送邀请");
+
+
+                                    } else {
+                                        layer.alert(result.error);
+                                    }
+                                },
+                                error: function () {
+                                    layer.msg("请求失败！");
+
+                                }
+                            });
+
+                        } else {
+                            layer.msg("发送邀请失败");
+                        }
+                    },
+                    error: function () {
+                        layer.msg("请求失败！");
+
+                    }
+                });
+            });
+            });
         });
 
     </script>
@@ -810,6 +881,8 @@
         <li id="personal"><a href="#"><i class="personal"></i> 个人中心</a></li>
         <li id="addGateWayBtn"><a href="#">添加网关</a></li>
         <li id="openAirKiss_btn"><a href="#">更改网关配置</a></li>
+        <li id="shareWithSomeone"><a href="#">分享</a></li>
+
     </ul>
     <ul id="leftM" class=" leftM">
         <%--<li><a href="#">Menu Item 1</a></li>--%>
