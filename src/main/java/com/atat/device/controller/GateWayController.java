@@ -251,6 +251,12 @@ public class GateWayController extends BaseController {
         this.renderJson(response, resultMap);
     }
 
+    /**
+     * 用户切换微信通知状态
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping("/switchAllIsSendMas")
     public void switchAllIsSendMas(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String code = request.getParameter("code");
@@ -260,13 +266,35 @@ public class GateWayController extends BaseController {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         if (StringUtil.isNotEmpty(wxId)) {
             try {
-                Integer status = relCustomerGatewayService.switchAllIsSendMas(wxId);
+                Boolean status = relCustomerGatewayService.switchAllIsSendMsg(wxId);
                 resultMap.put("result", "success");
-                if (null == status){
-                    resultMap.put("operationResult", "");
-                } else {
-                    resultMap.put("operationResult", status);
-                }
+                resultMap.put("operationResult", status);
+            } catch (Exception e) {
+                logger.error(" 用户切换微信接受推送状态出错" + e, e);
+                resultMap.put("result", "failed");
+                resultMap.put("error", "系统出错");
+            }
+        }else {
+            resultMap.put("result", "error");
+            resultMap.put("error", "用户微信Id获取失败");
+        }
+        this.renderJson(response, resultMap);
+    }
+
+
+    @RequestMapping(params = "action=switchGatewayIsSendMag")
+    public void switchGatewayIsSendMag(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String customerId = request.getParameter("customerId");
+        String gatewaySerialNumber = request.getParameter("gatewaySerialNumber");
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        if ((StringUtil.isNotEmpty(gatewaySerialNumber)) && (StringUtil.isNotEmpty(customerId))) {
+            try {
+                Map<String, Object> param = new HashMap<String, Object>();
+                param.put("customerId",customerId);
+                param.put("gatewaySerialNumber",gatewaySerialNumber);
+                Boolean status = relCustomerGatewayService.switchGatewayIsSendMag(param);
+                resultMap.put("result", "success");
+                resultMap.put("operationResult", status);
             } catch (Exception e) {
                 logger.error(" 用户切换微信接受推送状态出错" + e, e);
                 resultMap.put("result", "failed");

@@ -11,6 +11,7 @@ import com.atat.message.service.ShortMessageService;
 import com.atat.message.service.WeixinMessageService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -194,7 +195,7 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
     }
 
 
-    @Override public Integer switchAllIsSendMas(String wxId) {
+    @Override public Boolean switchAllIsSendMsg(String wxId) {
         //获取原开关状态
         Map<String, Object> relCustomerGatewayinfo = new HashMap<String, Object>();
         Map<String, Object> rs = new HashMap<String, Object>();
@@ -202,15 +203,27 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
         rs.put("limit", 1);
         List<Map<String, Object>> relCustomerGatewayList = relCustomerGatewayDao.selectRelCustomerGatewayList(rs);
         if (CollectionUtil.isEmpty(relCustomerGatewayList)) {
-            return null;
+            return false;
         }
         relCustomerGatewayinfo = relCustomerGatewayList.get(0);
-        Integer status = Integer.parseInt(relCustomerGatewayinfo.get("isSendMsg")+"");
-        Long customerId = Long.parseLong(relCustomerGatewayinfo.get("customerId")+"");
-        status = ((Integer)1).equals(status) ? 0 : 1;
+        Boolean status = (Boolean) relCustomerGatewayinfo.get("isSendMsg");
+        status = status ? false : true;
         Map<String, Object> param = new HashMap<String, Object>();
-        param.put("isSendMsg", status);
-        param.put("customerId", customerId);
+        param.put("isSendMsg", status ? 1: 0);
+        param.put("customerId", (Long)relCustomerGatewayinfo.get("customerId"));
+        relCustomerGatewayDao.updateAllIsSendMsg(param);
+        return status;
+    }
+
+    @Override public Boolean switchGatewayIsSendMag(Map<String, Object> param) {
+        List<Map<String, Object>> relCustomerGatewayList = relCustomerGatewayDao.selectRelCustomerGatewayList(param);
+        if (CollectionUtil.isEmpty(relCustomerGatewayList)) {
+            return false;
+        }
+        Map<String, Object> relCustomerGatewayinfo = relCustomerGatewayList.get(0);
+        Boolean status = (Boolean) relCustomerGatewayinfo.get("isSendMsg");
+        status = status ? false : true;
+        param.put("isSendMsg", status ? 1: 0);
         relCustomerGatewayDao.updateAllIsSendMsg(param);
         return status;
     }

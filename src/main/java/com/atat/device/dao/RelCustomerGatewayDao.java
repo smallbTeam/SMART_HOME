@@ -46,6 +46,6 @@ public interface RelCustomerGatewayDao {
      * @param param
      * @return
      */
-    public List<Map<String, Object>> updateAllIsSendMsg(Map<String, Object> param);
+    public void updateAllIsSendMsg(Map<String, Object> param);
 
 }

@@ -144,7 +144,7 @@
         SET  isSendMsg = #{isSendMsg}
         where customerId = #{customerId}
         <if test="gatewaySerialNumber != null">
-            and rcg.gatewaySerialNumber =#{gatewaySerialNumber}
+            and gatewaySerialNumber =#{gatewaySerialNumber}
         </if>
     </update>
 

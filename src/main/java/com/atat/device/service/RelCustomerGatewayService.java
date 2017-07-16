@@ -66,10 +66,22 @@ public interface RelCustomerGatewayService {
     public Integer  addGatewayForCustomer(Map<String, Object> param);
 
     /**
-     *
+     * 用户分享网关
      * @return
      */
     public Integer addGateWayByInvite(Map<String, Object> param);
 
-    public Integer switchAllIsSendMas(String wxId);
+    /**
+     * 依据用户Id切换接收消息状态
+     * @param wxId
+     * @return
+     */
+    public Boolean switchAllIsSendMsg(String wxId);
+
+    /**
+     * 依据用户ID和网关ID切换用过对当前网管的消息接受状态
+     * @param param
+     * @return
+     */
+    public Boolean switchGatewayIsSendMag(Map<String, Object> param);
 }
