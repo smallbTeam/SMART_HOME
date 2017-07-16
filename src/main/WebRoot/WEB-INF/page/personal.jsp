@@ -94,7 +94,7 @@
                 <div class="line"  id="birthDiv" >
                     <img src="${path}/page/img/icon/blue.png" class="pull-left"/>
                     <span class="pull-left">出生日期</span>
-                    <i class="arrowRight pull-right" ></i>
+                    <i class="arrowRight pull-right" style="opacity: 0" ></i>
                     <span id="birth" class="right-content pull-right"></span>
                 </div>
                 <div class="line"  id="nickNameDiv">
@@ -151,28 +151,93 @@
             "sex": '${account.sex}',
             "token": '${account.token}'
         };
-        alert("id:"+account.id);
-
-        $("#gender").html(account.sex);
+        var timer;
+        if (account.sex == 0) {
+            $("#gender").html("女");
+        }else if (account.sex == 1) {
+            $("#gender").html("女");
+        }else{
+            $("#gender").html("未知");
+        }
+//        $("#gender").html(account.sex);
         $("#birth").html(account.birthday);
         $("#phoneNum").html(account.mobelPhone);
         $("#nickName").html(account.nickName);
+
+
+        var isSendCode=false;
+
+        function sendCode() {
+            if ($("#up_phoneNum").val() == "" || $("#up_phoneNum").val() == null) {
+                alert("请输入手机号！");
+                return;
+            }
+            //发送验证码请求
+            //console.log("[" + url + "]");
+            $.ajax({
+                url: "${path}/verificationMsg?action=sendMsg",
+                type: "GET",
+                data: {
+                    mobelPhone: $("#up_phoneNum").val()
+                },
+                dataType: "json",
+                success: function (result) {
+                    //console.log(result);
+                    alert("result:"+result.result);
+                    if (result.result == "success") {
+                        isSendCode = true;
+                        var countdown = 60;
+                        var _this = $(this);
+                        $("#sendCode").attr("disabled", "true");
+                        $("#sendCode").text(countdown + "秒后重发");
+                        $("#up_phoneNum").attr("disabled", "true");
+
+                        timer = setInterval(function () {
+                            if (countdown - 0 > 1) {
+                                --countdown;
+                                $("#sendCode").text(countdown + "秒后重新获取");
+                            } else {
+
+                                clearInterval(timer);
+                                $("#sendCode").removeAttr("disabled");
+                                $("#up_phoneNum").removeAttr("disabled");
+
+                                $("#sendCode").text("重新发送验证码");
+                            }
+                        }, 1000);
+
+                    } else {
+                        layer.msg("发送验证码失败!");
+                    }
+                },
+                error: function () {
+                    layer.msg("请求失败！");
+
+                }
+            });
+        }
+
 
         $("#phoneNumDiv").click(function () {
             var dialog = '<div class="box">' +
                 '<form >' +
                 '<div class="form-group">' +
-                '<label for="name">手机号码</label>' +
-                '<input type="text" class="form-control" id="invate_phoneNum" placeholder="请输入手机号"  required>' +
+                '<input type="text" class="form-control" id="up_phoneNum" placeholder="请输入手机号"  required>' +
 
-//                            '<label for="name">网关IP</label>'+
-//                            '<input type="text" class="form-control" id="add_gatewayIP" placeholder="请输入网关IP">'+
-
-                '</div>' +
-                '<div class="form-group">' +
-                '</div>' +
-//                            '<div id="addGatewaySubmit" class="btn-default" >提交</div>'+
+                 '</div>' +
                 '</form>' +
+//                '<form class="form-inline" role="form">'+
+                '<div class="form-group">'+
+                '<label class="sr-only" for="name">名称</label>'+
+               ' <input type="text" id="veridateMsg" class="form-control" id="name"'+
+               'placeholder="请输入验证码">'+
+                '</div>'+
+                '<div class="form-group">'+
+                '<button id="sendCode" class="btn btn-default">发送验证码</button>'+
+
+               '</div>'+
+
+//                '</form>'+
                 '</div>';
 
 
@@ -181,22 +246,40 @@
                 btn: ["提交"], //按钮
 //                            width: "100%"
             }, function () {
+                clearInterval(timer);
+                if ($("#up_phoneNum").val() == "" || $("#up_phoneNum").val() == null) {
+                    //                //console.log("false");
+                    alert("请输入手机号!");
+                    return;
+                }
+
+                if ($("#veridateMsg").val() == "" || $("#veridateMsg").val() == null) {
+                    alert("请输入验证码!");
+                    return ;
+                }
+
+                alert("13652091037:"+$("#veridateMsg").val());
+
                 $.ajax({
                     url: "${path}/client/account?action=accountUpdateMobile",
                     type: "GET",
                     data: {
-                        newMobelPhone: $("#invate_phoneNum").val(),
-                        customerId: account.id
+                        newMobelPhone: $("#up_phoneNum").val(),
+                        customerId: account.id,
+                        veridateMsg:  $("#veridateMsg").val()
                     },
                     dataType: "json",
                     success: function (result) {
                         //console.log(result);
-                        if (result.result == "success") {
+                        if (result.result == "success" && result.operationResult == 1) {
                             layer.msg("更新成功");
-                            $("#phoneNum").html($("#invate_phoneNum").val());
+                            $("#phoneNum").html($("#up_phoneNum").val());
+                        } else if (result.operationResult == 1) {
 
-                        } else {
-                            layer.msg("更新失败");
+                        }else if (result.result == "success") {
+                            layer.msg("更新失败:"+result.operationResul);
+                        }else{
+                            layer.msg("更新失败:"+result.error);
                         }
                     },
                     error: function () {
@@ -205,13 +288,19 @@
                     }
                 });
             });
+
+            $("#sendCode").click(function () {
+                sendCode();
+            });
         });
         $("#genderDiv").click(function () {
             var dialog = '<div class="box">' +
                 '<form >' +
                 '<div class="form-group">' +
                 '<label for="name">性别</label>' +
-                ' <select id="up_gender" class="">'+
+                    '</div>' +
+                '<div class="form-group">' +
+             '<select id="up_gender" class="form-control">'+
             ' <option value="1">男性</option>'+
             ' <option value="0">女性</option>'+
             ' <option value="-1">未知</option>'+
@@ -246,8 +335,13 @@
                         //console.log(result);
                         if (result.result == "success") {
                             layer.msg("更新成功");
-                            $("#gender").html($("#up_gender").val());
-
+                            if ($("#up_gender").val() == 0) {
+                                $("#gender").html("女");
+                            }else if ($("#up_gender").val() == 1) {
+                                $("#gender").html("女");
+                            }else{
+                                $("#gender").html("未知");
+                            }
 
                         } else {
                             layer.msg("修改失败");
