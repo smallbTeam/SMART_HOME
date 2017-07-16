@@ -69,9 +69,10 @@
         <i class="return"></i>
     </div>
     <ul id="rightM" class="dropDown">
-        <li id="dayAccount"><a href="#" class="color:red;"><i class="personal "></i>当日统计</a></li>
         <li id="monthAccount"><a href="#">本月统计</a></li>
         <li id="yearAccount"><a href="#">本年统计</a></li>
+        <li id="todayAccount"><a href="#">今日统计</a></li>
+
     </ul>
 
 
@@ -82,7 +83,7 @@
 <section id="dev " class="device-content">
     <div class="row">
         <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
-            <h3 class="title"><span>图表</span>数据统计内容区</h3>
+            <h3 class="title"><span id="chartTitle">图表</span>数据统计内容区</h3>
         </div>
     </div>
 
@@ -112,11 +113,12 @@
             });
         });
         <%--alert("deviceD:"+${code});--%>
+        $("#chartTitle").html("今日统计");
 
         var deviceD = {
             deviceId: ${deviceId},
             code: "wendu",
-            type: "day"
+            type: "hour"
         };
 
         var dom = document.getElementById("chart");
@@ -135,6 +137,8 @@
         var data = [];
 
         var now = new Date().getTime();
+        now -= oneMonth;
+
 
         function add0(m){return m<10?'0'+m:m }
         function format(timestamp,type){
@@ -155,19 +159,8 @@
 
 
 
-//        var now = new Date();
-// 加五天.
-//        var newDate = DateAdd("d ", 5, now);
-//        alert(newDate.toLocaleDateString());
-//// 加两个月.
-//        newDate = DateAdd("m ", 2, now);
-//        alert(newDate.toLocaleDateString());
-//// 加一年
-//        newDate = DateAdd("y ", 1, now);
-//        alert(newDate.toLocaleDateString());
-
         function addData(msg,type) {
-            var newDateStr = format(now,type);
+            var newDateStr = format(msg.recordTime,2);
             date.push(newDateStr);
 
             data.push(msg.value);
@@ -179,30 +172,33 @@
                 now = now + oneMinute;
             }
         }
-        option = {
-            xAxis: {
-                type: 'category',
-                boundaryGap: false,
-                data: date
-            },
-            yAxis: {
+
+        function setOption() {
+            option = {
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: date
+                },
+                yAxis: {
 //                boundaryGap: [0, '20%'],
-                type: 'value'
-            },
-            series: [
-                {
-                    name:'成交',
-                    type:'line',
-                    smooth:true,
-                    symbol: 'none',
-                    stack: 'a',
-                    areaStyle: {
-                        normal: {}
-                    },
-                    data: data
-                }
-            ]
-        };
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name:'成交',
+                        type:'line',
+                        smooth:true,
+                        symbol: 'none',
+                        stack: 'a',
+                        areaStyle: {
+                            normal: {}
+                        },
+                        data: data
+                    }
+                ]
+            };
+        }
 //
 //        var msg = {
 //            "recordTime": 1500036668393,
@@ -210,6 +206,7 @@
 //            "value": 11.11,
 //            "categoryParameterId": 1
 //        };
+
 
         function accountMsgs(deviceD) {
             $.ajax({
@@ -259,9 +256,14 @@
                             }
                         }
 
-                        if (option && typeof option === "object") {
-                            myChart.setOption(option, true);
+                        if (operationResult.deviceEchartsData.length == 0) {
+                            date.push("当前无数据");
+                            data.push(0);
                         }
+                            setOption();
+                            if (option && typeof option === "object") {
+                                myChart.setOption(option, true);
+                            }
 
                     } else {
                         layer.alert(result.error);
@@ -299,28 +301,31 @@
         //界面进入数据加载
         accountMsgs(deviceD);
 
-        $("#dayaccount").click(function () {
+        $("#todayAccount").click(function () {
+
+            $("#chartTitle").html("今日统计");
+
             deviceD.type = "hour";
             date = [];
             data = [];
-            now -= oneHour*3;
-
-           accountMsgs(deviceD);
+//            now -= oneHour*3;
+            accountMsgs(deviceD);
         });
         $("#monthAccount").click(function () {
             deviceD.type = "day";
             date = [];
             data = [];
-            now -= oneMonth;
-
+//            now -= oneMonth;
+            $("#chartTitle").html("本月统计");
             accountMsgs(deviceD);
         });
         $("#yearAccount").click(function () {
+
             deviceD.type = "year";
             date = [];
             data = [];
-            now -= oneYear;
-
+//            now -= oneYear;
+            $("#chartTitle").html("本年度统计");
             accountMsgs(deviceD);
         });
 
