@@ -6,6 +6,7 @@ package com.atat.message.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.atat.common.util.JsonUtil;
+import com.atat.common.util.StringUtil;
 import com.atat.common.util.weixinClient.CommonUtil;
 import com.atat.message.service.WeixinMessageService;
 import com.atat.property.dao.PropertyMapDao;
@@ -41,8 +42,11 @@ public class WeixinMessageServiceImpl implements WeixinMessageService{
                 JSONObject json = new JSONObject();
                 json.put("touser", touser.get(i));//接收者wxName
                 json.put("template_id", template_id);//消息模板
-                //json.put("url", "http://weix");//填写url可查看详情
+                if (StringUtil.isNotEmpty(url)) {
+                    json.put("url", url);//填写url可查看详情
+                }
                 json.put("data", data);
+
                 JSONObject resJsonObj = CommonUtil.httpsRequest(urls, "POST", json.toString());
                 Map<String, Object> resMap = JsonUtil.fromJson(resJsonObj.toString(), Map.class);
                 String errcode = resMap.get("errcode")+"";

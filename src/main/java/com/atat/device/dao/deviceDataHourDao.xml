@@ -31,7 +31,7 @@
     </insert>
 
     <insert id="addDeviceDataHourList" parameterType="java.util.List">
-        INSERT INTO device_data_week
+        INSERT INTO device_data_hour
         (recordTime, deviceId, value, categoryParameterId)
         values
         <foreach collection ="list" item="deviceData" index= "index" separator =",">
@@ -93,7 +93,7 @@
     <delete id="delDeviceDataHourByEndTime" parameterType="java.lang.Long">
         DELETE FROM  device_data_hour
         where
-        <![CDATA[ and  recordTime <= #{recordTimeEnd}]]>
+        <![CDATA[ recordTime <= #{recordTimeEnd}]]>
     </delete>
 
 

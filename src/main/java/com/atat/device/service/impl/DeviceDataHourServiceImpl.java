@@ -109,7 +109,9 @@ public class DeviceDataHourServiceImpl implements DeviceDataHourService {
         param_day.put("recordTimeEnd",recordTimeEnd);
         deviceDataList.addAll(deviceDataHourDao.timingHourAverageData(param_day));
         //存入天表
-        deviceDataDayDao.addDeviceDataDayList(deviceDataList);
+        if (CollectionUtil.isNotEmpty(deviceDataList)){
+            deviceDataDayDao.addDeviceDataDayList(deviceDataList);
+        }
         //移除Hour表之前的数据
         cal.add(Calendar.DATE, 1);
         deviceDataHourDao.delDeviceDataHourByEndTime(cal.getTime().getTime());

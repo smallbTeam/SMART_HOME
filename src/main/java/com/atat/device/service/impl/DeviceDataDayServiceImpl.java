@@ -1,5 +1,6 @@
 package com.atat.device.service.impl;
 
+import com.atat.common.util.CollectionUtil;
 import com.atat.device.dao.DeviceDataDayDao;
 import com.atat.device.dao.DeviceDataWeekDao;
 import com.atat.device.service.DeviceDataDayService;
@@ -72,7 +73,9 @@ public class DeviceDataDayServiceImpl implements DeviceDataDayService {
         param_day.put("recordTimeEnd",recordTimeEnd);
         deviceDataList.addAll(deviceDataDayDao.timingDayAverageData(param_day));
         //存入天表
-        deviceDataWeekDao.addDeviceDataWeekList(deviceDataList);
+        if (CollectionUtil.isNotEmpty(deviceDataList)){
+            deviceDataWeekDao.addDeviceDataWeekList(deviceDataList);
+        }
         //移除Hour表之前的数据
         cal.add(Calendar.DATE, 7);
         deviceDataDayDao.delDeviceDataDayByEndTime(cal.getTime().getTime());

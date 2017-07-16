@@ -79,4 +79,19 @@ public class DeviceDataController extends BaseController {
         this.renderJson(response, resultMap);
     }
 
+    @RequestMapping(params = "action=getDeviceaverageData")
+    public void getDeviceaverageData(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        try {
+            deviceDataDayService.timingFormateForOneWeek();
+            resultMap.put("result", "success");
+            resultMap.put("operationResult", 1);
+        } catch (Exception e) {
+            logger.error("获取设备当天数据出错" + e, e);
+            resultMap.put("result", "failed");
+            resultMap.put("error", "系统出错");
+        }
+        this.renderJson(response, resultMap);
+    }
+
 }

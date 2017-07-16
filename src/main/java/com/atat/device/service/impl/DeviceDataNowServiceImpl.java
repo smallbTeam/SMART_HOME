@@ -162,7 +162,9 @@ public class DeviceDataNowServiceImpl implements DeviceDataNowService {
             deviceDataList.addAll(deviceDataNowDao.timingNowAverageData(param_oneHour));
         }
         //存入小时表
-        deviceDataHourDao.addDeviceDataHourList(deviceDataList);
+        if (CollectionUtil.isNotEmpty(deviceDataList)){
+            deviceDataHourDao.addDeviceDataHourList(deviceDataList);
+        }
         //移除now表之前的数据
         cal.add(Calendar.HOUR, 3);
         deviceDataNowDao.delDeviceDataNowByEndTime(cal.getTime().getTime());

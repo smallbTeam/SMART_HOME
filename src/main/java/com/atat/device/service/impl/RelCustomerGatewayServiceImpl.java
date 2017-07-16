@@ -125,6 +125,7 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
             //初次添加网关 添加网管下设备 设备序号与网管保持一致
             Map<String, Object> paramDevice = new HashMap<String, Object>();
             paramDevice.put("seriaNumber",gatewaySerialNumber);
+            //
             paramDevice.put("deviceCategoryId",1);
             paramDevice.put("gatewaySerialNumber",gatewaySerialNumber);
             deviceDao.addDevice(paramDevice);

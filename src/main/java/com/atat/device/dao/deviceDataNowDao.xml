@@ -89,7 +89,7 @@
     <delete id="delDeviceDataNowByEndTime" parameterType="java.lang.Long">
         DELETE FROM  device_data_now
         where
-        <![CDATA[ and  recordTime < #{recordTimeEnd}
+        <![CDATA[ recordTime < #{recordTimeEnd}
         ]]>
     </delete>
 
