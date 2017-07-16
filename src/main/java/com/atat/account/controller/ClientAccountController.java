@@ -242,8 +242,7 @@ public class ClientAccountController extends BaseController {
                     resultMap.put("result", "success");
                     resultMap.put("operationResult", false);
                 }
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 logger.error("依据手机号查询用户是否已存在出错" + e, e);
                 resultMap.put("result", "failed");
                 resultMap.put("error", "系统出错");
@@ -267,13 +266,12 @@ public class ClientAccountController extends BaseController {
     public void accountUpdateMobile(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String newMobelPhone = request.getParameter("newMobelPhone");
-        String mobelPhone = request.getParameter("mobelPhone");
         String customerId = request.getParameter("customerId");
         String veridateMsg = request.getParameter("veridateMsg");
-        if ((StringUtil.isNotEmpty(mobelPhone)) && (StringUtil.isNotEmpty(veridateMsg))
+        if ((StringUtil.isNotEmpty(veridateMsg))
                 && (StringUtil.isNotEmpty(newMobelPhone)) && (StringUtil.isNotEmpty(customerId))) {
             // 验证session
-            String msmRandomCode = (String) request.getSession().getAttribute("msgCodeSsion" + mobelPhone);
+            String msmRandomCode = (String) request.getSession().getAttribute("msgCodeSsion" + newMobelPhone);
             String randomCode = "";
             String timeStamp = "";
             long timePath = 600001;
