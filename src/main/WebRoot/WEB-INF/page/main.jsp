@@ -176,6 +176,16 @@
                 }
 //                alert("gateway  reload-content");
                 $("#page-content").css("display", "block");
+                $("#notify").css("display", "block");
+
+                if (gateway.isSendMsg) {
+                    $("#notifyText").html("关闭通知");
+                    $("#notify").css("background","#2BB4EA");
+                }else{
+                    $("#notifyText").html("开启通知");
+                    $("#notify").css("background","red");
+                }
+
                 $("#nodata").css("display", "none");
 //                $("#gatewayIP").html(gateway.address);
                 $("#gatewayName").html(gateway.address);
@@ -402,18 +412,19 @@
                     },
                     dataType: "json",
                     success: function (result) {
-//                        console.log(result);
+                        console.log(result);
                         if (result.result == "success") {
 //                            alert("itemId:"+JSON.stringify(result));
                             var jsons = result.operationResult;
                             for (var i in jsons) {
                                 var item = jsons[i];
-//                                alert("item:"+item.gatewayDeviceID);
+//                                alert("isSendMsg:"+item.isSendMsg);
                                 var gatewayItem = {
                                     "id": item.gatewaySerialNumber,
 //                                        "gatewayPort": item.gatewayPort,
 //                                        "ip": item.address,
-                                    "address": item.gatewayName
+                                    "address": item.gatewayName,
+                                    "isSendMsg": item.isSendMsg
 //                                        "modifiedDate": item.modifiedDate,
 //                                        "reserve": item.reserve
                                 };
@@ -895,6 +906,43 @@
                 });
             });
             });
+
+
+            //关闭通知推送与开启推送通知
+            $("#notify").click(function () {
+
+                alert("gid:"+current_gateway.id+":"+account.id);
+                $.ajax({
+                    url: "${path}/client/device?action=switchGatewayIsSendMag",
+                    type: "GET",
+                    data: {
+                        gatewaySerialNumber: current_gateway.id,
+                        customerId: account.id
+                    },
+                    dataType: "json",
+                    success: function (result) {
+                        //console.log(result);
+                        if (result.result == "success") {
+                            if (result.operationResult) {
+                                $("#notifyText").html("关闭通知");
+                                $("#notify").css("background","#2BB4EA");
+                            }else {
+                                $("#notifyText").html("开启通知");
+                                $("#notify").css("background","red");
+                            }
+
+                        } else {
+                            layer.msg("操作失败！");
+                        }
+                    },
+                    error: function () {
+                        layer.msg("请求失败！");
+
+                    }
+                });
+
+            });
+
         });
 
     </script>
@@ -1016,6 +1064,12 @@
             </div><!--col-xs-12 -->
         </div><!--row -->
     </section>
+</div>
+
+
+
+<div id="notify" class="notify">
+   <span id="notifyText">关闭通知</span>
 </div>
 
 <div id="nodata">

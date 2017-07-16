@@ -903,3 +903,30 @@ h3.title span:after {
     color: #2BB4EA;
     cursor: pointer;
 }
+
+
+.notify {
+    position: fixed;
+    display: none;
+    bottom: 50px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    background: #2BB4EA;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow:    0px 3px 5px 0px rgba(50, 50, 50, 0.3);
+    box-shadow:         0px 3px 5px 0px rgba(50, 50, 50, 0.3);
+    padding: 30px 0;
+}
+
+.notify span {
+    /*top: 40px;*/
+    width: 100%;
+    /*margin-left: 50%;*/
+    left: 0;
+    text-align: center;
+    padding: 10px;
+    color: white;
+    /*transform: translate(0,-50%);*/
+}
