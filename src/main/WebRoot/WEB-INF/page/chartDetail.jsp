@@ -69,9 +69,9 @@
         <i class="return"></i>
     </div>
     <ul id="rightM" class="dropDown">
-        <li><a href="#" class="color:red;"><i class="personal "></i>当日统计</a></li>
-        <li><a href="#">本月统计</a></li>
-        <li><a href="#">本年统计</a></li>
+        <li id="dayAccount"><a href="#" class="color:red;"><i class="personal "></i>当日统计</a></li>
+        <li id="monthAccount"><a href="#">本月统计</a></li>
+        <li id="yearAccount"><a href="#">本年统计</a></li>
     </ul>
 
 
@@ -111,127 +111,74 @@
                 $(this).fadeOut(2000);
             });
         });
-        alert("deviceD:"+${code});
+        <%--alert("deviceD:"+${code});--%>
 
         var deviceD = {
             deviceId: ${deviceId},
-            code: ${code},
+            code: "wendu",
             type: "day"
         };
-
-
-
-        $.ajax({
-            url: "${path}/client/device?action=getDeviceDataMap",
-            type: "GET",
-            data: {
-                //customerId: account.id,
-                deviceId: deviceD.deviceId,
-                code: deviceD.code,
-                type: deviceD.type
-            },
-            dataType: "json",
-            success: function (result) {
-                //console.log(result);
-                if (result.result == "success") {
-                    var operationResult = result.operationResult;
-                    var common = {
-                                "unit": operationResult.unit,
-                            "code": operationResult.code,
-                            "isReadOnly": operationResult.isReadOnly,
-                            "createdDate": operationResult.createdDate,
-                            "deviceCategoryId": operationResult.deviceCategoryId,
-                            "dataType": operationResult.dataType,
-                             "name": operationResult.name,
-                             "modifiedDate": operationResult.modifiedDate,
-                             "type": operationResult.type,
-                             "categoryParameterId": operationResult.categoryParameterId
-                    } ;
-//                      layer.msg("resutl:"+JSON.stringify(operationResult.deviceEchartsData) );
-                    for (var i in operationResult.deviceEchartsData) {
-                        var  item = operationResult.deviceEchartsData[i];
-//                        layer.msg("resutl:"+item.value);
-
-                        var item_msg = {
-                                   "recordTime": item.recordTime,
-                                            "deviceId": item.deviceId,
-                                            "value": item.value,
-                                            "categoryParameterId": item.categoryParameterId
-                        };
-                        addData(item_msg,common.type);
-                    }
-
-                     if (option && typeof option === "object") {
-                         myChart.setOption(option, true);
-                     }
-
-                } else {
-                    layer.alert(result.error);
-                }
-            },
-            error: function () {
-                layer.msg("请求失败！");
-
-            }
-        });
-
 
         var dom = document.getElementById("chart");
         var myChart = echarts.init(dom);
         var app = {};
         option = null;
-        var base = +new Date(2014, 9, 3);
+        var base = +new Date();
         var oneDay = 24 * 3600 * 1000;
         var oneHour= 3600 * 1000;
         var oneMinute= 60*1000;
+        var oneMonth= 30 * 24 * 3600 * 1000;
+        var oneYear=  12 * 30 * 24 * 3600 * 1000;
 
         var date = [];
 
-        var data = [Math.random() * 250];
-        var secondDate = new Date(base.valueOf() - 60*60*1000);
-        var now = new Date(base);
+        var data = [];
+
+        var now = new Date().getTime();
 
         function add0(m){return m<10?'0'+m:m }
         function format(timestamp,type){
-                var time = new Date(timestamp);
-            	var year = time.getFullYear();
-            	var month = time.getMonth()+1;   
-            	var date = time.getDate();       
-            	var hours = time.getHours();     
-            	var minutes = time.getMinutes(); 
-         if (type == 0){             //年
-              	return year+'/'+add0(month)+'/'+add0(date);
-         }else if (type == 1) { //月                                                          	
-              	return year+'/'+add0(month)+'/'+add0(date)+' '+add0(hours);
-         }                  //2小时                                                            	
-        	return year+'/'+add0(month)+'/'+add0(date)+' '+add0(hours)+':'+add0(minutes);       	
+            var time = new Date(timestamp);
+
+            var year = time.getFullYear();
+            var month = time.getMonth()+1;
+            var date = time.getDate();
+            var hours = time.getHours();
+            var minutes = time.getMinutes();
+            if (type == 0){             //年
+                return year+'/'+add0(month)+'/'+add0(date);
+            }else if (type == 1) { //月
+                return year+'/'+add0(month)+'/'+add0(date)+' '+add0(hours);
+            }                  //2 小时
+            return year+'/'+add0(month)+'/'+add0(date)+' '+add0(hours)+':'+add0(minutes);
         }
 
 
+
+//        var now = new Date();
+// 加五天.
+//        var newDate = DateAdd("d ", 5, now);
+//        alert(newDate.toLocaleDateString());
+//// 加两个月.
+//        newDate = DateAdd("m ", 2, now);
+//        alert(newDate.toLocaleDateString());
+//// 加一年
+//        newDate = DateAdd("y ", 1, now);
+//        alert(newDate.toLocaleDateString());
+
         function addData(msg,type) {
-            now = format(now.getTime(),type);
-            date.push(now);
+            var newDateStr = format(now,type);
+            date.push(newDateStr);
 
             data.push(msg.value);
             if (type == 0) {
-               now = new Date(+new Date(now) + oneDay);
+                now = now + oneDay;
             }else if (type == 1) {
-                 now = new Date(+new Date(now) + oneHour);
+                now = now + oneHour;
             }else{
-                now = new Date(+new Date(now) + oneMinute);
+                now = now + oneMinute;
             }
         }
-
-        var msg = {
-            "recordTime": 1500036668393,
-            "deviceId": 1,
-            "value": 11.11,
-            "categoryParameterId": 1
-        };
-//        for (var i = 1; i < 100; i++) {
-//            addData(msg,2);
-//        }
-
         option = {
             xAxis: {
                 type: 'category',
@@ -256,6 +203,83 @@
                 }
             ]
         };
+//
+//        var msg = {
+//            "recordTime": 1500036668393,
+//            "deviceId": 1,
+//            "value": 11.11,
+//            "categoryParameterId": 1
+//        };
+
+        function accountMsgs(deviceD) {
+            $.ajax({
+                url: "${path}/client/device?action=getDeviceDataMap",
+                type: "GET",
+                data: {
+                    //customerId: account.id,
+                    deviceId: deviceD.deviceId,
+                    code: deviceD.code,
+                    type: deviceD.type
+                },
+                dataType: "json",
+                success: function (result) {
+                    //console.log(result);
+                    if (result.result == "success") {
+                        var operationResult = result.operationResult;
+                        var common = {
+                            "unit": operationResult.unit,
+                            "code": operationResult.code,
+                            "isReadOnly": operationResult.isReadOnly,
+                            "createdDate": operationResult.createdDate,
+                            "deviceCategoryId": operationResult.deviceCategoryId,
+                            "dataType": operationResult.dataType,
+                            "name": operationResult.name,
+                            "modifiedDate": operationResult.modifiedDate,
+                            "type": operationResult.type,
+                            "categoryParameterId": operationResult.categoryParameterId
+                        } ;
+
+//                      layer.msg("resutl:"+JSON.stringify(operationResult.deviceEchartsData) );
+                        for (var i in operationResult.deviceEchartsData) {
+                            var  item = operationResult.deviceEchartsData[i];
+//                        layer.msg("resutl:"+item.value);
+
+                            var item_msg = {
+                                "recordTime": item.recordTime,
+                                "deviceId": item.deviceId,
+                                "value": item.value,
+                                "categoryParameterId": item.categoryParameterId
+                            };
+                            if (deviceD.type == "day") {
+                                addData(item_msg, 1);
+                            }else if  (deviceD.type == "year") {
+                                addData(item_msg, 0);
+                            }else {
+                                addData(item_msg, 2);
+                            }
+                        }
+
+                        if (option && typeof option === "object") {
+                            myChart.setOption(option, true);
+                        }
+
+                    } else {
+                        layer.alert(result.error);
+                    }
+                },
+                error: function () {
+                    layer.msg("请求失败！");
+
+                }
+            });
+        }
+
+
+
+//        for (var i = 1; i < 100; i++) {
+//            addData(msg,2);
+//        }
+
 
 //        setInterval(function () {
 //            addData(true);
@@ -271,9 +295,36 @@
 //        }, 500);
        
        
-       
 
-    $(".menuleft").click(function () {
+        //界面进入数据加载
+        accountMsgs(deviceD);
+
+        $("#dayaccount").click(function () {
+            deviceD.type = "hour";
+            date = [];
+            data = [];
+            now -= oneHour*3;
+
+           accountMsgs(deviceD);
+        });
+        $("#monthAccount").click(function () {
+            deviceD.type = "day";
+            date = [];
+            data = [];
+            now -= oneMonth;
+
+            accountMsgs(deviceD);
+        });
+        $("#yearAccount").click(function () {
+            deviceD.type = "year";
+            date = [];
+            data = [];
+            now -= oneYear;
+
+            accountMsgs(deviceD);
+        });
+
+        $(".menuleft").click(function () {
             window.history.back();
         });
 

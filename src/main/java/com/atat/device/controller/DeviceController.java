@@ -51,9 +51,11 @@ public class DeviceController extends BaseController {
     public ModelAndView deviceDataChart(HttpServletRequest request, HttpServletResponse response) {
         String deviceId = request.getParameter("deviceId");
         String code = request.getParameter("code");
+        System.out.println("code:"+code);
         ModelAndView mav = new ModelAndView("chartDetail");
-        mav.addObject("deviceId",deviceId);
         mav.addObject("code",code);
+        mav.addObject("deviceId",deviceId);
+
         return mav;
     }
 
