@@ -152,10 +152,10 @@
             "token": '${account.token}'
         };
         var timer;
-        if (account.sex == 0) {
+        if (account.sex == 2) {
             $("#gender").html("女");
         }else if (account.sex == 1) {
-            $("#gender").html("女");
+            $("#gender").html("男");
         }else{
             $("#gender").html("未知");
         }
@@ -185,6 +185,7 @@
                     //console.log(result);
                     alert("result:"+result.result);
                     if (result.result == "success") {
+
                         isSendCode = true;
                         var countdown = 60;
                         var _this = $(this);
@@ -301,9 +302,9 @@
                     '</div>' +
                 '<div class="form-group">' +
              '<select id="up_gender" class="form-control">'+
-            ' <option value="1">男性</option>'+
-            ' <option value="0">女性</option>'+
-            ' <option value="-1">未知</option>'+
+            ' <option value="1">男</option>'+
+            ' <option value="2">女</option>'+
+            ' <option value="0">未知</option>'+
 
             ' </select>'+
 

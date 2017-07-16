@@ -69,9 +69,9 @@
         <i class="return"></i>
     </div>
     <ul id="rightM" class="dropDown">
-        <li id="monthAccount"><a href="#">本月统计</a></li>
-        <li id="yearAccount"><a href="#">本年统计</a></li>
-        <li id="todayAccount"><a href="#">今日统计</a></li>
+        <li id="monthAccount"><a href="#">1天内</a></li>
+        <li id="yearAccount"><a href="#">1年内</a></li>
+        <li id="todayAccount"><a href="#">3小时内</a></li>
 
     </ul>
 
@@ -113,7 +113,7 @@
             });
         });
         <%--alert("deviceD:"+${code});--%>
-        $("#chartTitle").html("今日统计");
+        $("#chartTitle").html("3小时内");
 
         var deviceD = {
             deviceId: ${deviceId},
@@ -303,7 +303,7 @@
 
         $("#todayAccount").click(function () {
 
-            $("#chartTitle").html("今日统计");
+            $("#chartTitle").html("3小时内");
 
             deviceD.type = "hour";
             date = [];
@@ -316,7 +316,7 @@
             date = [];
             data = [];
 //            now -= oneMonth;
-            $("#chartTitle").html("本月统计");
+            $("#chartTitle").html("1天内");
             accountMsgs(deviceD);
         });
         $("#yearAccount").click(function () {
@@ -325,7 +325,7 @@
             date = [];
             data = [];
 //            now -= oneYear;
-            $("#chartTitle").html("本年度统计");
+            $("#chartTitle").html("1年内");
             accountMsgs(deviceD);
         });
 

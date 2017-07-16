@@ -94,8 +94,8 @@
                         <!--<input type="text" class="" placeholder="性别">-->
                         <select id="gender" class="">
                             <option value="1">男性</option>
-                            <option value="0">女性</option>
-                            <option value="-1">未知</option>
+                            <option value="2">女性</option>
+                            <option value="0">未知</option>
 
                         </select>
                     </div>
