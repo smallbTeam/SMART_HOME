@@ -70,4 +70,6 @@ public interface RelCustomerGatewayService {
      * @return
      */
     public Integer addGateWayByInvite(Map<String, Object> param);
+
+    public Integer switchAllIsSendMas(String wxId);
 }

@@ -14,6 +14,9 @@
                 <if test="isOnwer != null">
                     isOnwer,
                 </if>
+                <if test="isSendMsg != null">
+                    isSendMsg,
+                </if>
                 <if test="gatewayName != null">
                     gatewayName,
                 </if>
@@ -30,6 +33,9 @@
                 </if>
                 <if test="isOnwer != null">
                     #{isOnwer},
+                </if>
+                <if test="isSendMsg != null">
+                    #{isSendMsg},
                 </if>
                 <if test="gatewayName != null">
                     #{gatewayName},
@@ -50,6 +56,9 @@
                 <if test="isOnwer != null">
                     isOnwer =#{isOnwer},
                 </if>
+                <if test="isSendMsg != null">
+                    isSendMsg =#{isSendMsg},
+                </if>
                 <if test="gatewayName != null">
                     gatewayName =#{gatewayName},
                 </if>
@@ -67,16 +76,13 @@
         rcg.customerId customerId,
         rcg.gatewaySerialNumber gatewaySerialNumber,
         rcg.isOnwer isOnwer,
+        rcg.isSendMsg isSendMsg,
         rcg.gatewayName gatewayName,
-        rcg.createdDate createdDate,
-        rcg.modifiedDate modifiedDate,
         rcg.id relCustomerGatewayId,
         gaw.address address,
         gaw.port port,
         gaw.parameter parameter,
         gaw.ip ip,
-        gaw.createdDate createdDate,
-        gaw.modifiedDate modifiedDate,
         gaw.id gatewayId,
         cus.mobelPhone mobelPhone,
         cus.wxId wxId,
@@ -100,6 +106,9 @@
             <if test="isOnwer != null">
                 and rcg.isOnwer =#{isOnwer}
             </if>
+            <if test="isSendMsg != null">
+                and rcg.isSendMsg =#{isSendMsg}
+            </if>
             <if test="gatewayName != null">
                 and rcg.gatewayName =#{gatewayName}
             </if>
@@ -109,7 +118,13 @@
             <if test="modifiedDate != null">
                 and rcg.modifiedDate =#{modifiedDate}
             </if>
+            <if test="wxId != null">
+                and cus.wxId =#{wxId}
+            </if>
         ORDER BY rcg.id ASC
+        <if test="limit !=null">
+            limit #{limit}
+        </if>
     </select>
 
     <delete id="delRelCustomerGatewayById" parameterType="java.lang.Long">
@@ -122,6 +137,15 @@
         update rel_customer_gateway
         SET  isDeleted = 1
         where gatewaySerialNumber = #{gatewaySerialNumber}
+    </update>
+
+    <update id="updateAllIsSendMsg" parameterType="java.util.Map">
+        update rel_customer_gateway
+        SET  isSendMsg = #{isSendMsg}
+        where customerId = #{customerId}
+        <if test="gatewaySerialNumber != null">
+            and rcg.gatewaySerialNumber =#{gatewaySerialNumber}
+        </if>
     </update>
 
 </mapper>

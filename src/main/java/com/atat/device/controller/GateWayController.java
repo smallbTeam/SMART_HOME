@@ -7,9 +7,14 @@ package com.atat.device.controller;
 import com.atat.account.service.CustomerService;
 import com.atat.common.base.controller.BaseController;
 import com.atat.common.prop.BasePropertyDate;
+import com.atat.common.util.CollectionUtil;
+import com.atat.common.util.JsonUtil;
 import com.atat.common.util.StringUtil;
+import com.atat.common.util.httpClient.HttpClientUtil;
+import com.atat.common.util.httpClient.URLUtil;
 import com.atat.device.service.GatewayService;
 import com.atat.device.service.RelCustomerGatewayService;
+import com.atat.message.service.WeixinMessageService;
 import com.atat.property.action.GetSignatureUrl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +44,9 @@ public class GateWayController extends BaseController {
 
     @Resource
     private RelCustomerGatewayService relCustomerGatewayService;
+
+    @Resource
+    private WeixinMessageService weixinMessageService;
 
     /**
      * 添加网管页面
@@ -239,6 +247,34 @@ public class GateWayController extends BaseController {
         else {
             resultMap.put("result", "error");
             resultMap.put("error", "用户Id及网关Id均不能为空");
+        }
+        this.renderJson(response, resultMap);
+    }
+
+    @RequestMapping("/switchAllIsSendMas")
+    public void switchAllIsSendMas(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String code = request.getParameter("code");
+        String state = request.getParameter("state");
+        String appid = BasePropertyDate.WX_APPID;
+        String wxId = weixinMessageService.getUserwxId(code);
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        if (StringUtil.isNotEmpty(wxId)) {
+            try {
+                Integer status = relCustomerGatewayService.switchAllIsSendMas(wxId);
+                resultMap.put("result", "success");
+                if (null == status){
+                    resultMap.put("operationResult", "");
+                } else {
+                    resultMap.put("operationResult", status);
+                }
+            } catch (Exception e) {
+                logger.error(" 用户切换微信接受推送状态出错" + e, e);
+                resultMap.put("result", "failed");
+                resultMap.put("error", "系统出错");
+            }
+        }else {
+            resultMap.put("result", "error");
+            resultMap.put("error", "用户微信Id获取失败");
         }
         this.renderJson(response, resultMap);
     }

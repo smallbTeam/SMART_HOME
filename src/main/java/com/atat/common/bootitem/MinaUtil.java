@@ -144,6 +144,7 @@ public class MinaUtil {
                 Map<String, Object> relCustomerGatewayinfo = new HashMap<String, Object>();
                 Map<String, Object> rs = new HashMap<String, Object>();
                 rs.put("gatewaySerialNumber", msg[0]);
+                rs.put("isSendMsg",1);
                 List<Map<String, Object>> relCustomerGatewayList = relCustomerGatewayService.selectRelCustomerGatewayList(rs);
                 List<String> customerWxIdList = new ArrayList<String>();
                 for (Map<String, Object> relcustomerGatewayInfo : relCustomerGatewayList) {
@@ -163,7 +164,8 @@ public class MinaUtil {
                     putData.put("time", ContentToJsonObj(format.format(date),"#173177"));
                     putData.put("account", ContentToJsonObj("1","#173177"));
                     putData.put("remark", ContentToJsonObj("AttentionPlace","#173177"));
-                Integer result = weixinMessageService.sendWeixinMessage(customerWxIdList,"",BasePropertyDate.WX_WARN_MODEL,putData);
+                //result 发送失败条数
+                    Integer result = weixinMessageService.sendWeixinMessage(customerWxIdList,"",BasePropertyDate.WX_WARN_MODEL,putData);
 
                 }
             }

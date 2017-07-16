@@ -41,4 +41,11 @@ public interface RelCustomerGatewayDao {
      */
     public void deleteRelCustomerGatewayByGatewayNum(String gatewaySerialNumber);
 
+    /**
+     * 更改客户接收微信推送状态
+     * @param param
+     * @return
+     */
+    public List<Map<String, Object>> updateAllIsSendMsg(Map<String, Object> param);
+
 }

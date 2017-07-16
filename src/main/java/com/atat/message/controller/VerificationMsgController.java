@@ -105,7 +105,6 @@ public class VerificationMsgController extends BaseController {
      */
     @RequestMapping(params = "action=veridateMsg")
     public void veridateMsg(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setHeader("Access-Control-Allow-Origin", "*");
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String veridateMsg = request.getParameter("veridateMsg");
         String mobelPhone = request.getParameter("mobelPhone");

@@ -121,11 +121,13 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
             gatewayDao.addGateway(param_cu);
             isOnwer = 1;
             param.put("isOnwer",isOnwer);
+            //默认订阅当前网关
+            param.put("isSendMsg",1);
             relCustomerGatewayDao.addRelCustomerGateway(param);
             //初次添加网关 添加网管下设备 设备序号与网管保持一致
             Map<String, Object> paramDevice = new HashMap<String, Object>();
             paramDevice.put("seriaNumber",gatewaySerialNumber);
-            //
+            //设备类型ID为1
             paramDevice.put("deviceCategoryId",1);
             paramDevice.put("gatewaySerialNumber",gatewaySerialNumber);
             deviceDao.addDevice(paramDevice);
@@ -167,6 +169,8 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
         if (CollectionUtil.isEmpty(customerGatewayList)) {
             paramCheckInviteder.put("isOnwer",0);
             paramCheckInviteder.put("gatewayName",gatewayName);
+            //默认订阅当前网关
+            paramCheckInviteder.put("isSendMsg",1);
            relCustomerGatewayDao.addRelCustomerGateway(paramCheckInviteder);
            //推送微信消息
             Map<String, Object> rs = new HashMap<String, Object>();
@@ -187,5 +191,27 @@ public class RelCustomerGatewayServiceImpl implements RelCustomerGatewayService 
             }
         }
         return 1;
+    }
+
+
+    @Override public Integer switchAllIsSendMas(String wxId) {
+        //获取原开关状态
+        Map<String, Object> relCustomerGatewayinfo = new HashMap<String, Object>();
+        Map<String, Object> rs = new HashMap<String, Object>();
+        rs.put("wxId", wxId);
+        rs.put("limit", 1);
+        List<Map<String, Object>> relCustomerGatewayList = relCustomerGatewayDao.selectRelCustomerGatewayList(rs);
+        if (CollectionUtil.isEmpty(relCustomerGatewayList)) {
+            return null;
+        }
+        relCustomerGatewayinfo = relCustomerGatewayList.get(0);
+        Integer status = Integer.parseInt(relCustomerGatewayinfo.get("isSendMsg")+"");
+        Long customerId = Long.parseLong(relCustomerGatewayinfo.get("customerId")+"");
+        status = ((Integer)1).equals(status) ? 0 : 1;
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("isSendMsg", status);
+        param.put("customerId", customerId);
+        relCustomerGatewayDao.updateAllIsSendMsg(param);
+        return status;
     }
 }

@@ -12,6 +12,7 @@ import com.atat.common.util.JsonUtil;
 import com.atat.common.util.StringUtil;
 import com.atat.common.util.httpClient.HttpClientUtil;
 import com.atat.common.util.httpClient.URLUtil;
+import com.atat.message.service.WeixinMessageService;
 import com.atat.property.action.GetSignatureUrl;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
  * @author ligw
  * @version $Id AccountController.java, v 0.1 2017-06-03 21:48 ligw Exp $$
  */
@@ -38,6 +38,8 @@ public class ClientAccountController extends BaseController {
     @Resource
     private CustomerService customerService;
 
+    @Resource
+    private WeixinMessageService weixinMessageService;
 
     /**
      * 用户注册页面
@@ -82,7 +84,7 @@ public class ClientAccountController extends BaseController {
         ModelAndView mav = new ModelAndView("personal");
         String mobelPhone = request.getParameter("mobelPhone");
         if (StringUtil.isNotEmpty(mobelPhone)) {
-                mav.addObject("account", customerService.getCustomerByMobelPhone(mobelPhone));
+            mav.addObject("account", customerService.getCustomerByMobelPhone(mobelPhone));
         }
         return mav;
     }
@@ -95,58 +97,29 @@ public class ClientAccountController extends BaseController {
      * @return
      */
     @RequestMapping("/wxUidIsExit")
-    public ModelAndView wxUidIsExit(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public ModelAndView wxUidIsExit(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mav = new ModelAndView("register");
         // 判断微信Id是否已存在
         String code = request.getParameter("code");
         String state = request.getParameter("state");
         String appid = BasePropertyDate.WX_APPID;
-        String secret = BasePropertyDate.WX_SECRET;
-        if (StringUtil.isNotEmpty(code) && StringUtil.isNotEmpty(appid)
-                && StringUtil.isNotEmpty(secret)) {
-            Map<String, Object> map = new HashMap<String, Object>();
-            Map<String, String> paramMap = new HashMap<String, String>();
-            paramMap.put("appid", appid);
-            paramMap.put("secret", secret);
-            paramMap.put("code", code);
-            paramMap.put("grant_type", "authorization_code");
-            String url = "https://api.weixin.qq.com/sns/oauth2/access_token";
-            String resJson = "";
-                try {
-                resJson = HttpClientUtil.doPost(url,paramMap,"utf-8");
-                logger.info("微信平台get请求：" + URLUtil.getDataUrl(url, paramMap));
-                System.out.println("微信平台get请求：" + URLUtil.getDataUrl(url, paramMap));
-                logger.info("微信平台请求用户OpenID：[" + resJson + "]");
-                System.out.println("微信平台请求用户OpenID：[" + resJson + "]");
-                // 解析Json 获取AppId
-                Map<String, Object> resMap = JsonUtil.fromJson(resJson, Map.class);
-                String wxId = (String) resMap.get("openid");
-                if (StringUtil.isNotEmpty(wxId)){
-                    // 判定openId是否已经在表中存在
-                    Map<String, Object> customerMap = customerService.getCustomerByWxId(wxId);
-                    if (CollectionUtil.isNotEmpty(customerMap)) {
-                        mav = new ModelAndView("main");
-                        mav.addObject("account", customerMap);
-
-                        GetSignatureUrl signatureUrl = new GetSignatureUrl();
-                        String mainurl = "http://s-357114.gotocdn.com/smart_home/client/account/wxUidIsExit";
-                        Map<String, Object> weixinInfoMap = signatureUrl.getSignature(mainurl);
-                        mav.addObject("appid", appid);
-                        mav.addObject("noncestr", weixinInfoMap.get("noncestr"));
-                        mav.addObject("timestamp", weixinInfoMap.get("timestamp"));
-                        mav.addObject("signaturet", weixinInfoMap.get("signaturet"));
-                    }
-                    else {
-                        mav.addObject("wxId", wxId);
-                    }
-                } else {
-                    Integer errcode = (Integer) resMap.get("errcode");
-                    String errmsg = (String) resMap.get("errmsg");
-                    logger.error("微信平台请求用户OpenID出错[errcode:"+errcode+"][errmsg:"+errmsg+"]");
-                }
-            } catch (Exception e) {
-                logger.error("[微信平台请求用户OpenID][Http请求异常" + e.getMessage() + "]", e);
-                System.out.println("[微信平台请求用户OpenID][Http请求异常" + e.getMessage() + "]");
+        String wxId = weixinMessageService.getUserwxId(code);
+        if (StringUtil.isNotEmpty(wxId)) {
+            // 判定openId是否已经在表中存在
+            Map<String, Object> customerMap = customerService.getCustomerByWxId(wxId);
+            if (CollectionUtil.isNotEmpty(customerMap)) {
+                mav = new ModelAndView("main");
+                mav.addObject("account", customerMap);
+                GetSignatureUrl signatureUrl = new GetSignatureUrl();
+                String mainurl = "http://s-357114.gotocdn.com/smart_home/client/account/wxUidIsExit";
+                Map<String, Object> weixinInfoMap = signatureUrl.getSignature(mainurl);
+                mav.addObject("appid", appid);
+                mav.addObject("noncestr", weixinInfoMap.get("noncestr"));
+                mav.addObject("timestamp", weixinInfoMap.get("timestamp"));
+                mav.addObject("signaturet", weixinInfoMap.get("signaturet"));
+            }
+            else {
+                mav.addObject("wxId", wxId);
             }
         }
         return mav;
@@ -173,23 +146,23 @@ public class ClientAccountController extends BaseController {
                 && (StringUtil.isNotEmpty(nickName)) && (StringUtil.isNotEmpty(birthday))
                 && (StringUtil.isNotEmpty(sex))) {
             Map<String, Object> param = new HashMap<String, Object>();
-            //Customer customer = new Customer();
-            param.put("mobelPhone",mobelPhone);
-            param.put("password",password);
+            // Customer customer = new Customer();
+            param.put("mobelPhone", mobelPhone);
+            param.put("password", password);
             if (StringUtil.isNotEmpty(wxId)) {
-                param.put("wxId",wxId);
+                param.put("wxId", wxId);
             }
             if (StringUtil.isNotEmpty(token)) {
-                param.put("token",token);
+                param.put("token", token);
             }
             if (StringUtil.isNotEmpty(nickName)) {
-                param.put("nickName",nickName);
+                param.put("nickName", nickName);
             }
             if (StringUtil.isNotEmpty(birthday)) {
-                param.put("birthday",new Date(Long.parseLong(birthday)));
+                param.put("birthday", new Date(Long.parseLong(birthday)));
             }
             if (StringUtil.isNotEmpty(sex)) {
-                param.put("sex",Integer.parseInt(sex));
+                param.put("sex", Integer.parseInt(sex));
             }
             try {
                 customerService.addCustomer(param);
@@ -212,7 +185,7 @@ public class ClientAccountController extends BaseController {
     /**
      * 用户登录
      * 0 手机号或密码错误
-     *  1 成功
+     * 1 成功
      *
      * @return
      * @throws Exception
@@ -228,7 +201,7 @@ public class ClientAccountController extends BaseController {
         String wxId = request.getParameter("wxId");
         if (StringUtil.isNotEmpty(mobelPhone) && StringUtil.isNotEmpty(password)) {
             try {
-                Integer loginRes = customerService.accountLogin(mobelPhone,password,wxId);
+                Integer loginRes = customerService.accountLogin(mobelPhone, password, wxId);
                 resultMap.put("result", "success");
                 resultMap.put("operationResult", loginRes);
             }
@@ -264,7 +237,8 @@ public class ClientAccountController extends BaseController {
                     resultMap.put("result", "success");
                     resultMap.put("operationResult", true);
                     resultMap.put("customer", customer);
-                } else {
+                }
+                else {
                     resultMap.put("result", "success");
                     resultMap.put("operationResult", false);
                 }
@@ -284,6 +258,7 @@ public class ClientAccountController extends BaseController {
 
     /**
      * 用户更换手机号
+     * 
      * @param request
      * @param response
      * @throws IOException
@@ -292,31 +267,57 @@ public class ClientAccountController extends BaseController {
     public void accountUpdateMobile(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String newMobelPhone = request.getParameter("newMobelPhone");
+        String mobelPhone = request.getParameter("mobelPhone");
         String customerId = request.getParameter("customerId");
-        if ((StringUtil.isNotEmpty(newMobelPhone)) && (StringUtil.isNotEmpty(customerId)) ) {
-            try {
-                // 依据手机号查询用户是否已存在
-                Map<String, Object> customer = customerService.getCustomerByMobelPhone(newMobelPhone);
-                if (CollectionUtil.isEmpty(customer)) {
-                    Map<String, Object> param = new HashMap<String, Object>();
-                    param.put("customerId", Integer.parseInt(customerId));
-                    param.put("mobelPhone", newMobelPhone);
-                    customerService.updateCustomerById(param);
-                    resultMap.put("result", "success");
-                    resultMap.put("operationResult",1);
-                } else {
-                    resultMap.put("result", "success");
-                    resultMap.put("operationResult",0);
+        String veridateMsg = request.getParameter("veridateMsg");
+        if ((StringUtil.isNotEmpty(mobelPhone)) && (StringUtil.isNotEmpty(veridateMsg))
+                && (StringUtil.isNotEmpty(newMobelPhone)) && (StringUtil.isNotEmpty(customerId))) {
+            // 验证session
+            String msmRandomCode = (String) request.getSession().getAttribute("msgCodeSsion" + mobelPhone);
+            String randomCode = "";
+            String timeStamp = "";
+            long timePath = 600001;
+            if (StringUtil.isNotEmpty(msmRandomCode)) {
+                String temp[] = msmRandomCode.split("&&");
+                randomCode = temp[0];
+                timeStamp = temp[1];
+            }
+            // 计算时间差
+            if ((StringUtil.isNotEmpty(randomCode)) && (StringUtil.isNotEmpty(timeStamp))) {
+                timePath = (Long) ((new Date()).getTime()) - Long.parseLong(timeStamp);
+            }
+            if ((StringUtil.isNotEmpty(randomCode)) && (veridateMsg.equals(randomCode)) && (timePath < 600000)) {
+                // 结果返回前台
+                try {
+                    // 依据手机号查询用户是否已存在
+                    Map<String, Object> customer = customerService.getCustomerByMobelPhone(newMobelPhone);
+                    if (CollectionUtil.isEmpty(customer)) {
+                        Map<String, Object> param = new HashMap<String, Object>();
+                        param.put("customerId", Integer.parseInt(customerId));
+                        param.put("mobelPhone", newMobelPhone);
+                        customerService.updateCustomerById(param);
+                        resultMap.put("result", "success");
+                        resultMap.put("operationResult", 1);
+                    }
+                    else {
+                        resultMap.put("result", "success");
+                        resultMap.put("operationResult", 0);
+                    }
                 }
-            } catch (NumberFormatException e) {
-                logger.error("依据手机号查询用户是否已存在出错" + e, e);
-                resultMap.put("result", "failed");
-                resultMap.put("error", "系统出错");
+                catch (NumberFormatException e) {
+                    logger.error("依据手机号查询用户是否已存在出错" + e, e);
+                    resultMap.put("result", "failed");
+                    resultMap.put("error", "系统出错");
+                }
+            }
+            else {
+                resultMap.put("result", "error");
+                resultMap.put("operationResult", "验证码错误");
             }
         }
         else {
             resultMap.put("result", "error");
-            resultMap.put("error", "用户Id和手机号不能为空");
+            resultMap.put("error", "重要参数为空");
         }
         this.renderJson(response, resultMap);
     }
