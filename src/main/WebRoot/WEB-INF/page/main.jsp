@@ -105,6 +105,9 @@
             var gatewayArray = new Array();
             var deviceArray = new Array();
             var current_gateway;
+            var deviceId;
+            var code;
+
 
             $("#openAirKiss_btn").click(function () {
                 window.location.href = "${path}/client/home?action=openWifiScan&mobelPhone=" + account.mobelPhone;
@@ -154,8 +157,7 @@
 //                var index = layer.load(1, {
 //                    shade: [0.1,'#fff'] //0.1透明度的白色背景
 //                });
-            var deviceId = "1";
-            var code = "1";
+
 
 
             $('.dropDown').mouseleave(function () {
@@ -169,11 +171,13 @@
 //        网关切换，页面数据重新加载
             function reloadPageContent(gateway) {
                 if (!gateway) {
+//                    alert("gateway  reload");
                     return;
                 }
+//                alert("gateway  reload-content");
                 $("#page-content").css("display", "block");
                 $("#nodata").css("display", "none");
-                $("#gatewayIP").html(gateway.ip);
+//                $("#gatewayIP").html(gateway.address);
                 $("#gatewayName").html(gateway.address);
                 $("#gatewayStatus").html("isOn");
                 $("#devicelistPanel").empty();
@@ -192,10 +196,14 @@
                                 var itemD = result.operationResult[i];
                                // console.log("设备信息：" + JSON.stringify(itemD));
                                // alert("itm:"+itemD.deviceId);
-                                if (itemD.deviceCategoryId == 1) {
+                                if (itemD.gatewaySerialNumber == itemD.seriaNumber) {
                                     var wenduval = "";
                                     var shiduval = "";
                                     var pm = "";
+                                    var co2 = "";
+                                    var voc = "";
+
+                                    deviceId = itemD.deviceId;
 
                                     $.ajax({
                                         url: "${path}/client/device?action=getDeviceByDeviceId",
@@ -209,14 +217,40 @@
                                             for (var j in result.operationResult.deviceDataList) {
                                                 var deviceData = result.operationResult.deviceDataList[j];
                                                 if (deviceData.categoryParameterId == 1) {
-                                                    wenduval += deviceData.name + ":" + deviceData.value + deviceData.unit;
+                                                    if  (deviceData.value == "") {
+                                                        wenduval += deviceData.name + ": "+ deviceData.unit;
+                                                    }else {
+                                                        wenduval += deviceData.name + ": " + deviceData.value + deviceData.unit;
+                                                    }
                                                     $('#device_wendu_info').html(wenduval);
                                                 } else if (deviceData.categoryParameterId == 2) {
-                                                    shiduval += deviceData.name + ":" + deviceData.value + deviceData.unit;
+                                                    if  (deviceData.value == "") {
+                                                        shiduval += deviceData.name + ": "+ deviceData.unit;
+                                                    }else {
+                                                        shiduval += deviceData.name + ": " + deviceData.value + deviceData.unit;
+                                                    }
                                                     $('#device_shidu_info').html(shiduval);
                                                 } else if (deviceData.categoryParameterId == 3) {
-                                                    pm += deviceData.name + ":" + deviceData.value + deviceData.unit;
+                                                    if  (deviceData.value == "") {
+                                                        pm += deviceData.name + ": "+ deviceData.unit;
+                                                    }else {
+                                                        pm += deviceData.name + ": " + deviceData.value + deviceData.unit;
+                                                    }
                                                     $('#device_pm_info').html(pm);
+                                                } else if (deviceData.categoryParameterId == 4) {
+                                                    if  (deviceData.value == "") {
+                                                        voc += deviceData.name + ": "+ deviceData.unit;
+                                                    }else {
+                                                        voc += deviceData.name + ": " + deviceData.value + deviceData.unit;
+                                                    }
+                                                    $('#device_voc_info').html(voc);
+                                                } else if (deviceData.categoryParameterId == 5) {
+                                                    if  (deviceData.value == "") {
+                                                        co2 += deviceData.name + ": "+ deviceData.unit;
+                                                    }else {
+                                                        co2 += deviceData.name + ": " + deviceData.value + deviceData.unit;
+                                                    }
+                                                    $('#device_co2_info').html(co2);
                                                 }
                                             }
                                         }
@@ -400,8 +434,9 @@
                                             if (gatewayArray[i].id == id) {
 //                                                alert(current_gateway.id);
                                                 current_gateway = gatewayArray[i];
-                                                ws.send(current_gateway.gatewayId);
                                                 reloadPageContent(current_gateway);
+                                                ws.send(current_gateway.gatewayId);
+
                                             }
                                         }
 
@@ -413,9 +448,10 @@
 
 //                                alert(current_gateway.id);
                                 current_gateway = gatewayArray[0];
-                                alert("gatewayItemID" + current_gateway.id);
-                                ws.send(current_gateway.id);
+//                                alert("hhhhhhh::::" + current_gateway.id);
                                 reloadPageContent(current_gateway);
+                                ws.send(current_gateway.id);
+
                             }
                             if (!isExist("#gateWayId_nomore")) {
                                 $("#leftM").append('<li id="gateWayId_nomore"><a href="#">没有更多数据了哦！</a></li>');
@@ -770,15 +806,21 @@
             });
 
             $('#device_shidu_item').click(function () {
-                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&code=" + code;
+                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&code=shidu";
             });
 
             $('#device_wendu_item').click(function () {
-                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&code=" + code;
+                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&code=wendu";
             });
 
             $('#device_pm_item').click(function () {
-                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&code=" + code;
+                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&code=pm";
+            });
+            $('#device_voc_item').click(function () {
+                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&code=voc";
+            });
+            $('#device_co2_item').click(function () {
+                window.location.href = "${path}/client/device?action=chartDetail&deviceId=" + deviceId + "&code=co2";
             });
 
             $("#shareWithSomeone").click(function () {
@@ -906,58 +948,53 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
-                <div id class="common-detail">
-                    <div class="circle-status">
-                        <%--<span id="gatewayIP">IP: 192.168.92.13:80</span>--%>
-                        <span id="gatewayStatus" class="menu-status">未开启</span>
-                    </div>
-                    <!--<canvas id="shadowcanvas">-->
-                    <!--</canvas>-->
-                </div>
-            </div>
-        </div>
+        <%--<div class="row">--%>
+            <%--<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">--%>
+                <%--<div id class="common-detail">--%>
+                    <%--<div class="circle-status">--%>
+                        <%--&lt;%&ndash;<span id="gatewayIP">IP: 192.168.92.13:80</span>&ndash;%&gt;--%>
+                        <%--<span id="gatewayStatus" class="menu-status">未开启</span>--%>
+                    <%--</div>--%>
+                    <%--<!--<canvas id="shadowcanvas">-->--%>
+                    <%--<!--</canvas>-->--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
         <div class="gateWay_detail">
             <div class="row">
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
                     <div class="row content">
                         <div class="col-xs-4">
                             <div class="item square"  id="device_shidu_item">
-                                <img src="${path}/page/img/icon/settings.png">
+                                <img src="${path}/page/img/icon/shidu1.png">
                                 <span id="device_shidu_info">空气湿度：--%</span>
                             </div>
                         </div>
                         <div class="col-xs-4">
                             <div class="item square" id="device_wendu_item">
-                                <img src="${path}/page/img/icon/settings.png">
-                                <span id="device_wendu_info">温度：--</span>
+                                <img src="${path}/page/img/icon/wendu.png">
+                                <span class="" id="device_wendu_info">温度：--</span>
                             </div>
                         </div>
+
                         <div class="col-xs-4">
-                            <div class="item square" id="device_pm_item">
-                                <img src="${path}/page/img/icon/settings.png">
+                            <div class="item square" id="device_co2_item">
+                                <img src="${path}/page/img/icon/CO2.png">
+                                <span id="device_co2_info">co2：--%</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="item" id="device_pm_item">
+                                <img src="${path}/page/img/icon/pm.png">
                                 <span id="device_pm_info">PM2.5：--%</span>
                             </div>
                         </div>
-                        <%--<div class="col-xs-4">--%>
-                        <%--<div class="item square">--%>
-                        <%--<img src="${path}/page/img/icon/settings.png">--%>
-                        <%--<span>toc：--%</span>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="col-xs-4">--%>
-                        <%--<div class="item square">--%>
-                        <%--<img src="${path}/page/img/icon/settings.png">--%>
-                        <%--<span>二氧化碳：--%</span>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="col-xs-4">--%>
-                        <%--<div class="item square">--%>
-                        <%--<img src="${path}/page/img/icon/settings.png">--%>
-                        <%--<span id="device_shidu_info_copy">空气湿度：--%</span>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
+                        <div class="col-xs-6">
+                            <div class="item" id="device_voc_item">
+                                <img src="${path}/page/img/icon/voc.png">
+                                <span id="device_voc_info">voc：--%</span>
+                            </div>
+                        </div>
                     </div><!--row content-->
                 </div><!--col-xs-12-->
             </div> <!--row-->

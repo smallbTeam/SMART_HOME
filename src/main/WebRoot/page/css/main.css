@@ -427,28 +427,73 @@ h3.title span:after {
     color: #ffffff;
     border-left: 1px solid #ffffff;
     border-top: 1px solid #ffffff;
-
+    position: relative;
 }
 
 .gateWay_detail .item:hover {
     background: rgba(0, 0, 0, 0.3);
 }
 
+.gateWay_detail .content .item_half {
+    /*margin: 10px;*/
+    width: 100%;
+    /*min-height: 200px;*/
+    padding: 10px;
+    /*height: auto;*/
+    background: rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #ffffff;
+    border-left: 1px solid #ffffff;
+    border-top: 1px solid #ffffff;
 
-.item img {
-    width: 80%;
-    height: auto;
-    margin: auto 10%;
-    z-index: 2;
 }
 
+.gateWay_detail .item_half:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.gateWay_detail .item_half img {
+    width: 100px;
+    height: auto;
+    /*height: 120px;*/
+    max-height: 120px;
+    margin: auto ;
+    /*padding: 10px;*/
+    z-index: 2;
+
+}
+
+.item_half span {
+    width: 100%;
+    height: auto;
+    background: #00b300;
+
+ }
+
+.item img {
+    width: 100px;
+    height: auto;
+    max-height: 120px;
+    margin:  auto;
+    z-index: 2;
+    margin-left: 50%;
+
+    transform: translate(-50%,0);
+}
+.item span {
+    width: 100%;
+    /*margin:  auto;*/
+    left: 50%;
+    transform: translate(-50%,0);
+    text-align: center;
+    margin-bottom: 15px;
+}
 
 /*设备列表表头信息*/
 .device-content{
     margin: 10px 0;
     background: #ffffff;
     padding: 0px 10px 10px;
-
 }
 
 /*设备列表*/

@@ -133,20 +133,30 @@
             window.history.back();
         });
 
-        var account = {"id":'${account.id}',
-            "mobelPhone":'${account.MobelPhone}',
-            "wxId":'${account.WxId}',
-            "nickName":'${account.NickName}',
-            "birthday":'${account.Birthday}',
-            "sex":'${account.Sex}',
-            "reserve":'${account.Reserve}',
-            "token":'${account.Token}'
+        <%--var account = {"id":'${account.id}',--%>
+            <%--"mobelPhone":'${account.MobelPhone}',--%>
+            <%--"wxId":'${account.WxId}',--%>
+            <%--"nickName":'${account.NickName}',--%>
+            <%--"birthday":'${account.Birthday}',--%>
+            <%--"sex":'${account.Sex}',--%>
+            <%--"reserve":'${account.Reserve}',--%>
+            <%--"token":'${account.Token}'--%>
+        <%--};--%>
+        var account = {
+            "id": '${account.customerId}',
+            "mobelPhone": '${account.mobelPhone}',
+            "wxId": '${account.wxId}',
+            "nickName": '${account.nickName}',
+            "birthday": '${account.birthday}',
+            "sex": '${account.sex}',
+            "token": '${account.token}'
         };
+        alert("id:"+account.id);
 
-        $("#gender").val(account.sex);
-        $("#birth").val(account.birthday);
-        $("#phoneNum").val(account.mobelPhone);
-        $("#nickName").val(account.nickName);
+        $("#gender").html(account.sex);
+        $("#birth").html(account.birthday);
+        $("#phoneNum").html(account.mobelPhone);
+        $("#nickName").html(account.nickName);
 
         $("#phoneNumDiv").click(function () {
             var dialog = '<div class="box">' +
@@ -175,18 +185,18 @@
                     url: "${path}/client/account?action=accountUpdateMobile",
                     type: "GET",
                     data: {
-                        mobelPhone: $("#invate_phoneNum").val(),
+                        newMobelPhone: $("#invate_phoneNum").val(),
                         customerId: account.id
                     },
                     dataType: "json",
                     success: function (result) {
                         //console.log(result);
-                        if (result.operationResult == 1) {
+                        if (result.result == "success") {
                             layer.msg("更新成功");
-                            $("#phoneNum").val( $("#invate_phoneNum").val());
+                            $("#phoneNum").html($("#invate_phoneNum").val());
 
                         } else {
-                            layer.msg("发送邀请失败");
+                            layer.msg("更新失败");
                         }
                     },
                     error: function () {
@@ -234,9 +244,9 @@
                     dataType: "json",
                     success: function (result) {
                         //console.log(result);
-                        if (result.operationResult == 1) {
+                        if (result.result == "success") {
                             layer.msg("更新成功");
-                            $("#gender").val( $("#up_gender").val());
+                            $("#gender").html($("#up_gender").val());
 
 
                         } else {
@@ -285,12 +295,12 @@
                     dataType: "json",
                     success: function (result) {
                         //console.log(result);
-                        if (result.operationResult == 1) {
+                        if (result.result == "success") {
                             layer.msg("更新成功");
-                            $("#nickName").val( $("#up_nickName").val());
+                            $("#nickName").html($("#up_nickName").val());
 
                         } else {
-                            layer.msg("发送邀请失败");
+                            layer.msg("更新失败");
                         }
                     },
                     error: function () {

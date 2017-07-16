@@ -24,6 +24,12 @@
         //初始化页面
         $(document).ready(function () {
 
+
+
+
+
+
+
         });
     </script>
     <link rel="stylesheet" type="text/css" href="${path}/page/css/detail.css">
@@ -63,7 +69,7 @@
         <i class="return"></i>
     </div>
     <ul id="rightM" class="dropDown">
-        <li><a href="#" class=""><i class="personal "></i>当日统计</a></li>
+        <li><a href="#" class="color:red;"><i class="personal "></i>当日统计</a></li>
         <li><a href="#">本月统计</a></li>
         <li><a href="#">本年统计</a></li>
     </ul>
@@ -98,24 +104,23 @@
 
 //        var myChart = echarts.init(document.getElementById('chart'));
 
+
         //
         $('.dropDown').mouseleave(function () {
             $('.dropDown').slideUp("slow", function () {
                 $(this).fadeOut(2000);
             });
-
         });
+        alert("deviceD:"+${code});
 
-        <%--var deviceD = {--%>
-            <%--deviceId: ${deviceId},--%>
-            <%--code: ${code},--%>
-            <%--type: "day"--%>
-        <%--};--%>
-         var deviceD = {            
-             deviceId: "1",
-             code: "wendu",
-             type: "day"            
-         };                         
+        var deviceD = {
+            deviceId: ${deviceId},
+            code: ${code},
+            type: "day"
+        };
+
+
+
         $.ajax({
             url: "${path}/client/device?action=getDeviceDataMap",
             type: "GET",
