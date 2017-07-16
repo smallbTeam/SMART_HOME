@@ -393,7 +393,6 @@
                         }
                     } else {
                         layer.msg(result.error);
-
                     }
                 },
                 error: function () {

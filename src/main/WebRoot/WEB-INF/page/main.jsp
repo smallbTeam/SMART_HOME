@@ -159,7 +159,6 @@
 //                });
 
 
-
             $('.dropDown').mouseleave(function () {
                 $('.dropDown').slideUp("slow", function () {
                     $(this).fadeOut(2000);
@@ -180,10 +179,10 @@
 
                 if (gateway.isSendMsg) {
                     $("#notifyText").html("关闭通知");
-                    $("#notify").css("background","#2BB4EA");
-                }else{
+                    $("#notify").css("background", "#2BB4EA");
+                } else {
                     $("#notifyText").html("开启通知");
-                    $("#notify").css("background","red");
+                    $("#notify").css("background", "red");
                 }
 
                 $("#nodata").css("display", "none");
@@ -204,8 +203,8 @@
                         if (result.result == "success") {
                             for (var i in result.operationResult) {
                                 var itemD = result.operationResult[i];
-                               // console.log("设备信息：" + JSON.stringify(itemD));
-                               // alert("itm:"+itemD.deviceId);
+                                // console.log("设备信息：" + JSON.stringify(itemD));
+                                // alert("itm:"+itemD.deviceId);
                                 if (itemD.gatewaySerialNumber == itemD.seriaNumber) {
                                     var wenduval = "";
                                     var shiduval = "";
@@ -223,41 +222,41 @@
                                         },
                                         dataType: "json",
                                         success: function (result) {
-                                            console.log("设备网管数据：" + JSON.stringify(result));
+                                            //console.log("设备网管数据：" + JSON.stringify(result));
                                             for (var j in result.operationResult.deviceDataList) {
                                                 var deviceData = result.operationResult.deviceDataList[j];
                                                 if (deviceData.categoryParameterId == 1) {
-                                                    if  (deviceData.value == "") {
-                                                        wenduval += deviceData.name + ": "+ deviceData.unit;
-                                                    }else {
+                                                    if (deviceData.value == "") {
+                                                        wenduval += deviceData.name + ": " + deviceData.unit;
+                                                    } else {
                                                         wenduval += deviceData.name + ": " + deviceData.value + deviceData.unit;
                                                     }
                                                     $('#device_wendu_info').html(wenduval);
                                                 } else if (deviceData.categoryParameterId == 2) {
-                                                    if  (deviceData.value == "") {
-                                                        shiduval += deviceData.name + ": "+ deviceData.unit;
-                                                    }else {
+                                                    if (deviceData.value == "") {
+                                                        shiduval += deviceData.name + ": " + deviceData.unit;
+                                                    } else {
                                                         shiduval += deviceData.name + ": " + deviceData.value + deviceData.unit;
                                                     }
                                                     $('#device_shidu_info').html(shiduval);
                                                 } else if (deviceData.categoryParameterId == 3) {
-                                                    if  (deviceData.value == "") {
-                                                        pm += deviceData.name + ": "+ deviceData.unit;
-                                                    }else {
+                                                    if (deviceData.value == "") {
+                                                        pm += deviceData.name + ": " + deviceData.unit;
+                                                    } else {
                                                         pm += deviceData.name + ": " + deviceData.value + deviceData.unit;
                                                     }
                                                     $('#device_pm_info').html(pm);
                                                 } else if (deviceData.categoryParameterId == 4) {
-                                                    if  (deviceData.value == "") {
-                                                        voc += deviceData.name + ": "+ deviceData.unit;
-                                                    }else {
+                                                    if (deviceData.value == "") {
+                                                        voc += deviceData.name + ": " + deviceData.unit;
+                                                    } else {
                                                         voc += deviceData.name + ": " + deviceData.value + deviceData.unit;
                                                     }
                                                     $('#device_voc_info').html(voc);
                                                 } else if (deviceData.categoryParameterId == 5) {
-                                                    if  (deviceData.value == "") {
-                                                        co2 += deviceData.name + ": "+ deviceData.unit;
-                                                    }else {
+                                                    if (deviceData.value == "") {
+                                                        co2 += deviceData.name + ": " + deviceData.unit;
+                                                    } else {
                                                         co2 += deviceData.name + ": " + deviceData.value + deviceData.unit;
                                                     }
                                                     $('#device_co2_info').html(co2);
@@ -412,7 +411,7 @@
                     },
                     dataType: "json",
                     success: function (result) {
-                        console.log(result);
+                        //console.log(result);
                         if (result.result == "success") {
 //                            alert("itemId:"+JSON.stringify(result));
                             var jsons = result.operationResult;
@@ -429,7 +428,7 @@
 //                                        "reserve": item.reserve
                                 };
                                 if ($.inArray(gatewayItem, gatewayArray) == -1) {
-                                    alert("gatewayItem" + JSON.stringify(gatewayItem));
+                                    //alert("gatewayItem" + JSON.stringify(gatewayItem));
                                     gatewayArray.push(gatewayItem);
                                     $("#leftM").prepend('<li id="gateWayId_' + gatewayItem.id + '"><a href="#">' + gatewayItem.address + '</a></li>');
                                     $('#gateWayId_' + gatewayItem.id).click(function () {
@@ -538,7 +537,7 @@
                             }
                         },
                         error: function () {
-                            layer.msg("请求失败！");
+                            layer.msg("程序繁忙，请稍后重试。！");
 
                         }
                     });
@@ -584,7 +583,7 @@
                                 }
                             },
                             error: function () {
-                                layer.msg("请求失败！");
+                                layer.msg("程序繁忙，请稍后重试。！");
 
                             }
                         });
@@ -637,7 +636,7 @@
                             }
                         },
                         error: function () {
-                            layer.msg("请求失败！");
+                            layer.msg("程序繁忙，请稍后重试。！");
 
                         }
                     });
@@ -677,7 +676,7 @@
                         }
                     },
                     error: function () {
-                        layer.msg("请求失败！");
+                        layer.msg("程序繁忙，请稍后重试。！");
                     }
                 });
             }
@@ -741,7 +740,7 @@
                             }
                         },
                         error: function () {
-                            layer.msg("请求失败！");
+                            layer.msg("程序繁忙，请稍后重试。！");
                         }
                     });
                 });
@@ -795,7 +794,7 @@
                             }
                         },
                         error: function () {
-                            layer.msg("请求失败！");
+                            layer.msg("程序繁忙，请稍后重试。！");
 
                         }
                     });
@@ -835,83 +834,82 @@
             });
 
             $("#shareWithSomeone").click(function () {
-            var dialog = '<div class="box">' +
-                '<form >' +
-                '<div class="form-group">' +
+                var dialog = '<div class="box">' +
+                    '<form >' +
+                    '<div class="form-group">' +
 //                '<label for="name">手机号码</label>' +
-                '<input type="text" class="form-control" id="invate_phoneNum" placeholder="请输入邀请用户手机号"  required>' +
+                    '<input type="text" class="form-control" id="invate_phoneNum" placeholder="请输入邀请用户手机号"  required>' +
 
 //                            '<label for="name">网关IP</label>'+
 //                            '<input type="text" class="form-control" id="add_gatewayIP" placeholder="请输入网关IP">'+
 
-                '</div>' +
-                '<div class="form-group">' +
-                '</div>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '</div>' +
 //                            '<div id="addGatewaySubmit" class="btn-default" >提交</div>'+
-                '</form>' +
-                '</div>';
+                    '</form>' +
+                    '</div>';
 
 
-            layer.confirm(dialog, {
-                title: "共享",
-                btn: ["分享"], //按钮
+                layer.confirm(dialog, {
+                    title: "共享",
+                    btn: ["分享"], //按钮
 //                            width: "100%"
-            }, function () {
-                $.ajax({
-                    url: "${path}/client/account?action=accountIsExit",
-                    type: "GET",
-                    data: {
-                        mobelPhone: $("#invate_phoneNum").val()
+                }, function () {
+                    $.ajax({
+                        url: "${path}/client/account?action=accountIsExit",
+                        type: "GET",
+                        data: {
+                            mobelPhone: $("#invate_phoneNum").val()
 //                        serialNumber: current_gateway.id
-                    },
-                    dataType: "json",
-                    success: function (result) {
-                        //console.log(result);
-                        if (result.operationResult) {
-                            var invitederId = result.customer.customerId;
+                        },
+                        dataType: "json",
+                        success: function (result) {
+                            //console.log(result);
+                            if (result.operationResult) {
+                                var invitederId = result.customer.customerId;
 //                            layer.msg("更新成功");
-                            $.ajax({
-                                url: "${path}/client/device?action=addGateWayByInvite",
-                                type: "GET",
-                                data: {
-                                    invitederId: invitederId,
-                                    gatewaySerialNumber: current_gateway.id,
-                                    customerId: account.id
-                                },
-                                dataType: "json",
-                                success: function (result) {
-                                    //console.log(result);
-                                    if (result.result == "success") {
-                                    layer.msg("已成功发送邀请");
+                                $.ajax({
+                                    url: "${path}/client/device?action=addGateWayByInvite",
+                                    type: "GET",
+                                    data: {
+                                        invitederId: invitederId,
+                                        gatewaySerialNumber: current_gateway.id,
+                                        customerId: account.id
+                                    },
+                                    dataType: "json",
+                                    success: function (result) {
+                                        //console.log(result);
+                                        if (result.result == "success") {
+                                            layer.msg("已成功发送邀请");
 
 
-                                    } else {
-                                        layer.alert(result.error);
+                                        } else {
+                                            layer.alert(result.error);
+                                        }
+                                    },
+                                    error: function () {
+                                        layer.msg("程序繁忙，请稍后重试。！");
                                     }
-                                },
-                                error: function () {
-                                    layer.msg("请求失败！");
+                                });
 
-                                }
-                            });
+                            } else {
+                                layer.msg("该用户未注册，邀请失败");
+                            }
+                        },
+                        error: function () {
+                            layer.msg("程序繁忙，请稍后重试。！");
 
-                        } else {
-                            layer.msg("发送邀请失败");
                         }
-                    },
-                    error: function () {
-                        layer.msg("请求失败！");
-
-                    }
+                    });
                 });
-            });
             });
 
 
             //关闭通知推送与开启推送通知
             $("#notify").click(function () {
 
-                alert("gid:"+current_gateway.id+":"+account.id);
+                // alert("gid:"+current_gateway.id+":"+account.id);
                 $.ajax({
                     url: "${path}/client/device?action=switchGatewayIsSendMag",
                     type: "GET",
@@ -925,10 +923,10 @@
                         if (result.result == "success") {
                             if (result.operationResult) {
                                 $("#notifyText").html("关闭通知");
-                                $("#notify").css("background","#2BB4EA");
-                            }else {
+                                $("#notify").css("background", "#2BB4EA");
+                            } else {
                                 $("#notifyText").html("开启通知");
-                                $("#notify").css("background","red");
+                                $("#notify").css("background", "red");
                             }
 
                         } else {
@@ -936,7 +934,7 @@
                         }
                     },
                     error: function () {
-                        layer.msg("请求失败！");
+                        layer.msg("程序繁忙，请稍后重试。！");
 
                     }
                 });
@@ -997,23 +995,23 @@
             </div>
         </div>
         <%--<div class="row">--%>
-            <%--<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">--%>
-                <%--<div id class="common-detail">--%>
-                    <%--<div class="circle-status">--%>
-                        <%--&lt;%&ndash;<span id="gatewayIP">IP: 192.168.92.13:80</span>&ndash;%&gt;--%>
-                        <%--<span id="gatewayStatus" class="menu-status">未开启</span>--%>
-                    <%--</div>--%>
-                    <%--<!--<canvas id="shadowcanvas">-->--%>
-                    <%--<!--</canvas>-->--%>
-                <%--</div>--%>
-            <%--</div>--%>
+        <%--<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">--%>
+        <%--<div id class="common-detail">--%>
+        <%--<div class="circle-status">--%>
+        <%--&lt;%&ndash;<span id="gatewayIP">IP: 192.168.92.13:80</span>&ndash;%&gt;--%>
+        <%--<span id="gatewayStatus" class="menu-status">未开启</span>--%>
+        <%--</div>--%>
+        <%--<!--<canvas id="shadowcanvas">-->--%>
+        <%--<!--</canvas>-->--%>
+        <%--</div>--%>
+        <%--</div>--%>
         <%--</div>--%>
         <div class="gateWay_detail">
             <div class="row">
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
                     <div class="row content">
                         <div class="col-xs-4">
-                            <div class="item square"  id="device_shidu_item">
+                            <div class="item square" id="device_shidu_item">
                                 <img src="${path}/page/img/icon/shidu1.png">
                                 <span id="device_shidu_info">空气湿度：--%</span>
                             </div>
@@ -1067,9 +1065,8 @@
 </div>
 
 
-
 <div id="notify" class="notify">
-   <span id="notifyText">关闭通知</span>
+    <span id="notifyText">关闭通知</span>
 </div>
 
 <div id="nodata">
