@@ -58,7 +58,7 @@
                 <img  id="scanfordevice_btn" src="${path}/page/img/icon/scanicon.png" class=" remark pull-right"/>
                     <img style="margin-top: 10px;margin-right: 5px" src="${path}/page/img/visible.png" class="remark pull-right"/>
                 <div class="row-center">
-                    <input style="width: 80%" id="deviceNo" type="text" class="deviceNo" placeholder="扫描添加设备">
+                    <input style="width: 80%" id="deviceNo" type="text" readonly="true" class="deviceNo" placeholder="扫描添加设备">
                 </div>
             </div>
             <div class="row-item">

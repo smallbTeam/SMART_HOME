@@ -60,7 +60,7 @@ $(document).ready(function () {
                                             if (result.operationResult == 0){
                                                 alert("网关已被添加，请联系网管所有者");
                                             } else if (result.operationResult == 1){
-                                                alert("网关成功");
+                                                alert("添加网关成功");
                                             } else {
                                                 alert("添加网关异常")
                                             }
