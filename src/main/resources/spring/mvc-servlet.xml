@@ -60,7 +60,6 @@
 		<!--<property name="concurrent" value="false" /> -->
 		<!-- 作业不并发调度，也就意味着单线程，不写就是true -->
 	</bean>
-
 	<!-- 这个用来配置定时任务的执行时间 -->
 	<bean id="cronTrigger"
 		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">

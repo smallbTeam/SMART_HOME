@@ -11,7 +11,7 @@
                 </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            #{propertyMapId}
+            #{propertyMapId},
                 <if test="propval != null">
                     #{propval},
                 </if>
