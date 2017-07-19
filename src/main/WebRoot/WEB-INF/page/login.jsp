@@ -73,7 +73,7 @@
                 </div>
                 <div class="forgot">
                     <%--<button class="btn-right pull-right">忘记密码?</button>--%>
-                    <button class="btn-left pull-left">注册</button>
+                    <button id="reg" class="btn-left pull-left">注册</button>
                 </div>
             </div>
         </div>
@@ -97,16 +97,16 @@
         context.closePath();
 //        context.stroke();
         context.fill();
-        $("#phoneNumber").change(function () {
-//            var validate = ' <div id="validate" class="validate">'+
-//                '<img src="img/icon/validate.png" class=" icon pull-left"/>'+
-//                '<button class=" pull-right">发送验证码</button>'+
-//                '<div class="row-center">'+
-//                '<input type="text" class="" placeholder="验证码">'+
-//                '</div>'+
-//                '</div>';
-            $('#validate').slideDown("slow");
-        });
+//        $("#phoneNumber").change(function () {
+////            var validate = ' <div id="validate" class="validate">'+
+////                '<img src="img/icon/validate.png" class=" icon pull-left"/>'+
+////                '<button class=" pull-right">发送验证码</button>'+
+////                '<div class="row-center">'+
+////                '<input type="text" class="" placeholder="验证码">'+
+////                '</div>'+
+////                '</div>';
+//            $('#validate').slideDown("slow");
+//        });
         $("#accountLogin").on("click",function(){
             $('#accountLogin').text('登录中...');
             $.ajax({
@@ -115,10 +115,11 @@
                 data:{
                     "mobelPhone":$("#phoneNumber").val(),
                     "password":$("#password").val(),
-                    "wxid":wxId,
+                    "wxid":wxId
                 },
                 dataType:"json",
                 success:function(data){
+                    alert("data:"+data);
                     if(data.result == "success" && null != data.operationResult
                         && "" != data.operationResult){
                         if((0 == data.operationResult)){
@@ -154,7 +155,7 @@
         $("#forgot").click(function () {
 
         });
-        $("#register").click(function () {
+        $("#reg").click(function () {
             window.location.href = "${path}/client/account?action=register"
         });
     });

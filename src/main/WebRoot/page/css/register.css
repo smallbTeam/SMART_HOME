@@ -157,7 +157,7 @@ input:-moz-placeholder { color: rgba(33, 33, 33, 0.58); }
     padding: 0 10px;
     font-size: 14px;
     max-width: 160px;
-    /*background: #a6e1ec;*/
+    background: rgba(0, 0, 0, 0.25);
     border-radius: 17px;
     color: #ffffff;
     right: 0;
