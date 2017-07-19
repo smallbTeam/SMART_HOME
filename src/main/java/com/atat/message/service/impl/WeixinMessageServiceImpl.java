@@ -6,6 +6,7 @@ package com.atat.message.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.atat.common.prop.BasePropertyDate;
+import com.atat.common.util.BaseLogger;
 import com.atat.common.util.JsonUtil;
 import com.atat.common.util.StringUtil;
 import com.atat.common.util.httpClient.HttpClientUtil;
@@ -28,12 +29,10 @@ import java.util.Map;
  * @version $Id weixinMessageService.java, v 0.1 2017-07-15 16:03 ligw Exp $$
  */
 @Service
-public class WeixinMessageServiceImpl implements WeixinMessageService {
+public class WeixinMessageServiceImpl extends BaseLogger implements WeixinMessageService{
 
     @Resource
     private PropertyMapDao propertyMapDao;
-
-    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public Integer sendWeixinMessage(List<String> touser, String url, String template_id, JSONObject data) {

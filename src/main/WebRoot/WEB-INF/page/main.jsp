@@ -117,7 +117,7 @@
             function WebSocketTest() {
                 if ('WebSocket' in window) {
                     ws = new WebSocket('ws://s-357114.gotocdn.com/smart_home/webSocketServer');
-  //                  ws = new WebSocket('ws://127.0.0.1:9080/smarthome/webSocketServer');
+  //                 ws = new WebSocket('ws://127.0.0.1:9080/smarthome/webSocketServer');
                     //ws = new WebSocket('ws://localhost:8080/smarthome/webSocketServer');
                 }
                 else if ('MozWebSocket' in window) {
@@ -129,6 +129,7 @@
                 // 打开一个 web socket
                 ws.onopen = function () {
                     // Web Socket 已连接上，使用 send() 方法发送数据
+                    ws.send(current_gateway.id);
                 };
 
                 ws.onmessage = function (evt) {
@@ -138,6 +139,9 @@
                     $("#device_pm_info").html(jsonmsg.pm);
                     $("#device_shidu_info").html(jsonmsg.shidu);
                     $("#device_wendu_info").html(jsonmsg.wendu);
+                    $("#device_voc_info").html(jsonmsg.voc);
+                    $("#device_co2_info").html(jsonmsg.co2);
+
                 };
 
                 ws.onclose = function () {
@@ -149,7 +153,7 @@
             window.onbeforeunload = function () {
                 ws.close();
             };
-            WebSocketTest();
+
 
 //                假数据
 //                account.id = '58';
@@ -249,7 +253,7 @@
                                                 } else if (deviceData.categoryParameterId == 4) {
                                                     if (deviceData.value == "") {
                                                         voc += deviceData.name + ": " + deviceData.unit;
-                                                    } else {
+                     7                               } else {
                                                         voc += deviceData.name + ": " + deviceData.value + deviceData.unit;
                                                     }
                                                     $('#device_voc_info').html(voc);
@@ -445,7 +449,8 @@
 //                                                alert(current_gateway.id);
                                                 current_gateway = gatewayArray[i];
                                                 reloadPageContent(current_gateway);
-                                                ws.send(current_gateway.gatewayId);
+                                                WebSocketTest();
+                                               /// ws.send(current_gateway.gatewayId);
 
                                             }
                                         }
@@ -482,8 +487,9 @@
             }
 
             //请求页面数据
-            refresh();
+            refresh()
 
+            WebSocketTest();
 
             function addDeviceDialog(deviceTypes) {
                 var dialog = '<div id="addDeviceDialog" class="box">' +

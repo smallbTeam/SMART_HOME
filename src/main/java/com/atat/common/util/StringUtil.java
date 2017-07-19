@@ -632,7 +632,6 @@ public abstract class StringUtil extends org.apache.commons.lang.StringUtils {
      * @throws Exception
      */
     public static final String replaceParams(String str, String param) throws Exception {
-        System.out.println("原始字符串：" + str);
         if (str.contains("?")) {
             String[] strs = str.split("\\?");
             for (String s : strs) {
@@ -643,12 +642,10 @@ public abstract class StringUtil extends org.apache.commons.lang.StringUtils {
                 }
             }
         }
-        System.out.println("替换后字符串：" + str);
         return str;
     }
 
     public static final String replaceParams(String str, Map<String, String> paramsMap) throws Exception {
-        System.out.println("原始字符串：" + str);
         Set<String> keySet = paramsMap.keySet();
         if (str.contains("?")) {
             String[] strs = str.split("\\?");
@@ -660,7 +657,6 @@ public abstract class StringUtil extends org.apache.commons.lang.StringUtils {
                 }
             }
         }
-        System.out.println("替换后字符串：" + str);
         return str;
     }
 }

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.atat.account.service.CustomerService;
 import com.atat.common.prop.BasePropertyDate;
 import com.atat.common.util.JsonUtil;
+import com.atat.common.util.StaticContext;
 import com.atat.common.util.StringUtil;
 import com.atat.device.service.DeviceDataNowService;
 import com.atat.device.service.DeviceService;
@@ -106,8 +107,7 @@ public class MinaUtil {
     /////向数据库写入环境监测结果
     public static void sendEnviTosql(Map<String, Object> map) {
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");// 此文件放在SRC目录下
-        DeviceDataNowService deviceDataNowService = (DeviceDataNowService) context.getBean("deviceDataNowService");
+        DeviceDataNowService deviceDataNowService = (DeviceDataNowService) StaticContext.context.getBean("deviceDataNowService");
         //////向数据库传送数据
         String gatewaySerialNumber = (String) map.get("gatewaySerialNumber");
         map.remove("gatewaySerialNumber");
@@ -146,10 +146,8 @@ public class MinaUtil {
                 return;
             } else {
                 if(str[1].equals("1")||str[1].equals("2")){
-
-                ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");// 此文件放在SRC目录下
-                RelCustomerGatewayService relCustomerGatewayService = (RelCustomerGatewayService) context.getBean("relCustomerGatewayService");
-                WeixinMessageService weixinMessageService = (WeixinMessageService) context.getBean("weixinMessageService");
+                RelCustomerGatewayService relCustomerGatewayService = (RelCustomerGatewayService) StaticContext.context.getBean("relCustomerGatewayService");
+                WeixinMessageService weixinMessageService = (WeixinMessageService) StaticContext.context.getBean("weixinMessageService");
 
                 Map<String, Object> relCustomerGatewayinfo = new HashMap<String, Object>();
                 Map<String, Object> rs = new HashMap<String, Object>();

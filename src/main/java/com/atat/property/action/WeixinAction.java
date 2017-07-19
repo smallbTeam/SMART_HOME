@@ -6,9 +6,7 @@ package com.atat.property.action;
 
 import com.atat.common.base.controller.BaseController;
 import com.atat.common.prop.BasePropertyDate;
-import com.atat.common.util.CollectionUtil;
-import com.atat.common.util.JsonUtil;
-import com.atat.common.util.StringUtil;
+import com.atat.common.util.*;
 import com.atat.common.util.httpClient.URLUtil;
 import com.atat.property.service.PropertyMapService;
 import com.atat.property.service.impl.PropertyMapServiceImpl;
@@ -30,9 +28,7 @@ import java.util.*;
  * @author ligw
  * @version $Id weixinAction.java, v 0.1 2017-06-24 20:18 ligw Exp $$
  */
-public class WeixinAction {
-
-    protected final Logger logger = LoggerFactory.getLogger(getClass());
+public class WeixinAction extends BaseLogger{
 
     // @Autowired
     // PropertyMapService propertyMapService;
@@ -45,8 +41,7 @@ public class WeixinAction {
      * 保存至数据库
      */
     public void refreshWxaccessToken() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");// 此文件放在SRC目录下
-        PropertyMapService propertyMapService = (PropertyMapService) context.getBean("propertyMapService");
+        PropertyMapService propertyMapService = (PropertyMapService) StaticContext.context.getBean("propertyMapService");
         String appid = BasePropertyDate.WX_APPID;
         String secret = BasePropertyDate.WX_SECRET;
         Map<String, Object> map = new HashMap<String, Object>();
