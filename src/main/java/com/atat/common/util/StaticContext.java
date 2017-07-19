@@ -13,5 +13,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class StaticContext {
 
-    public static final ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");// 此文件放在SRC目录下
+    private static ApplicationContext context;// 此文件放在SRC目录下
+
+    public static ApplicationContext getContext(){
+        if (null == context){
+            context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");
+    }
+    return context;
+    }
 }

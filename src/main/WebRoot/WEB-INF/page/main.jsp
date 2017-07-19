@@ -154,15 +154,6 @@
                 ws.close();
             };
 
-
-//                假数据
-//                account.id = '58';
-//                account.mobelPhone = '13652091037';
-//                var index = layer.load(1, {
-//                    shade: [0.1,'#fff'] //0.1透明度的白色背景
-//                });
-
-
             $('.dropDown').mouseleave(function () {
                 $('.dropDown').slideUp("slow", function () {
                     $(this).fadeOut(2000);
@@ -174,10 +165,9 @@
 //        网关切换，页面数据重新加载
             function reloadPageContent(gateway) {
                 if (!gateway) {
-//                    alert("gateway  reload");
                     return;
                 }
-//                alert("gateway  reload-content");
+
                 $("#page-content").css("display", "block");
                 $("#notify").css("display", "block");
 
@@ -190,7 +180,6 @@
                 }
 
                 $("#nodata").css("display", "none");
-//                $("#gatewayIP").html(gateway.address);
                 $("#gatewayName").html(gateway.address);
                 $("#gatewayStatus").html("isOn");
                 $("#devicelistPanel").empty();
@@ -207,8 +196,6 @@
                         if (result.result == "success") {
                             for (var i in result.operationResult) {
                                 var itemD = result.operationResult[i];
-                                // console.log("设备信息：" + JSON.stringify(itemD));
-                                // alert("itm:"+itemD.deviceId);
                                 if (itemD.gatewaySerialNumber == itemD.seriaNumber) {
                                     var wenduval = "";
                                     var shiduval = "";
@@ -338,8 +325,6 @@
 
                                         $("#devicelistPanel").append(html);
                                         $('#delete_' + deviceItem.id).click(function () {
-//                                alert("delete:list-content_"+$(this).attr("id").split("_")[1]);
-
                                             var id = $(this).attr("id").split("_")[1];
                                             $.ajax({
                                                 url: "${path}/client/device?action=delDeviceById",
@@ -398,8 +383,8 @@
                             });
                         }
                     },
-                    error: function () {
-                        layer.error();
+                    error: function (msg) {
+                        layer.error(msg);
                     }
                 });
 
@@ -415,43 +400,27 @@
                     },
                     dataType: "json",
                     success: function (result) {
-                        //console.log(result);
                         if (result.result == "success") {
-//                            alert("itemId:"+JSON.stringify(result));
                             var jsons = result.operationResult;
                             for (var i in jsons) {
                                 var item = jsons[i];
-//                                alert("isSendMsg:"+item.isSendMsg);
                                 var gatewayItem = {
                                     "id": item.gatewaySerialNumber,
-//                                        "gatewayPort": item.gatewayPort,
-//                                        "ip": item.address,
                                     "address": item.gatewayName,
                                     "isSendMsg": item.isSendMsg
-//                                        "modifiedDate": item.modifiedDate,
-//                                        "reserve": item.reserve
                                 };
                                 if ($.inArray(gatewayItem, gatewayArray) == -1) {
-                                    //alert("gatewayItem" + JSON.stringify(gatewayItem));
                                     gatewayArray.push(gatewayItem);
                                     $("#leftM").prepend('<li id="gateWayId_' + gatewayItem.id + '"><a href="#">' + gatewayItem.address + '</a></li>');
                                     $('#gateWayId_' + gatewayItem.id).click(function () {
                                         $("#devicelistPanel").empty();
                                         var id = $(this).attr("id").split("_")[1];
-
-//                                        if ($('#rightM').slideDown){
-//                                            $('#rightM').slideUp("slow");
-//                                        }
                                         $('#leftM').slideUp("slow");
-
                                         for (var i in gatewayArray) {
                                             if (gatewayArray[i].id == id) {
-//                                                alert(current_gateway.id);
                                                 current_gateway = gatewayArray[i];
                                                 reloadPageContent(current_gateway);
                                                 WebSocketTest();
-                                               /// ws.send(current_gateway.gatewayId);
-
                                             }
                                         }
 
@@ -460,13 +429,9 @@
                             }
 
                             if (gatewayArray.length > 0) {
-
-//                                alert(current_gateway.id);
                                 current_gateway = gatewayArray[0];
-//                                alert("hhhhhhh::::" + current_gateway.id);
                                 reloadPageContent(current_gateway);
                                 ws.send(current_gateway.id);
-
                             }
                             if (!isExist("#gateWayId_nomore")) {
                                 $("#leftM").append('<li id="gateWayId_nomore"><a href="#">没有更多数据了哦！</a></li>');
@@ -474,13 +439,11 @@
                         } else {
                             layer.alert(result.error);
                             $("#leftM").append('<li id="gateWayId_nomore"><a href="#">没有更多数据了哦！</a></li>');
-
                         }
                     },
                     error: function () {
                         layer.error();
                         $("#leftM").append('<li id="gateWayId_nomore"><a href="#">没有更多数据了哦！</a></li>');
-
                     }
                 });
 
@@ -544,7 +507,6 @@
                         },
                         error: function () {
                             layer.msg("程序繁忙，请稍后重试。！");
-
                         }
                     });
                 });
@@ -576,12 +538,10 @@
                             data: {
                                 customerId: account.id,
                                 model: $("#add_deviceTypeModel").val(),
-//                             iP: $("#add_gatewayIP").val(),
                                 name: $("#add_deviceTypeName").val()
                             },
                             dataType: "json",
                             success: function (result) {
-                                //console.log(result);
                                 if (result.result == "success") {
                                     layer.msg("添加成功")
                                 } else {
@@ -874,7 +834,6 @@
                             //console.log(result);
                             if (result.operationResult) {
                                 var invitederId = result.customer.customerId;
-//                            layer.msg("更新成功");
                                 $.ajax({
                                     url: "${path}/client/device?action=addGateWayByInvite",
                                     type: "GET",

@@ -44,8 +44,8 @@
     }
 
     $(function () {
-        alert("登录手机号：["+account.mobelPhone+"]");
-        alert("[appId:" + appId + "][timestamp:" + timestamp + "][nonceStr:" + nonceStr + "][signature:" + signature + "]");
+        //alert("登录手机号：["+account.mobelPhone+"]");
+        //alert("[appId:" + appId + "][timestamp:" + timestamp + "][nonceStr:" + nonceStr + "][signature:" + signature + "]");
     });
 </script>
 <script type="text/javascript" src="${path}/page/js/addGetWay.js" charset="utf8"></script>

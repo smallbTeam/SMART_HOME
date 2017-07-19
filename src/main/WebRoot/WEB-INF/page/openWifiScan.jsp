@@ -29,8 +29,8 @@
             "token": '${account.token}'
         };
         $(function () {
-            alert("登录手机号：["+account.mobelPhone+"]");
-            alert("[appId:" + appId + "][timestamp:" + timestamp + "][nonceStr:" + nonceStr + "][signature:" + signature + "]");
+           // alert("登录手机号：["+account.mobelPhone+"]");
+            //alert("[appId:" + appId + "][timestamp:" + timestamp + "][nonceStr:" + nonceStr + "][signature:" + signature + "]");
 
             wx.config({
                 debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -46,7 +46,7 @@
                 wx.checkJsApi({
                     jsApiList: ['configWXDeviceWiFi'],
                     success: function (res) {
-                        alert("checksuccess");
+                        //alert("checksuccess");
                         WeixinJSBridge.invoke('configWXDeviceWiFi', {}, function (res) {
                             alert("errmsg：[" + JSON.stringify(res) + "]");
                             var err_msg = res.err_msg;
@@ -65,7 +65,6 @@
             });
             wx.error(function (res) {
                 // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-                alert("error");
                 alert("error:[" + JSON.stringify(res) + "]");
             });
 

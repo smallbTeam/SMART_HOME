@@ -236,11 +236,8 @@
                             "categoryParameterId": operationResult.categoryParameterId
                         } ;
 
-//                      layer.msg("resutl:"+JSON.stringify(operationResult.deviceEchartsData) );
                         for (var i in operationResult.deviceEchartsData) {
                             var  item = operationResult.deviceEchartsData[i];
-//                        layer.msg("resutl:"+item.value);
-
                             var item_msg = {
                                 "recordTime": item.recordTime,
                                 "deviceId": item.deviceId,

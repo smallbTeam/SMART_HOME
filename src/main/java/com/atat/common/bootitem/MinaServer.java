@@ -1,6 +1,5 @@
 package com.atat.common.bootitem;
 
-import com.atat.common.util.BaseLogger;
 import org.apache.mina.core.service.IoAcceptor;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.filter.logging.LoggingFilter;
@@ -10,9 +9,9 @@ import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
 
-public class MinaServer extends BaseLogger{
+public class MinaServer {
 	private static int PORT = 3005;
-
+	protected final Logger logger = LoggerFactory.getLogger(getClass());
 	public void execute(){
 		IoAcceptor acceptor = null;
 		try {

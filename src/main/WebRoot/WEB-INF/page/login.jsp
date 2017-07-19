@@ -119,7 +119,6 @@
                 },
                 dataType:"json",
                 success:function(data){
-                    alert("data:"+data);
                     if(data.result == "success" && null != data.operationResult
                         && "" != data.operationResult){
                         if((0 == data.operationResult)){

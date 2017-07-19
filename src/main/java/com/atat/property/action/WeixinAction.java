@@ -28,8 +28,8 @@ import java.util.*;
  * @author ligw
  * @version $Id weixinAction.java, v 0.1 2017-06-24 20:18 ligw Exp $$
  */
-public class WeixinAction extends BaseLogger{
-
+public class WeixinAction{
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
     // @Autowired
     // PropertyMapService propertyMapService;
     public static final String GETACCESSTOKENURL = "https://api.weixin.qq.com/cgi-bin/token";
@@ -41,7 +41,7 @@ public class WeixinAction extends BaseLogger{
      * 保存至数据库
      */
     public void refreshWxaccessToken() {
-        PropertyMapService propertyMapService = (PropertyMapService) StaticContext.context.getBean("propertyMapService");
+        PropertyMapService propertyMapService = (PropertyMapService) StaticContext.getContext().getBean("propertyMapService");
         String appid = BasePropertyDate.WX_APPID;
         String secret = BasePropertyDate.WX_SECRET;
         Map<String, Object> map = new HashMap<String, Object>();

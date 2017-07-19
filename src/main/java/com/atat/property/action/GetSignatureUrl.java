@@ -19,7 +19,7 @@ import java.util.UUID;
 public class GetSignatureUrl {
 
     public Map<String, Object> getSignature(String mainurl) {
-        PropertyMapService propertyMapService = (PropertyMapService) StaticContext.context.getBean("propertyMapService");
+        PropertyMapService propertyMapService = (PropertyMapService) StaticContext.getContext().getBean("propertyMapService");
         Map<String, Object> jsapiticket_ticket = new HashMap<String, Object>();
         // 校验签名用的参数 参与签名的字段包括noncestr（随机字符串）, 有效的jsapi_ticket,
         // timestamp（时间戳）, url（当前网页的URL，不包含#及其后面部分）

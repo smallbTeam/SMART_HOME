@@ -107,7 +107,7 @@ public class MinaUtil {
     /////向数据库写入环境监测结果
     public static void sendEnviTosql(Map<String, Object> map) {
 
-        DeviceDataNowService deviceDataNowService = (DeviceDataNowService) StaticContext.context.getBean("deviceDataNowService");
+        DeviceDataNowService deviceDataNowService = (DeviceDataNowService) StaticContext.getContext().getBean("deviceDataNowService");
         //////向数据库传送数据
         String gatewaySerialNumber = (String) map.get("gatewaySerialNumber");
         map.remove("gatewaySerialNumber");
@@ -146,8 +146,8 @@ public class MinaUtil {
                 return;
             } else {
                 if(str[1].equals("1")||str[1].equals("2")){
-                RelCustomerGatewayService relCustomerGatewayService = (RelCustomerGatewayService) StaticContext.context.getBean("relCustomerGatewayService");
-                WeixinMessageService weixinMessageService = (WeixinMessageService) StaticContext.context.getBean("weixinMessageService");
+                RelCustomerGatewayService relCustomerGatewayService = (RelCustomerGatewayService) StaticContext.getContext().getBean("relCustomerGatewayService");
+                WeixinMessageService weixinMessageService = (WeixinMessageService) StaticContext.getContext().getBean("weixinMessageService");
 
                 Map<String, Object> relCustomerGatewayinfo = new HashMap<String, Object>();
                 Map<String, Object> rs = new HashMap<String, Object>();

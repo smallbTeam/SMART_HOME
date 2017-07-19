@@ -192,7 +192,7 @@
 
                     return true;
                 } else {
-                    layer.msg("val:" + $("#pwdAgain").val() + "；f：" + $("#pwd").val());
+                    //layer.msg("val:" + $("#pwdAgain").val() + "；f：" + $("#pwd").val());
                     $("#pwdAgain").parent().prev("img").attr("src", "${path}/page/img/icon/failed.png");
                     $("#pwdAgain").val("");
                     $("#pwdAgain").attr('placeholder', "密码输入不一致");
@@ -285,8 +285,6 @@
             var url = "${path}/verificationMsg?action=sendMsg&mobelPhone=" + mobelPhone;
             //console.log("[" + url + "]");
             $.get(url, function (msg) {
-                alert("msg:"+msg.operationResult);
-//                console.log("msg:" + msg.operationResult);
                 if (msg.result == 'success') {
                     //请求成功
                     var countdown = 60;
@@ -392,7 +390,7 @@
                             layer.msg("用户已存在");
                         }
                     } else {
-                        layer.msg(result.error);
+                        layer.msg("系统繁忙，请稍后重试");
                     }
                 },
                 error: function () {
