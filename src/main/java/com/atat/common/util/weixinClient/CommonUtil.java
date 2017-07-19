@@ -25,8 +25,6 @@ import org.slf4j.LoggerFactory;
  * @date 2014-10-22
  */
 public class CommonUtil {
-	private static Logger log = LoggerFactory.getLogger(CommonUtil.class);
-
 
 	/**
 	 * 发送https请求
@@ -82,9 +80,9 @@ public class CommonUtil {
 			conn.disconnect();
 			jsonObject = JSONObject.parseObject(buffer.toString());
 		} catch (ConnectException ce) {
-			log.error("连接超时：{}", ce);
+			System.out.println("连接超时");
 		} catch (Exception e) {
-			log.error("https请求异常：{}", e);
+			System.out.println("https请求异常：{}");
 		}
 		return jsonObject;
 	}

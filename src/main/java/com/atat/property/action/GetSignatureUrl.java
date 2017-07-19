@@ -1,5 +1,6 @@
 package com.atat.property.action;
 
+import com.atat.common.util.StaticContext;
 import com.atat.property.service.PropertyMapService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -18,8 +19,7 @@ import java.util.UUID;
 public class GetSignatureUrl {
 
     public Map<String, Object> getSignature(String mainurl) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");// 此文件放在SRC目录下
-        PropertyMapService propertyMapService = (PropertyMapService) context.getBean("propertyMapService");
+        PropertyMapService propertyMapService = (PropertyMapService) StaticContext.context.getBean("propertyMapService");
         Map<String, Object> jsapiticket_ticket = new HashMap<String, Object>();
         // 校验签名用的参数 参与签名的字段包括noncestr（随机字符串）, 有效的jsapi_ticket,
         // timestamp（时间戳）, url（当前网页的URL，不包含#及其后面部分）

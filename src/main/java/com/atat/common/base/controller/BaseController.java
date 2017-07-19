@@ -29,7 +29,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
  * @author sundaolin
  * @version 1.0, Created at 2014-3-25
  */
-public abstract class BaseController extends AbstractController {
+public abstract class BaseController extends AbstractController{
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 

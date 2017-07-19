@@ -2,6 +2,7 @@ package com.atat.common.bootitem;
 
 import java.util.*;
 
+import com.atat.common.util.JsonUtil;
 import com.atat.device.config.SystemWebSocketHandler;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.service.IoHandlerAdapter;
@@ -11,8 +12,8 @@ import org.apache.mina.core.session.IoSession;
 import static com.atat.common.bootitem.MinaUtil.*;
 
 public class MinaServerHandler extends IoHandlerAdapter {
-//	public static List<HardWare>  list = new ArrayList<HardWare>();
-	private static Map<IoSession,HardWare> list = new HashMap<IoSession,HardWare>();
+//	public static List<HardWare>  sessionMap = new ArrayList<HardWare>();
+	private static Map<IoSession,HardWare> sessionMap = new HashMap<IoSession,HardWare>();
 	//	private int state = 0;
 
 	///////////////根据返回值直接发送ok
@@ -26,6 +27,15 @@ public class MinaServerHandler extends IoHandlerAdapter {
 		number.write(buffers);
 
 	}
+	
+	public void checkSessionMsg(){
+		Iterator it = sessionMap.keySet().iterator();
+		while (it.hasNext()) {
+			IoSession session = (IoSession) it.next();//Session
+			//String value = JsonUtil.toJson((Object) sessionMap.get(key));//
+			sendMessage("OK\\\r\\\n", session);
+		}
+	}
 
 
 	@Override
@@ -36,7 +46,7 @@ public class MinaServerHandler extends IoHandlerAdapter {
 	@Override
 	public void sessionOpened(IoSession session) throws Exception {
 
-		list.put(session,new HardWare(0));
+		sessionMap.put(session,new HardWare(0));
 	}
 
 
@@ -57,7 +67,7 @@ public class MinaServerHandler extends IoHandlerAdapter {
 		if(str[1].equals("KQSJ")){
 			//////将数据转换为map
 			List<Map<String,Object>> map =  InPutMessageToMap(str);
-//			hd = list.get(session);
+//			hd = sessionMap.get(session);
 			SystemWebSocketHandler.sendMessage(map.get(1));
 			sendEnviTosql(map.get(0));
 
@@ -82,7 +92,7 @@ public class MinaServerHandler extends IoHandlerAdapter {
 //				}else{
 //					hd.setCount(cony);
 //				}
-//				list.put(session,hd);
+//				sessionMap.put(session,hd);
 //			}else{
 //				hd.setCount(1);
 //				hd.setNumber(str[0]);
@@ -107,7 +117,7 @@ public class MinaServerHandler extends IoHandlerAdapter {
 	public void sessionClosed(IoSession session) throws Exception {
 
 
-		list.remove(session);
+		sessionMap.remove(session);
 
 		System.out.println("关闭session");
 	}

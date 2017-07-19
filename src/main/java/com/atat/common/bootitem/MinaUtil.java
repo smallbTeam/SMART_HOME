@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.atat.account.service.CustomerService;
 import com.atat.common.prop.BasePropertyDate;
 import com.atat.common.util.JsonUtil;
+import com.atat.common.util.StaticContext;
 import com.atat.common.util.StringUtil;
 import com.atat.device.service.DeviceDataNowService;
 import com.atat.device.service.DeviceService;
@@ -49,15 +50,15 @@ public class MinaUtil {
         map2.put("serialNumber", msg[0]);
 
         map.put("wendu", StringToFloat(msg[2].substring(0, msg[2].length() - 2), "wendu"));
-        map2.put("wendu", StringToFloat(msg[2], "wendu"));
+        map2.put("wendu", StringToPoint(msg[2], "wendu"));
         map.put("shidu", StringToFloat(msg[3].substring(0, msg[3].length() - 2), "shidu"));
-        map2.put("shidu", StringToFloat(msg[3], "shidu"));
+        map2.put("shidu", StringToPoint(msg[3], "shidu"));
         map.put("pm", StringToFloat(msg[4].substring(0, msg[4].length() - 2), "pm"));
-        map2.put("pm", StringToFloat(msg[4], "pm"));
+        map2.put("pm", StringToPoint(msg[4], "pm"));
         map.put("voc", StringToFloat(msg[5].substring(0, msg[5].length() - 2), "voc"));
-        map2.put("voc", StringToFloat(msg[5], "voc"));
+        map2.put("voc", StringToPoint(msg[5], "voc"));
         map.put("co2", StringToFloat(msg[6].substring(0, msg[6].length() - 2), "co2"));
-        map2.put("co2", StringToFloat(msg[6], "co2"));
+        map2.put("co2", StringToPoint(msg[6], "co2"));
         list.add(map);
         list.add(map2);
         return list;
@@ -78,6 +79,16 @@ public class MinaUtil {
         return (float) (number / Math.pow(10, TypeToPoint(type)));
     }
 
+
+    private static String StringToPoint(String s, String type) {
+        StringBuilder sb = new StringBuilder(s);//构造一个StringBuilder对象
+        if(TypeToPoint(type)!=0){
+            sb.insert(sb.length()-TypeToPoint(type)-2, ".");//在指定的位置1，插入指定的字符串
+        }
+        return sb.toString();
+    }
+
+
     private static int TypeToPoint(String type) {
         switch (type) {
             case "wendu": {
@@ -96,8 +107,7 @@ public class MinaUtil {
     /////向数据库写入环境监测结果
     public static void sendEnviTosql(Map<String, Object> map) {
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");// 此文件放在SRC目录下
-        DeviceDataNowService deviceDataNowService = (DeviceDataNowService) context.getBean("deviceDataNowService");
+        DeviceDataNowService deviceDataNowService = (DeviceDataNowService) StaticContext.context.getBean("deviceDataNowService");
         //////向数据库传送数据
         String gatewaySerialNumber = (String) map.get("gatewaySerialNumber");
         map.remove("gatewaySerialNumber");
@@ -136,10 +146,8 @@ public class MinaUtil {
                 return;
             } else {
                 if(str[1].equals("1")||str[1].equals("2")){
-
-                ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/applicationContext.xml");// 此文件放在SRC目录下
-                RelCustomerGatewayService relCustomerGatewayService = (RelCustomerGatewayService) context.getBean("relCustomerGatewayService");
-                WeixinMessageService weixinMessageService = (WeixinMessageService) context.getBean("weixinMessageService");
+                RelCustomerGatewayService relCustomerGatewayService = (RelCustomerGatewayService) StaticContext.context.getBean("relCustomerGatewayService");
+                WeixinMessageService weixinMessageService = (WeixinMessageService) StaticContext.context.getBean("weixinMessageService");
 
                 Map<String, Object> relCustomerGatewayinfo = new HashMap<String, Object>();
                 Map<String, Object> rs = new HashMap<String, Object>();

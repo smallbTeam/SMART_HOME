@@ -60,7 +60,6 @@
 		<!--<property name="concurrent" value="false" /> -->
 		<!-- 作业不并发调度，也就意味着单线程，不写就是true -->
 	</bean>
-
 	<!-- 这个用来配置定时任务的执行时间 -->
 	<bean id="cronTrigger"
 		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
@@ -122,6 +121,20 @@
 		<property name="cronExpression" value="0 30 0 ? * L" />
 	</bean>
 
+	<!--监测硬件是否连接-->
+	<bean id="checkLink"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<bean class="com.atat.common.bootitem.MinaServerHandler" />
+		</property>
+		<property name="targetMethod" value="checkSessionMsg" />
+	</bean>
+	<bean id="checkLinkTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="checkLink" />
+		<property name="cronExpression" value="0 0 0/1 * * ?" />
+	</bean>
+
 	<!-- 配置执行定时器的工厂，在list中配置的bean，都会加载到这个工厂中，然后定时运行 -->
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
@@ -130,6 +143,7 @@
 				<ref bean="timeFormateThreeHourTrigger" />
 				<ref bean="timeFormateOneDayTrigger" />
 				<ref bean="timeFormateOneWeekTrigger" />
+				<ref bean="checkLinkTrigger" />
 			</list>
 		</property>
 	</bean>

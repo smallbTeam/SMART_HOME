@@ -4,6 +4,7 @@
  */
 package com.atat.message.service.impl;
 
+import com.atat.common.util.BaseLogger;
 import com.atat.common.util.StringUtil;
 import com.atat.common.util.httpClient.URLUtil;
 import com.atat.message.service.ShortMessageService;
@@ -29,12 +30,10 @@ import java.util.*;
  * @version $Id shortMessageServiceImpl.java, v 0.1 2017-07-15 16:00 ligw Exp $$
  */
 @Service
-public class ShortMessageServiceImpl implements ShortMessageService {
+public class ShortMessageServiceImpl extends BaseLogger implements ShortMessageService {
 
     @Resource
     private Properties smsPlatformProperties;
-
-    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public Integer sendShortMessage(String mobelPhone, String msmContent) {
