@@ -80,8 +80,8 @@ public class DeviceDataNowServiceImpl implements DeviceDataNowService {
             Double value = Double.parseDouble((String) param.get("value"));
             // 依据设备序号查找设备类型和设备ID
             Map<String, Object> param_sede = new HashMap<String, Object>();
-            param.put("seriaNumber", seriaNumber);
-            param.put("gatewaySerialNumber", gatewaySerialNumber);
+            param_sede.put("seriaNumber", seriaNumber);
+            param_sede.put("gatewaySerialNumber", gatewaySerialNumber);
             if (CollectionUtil.isNotEmpty((List<Map<String, Object>>) deviceDao.selectDeviceList(param_sede))) {
                 Map<String, Object> device = deviceDao.selectDeviceList(param_sede).get(0);
                 Long deviceId = Long.parseLong(device.get("deviceId") + "");

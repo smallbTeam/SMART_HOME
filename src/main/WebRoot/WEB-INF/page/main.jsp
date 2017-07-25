@@ -116,8 +116,8 @@
 //            webscoket
             function WebSocketTest() {
                 if ('WebSocket' in window) {
-                    ws = new WebSocket('ws://s-357114.gotocdn.com/smart_home/webSocketServer');
-  //                 ws = new WebSocket('ws://127.0.0.1:9080/smarthome/webSocketServer');
+//                    ws = new WebSocket('ws://s-357114.gotocdn.com/smart_home/webSocketServer');
+                   ws = new WebSocket('ws://127.0.0.1:9080/smarthome/webSocketServer');
                     //ws = new WebSocket('ws://localhost:8080/smarthome/webSocketServer');
                 }
                 else if ('MozWebSocket' in window) {
@@ -136,11 +136,11 @@
                     var msg = evt.data;
 //                    alert("msg:" + msg);
                     var jsonmsg = JSON.parse(msg);
-                    $("#device_pm_info").html(jsonmsg.pm);
-                    $("#device_shidu_info").html(jsonmsg.shidu);
-                    $("#device_wendu_info").html(jsonmsg.wendu);
-                    $("#device_voc_info").html(jsonmsg.voc);
-                    $("#device_co2_info").html(jsonmsg.co2);
+                    $("#device_pm_info").html('PM2.5:'+jsonmsg.pm+'μg/m³');
+                    $("#device_shidu_info").html('湿度:'+jsonmsg.shidu+'%');
+                    $("#device_wendu_info").html('温度:'+jsonmsg.wendu+'℃');
+                    $("#device_voc_info").html('VOC:'+jsonmsg.voc+'g/L');
+                    $("#device_co2_info").html('CO2:'+jsonmsg.co2+'ppm');
 
                 };
 

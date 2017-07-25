@@ -233,7 +233,6 @@ public class MinaUtil {
 
         map.put("serialNumber", msg[0]);
 
-
         map.put("wendu", StringToFloat(msg[2].substring(0, msg[2].length() - 2), "wendu"));
         map.put("shidu", StringToFloat(msg[3].substring(0, msg[3].length() - 2), "shidu"));
         map.put("pm", StringToFloat(msg[4].substring(0, msg[4].length() - 2), "pm"));

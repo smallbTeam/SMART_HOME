@@ -26,7 +26,7 @@ public class SystemWebSocketHandler extends TextWebSocketHandler {
     public static void sendMessage(Map<String, Object> map) {
         if (users.size() > 0) {
             String devicenumber = (String) map.get("gatewaySerialNumber");
-            System.out.println("发送出去的网关号------------->" + devicenumber);
+            //System.out.println("发送出去的网关号------------->" + devicenumber);
             Iterator it = users.keySet().iterator();
             while (it.hasNext()) {
                 WebSocketSession key = (WebSocketSession) it.next();// 键名
@@ -34,7 +34,7 @@ public class SystemWebSocketHandler extends TextWebSocketHandler {
                 if (devicenumber.equals(value)) {
                     String str = JsonUtil.toJson(map);
                     // 发出去内容
-                    System.out.println("发送出去的消息------------->" + str);
+                   // System.out.println("发送出去的消息------------->" + str);
                     CharBuffer toMsg = CharBuffer.wrap(str.toCharArray());
                     TextMessage message = new TextMessage(toMsg);
                     try {
@@ -65,9 +65,9 @@ public class SystemWebSocketHandler extends TextWebSocketHandler {
     }
 
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        System.out.println("ConnectionEstablished");
+       // System.out.println("ConnectionEstablished");
 //        users.put(session,"");
-        System.out.println("当前用户" + users.size());
+       // System.out.println("当前用户量" + users.size());
         // Demo1Server demo1Server = new Demo1Server();
         // demo1Server.execute();
     }
@@ -87,7 +87,7 @@ public class SystemWebSocketHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         super.handleTextMessage(session, message);
         // sendMessageToUsers(session,message);
-        System.out.println("收到来自websocket的消息:" + message.toString());
+        //System.out.println("收到来自websocket的消息:" + message.toString());
         String msg = message.getPayload().toString();
         users.put(session,msg);
     }
@@ -97,7 +97,7 @@ public class SystemWebSocketHandler extends TextWebSocketHandler {
         if (session.isOpen()) {
             session.close();
         }
-        System.out.println("close");
+       // System.out.println("close");
 //        users.remove(session);
         users.remove(session);
     }
@@ -105,7 +105,7 @@ public class SystemWebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
         users.remove(session);
-        System.out.println("close222");
+      //  System.out.println("close222");
     }
 
     @Override

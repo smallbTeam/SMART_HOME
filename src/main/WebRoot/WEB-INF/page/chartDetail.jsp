@@ -24,12 +24,6 @@
         //初始化页面
         $(document).ready(function () {
 
-
-
-
-
-
-
         });
     </script>
     <link rel="stylesheet" type="text/css" href="${path}/page/css/detail.css">
@@ -72,7 +66,6 @@
         <li id="monthAccount"><a href="#">1天内</a></li>
         <li id="yearAccount"><a href="#">1年内</a></li>
         <li id="todayAccount"><a href="#">3小时内</a></li>
-
     </ul>
 
 
@@ -116,8 +109,8 @@
         $("#chartTitle").html("3小时内");
 
         var deviceD = {
-            deviceId: ${deviceId},
-            code: "wendu",
+            deviceId: "${deviceId}",
+            code: "${code}",
             type: "hour"
         };
 
@@ -132,6 +125,7 @@
         var oneMonth= 30 * 24 * 3600 * 1000;
         var oneYear=  12 * 30 * 24 * 3600 * 1000;
 
+        var unit = "";
         var date = [];
 
         var data = [];
@@ -155,9 +149,10 @@
                 return year+'/'+add0(month)+'/'+add0(date)+' '+add0(hours);
             }                  //2 小时
             return year+'/'+add0(month)+'/'+add0(date)+' '+add0(hours)+':'+add0(minutes);
+
+            //return "";
+
         }
-
-
 
         function addData(msg,type) {
             var newDateStr = format(msg.recordTime,2);
@@ -181,12 +176,13 @@
                     data: date
                 },
                 yAxis: {
+                    name:unit,
 //                boundaryGap: [0, '20%'],
                     type: 'value'
                 },
                 series: [
                     {
-                        name:'成交',
+                        name:'',
                         type:'line',
                         smooth:true,
                         symbol: 'none',
@@ -199,14 +195,6 @@
                 ]
             };
         }
-//
-//        var msg = {
-//            "recordTime": 1500036668393,
-//            "deviceId": 1,
-//            "value": 11.11,
-//            "categoryParameterId": 1
-//        };
-
 
         function accountMsgs(deviceD) {
             $.ajax({
@@ -236,6 +224,8 @@
                             "categoryParameterId": operationResult.categoryParameterId
                         } ;
 
+                        unit = operationResult.name+" "+operationResult.unit;
+
                         for (var i in operationResult.deviceEchartsData) {
                             var  item = operationResult.deviceEchartsData[i];
                             var item_msg = {
@@ -259,44 +249,24 @@
                         }
                             setOption();
                             if (option && typeof option === "object") {
+                                myChart.clear();
+                                // 显示折线图。
                                 myChart.setOption(option, true);
                             }
-
                     } else {
                         layer.alert(result.error);
                     }
                 },
                 error: function () {
                     layer.msg("请求失败！");
-
                 }
             });
         }
-
-
-
-//        for (var i = 1; i < 100; i++) {
-//            addData(msg,2);
-//        }
-
-
-//        setInterval(function () {
-//            addData(true);
-//            myChart.setOption({
-//                xAxis: {
-//                    data: date
-//                },
-//                series: [{
-//                    name:'成交',
-//                    data: data
-//                }]
-//            });
-//        }, 500);
-       
-       
-
         //界面进入数据加载
         accountMsgs(deviceD);
+        $(window).resize(function () {
+            myChart.resize(); // 使图表适应
+        });
 
         $("#todayAccount").click(function () {
 
@@ -317,7 +287,6 @@
             accountMsgs(deviceD);
         });
         $("#yearAccount").click(function () {
-
             deviceD.type = "year";
             date = [];
             data = [];
@@ -329,10 +298,6 @@
         $(".menuleft").click(function () {
             window.history.back();
         });
-
-
-
-
     });
 
 </script>

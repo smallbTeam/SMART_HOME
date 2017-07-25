@@ -37,7 +37,6 @@ $(document).ready(function () {
                 wx.checkJsApi({
                     jsApiList: ['configWXDeviceWiFi'],
                     success: function (res) {
-                        alert("checksuccess");
                         WeixinJSBridge.invoke('configWXDeviceWiFi', {}, function (res) {
                             alert("errmsg：[" + JSON.stringify(res) + "]");
                             var err_msg = res.err_msg;
@@ -61,6 +60,7 @@ $(document).ready(function () {
                                                 alert("网关已被添加，请联系网管所有者");
                                             } else if (result.operationResult == 1){
                                                 alert("添加网关成功");
+                                                window.location.href = path+"/client/home?action=index&mobelPhone=" + account.mobelPhone;
                                             } else {
                                                 alert("添加网关异常")
                                             }
@@ -74,10 +74,9 @@ $(document).ready(function () {
                                     }
                                 });
                             } else {
-                                // $('#message').html("配置 WIFI失败，是否<a href=\"/wechat/scan/airkiss" + window.location.search + "\">再次扫描</a>。<br>不配置WIFI,<a href=\"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf1867e87a4eeeb16&redirect_uri=http://letux.xyz/wechat/page/main&response_type=code&scope=snsapi_base&state=1#wechat_redirect\">直接进入首页</a>。");
                                 alert("配置 WIFI失败");
                             }
-                            window.location.href = path+"/client/home?action=index&mobelPhone=" + account.mobelPhone;
+                            //window.location.href = path+"/client/home?action=index&mobelPhone=" + account.mobelPhone;
                         });
                     }
                 });
@@ -85,14 +84,11 @@ $(document).ready(function () {
         }
     });
     $("#scanfordevice_btn").click(function () {
-        alert("cominto QRCode Scan");
         wx.scanQRCode({
             needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
             scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
             success: function (res) {
-                //alert("res：[" + JSON.stringify(res) + "]");
                 var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-               // alert("result：[" + result + "]");
                 $("#deviceNo").val(result);
             }
         });
