@@ -116,8 +116,8 @@
 //            webscoket
             function WebSocketTest() {
                 if ('WebSocket' in window) {
-//                    ws = new WebSocket('ws://s-357114.gotocdn.com/smart_home/webSocketServer');
-                   ws = new WebSocket('ws://127.0.0.1:9080/smarthome/webSocketServer');
+                    ws = new WebSocket('ws://s-357114.gotocdn.com/smart_home/webSocketServer');
+                   //ws = new WebSocket('ws://127.0.0.1:9080/smarthome/webSocketServer');
                     //ws = new WebSocket('ws://localhost:8080/smarthome/webSocketServer');
                 }
                 else if ('MozWebSocket' in window) {
