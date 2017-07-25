@@ -144,11 +144,13 @@
             var hours = time.getHours();
             var minutes = time.getMinutes();
             if (type == 0){             //年
-                return year+'/'+add0(month)+'/'+add0(date);
+                //return year+'/'+add0(month)+'/'+add0(date);
+                return add0(month)+'/'+add0(date);
             }else if (type == 1) { //月
-                return year+'/'+add0(month)+'/'+add0(date)+' '+add0(hours);
+                //return year+'/'+add0(month)+'/'+add0(date)+' '+add0(hours);
+                return add0(hours);
             }                  //2 小时
-            return year+'/'+add0(month)+'/'+add0(date)+' '+add0(hours)+':'+add0(minutes);
+            return add0(hours)+':'+add0(minutes);
 
             //return "";
 

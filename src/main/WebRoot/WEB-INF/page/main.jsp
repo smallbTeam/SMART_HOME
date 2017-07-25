@@ -431,7 +431,11 @@
                             if (gatewayArray.length > 0) {
                                 current_gateway = gatewayArray[0];
                                 reloadPageContent(current_gateway);
-                                ws.send(current_gateway.id);
+                                if(ws != null) {
+                                    ws.send(current_gateway.id);
+                                }else{
+                                    WebSocketTest();
+                                }
                             }
                             if (!isExist("#gateWayId_nomore")) {
                                 $("#leftM").append('<li id="gateWayId_nomore"><a href="#">没有更多数据了哦！</a></li>');
@@ -452,7 +456,7 @@
             //请求页面数据
             refresh()
 
-            WebSocketTest();
+            //WebSocketTest();
 
             function addDeviceDialog(deviceTypes) {
                 var dialog = '<div id="addDeviceDialog" class="box">' +
