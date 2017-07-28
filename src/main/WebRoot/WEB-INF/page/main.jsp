@@ -981,32 +981,42 @@
                     <div class="row content">
                         <div class="col-xs-4">
                             <div class="item square" id="device_shidu_item">
-                                <img src="${path}/page/img/icon/shidu1.png">
+                                <div class="item-img">
+                                    <img src="${path}/page/img/icon/shidu1.png">
+                                </div>
                                 <span id="device_shidu_info">空气湿度：--%</span>
                             </div>
                         </div>
                         <div class="col-xs-4">
                             <div class="item square" id="device_wendu_item">
-                                <img src="${path}/page/img/icon/wendu.png">
+                                <div class="item-img">
+                                    <img src="${path}/page/img/icon/wendu.png">
+                                </div>
                                 <span class="" id="device_wendu_info">温度：--</span>
                             </div>
                         </div>
 
                         <div class="col-xs-4">
                             <div class="item square" id="device_co2_item">
-                                <img src="${path}/page/img/icon/CO2.png">
+                                <div class="item-img">
+                                    <img src="${path}/page/img/icon/CO2.png">
+                                </div>
                                 <span id="device_co2_info">co2：--%</span>
                             </div>
                         </div>
                         <div class="col-xs-6">
                             <div class="item" id="device_pm_item">
-                                <img src="${path}/page/img/icon/pm.png">
+                                <div class="item-img">
+                                    <img src="${path}/page/img/icon/pm.png">
+                                </div>
                                 <span id="device_pm_info">PM2.5：--%</span>
                             </div>
                         </div>
                         <div class="col-xs-6">
                             <div class="item" id="device_voc_item">
-                                <img src="${path}/page/img/icon/voc.png">
+                                <div class="item-img">
+                                    <img src="${path}/page/img/icon/voc.png">
+                                </div>
                                 <span id="device_voc_info">voc：--%</span>
                             </div>
                         </div>
